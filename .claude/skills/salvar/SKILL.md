@@ -38,9 +38,23 @@ Nunca comitar segredo "só essa vez".
 
 ## Workflow
 
-### Primeira vez (repositório não inicializado)
+### Primeira vez
 
-Detectar com `git rev-parse --is-inside-work-tree`. Se falhar:
+**Atenção:** o workspace já é um repositório git — ele veio do clone do ViperOS. Então `git rev-parse` **sempre** responde que sim, e a pergunta certa é outra: *já existe um `origin` que seja do usuário?*
+
+```bash
+git remote -v
+```
+
+Três situações:
+
+| O que aparece | O que fazer |
+|---|---|
+| Nenhum `origin`, só `viperos` | É a primeira vez — seguir o fluxo abaixo pra criar o repositório dele |
+| `origin` apontando pra `vertsystems/viperos` | O `/instalar` não renomeou. Rodar `git remote rename origin viperos` **antes** de qualquer coisa, e então seguir o fluxo abaixo |
+| `origin` dele (outro endereço) | Já está configurado — pular pro "Commits seguintes" |
+
+Se for a primeira vez:
 
 1. Perguntar:
    > "Esse é o primeiro salvamento. Você já tem um repositório criado no GitHub pra esse workspace?

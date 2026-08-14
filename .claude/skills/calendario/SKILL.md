@@ -88,6 +88,8 @@ E depois de escrever o arquivo:
 node scripts/verificar.js datas conteudo/calendario-<AAAA-MM>.md
 ```
 
+**A tabela precisa ter a coluna `Dia`** — é ela que o verificador confere contra a data. Sem essa coluna ele não tem o que checar e passa em branco.
+
 Só entregar quando sair "Tudo certo". Um calendário com dia errado desorganiza o mês inteiro do usuário.
 
 ### Passo 5 — Escrever o calendário
@@ -100,10 +102,10 @@ Só entregar quando sair "Tudo certo". Um calendário com dia errado desorganiza
 
 ## Semana 1 (01 a 07)
 
-| Data | Pauta | Formato | Funil | Capa | Canal | Produzir até | Status |
+| Data | Dia | Pauta | Formato | Funil | Capa | Canal | Produzir até | Status |
 |---|---|---|---|---|---|---|---|
-| 03/06 | Erro de conservação que custa caro | carrossel 7 | topo | escuro | IG+FB | 01/06 | planejado |
-| 06/06 | Quanto custa refazer um lote | post único | meio | cor marca | IG | 04/06 | planejado |
+| 03/06 | qua | Erro de conservação que custa caro | carrossel 7 | topo | escuro | IG+FB | 01/06 | planejado |
+| 06/06 | sáb | Quanto custa refazer um lote | post único | meio | cor marca | IG | 04/06 | planejado |
 
 ## Semana 2 ...
 

@@ -53,7 +53,25 @@ Skill que o usuário criou (pelo `/mapear-rotinas` ou na mão) **não vem do pro
 
 Antes de aplicar, listar o que existe em `.claude/skills/` e comparar com o que vem do repositório. Skill que só existe local é personalizada: avisar que foi preservada, e nunca sobrescrever.
 
-Se uma skill do produto foi **editada pelo usuário**, o `checkout` vai substituir a versão dele. Detectar antes (`git status .claude/skills`) e, se houver modificação local, mostrar o que muda e perguntar: manter a dele, ou aceitar a nova?
+Se uma skill do produto foi **editada pelo usuário**, o `checkout` vai substituir a versão dele.
+
+`git status` não serve pra detectar isso: depois que ele roda `/salvar`, tudo está commitado e o status vem limpo mesmo com a skill alterada. A comparação certa é contra a versão do produto:
+
+```bash
+git diff --name-only HEAD viperos/main -- .claude/skills
+```
+
+Isso lista o que diverge — misturando edição dele com novidade da versão nova. Pra separar, olhar o que mudou de cada lado desde o ponto em comum:
+
+```bash
+base=$(git merge-base HEAD viperos/main)
+git diff --name-only $base HEAD -- .claude/skills        # o que ELE mexeu
+git diff --name-only $base viperos/main -- .claude/skills # o que o PRODUTO mudou
+```
+
+Skill que aparece nas duas listas é conflito real: mostrar o que a versão nova traz e perguntar se mantém a dele ou aceita a nova. **Nunca sobrescrever em silêncio.**
+
+Se o workspace não for repositório git (ele baixou o zip), essa detecção não existe — nesse caso, avisar antes de aplicar que edição local em skill do produto será substituída.
 
 ### Passo 4 — Sem git: baixar e sincronizar
 

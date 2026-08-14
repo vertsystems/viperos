@@ -101,7 +101,9 @@ Depois de escrever a análise:
 node scripts/verificar.js tabela analises/<arquivo>.md
 ```
 
-Ele soma cada coluna e compara com o total declarado no texto ao redor. Se acusar divergência, **refazer a conta a partir do dado bruto** — não ajustar o número pra bater.
+Ele soma cada coluna e compara com o total declarado — seja na linha "Total" da própria tabela, seja no texto ao redor.
+
+**Duas tabelas, dois papéis:** a de **números-chave** (`| Métrica | Valor | Contexto |`) tem uma métrica por linha e não soma — o verificador reconhece pelo cabeçalho "Métrica" e pula. A de **quebra por categoria** (`| Origem | Conversas | Fechou | Receita |`) soma, e é nela que o erro aparece. Se sua tabela soma, o cabeçalho da primeira coluna deve nomear a categoria (Origem, Canal, Produto), não "Métrica". Se acusar divergência, **refazer a conta a partir do dado bruto** — não ajustar o número pra bater.
 
 E antes disso, ao extrair os números do arquivo original: conferir linha a linha em vez de estimar. Se a fonte é CSV, contar com comando (`grep -c`, `awk`), não de cabeça.
 

@@ -113,7 +113,18 @@ Antes de entregar:
 node scripts/verificar.js html <caminho-da-peça>.html
 ```
 
-Ele acusa CSS local externo, `var()` sem fallback, `@page` inválido, placeholder esquecido e link vazio (`href="#"`, `mailto:` sem endereço, `wa.me` sem número). Só entregar quando sair "Tudo certo".
+Ele acusa CSS local externo, token sem definição, `@page` inválido, placeholder esquecido e link vazio.
+
+**O deck precisa dos dois blocos de impressão** — sem eles o PDF sai em A4 retrato com os slides cortados:
+
+```css
+@page { size: 1920px 1080px; margin: 0 }   /* duas medidas já definem a orientação */
+@media print {
+  .slide { height: 1080px; page-break-after: always }   /* nunca 100vh aqui */
+}
+```
+
+`100vh` funciona na tela e quebra no papel: na impressão o "vh" não corresponde à página. Só entregar quando o verificador sair "Tudo certo" e o PDF tiver sido gerado e conferido.
 
 ## Regras
 

@@ -109,9 +109,14 @@ function verDatas(arquivo) {
   const texto = fs.readFileSync(arquivo, "utf8");
   const linhas = texto.split("\n");
 
-  // ano de referência: primeiro AAAA que aparecer, senão o ano atual do arquivo
-  const anoRe = texto.match(/\b(20\d{2})\b/);
-  const ano = anoRe ? parseInt(anoRe[1]) : new Date().getFullYear();
+  // ano de referência: prioriza o do título/nome do arquivo (calendario-2026-09),
+  // depois "de/em AAAA" no cabeçalho, e só então o primeiro 20xx solto.
+  // Pegar qualquer 20xx do texto erra em arquivo que cita "fundada em 2019".
+  const doNome = path.basename(arquivo).match(/\b(20\d{2})\b/);
+  const doTitulo = (texto.split("\n").slice(0, 8).join(" ")).match(/\b(20\d{2})\b/);
+  const solto = texto.match(/\b(20\d{2})\b/);
+  const ano = parseInt((doNome && doNome[1]) || (doTitulo && doTitulo[1]) || (solto && solto[1]) || new Date().getFullYear());
+  info(`ano de referência: ${ano}${doNome ? " (do nome do arquivo)" : doTitulo ? " (do cabeçalho)" : ""}`);
 
   let checadas = 0, erradas = 0;
   const DIA = "dom|seg|ter|qua|qui|sex|s[áa]b|domingo|segunda|ter[çc]a|quarta|quinta|sexta|s[áa]bado";
@@ -132,8 +137,16 @@ function verDatas(arquivo) {
         const [d, mes, anoTxt] = ordem === "dia-data" ? [m[2], m[3], m[4]] : [m[1], m[2], m[3]];
         const a = anoTxt && anoTxt.length >= 2 && +anoTxt > 12 ? (anoTxt.length === 2 ? 2000 + +anoTxt : +anoTxt) : ano;
         const dt = new Date(a, +mes - 1, +d);
-        if (dt.getDate() !== +d || dt.getMonth() !== +mes - 1) continue;
         const chave = `${d}/${mes}`;
+        if (dt.getDate() !== +d || dt.getMonth() !== +mes - 1) {
+          if (!jaVistas.has(chave)) {
+            jaVistas.add(chave);
+            checadas++;
+            erradas++;
+            erro(`linha ${i + 1}: "${d}/${mes}/${a}" não existe no calendário`);
+          }
+          continue;
+        }
         if (jaVistas.has(chave)) continue;
         jaVistas.add(chave);
         checadas++;
@@ -166,6 +179,16 @@ function numerosDe(s) {
   return isNaN(v) ? null : v;
 }
 
+/** Divide a linha da tabela preservando célula vazia do meio (só apara as bordas). */
+function celulas(linha) {
+  const c = linha.split("|").map((s) => s.trim());
+  if (c.length && c[0] === "") c.shift();
+  if (c.length && c[c.length - 1] === "") c.pop();
+  return c;
+}
+
+const RE_TOTAL = /^\**\s*(total|totais|soma|somat[óo]rio|subtotal|investimento total|valor total|geral)\b/i;
+
 function verTabela(arquivo) {
   console.log(`\nTABELA: ${arquivo}`);
   const linhas = fs.readFileSync(arquivo, "utf8").split("\n");
@@ -173,15 +196,33 @@ function verTabela(arquivo) {
 
   for (let i = 0; i < linhas.length; i++) {
     if (!/^\s*\|/.test(linhas[i]) || !/^\s*\|[\s:|-]+\|\s*$/.test(linhas[i + 1] || "")) continue;
-    const cab = linhas[i].split("|").map((s) => s.trim()).filter(Boolean);
-    const corpo = [];
+    const cab = celulas(linhas[i]);
+    let corpo = [];
     let j = i + 2;
     while (j < linhas.length && /^\s*\|/.test(linhas[j])) {
-      corpo.push(linhas[j].split("|").map((s) => s.trim()).filter(Boolean));
+      corpo.push(celulas(linhas[j]));
       j++;
     }
     if (corpo.length < 2) { i = j; continue; }
     tabelas++;
+
+    // linha de total DENTRO da tabela: tirar do corpo e usar como valor declarado
+    let linhaTotal = null;
+    if (corpo.length && RE_TOTAL.test(corpo[corpo.length - 1][0] || "")) {
+      linhaTotal = corpo.pop();
+    }
+
+    // tabela de métricas heterogêneas (uma métrica por linha) não soma
+    const tituloPrimeira = (cab[0] || "").toLowerCase();
+    // "Item" NÃO entra: é o cabeçalho padrão de orçamento, que soma.
+    // Heterogênea é a tabela em que cada linha é uma métrica diferente
+    // (fechamentos, receita, ticket) — somar isso não significa nada.
+    const heterogenea = /^(m[ée]trica|indicador|kpi)s?$/.test(tituloPrimeira);
+    if (heterogenea) {
+      info(`tabela de métricas ("${cab[0]}") — linhas não são somáveis entre si, pulei a soma`);
+      i = j;
+      continue;
+    }
 
     // texto ao redor da tabela: o total costuma estar num resumo antes ou depois
     const volta = linhas.slice(Math.max(0, i - 25), i).join("\n");
@@ -195,7 +236,20 @@ function verTabela(arquivo) {
       const soma = vals.reduce((a, b) => a + b, 0);
       info(`coluna "${titulo}" soma ${soma.toLocaleString("pt-BR")} (${vals.length} linhas)`);
 
-      // procura no contexto todo número em negrito ou perto de "total/soma/somando"
+      const igual = (a, b) => Math.abs(a - b) <= Math.max(1, Math.abs(b) * 0.005);
+
+      // 1) linha de total dentro da própria tabela — a comparação mais confiável
+      if (linhaTotal) {
+        const dec = numerosDe(linhaTotal[c] || "");
+        if (dec !== null) {
+          if (!igual(dec, soma)) {
+            erro(`coluna "${titulo}": os itens somam ${soma.toLocaleString("pt-BR")}, mas a linha "${linhaTotal[0]}" declara ${dec.toLocaleString("pt-BR")}`);
+          } else ok(`coluna "${titulo}": itens batem com a linha de total`);
+          return; // total na tabela tem precedência sobre o texto ao redor
+        }
+      }
+
+      // 2) total declarado no texto ao redor
       const candidatos = [
         ...contexto.matchAll(/\*\*([^*]{1,25})\*\*/g),
         ...contexto.matchAll(/(?:total|somando|somam|no total|receita total)[^\n]{0,40}/gi),
@@ -204,8 +258,7 @@ function verTabela(arquivo) {
       for (const cand of candidatos) {
         // só compara com número da mesma ordem de grandeza (evita casar 50% com 6)
         const prox = Math.abs(cand.val - soma) <= Math.max(soma * 0.35, 3);
-        const igual = Math.abs(cand.val - soma) <= Math.max(1, soma * 0.005);
-        if (prox && !igual) {
+        if (prox && !igual(cand.val, soma)) {
           erro(`coluna "${titulo}": as linhas somam ${soma.toLocaleString("pt-BR")}, mas o texto declara ${cand.val.toLocaleString("pt-BR")} — "${cand.txt.trim().slice(0, 60)}"`);
           break;
         }
@@ -256,14 +309,20 @@ function verHTML(arquivo) {
     info("    se o arquivo for enviado sozinho (WhatsApp, e-mail, Drive), chega sem estilo");
   } else ok("não depende de CSS local externo");
 
-  const temRoot = /:root\s*\{/.test(t);
-  const vars = [...t.matchAll(/var\((--[a-z0-9-]+)\s*(,[^)]*)?\)/gi)];
-  const semFallback = vars.filter((m) => !m[2]);
-  if (vars.length && !temRoot && semFallback.length) {
-    erro(`${semFallback.length} usos de var() sem fallback e sem :root no próprio arquivo`);
-    const ex = [...new Set(semFallback.map((m) => m[1]))].slice(0, 5);
-    info(`    ex.: ${ex.join(", ")} — fora da pasta, viram vazio`);
-  } else if (vars.length) ok(`${vars.length} var() com :root local ou fallback`);
+  // Não basta existir um :root — cada token usado precisa estar DEFINIDO no arquivo
+  // (ou ter fallback). Um inline parcial deixa tokens órfãos e a peça quebra em silêncio.
+  const definidos = new Set([...t.matchAll(/(--[a-z0-9-]+)\s*:/gi)].map((m) => m[1].toLowerCase()));
+  const vars = [...t.matchAll(/var\(\s*(--[a-z0-9-]+)\s*(,[^)]*)?\)/gi)];
+  const orfaos = vars.filter((m) => !m[2] && !definidos.has(m[1].toLowerCase()));
+
+  if (vars.length && orfaos.length) {
+    const nomes = [...new Set(orfaos.map((m) => m[1]))];
+    erro(`${orfaos.length} uso(s) de var() apontando pra token que o arquivo não define, e sem fallback`);
+    info(`    ${nomes.slice(0, 8).join(", ")}${nomes.length > 8 ? ` (+${nomes.length - 8})` : ""}`);
+    info("    fora da pasta viram vazio — cor some, fundo some, botão fica invisível");
+  } else if (vars.length) {
+    ok(`${vars.length} var() — todos definidos no arquivo ou com fallback (${definidos.size} tokens declarados)`);
+  }
 
   const page = t.match(/@page\s*\{[^}]*\}/i);
   if (page) {
@@ -276,9 +335,23 @@ function verHTML(arquivo) {
 
   // 100vh só é problema DENTRO do @media print — na regra de tela é correto
   if (page) {
-    const mp = t.match(/@media\s+print\s*\{([\s\S]*?)\n\s*\}\s*(?=<\/style>|@media|$)/i);
-    const dentro = mp ? /height:\s*100vh/i.test(mp[1]) : false;
-    const temPrint = !!mp;
+    // extrai o bloco @media print contando chaves — regex com lookahead falha
+    // quando existe qualquer CSS depois do bloco de impressão
+    const extraiBloco = (txt, iniRe) => {
+      const m = txt.match(iniRe);
+      if (!m) return null;
+      let i = txt.indexOf("{", m.index);
+      if (i === -1) return null;
+      let nivel = 0;
+      for (let k = i; k < txt.length; k++) {
+        if (txt[k] === "{") nivel++;
+        else if (txt[k] === "}") { nivel--; if (!nivel) return txt.slice(i + 1, k); }
+      }
+      return null;
+    };
+    const bloco = extraiBloco(t, /@media[^{]*\bprint\b[^{]*/i);
+    const dentro = bloco ? /height:\s*100vh/i.test(bloco) : false;
+    const temPrint = bloco !== null;
     if (dentro) erro("100vh dentro do @media print — o vh não corresponde à página impressa, usar a medida fixa (ex: height:1080px)");
     else if (!temPrint && /height:\s*100vh/i.test(t)) erro("100vh e @page sem bloco @media print que sobrescreva a altura — o slide vai sair cortado no PDF");
     else if (temPrint) ok("altura da impressão não depende de vh");
