@@ -71,6 +71,25 @@ Conteúdo com data precisa entrar com antecedência: publicar no dia não dá te
 
 Puxar a última capa publicada do `indice.md` e seguir a alternância do `/carrossel`: claro → foto/escuro → cor da marca → repete. Registrar o tipo de capa previsto em cada item, pra o feed não ficar com três peças iguais em sequência.
 
+### Passo 4b — Conferir os dias da semana (obrigatório)
+
+Dia da semana calculado de cabeça sai errado — em teste real, os 12 dias de um mês inteiro saíram deslocados, e os posts marcados como sexta caíam no sábado.
+
+Antes de escrever, conferir o primeiro dia do mês:
+
+```bash
+date -j -f "%Y-%m-%d" "2026-09-01" "+%A"    # macOS
+date -d "2026-09-01" "+%A"                   # Linux
+```
+
+E depois de escrever o arquivo:
+
+```bash
+node scripts/verificar.js datas conteudo/calendario-<AAAA-MM>.md
+```
+
+Só entregar quando sair "Tudo certo". Um calendário com dia errado desorganiza o mês inteiro do usuário.
+
 ### Passo 5 — Escrever o calendário
 
 `conteudo/calendario-<YYYY-MM>.md`:

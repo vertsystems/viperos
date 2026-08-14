@@ -211,6 +211,29 @@ Quando o conteúdo depender de dado (número, comparação, alegação técnica)
 consultar `pesquisa/` e `biblioteca.md` antes de escrever. Se não
 houver base, dizer isso ao usuário em vez de preencher com plausível.
 
+## Calcular, nunca estimar
+
+Número não se confere lendo. Contagem de caractere, soma de coluna, dia da
+semana, total de parcelas, contraste, peso de arquivo — tudo isso **se roda**:
+
+```bash
+node scripts/verificar.js csv <arquivo> --ads   # limites e campos desalinhados
+node scripts/verificar.js datas <arquivo.md>     # dia da semana vs data real
+node scripts/verificar.js tabela <arquivo.md>    # soma das colunas vs total declarado
+node scripts/verificar.js html <arquivo.html>    # CSS externo, @page, placeholder, link vazio
+node scripts/verificar.js peso <pasta>           # imagem acima de 2 MB
+node scripts/verificar.js contraste "#123" "#fff"
+```
+
+Isso não é preciosismo: em teste real, o sistema entregou CSV que o Google
+rejeita, calendário com todos os dias da semana errados, tabela cuja soma não
+batia com o próprio resumo e deck que imprimia em branco. Todos passariam por
+uma leitura atenta; nenhum passa pelo comando.
+
+**Regra:** se a saída tem número que alguém vai conferir, rodar a verificação
+antes de entregar. E se o resultado divergir, refazer a conta a partir do dado
+bruto — nunca ajustar o número pra bater.
+
 ---
 
 ## Regras gerais de execução

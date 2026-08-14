@@ -130,6 +130,21 @@ Material trocado por contato tem regra própria — e a maioria falha em uma das
 **Sobre pedir o contato:** pedir só o que vai usar. Nome e WhatsApp (ou e-mail) bastam. Cada campo extra derruba a conversão, e cargo/empresa/faturamento se descobre na conversa. Aviso de privacidade é obrigatório (LGPD).
 
 
+
+## Autonomia do arquivo (obrigatório)
+
+A peça vai ser enviada por WhatsApp, e-mail ou Drive — sozinha, longe da pasta. Se depender do `identidade/tokens.css` por caminho relativo, chega sem estilo: em teste real, um deck ficou **preto sobre preto**, ilegível.
+
+**Copiar o bloco `:root` do `tokens.css` pra dentro do `<style>` da própria peça.** O `tokens.css` continua sendo a fonte da verdade; o que muda é a peça carregar uma cópia inline. Google Fonts é a única dependência externa aceita.
+
+Antes de entregar:
+
+```bash
+node scripts/verificar.js html <caminho-da-peça>.html
+```
+
+Ele acusa CSS local externo, `var()` sem fallback, `@page` inválido, placeholder esquecido e link vazio (`href="#"`, `mailto:` sem endereço, `wa.me` sem número). Só entregar quando sair "Tudo certo".
+
 ## Regras
 
 - **Sempre conferir o PDF renderizado.** HTML que parece certo na tela quebra na paginação — é o erro mais comum aqui

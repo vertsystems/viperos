@@ -205,6 +205,7 @@ Antes de mostrar, passar o texto pelos passes do `/revisar` — clichê de IA, g
 
 Antes de aprovar o texto, passar pela régua de `templates/copy/ganchos.md`:
 
+- **O número prometido no gancho bate com o que a peça entrega?** Se a capa diz "5 mudanças", contar os slides que entregam mudança. Em teste real saiu "Cinco mudanças" numa peça com quatro — e a legenda listava 4 bullets logo abaixo. Qualquer leitor conta em 5 segundos
 - **O primeiro slide funciona sem a imagem?** Se depende da foto, é legenda, não gancho
 - **O gancho serviria pra qualquer outro nicho?** Se sim, é genérico — refazer
 - **Máximo 10 palavras** no gancho
@@ -334,7 +335,15 @@ Mostrar a foto pro usuário antes de usar no carrossel.
 
 3. Mostrar slide 1, 2 e o CTA final renderizados. Se aprovado, mostrar os intermediários.
 
-4. **Conferir legibilidade antes de entregar:** texto sobre foto precisa de overlay suficiente pra ler no celular; título não pode estourar o slide nem ficar com viúva (palavra sozinha na última linha); nada de texto a menos de 60px da borda (o Instagram corta a prévia).
+4. **Conferir peso e legibilidade antes de entregar:**
+
+   ```bash
+   node scripts/verificar.js peso conteudo/<pasta>/instagram
+   ```
+
+   PNG acima de 2 MB é sinal de escala 2x no `render.js` — o Instagram recomprime pra 1080 de largura de qualquer jeito, então o arquivo grande só atrapalha (transferência lenta pro celular, e perto do limite de 8 MB da API da Meta).
+
+   E a olho: texto sobre foto precisa de overlay suficiente pra ler no celular; título não pode estourar o slide nem ficar com viúva (palavra sozinha na última linha); nada de texto a menos de 60px da borda (o Instagram corta a prévia).
 
 ### Passo 5 — Salvar e organizar
 

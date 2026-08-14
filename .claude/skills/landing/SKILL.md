@@ -111,11 +111,28 @@ Headlines alternativas no fim do arquivo, em comentário — se testar, troca um
 
 ---
 
+
+## Autonomia do arquivo (obrigatório)
+
+A peça vai ser enviada por WhatsApp, e-mail ou Drive — sozinha, longe da pasta. Se depender do `identidade/tokens.css` por caminho relativo, chega sem estilo: em teste real, um deck ficou **preto sobre preto**, ilegível.
+
+**Copiar o bloco `:root` do `tokens.css` pra dentro do `<style>` da própria peça.** O `tokens.css` continua sendo a fonte da verdade; o que muda é a peça carregar uma cópia inline. Google Fonts é a única dependência externa aceita.
+
+Antes de entregar:
+
+```bash
+node scripts/verificar.js html <caminho-da-peça>.html
+```
+
+Ele acusa CSS local externo, `var()` sem fallback, `@page` inválido, placeholder esquecido e link vazio (`href="#"`, `mailto:` sem endereço, `wa.me` sem número). Só entregar quando sair "Tudo certo".
+
 ## Regras
 
 - **Uma página, uma ação.** Se o usuário quiser duas, perguntar qual vale mais e mandar a outra pro rodapé
 - Nunca inventar depoimento, número de clientes, prêmio ou certificação. Sem prova real, a seção sai
 - Preço: mostrar quando existe. Página que esconde preço perde quem já ia comprar
+- **Parcelamento sempre com o total.** "2× R$ 470 (R$ 940 no total)". Omitir o total quando o parcelado custa mais é o tipo de omissão que o cliente descobre depois — e cobra
+- **Prazo de entrega igual em todo lugar.** Se o herói promete "40 minutos" e o FAQ diz "5 dias úteis", a página se contradiz sozinha. O prazo mora em `_memoria/oferta.md`; conferir contra ele
 - CTA sempre com verbo de ação específico ("Pedir orçamento no WhatsApp"), nunca "Saiba mais"
 - Nada de pop-up de saída, contador falso de escassez ou "restam 3 vagas" mentiroso — queima a marca e é problema legal
 - Se `tokens.css` existir, usar os tokens; não redefinir cor na mão

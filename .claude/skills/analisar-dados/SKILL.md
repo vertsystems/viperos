@@ -91,6 +91,20 @@ Perguntar se quer exportar o resumo em HTML pra compartilhar ou apresentar.
 
 ---
 
+## Fechar a conta (obrigatório)
+
+Tabela cuja soma não bate com o resumo é o erro mais comum e o mais custoso — quem lê confia no número e decide errado. Em teste real, a tabela somava 6 fechamentos e R$ 24.700 enquanto o resumo dizia 7 e R$ 26.500.
+
+Depois de escrever a análise:
+
+```bash
+node scripts/verificar.js tabela analises/<arquivo>.md
+```
+
+Ele soma cada coluna e compara com o total declarado no texto ao redor. Se acusar divergência, **refazer a conta a partir do dado bruto** — não ajustar o número pra bater.
+
+E antes disso, ao extrair os números do arquivo original: conferir linha a linha em vez de estimar. Se a fonte é CSV, contar com comando (`grep -c`, `awk`), não de cabeça.
+
 ## Escolher o gráfico certo
 
 Quando a análise pede visual, a forma segue a pergunta — não o gosto:

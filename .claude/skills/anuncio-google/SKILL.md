@@ -102,7 +102,15 @@ Pra cada grupo, gerar 3 RSAs (Responsive Search Ads):
 - Sem afirmações superlativas não-comprovadas ("o melhor", "número 1") sem fonte
 - Sem pontuação dupla (`!!`) e sem `!` na headline
 
-**Validação obrigatória antes de gerar o CSV:** conferir o comprimento de cada headline e description uma por uma. Listar as que passaram do limite e reescrever. Não entregar CSV com campo estourado — o usuário só descobre na hora do import e perde a confiança no sistema.
+**Validação obrigatória — rodar, não estimar.** Contar caractere no olho falha, e falhou em teste real (4 headlines estouradas entregues). Depois de gravar o CSV:
+
+```bash
+node scripts/verificar.js csv campanhas/google-ads-<data>/anuncios.csv --ads
+```
+
+Ele confere o limite de cada campo **e** detecta a armadilha silenciosa: vírgula dentro de campo sem aspas, que desalinha a linha inteira e faz o Editor importar lixo (o Final URL cai na coluna Path). Só entregar quando sair "Tudo certo".
+
+**Toda célula que contém vírgula vai entre aspas.** `"Atendo Sorocaba, Campinas e região."` — sem isso o CSV quebra.
 
 Seguir `_memoria/preferencias.md` pra tom.
 
@@ -199,6 +207,7 @@ Anúncio raramente falha por copy fraca — falha por ângulo errado, público e
 - **Lista de negativas global** é obrigatória — sem ela, queima dinheiro em buscas irrelevantes.
 - **Conversões antes de tudo.** Sem conversão configurada, o Google não otimiza — relatar isso e pedir setup antes de ativar.
 - **URL final com UTM** em toda campanha (`utm_source=google&utm_medium=cpc&utm_campaign=<campanha>`). Sem isso, o relatório depois não sabe de onde veio o lead.
-- **Validar limite de caracteres** de toda headline e description antes de escrever o CSV.
+- **Rodar `node scripts/verificar.js csv <arquivo> --ads`** antes de entregar. Contar no olho não funciona — já entregou CSV quebrado em teste real.
+- **Aspas em toda célula com vírgula.** É o erro que mais quebra importação.
 - Telefone da extensão de chamada vem de `_memoria/empresa.md`. Se estiver vazio, perguntar e salvar lá — não deixar `[telefone]` no CSV.
 - Copies seguem `_memoria/preferencias.md` estritamente. Sem jargão de marketing se o público não usa.

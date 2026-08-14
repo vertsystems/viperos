@@ -86,6 +86,8 @@ Se o usuário mandar guardar, gravar como pautas com origem `/angulos — tema X
 - **Dez tratamentos distintos, não dez variações do mesmo.** Se dois ficarem parecidos, trocar um
 - Hook na voz do usuário conforme `preferencias.md`. Sem "você não vai acreditar", "a verdade que ninguém conta", "chocante"
 - Ângulo que exige dado precisa do dado. Sem fonte, marcar "precisa de `/pesquisa` antes"
+- **O dado não muda de sujeito ao virar hook.** "45% dos executivos" não vira "45% dos projetos" — é outra afirmação. Ao encurtar, cortar palavra, nunca trocar o sujeito
+- **Fato pessoal do usuário só com ele tendo dito.** Número autobiográfico inventado ("refiz 11 vezes") é a mentira mais fácil de cometer e a mais cara quando alguém pergunta
 - Ângulo contrarian só se o usuário realmente pensa assim — polêmica emprestada queima marca
 - Não sugerir ângulo que promete o que o negócio não entrega
 - Se o tema for regulado, marcar quais ângulos exigem revisão técnica

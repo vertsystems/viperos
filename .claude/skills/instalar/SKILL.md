@@ -180,6 +180,7 @@ Mencionar também, em uma linha: guardar o trabalho no GitHub é só pedir; e qu
 ## Regras
 
 - **Não inventar dados.** Resposta vaga fica registrada como veio, ou como `[a confirmar]` visível
+- **Dado de contato tem que ser confirmado antes de virar fato.** DDD, número de WhatsApp e e-mail vão pra dentro de CTA, anúncio e PDF — errar um dígito mata todo clique. Se houver qualquer dúvida (o DDD não bate com a cidade que ele disse, o número tem contagem estranha), gravar como `[a confirmar]` e abrir item no `tarefas.md`. Em teste real o DDD entrou como fato e se espalhou por 9 arquivos e um PDF
 - **Não pedir chave de API nenhuma.** Setup de integração é assunto da skill que precisa dela
 - **Não criar pasta vazia.** Só `_memoria/`, `.env` e (se houver marca) `identidade/`
 - Ao substituir o `CLAUDE.md`, **preservar as regras de operação do sistema**

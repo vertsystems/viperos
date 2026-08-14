@@ -150,6 +150,8 @@ Mostrar as 8-12 melhores no chat, agrupadas por funil, e:
 ## Regras
 
 - **Origem obrigatória.** Pauta sem fonte rastreável não entra no banco
+- **Ao virar gancho, o dado não muda de sujeito.** Se a fonte diz "45% dos **executivos** têm projetos desconectados", o gancho não pode virar "45% dos **projetos** rodam desconectados" — é outra afirmação, e nenhuma fonte a sustenta. Foi o que aconteceu em teste real, com o único número que a marca tinha: o erro se espalhou por 3 arquivos. Ao encurtar, cortar palavra; nunca trocar o sujeito
+- **Fato sobre o usuário só entra se ele disse.** Gancho do tipo "refiz 11 vezes" ou "recusei trabalho duas vezes esse ano" precisa estar em `_memoria/` ou ter sido dito na conversa. Se não estiver, marcar `*(precisa de dado real)*` e listar em "Falta apurar" — nunca inventar número autobiográfico
 - Mínimo 10 pautas por rodada, máximo 25. Banco gigante não é usado
 - Manter equilíbrio de funil e avisar quando desandar ("18 de topo, 1 de fundo — quer que eu puxe mais de fundo?")
 - Não repetir o que já foi publicado: cruzar com `indice.md` antes

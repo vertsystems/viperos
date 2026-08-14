@@ -80,7 +80,7 @@ Aplicar o sistema visual: se `identidade/tokens.css` existir, importar e usar as
 Conferir, nessa ordem:
 - Nome do cliente escrito certo (erro aqui mata a proposta)
 - Nenhum placeholder sobrando (`[valor]`, `[prazo]`, `lorem`)
-- Valor total, parcelas e soma batendo
+- Valor total, parcelas e soma batendo — **fazer a conta**: se o parcelado custa mais que o à vista, escrever o total ("ou 3× R$ 2.250 — R$ 6.750 no total"). Em teste real o parcelado saiu R$ 350 mais caro sem nenhuma linha explicando, contrariando a decisão do próprio estudo de preço
 - Data e validade coerentes
 - Escopo sem promessa que o usuário não confirmou
 - Texto passado pelos passes do `/revisar` (proposta com clichê de IA perde credibilidade na primeira linha)
@@ -104,6 +104,21 @@ Quer que eu escreva o email de envio? (/email-profissional)
 Registrar a proposta em `tarefas.md` como item aberto de follow-up, com a data de validade.
 
 ---
+
+
+## Autonomia do arquivo (obrigatório)
+
+A peça vai ser enviada por WhatsApp, e-mail ou Drive — sozinha, longe da pasta. Se depender do `identidade/tokens.css` por caminho relativo, chega sem estilo: em teste real, um deck ficou **preto sobre preto**, ilegível.
+
+**Copiar o bloco `:root` do `tokens.css` pra dentro do `<style>` da própria peça.** O `tokens.css` continua sendo a fonte da verdade; o que muda é a peça carregar uma cópia inline. Google Fonts é a única dependência externa aceita.
+
+Antes de entregar:
+
+```bash
+node scripts/verificar.js html <caminho-da-peça>.html
+```
+
+Ele acusa CSS local externo, `var()` sem fallback, `@page` inválido, placeholder esquecido e link vazio (`href="#"`, `mailto:` sem endereço, `wa.me` sem número). Só entregar quando sair "Tudo certo".
 
 ## Regras
 

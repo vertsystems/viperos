@@ -136,7 +136,8 @@ E atualizar `_memoria/oferta.md` com o resumo da **oferta ativa** — é o que `
 **Bônus:**
 **Garantia:**
 **Motivo pra ser agora:**
-**Preço e pagamento:**
+**Preço e pagamento:** *(se houver parcelamento, escrever também o total)*
+**Prazo de entrega:** *(quanto tempo até o cliente ter o resultado na mão)*
 **Objeção nº 1 e resposta:**
 **O que NÃO está incluído:**
 ```
