@@ -1,0 +1,92 @@
+---
+name: angulos
+description: >
+  Pega um tema e devolve 10 tratamentos diferentes pra ele (contrarian, erro comum, mito, número,
+  caso real, comparação, bastidor, previsão...), cada um com hook escrito e o motivo de funcionar
+  pra esse público. Use quando o usuário disser "que ângulo usar", "como abordar esse tema",
+  "meus posts estão todos iguais", "preciso de um hook", "outra forma de falar disso", ou /angulos.
+---
+
+# /angulos — Dez tratamentos pro mesmo tema
+
+Tema não é conteúdo. "Conservação de alimentos" é assunto; "o erro de geladeira que estraga sua carne em 3 dias" é conteúdo. A diferença é o ângulo — e é por falta dele que todo carrossel sai com a mesma cara.
+
+## Dependências
+
+- **Tom de voz:** `_memoria/preferencias.md` (o hook tem que soar como ele, não como guru)
+- **Cliente real:** `_memoria/publico.md` se existir (`/publico`) — a dor na palavra dele, e as objeções
+- **Público:** `_memoria/empresa.md`
+- **Se existir:** dossiê em `pesquisa/<tema>.md` — ângulo com dado real vence ângulo inventado
+- **Referências de copy:**
+  - `templates/copy/psicologia.md` — atalhos de decisão e o limite ético de cada um
+  - `templates/copy/ganchos.md` — estrutura gancho → conteúdo → fechamento e a régua de qualidade
+
+---
+
+## Workflow
+
+### Passo 1 — Entender o tema e quem lê
+
+Se o usuário só deu o tema, confirmar em uma pergunta: quem precisa ver isso e o que essa pessoa já sabe? Público que não sabe que tem o problema precisa de ângulo diferente de quem já está comparando fornecedor.
+
+Se houver dossiê de `/pesquisa`, ler antes — os números e as citações literais viram os melhores ângulos.
+
+### Passo 2 — Gerar os 10 tratamentos
+
+Percorrer a lista inteira. Se um tipo não couber nesse tema, dizer por que em vez de forçar.
+
+| # | Tratamento | Como funciona |
+|---|---|---|
+| 1 | **Contrarian** | Contraria o senso comum do nicho. Exige o usuário ter opinião de verdade |
+| 2 | **Erro comum** | "O que quase todo mundo faz errado." Gera reconhecimento imediato |
+| 3 | **Mito desmontado** | Pega a crença mais repetida e mostra a origem dela |
+| 4 | **Número surpreendente** | Um dado que reposiciona o problema. Só com fonte |
+| 5 | **Caso real** | História com começo, complicação e desfecho. O formato mais lembrado |
+| 6 | **Comparação** | A vs B lado a lado, com critério explícito |
+| 7 | **Como eu faço** | Processo real, com as decisões e não só os passos |
+| 8 | **Bastidor** | O que ninguém vê. Constrói confiança sem vender |
+| 9 | **Previsão fundamentada** | O que muda nos próximos 12 meses e por quê |
+| 10 | **Pergunta que ninguém responde** | A dúvida que o cliente tem vergonha de fazer |
+
+Pra cada um, entregar:
+
+```
+### 3. Mito desmontado
+**Hook:** "Congelar não conserva. Só pausa o problema."
+**Promessa:** por que o congelamento engana e o que ele não resolve
+**Formato:** carrossel 6 slides (o mito, a explicação, o teste, o certo)
+**Funciona porque:** é a frase que todo cliente repete no orçamento
+**Precisa de:** confirmar a parte técnica antes de publicar
+```
+
+O hook tem no máximo 10 palavras e precisa passar em dois testes: **funciona sem a imagem** e **não daria pra usar em qualquer outro nicho** (se dá, é genérico).
+
+### Passo 3 — Recomendar
+
+Não deixar 10 opções soltas na mesa. Fechar com:
+
+> "Se for pra escolher um: o **[N]**, porque [motivo ligado ao foco atual da estratégia
+> ou ao que o público pergunta mais].
+>
+> Os ângulos 2, 5 e 7 desse mesmo tema dão uma sequência de três posts que se
+> sustentam — se quiser transformar em série, eu monto."
+
+### Passo 4 — Encaminhar
+
+> "Quer que eu produza algum? `/carrossel` pra visual, `/publicar-tema` pro pacote
+> completo com blog. Se quiser guardar os ângulos que não usar agora, eu jogo no
+> banco de pautas (`conteudo/pautas.md`)."
+
+Se o usuário mandar guardar, gravar como pautas com origem `/angulos — tema X`.
+
+---
+
+## Regras
+
+- **Dez tratamentos distintos, não dez variações do mesmo.** Se dois ficarem parecidos, trocar um
+- Hook na voz do usuário conforme `preferencias.md`. Sem "você não vai acreditar", "a verdade que ninguém conta", "chocante"
+- Ângulo que exige dado precisa do dado. Sem fonte, marcar "precisa de `/pesquisa` antes"
+- Ângulo contrarian só se o usuário realmente pensa assim — polêmica emprestada queima marca
+- Não sugerir ângulo que promete o que o negócio não entrega
+- Se o tema for regulado, marcar quais ângulos exigem revisão técnica
+- Sempre terminar com uma recomendação. Dez opções sem recomendação transfere o trabalho de volta pro usuário

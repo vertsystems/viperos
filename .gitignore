@@ -1,0 +1,37 @@
+# Segredos — NUNCA versionar (as skills leem chaves de API daqui)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+service-account*.json
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+
+# Claude Code (sessões locais)
+.claude/projects/
+.claude/sessions/
+.claude/shell-snapshots/
+.claude/telemetry/
+.claude/file-history/
+.claude/backups/
+.claude/settings.local.json
+
+# Dependências
+node_modules/
+package-lock.json
+
+# Temporários
+*.log
+*.tmp
+
+# Drop zone (entrada temporária, não é entregável)
+dados/*
+!dados/README.md

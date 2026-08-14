@@ -1,0 +1,124 @@
+---
+name: analisar-dados
+description: >
+  Analisa um arquivo de dados (CSV, Excel, TXT, JSON) e gera um resumo executivo
+  com os principais insights, tendências e recomendações.
+  Use quando o usuário disser "analisa esse arquivo", "o que mostram esses dados",
+  "resume esses resultados", "analisa esse relatório", ou arrastar um arquivo de dados.
+
+
+---
+
+# /analisar-dados — Análise de Arquivo
+
+> **Convenção de pastas:** os caminhos desta skill seguem a convenção **por tipo** (perfis empreendedor solo e empresa). Se o `CLAUDE.md` do workspace usa a convenção **por cliente** (freelancer e agência) e a peça é de um cliente, prefixar com `clientes/<Nome>/`. A pasta nasce só na hora de salvar.
+
+## Dependências
+
+- **Contexto do negócio:** `_memoria/empresa.md` (pra entender o que os dados representam)
+- **Tom de voz:** `_memoria/preferencias.md`
+
+---
+
+## Workflow
+
+### Passo 1 — Entender o contexto
+
+Antes de analisar, perguntar se não estiver claro:
+- "O que é esse arquivo? (vendas, anúncios, métricas, respostas de pesquisa...)"
+- "Qual é a pergunta principal que você quer responder com esses dados?"
+
+Se o contexto estiver óbvio pelo nome do arquivo ou pelo conteúdo, prossegue sem perguntar.
+
+### Passo 2 — Ler o arquivo
+
+Ler o arquivo fornecido. Se for Excel (.xlsx), ler com as ferramentas disponíveis pra extrair o conteúdo das células.
+
+### Passo 3 — Análise
+
+Identificar e reportar:
+
+**O que está bom:**
+- Métricas acima da média ou em crescimento
+- Padrões positivos nos dados
+- Top performers (produtos, campanhas, períodos, etc)
+
+**O que preocupa:**
+- Quedas, anomalias ou tendências negativas
+- O que está abaixo do esperado
+- Gargalos ou desperdícios visíveis
+
+**Comparações:**
+- Período atual vs período anterior (se houver)
+- Top vs bottom performers
+- Distribuição entre categorias
+
+**Insights não óbvios:**
+- Correlações interessantes
+- Padrões que não aparecem na leitura superficial
+
+### Passo 4 — Output
+
+Gerar um resumo executivo em prosa (não só bullet points):
+
+```markdown
+# Análise — [Nome do Arquivo/Relatório]
+*[Data da análise]*
+
+## O que esses dados mostram
+[2-3 parágrafos com o panorama geral]
+
+## O que está funcionando
+[lista com contexto]
+
+## O que merece atenção
+[lista com contexto]
+
+## 3 recomendações
+1. [ação concreta]
+2. [ação concreta]
+3. [ação concreta]
+
+## Números-chave
+| Métrica | Valor | Contexto |
+|---------|-------|---------|
+| ... | ... | ... |
+```
+
+Salvar em `analises/analise-<nome>-<YYYY-MM-DD>.md` (criar a pasta se não existir). Se o arquivo analisado for de um cliente específico, salvar em `clientes/<Nome>/analises/` em vez disso.
+
+Perguntar se quer exportar o resumo em HTML pra compartilhar ou apresentar.
+
+---
+
+## Escolher o gráfico certo
+
+Quando a análise pede visual, a forma segue a pergunta — não o gosto:
+
+| A pergunta é | Forma |
+|---|---|
+| Como evoluiu no tempo? | linha |
+| Quem é maior? (poucas categorias) | barra horizontal, ordenada por valor |
+| Qual a composição? | barra empilhada ou 100% empilhada |
+| Como se distribui? | histograma |
+| Duas coisas andam juntas? | dispersão |
+| Qual o valor único que importa? | o número grande, sem gráfico |
+
+Regras que evitam gráfico ruim:
+- **Nada de pizza com mais de 3 fatias** — o olho não compara ângulo. Barra ordenada sempre lê melhor
+- **Eixo Y começa no zero** em gráfico de barra. Cortar o eixo exagera diferença e é enganoso
+- **Ordenar por valor**, não por ordem alfabética
+- **Rótulo direto no dado**, quando cabe — melhor que legenda que obriga a ida e volta
+- **Uma cor** e um destaque. Cor por categoria só quando a categoria é a informação
+- Se o dado é uma comparação de duas coisas, uma frase resolve melhor que um gráfico
+
+
+## Regras
+
+- Análise em prosa, não só listas — o usuário deve poder ler e entender sem abrir o arquivo original
+- Nunca inventar dados que não estão no arquivo
+- Se os dados estiverem incompletos ou com problemas, mencionar antes de analisar
+- **Formato numérico brasileiro:** vírgula é decimal e ponto é milhar (`1.234,56`). Normalizar antes de somar ou comparar, e conferir se o total faz sentido na ordem de grandeza
+- Correlação não é causa. Ao apontar padrão, dizer que é padrão observado — não afirmar que uma coisa causou a outra
+- Se o arquivo tiver dado pessoal de terceiro (nome + CPF, telefone de cliente, e-mail de lista), avisar e não reproduzir esses dados no resumo. Trabalhar com agregado
+- Tom conforme `_memoria/preferencias.md`
