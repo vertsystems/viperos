@@ -89,11 +89,12 @@ O CSS nasce pensando em página física, não em rolagem:
 ### Passo 5 — Gerar o PDF
 
 ```bash
-# macOS
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
-  --headless --disable-gpu --no-pdf-header-footer \
-  --print-to-pdf="documento.pdf" "file:///caminho/absoluto/documento.html"
+node scripts/gerar-pdf.js materiais/<nome>/documento.html
 ```
+
+O script acha o navegador sozinho (Chrome, Chromium, Edge ou Brave, em qualquer sistema), resolve o caminho, **espera as fontes carregarem** e confere o resultado — dizendo quantas páginas saíram e acusando PDF em branco. Aceita `--espera 8000` quando a peça tem muita imagem.
+
+Não montar o comando do Chrome na mão: o caminho do navegador muda por sistema, o `file://` precisa ser absoluto e escapado, e sem tempo de carregamento o PDF sai com a fonte do sistema no lugar da fonte da marca — três formas silenciosas de errar.
 
 Conferir o PDF gerado antes de entregar: página em branco sobrando, título órfão, tabela cortada no meio, sumário com página errada, imagem estourando a margem. Se algo quebrou, ajustar o CSS e gerar de novo — não entregar PDF que o usuário vai abrir e ver o defeito.
 

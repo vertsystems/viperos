@@ -223,6 +223,7 @@ node scripts/verificar.js tabela <arquivo.md>    # soma das colunas vs total dec
 node scripts/verificar.js html <arquivo.html>    # CSS externo, @page, placeholder, link vazio
 node scripts/verificar.js peso <pasta>           # imagem acima de 2 MB
 node scripts/verificar.js contraste "#123" "#fff"
+node scripts/gerar-pdf.js <arquivo.html>              # HTML → PDF, com verificação
 ```
 
 Isso não é preciosismo: em teste real, o sistema entregou CSV que o Google

@@ -80,10 +80,10 @@ Isso resolve o dilema clássico: slide bom de apresentar é ruim de enviar, e vi
 ### Passo 5 — Exportar e conferir
 
 ```bash
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
-  --headless --disable-gpu --no-pdf-header-footer \
-  --print-to-pdf="enviar.pdf" "file:///caminho/enviar.html"
+node scripts/gerar-pdf.js apresentacoes/<nome>/enviar.html
 ```
+
+O script acha o navegador sozinho em qualquer sistema, espera as fontes carregarem e confere o resultado (número de páginas e PDF em branco). O número de páginas tem que bater com o de slides — se não bater, o `@page` está errado.
 
 Conferir: nenhum texto cortado, contraste legível **em projetor** (que lava a cor — evitar cinza sobre cinza), fonte grande o suficiente pra última fileira (mínimo equivalente a 20pt).
 

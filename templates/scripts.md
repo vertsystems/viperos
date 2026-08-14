@@ -15,6 +15,7 @@ Conforme você for ativando skills, isso aqui vai sendo populado. Lista do que c
 | `/anuncio-google` | (nenhum — gera CSV direto) | — |
 | `/relatorio-ads` | (lê CSV exportado das plataformas) | — |
 | `/proposta` | (nenhum — gera HTML direto) | — |
+| `/documento`, `/apresentacao` | **já vem pronto** em `scripts/gerar-pdf.js` | HTML → PDF, achando o navegador e esperando as fontes |
 | todas que geram número | **já vem pronto** em `scripts/verificar.js` | Confere contagem, soma, data, contraste, peso e HTML |
 | `/publicar-tema` | (nenhum — entrega os arquivos pra você postar) | — |
 | `/aprovar-post` *(avançado)* | `postar-instagram.js`, `postar-facebook.js` | Publicação automática via Meta Graph API — só quem optar por isso |
@@ -49,13 +50,19 @@ node scripts/gerar-imagem.js "PROMPT EM INGLÊS" "conteudo/pasta/foto.png"
 
 Opções: `--provedor openai|gemini` · `--formato retrato|quadrado|paisagem` · `--modelo <nome>` · `--qualidade high|medium|low`
 
+E `scripts/gerar-pdf.js` — transforma HTML em PDF com o navegador que existir na máquina, esperando as fontes carregarem, e confere o resultado:
+
+```bash
+node scripts/gerar-pdf.js materiais/guia/guia.html
+```
+
 E `scripts/verificar.js` — confere o que não pode ser estimado (contagem, soma, data, contraste, peso, HTML). Rode antes de entregar qualquer peça com número:
 
 ```bash
 node scripts/verificar.js tudo conteudo/      # roda o que couber em cada arquivo
 ```
 
-São os **dois** scripts que o sistema entrega prontos. Os outros da tabela acima são criados sob demanda pela skill que precisar deles.
+São os **três** scripts que o sistema entrega prontos. Os outros da tabela acima são criados sob demanda pela skill que precisar deles.
 
 **Outro gerador** (Midjourney, Leonardo, Firefly, o que você já paga): não há integração, e não vale montar. Gere a imagem lá e passe o arquivo — o `/carrossel` aceita foto pronta do mesmo jeito.
 
