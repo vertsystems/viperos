@@ -181,7 +181,7 @@ arquivo `LICENSE`.
 
 ## Quando precisar
 
-ViperOS é um produto **VERT SYS**.
+ViperOS é um produto **Vert Systems**.
 
 **Bruno Santana**
 WhatsApp: [13 99728-7738](https://wa.me/5513997287738)
