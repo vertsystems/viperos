@@ -15,6 +15,36 @@ Primeiro comando depois de clonar. Não pode falhar e não pode soar burocrátic
 
 ---
 
+## Abertura — antes de qualquer coisa
+
+Primeira coisa na tela, antes de rodar comando, conferir pasta ou perguntar
+qualquer coisa. Imprimir **exatamente** este bloco, dentro de um bloco de código
+pra fonte monoespaçada:
+
+```
+  BEM-VINDO AO
+
+  ██╗   ██╗██╗██████╗ ███████╗██████╗      ██████╗ ███████╗
+  ██║   ██║██║██╔══██╗██╔════╝██╔══██╗    ██╔═══██╗██╔════╝
+  ██║   ██║██║██████╔╝█████╗  ██████╔╝    ██║   ██║███████╗
+  ╚██╗ ██╔╝██║██╔═══╝ ██╔══╝  ██╔══██╗    ██║   ██║╚════██║
+   ╚████╔╝ ██║██║     ███████╗██║  ██║    ╚██████╔╝███████║
+    ╚═══╝  ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝     ╚═════╝ ╚══════╝
+
+  O sistema operacional do seu negócio — Desenv. por: Vert Systems
+
+  Vou te fazer algumas perguntas sobre seu projeto ou negócio.
+  Leva poucos minutos, e você terá um cérebro digital funcionando.
+```
+
+**Não mexer no desenho.** Cada linha tem largura calculada (66 colunas no total,
+cabe em terminal de 80). Reindentar, "arrumar" espaço ou trocar caractere
+desalinha o traçado das letras — e desalinho de um caractere só já estraga.
+
+Depois de imprimir, seguir direto pra Fase 0 sem comentar o banner.
+
+---
+
 ## Fase 0 — Preparar o terreno (rápido, sem perguntar nada)
 
 ### 1. Conferir onde está
