@@ -207,6 +207,9 @@ As referências que sustentam esses critérios ficam em `templates/`:
 (psicologia da decisão, ganchos, edição). Skill visual ou de texto consulta
 de lá em vez de improvisar — e é lá que se calibra o padrão do sistema.
 
+O mesmo vale pro que é software: `templates/backend/` (stack, dados, API,
+segurança, arquitetura, entrega, debug) sustenta o `/backend`.
+
 Quando o conteúdo depender de dado (número, comparação, alegação técnica),
 consultar `pesquisa/` e `biblioteca.md` antes de escrever. Se não
 houver base, dizer isso ao usuário em vez de preencher com plausível.

@@ -36,6 +36,7 @@ MeuNegocio/
 ├── analises/              saídas do /analisar-dados
 ├── emails/                rascunhos longos do /email-profissional
 ├── revisoes/              fechamentos do /revisao-semanal
+├── sistemas/              código do /backend — um subdiretório por sistema
 ├── dados/                 drop zone: arquivo que você joga aqui pra ser lido
 ├── scripts/               utilitários e o Playwright (ver templates/scripts.md)
 ├── biblioteca.md          índice de ativos reutilizáveis
@@ -69,7 +70,8 @@ Aplicada aos perfis **freelancer** e **agência**: o trabalho é organizado por 
 │       ├── campanhas/
 │       ├── materiais/
 │       ├── apresentacoes/
-│       └── propostas/
+│       ├── propostas/
+│       └── sistemas/
 │
 ├── propostas/             prospects que ainda não são clientes
 ├── conteudo/              conteúdo próprio da agência

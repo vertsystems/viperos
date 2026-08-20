@@ -9,7 +9,7 @@ description: >
 
 # /ajuda — Qual skill usar agora
 
-O ViperOS tem 39 skills. Ninguém decora isso, e ninguém precisa — o usuário fala o que quer em português e a skill certa roda sozinha. Essa aqui responde a outra pergunta: **o que faz sentido fazer agora.**
+O ViperOS tem 40 skills. Ninguém decora isso, e ninguém precisa — o usuário fala o que quer em português e a skill certa roda sozinha. Essa aqui responde a outra pergunta: **o que faz sentido fazer agora.**
 
 Ao recomendar, falar pelo resultado, não pelo comando: "eu monto o banco de pautas" em vez de "roda /ideias". O nome da skill entra entre parênteses, no máximo — nunca como exigência.
 
@@ -95,6 +95,9 @@ peça com tipografia, que funciona bem.
 
 **"Quero saber se está funcionando"**
 `/relatorio-ads` (mídia paga) → `/revisao-semanal` (fechar o loop) → `/analisar-dados` (qualquer planilha)
+
+**"Preciso de um sistema / API / banco de dados"**
+`/backend` — servidor, API, banco, login e publicação. Também é a skill de "está dando erro em produção" e "a consulta está lenta"
 
 **"Faço a mesma coisa toda semana"**
 `/mapear-rotinas` — transforma a rotina em skill própria
