@@ -179,7 +179,7 @@ LINKEDIN
 Quando publicar, marca como "publicado" no indice.md (ou me avisa que eu marco).
 ```
 
-Não oferecer publicação automática aqui. Se o usuário quiser automatizar, ele chama `/aprovar-post`.
+Não oferecer publicação automática aqui. A skill entrega os arquivos e o usuário publica onde já trabalha — é o padrão do sistema (existe uma skill opcional de publicação em `templates/opcional/`, que exige App da Meta e configuração própria).
 
 ---
 

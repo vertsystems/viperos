@@ -46,7 +46,7 @@ npx playwright screenshot --viewport-size=1080,1350 --full-page "file:///caminho
 **Precisa de conta:** Sim — App na Meta for Developers, Página FB e conta Instagram Business conectada
 **Configurar:** `META_PAGE_ACCESS_TOKEN`, `META_PAGE_ID`, `META_IG_USER_ID` no `.env`
 **Atenção:** a API busca as imagens por **URL pública** — os PNGs precisam estar no ar antes de publicar
-**Quando usar:** É o que a skill `/aprovar-post` usa
+**Quando usar:** só se você for publicar em volume e quiser montar a automação por conta. O ViperOS não publica sozinho — a skill opcional em `templates/opcional/aprovar-post/` depende de scripts que não vêm no produto
 
 ### Post for Me API
 **O que faz:** Publica posts no Instagram e TikTok direto do Claude Code (alternativa mais simples à Meta API)

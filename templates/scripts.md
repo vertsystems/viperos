@@ -18,7 +18,6 @@ Conforme você for ativando skills, isso aqui vai sendo populado. Lista do que c
 | `/documento`, `/apresentacao` | **já vem pronto** em `scripts/gerar-pdf.js` | HTML → PDF, achando o navegador e esperando as fontes |
 | todas que geram número | **já vem pronto** em `scripts/verificar.js` | Confere contagem, soma, data, contraste, peso e HTML |
 | `/publicar-tema` | (nenhum — entrega os arquivos pra você postar) | — |
-| `/aprovar-post` *(avançado)* | `postar-instagram.js`, `postar-facebook.js` | Publicação automática via Meta Graph API — só quem optar por isso |
 
 ## Pré-requisitos comuns
 
@@ -30,12 +29,6 @@ Conforme você for ativando skills, isso aqui vai sendo populado. Lista do que c
 # Foto por IA no /carrossel — basta UMA das duas (guia: templates/imagem-ia.md)
 GEMINI_API_KEY=...                  # cota gratuita, sem cartão
 OPENAI_API_KEY=sk-...               # pago por imagem
-
-# Só pra quem ativar a publicação automática (/aprovar-post):
-META_PAGE_ACCESS_TOKEN=...
-META_PAGE_ID=...
-META_IG_USER_ID=...
-SITE_URL=https://seudominio.com.br
 ```
 
 O fluxo padrão de conteúdo não precisa de chave nenhuma: as skills geram os PNGs e a legenda, e você publica onde quiser.

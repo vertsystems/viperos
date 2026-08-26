@@ -422,4 +422,4 @@ Se sim, chamar `/publicar-tema` com o mesmo tema.
 - Não repetir layout entre slides — usar variação visual
 - Legenda: respeitar 2.200 caracteres e 30 hashtags
 - Conferir legibilidade no tamanho real antes de entregar (texto sobre foto, viúvas, margem de 60px)
-- **A skill entrega arquivo, não publica.** Terminar sempre com o kit (`como-postar.md`) e deixar a decisão de quando postar com o usuário. Não oferecer publicação automática — quem quiser isso chama `/aprovar-post` por conta própria
+- **A skill entrega arquivo, não publica.** Terminar sempre com o kit (`como-postar.md`) e deixar a decisão de quando postar com o usuário. Não oferecer publicação automática: o usuário publica onde já trabalha, e é assim que o sistema funciona
