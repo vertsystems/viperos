@@ -196,7 +196,9 @@ Quando o usuário pedir skill nova:
 Antes de entregar qualquer texto que vai pro público (artigo, legenda,
 proposta, copy de página, material), passar pelos critérios do `/revisar`:
 sem clichê de IA, sem gordura, no tom de `preferencias.md`, e toda
-afirmação factual com fonte ou marcada como não verificada.
+afirmação factual com fonte ou marcada como não verificada. Se o texto saiu de
+máquina e soa sintético mesmo sem clichê — frases todas do mesmo tamanho, nada
+específico —, o conserto é o `/humanizar`, que mede esses sinais em vez de opinar.
 
 Antes de entregar qualquer peça visual, conferir os critérios do
 `/revisar-design`: contraste WCAG AA, hierarquia perceptível, legibilidade
@@ -206,7 +208,7 @@ ou movimento, valem também `/interface`, `/movimento` e `/acessivel`.
 As referências que sustentam esses critérios ficam em `templates/`:
 `design/` (leitura do briefing, anti-genérico, qualidade visual, interface,
 movimento, acessibilidade, desempenho, e-mail em HTML, página de produto) e
-`copy/` (psicologia da decisão, ganchos, edição). Skill visual ou de texto consulta
+`copy/` (psicologia da decisão, ganchos, edição, humanização). Skill visual ou de texto consulta
 de lá em vez de improvisar — e é lá que se calibra o padrão do sistema.
 
 O mesmo vale pro que é software: `templates/backend/` (stack, dados, API,
@@ -227,6 +229,7 @@ node scripts/verificar.js datas <arquivo.md>     # dia da semana vs data real
 node scripts/verificar.js tabela <arquivo.md>    # soma das colunas e "12× R$ 97 = R$ 1.164"
 node scripts/verificar.js html <arquivo.html>    # CSS externo, @page, placeholder, link vazio
 node scripts/verificar.js alvo <arquivo.html>    # tamanho de alvo clicável declarado
+node scripts/verificar.js texto <arquivo>        # sinais de texto gerado: ritmo, clichê
 node scripts/verificar.js peso <pasta>           # imagem acima de 2 MB
 node scripts/verificar.js contraste "#123" "#fff"
 node scripts/gerar-pdf.js <arquivo.html>              # HTML → PDF, com verificação

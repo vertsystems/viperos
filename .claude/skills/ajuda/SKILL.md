@@ -9,7 +9,7 @@ description: >
 
 # /ajuda — Qual skill usar agora
 
-O ViperOS tem 50 skills. Ninguém decora isso, e ninguém precisa — o usuário fala o que quer em português e a skill certa roda sozinha. Essa aqui responde a outra pergunta: **o que faz sentido fazer agora.**
+O ViperOS tem 51 skills. Ninguém decora isso, e ninguém precisa — o usuário fala o que quer em português e a skill certa roda sozinha. Essa aqui responde a outra pergunta: **o que faz sentido fazer agora.**
 
 Ao recomendar, falar pelo resultado, não pelo comando: "eu monto o banco de pautas" em vez de "roda /ideias". O nome da skill entra entre parênteses, no máximo — nunca como exigência.
 
@@ -74,6 +74,10 @@ Se o pedido já foi concreto ("preciso de um site", "quero postar mais"), pular 
 **"Não sei o que postar"**
 `/ideias` → `/angulos` (10 tratamentos do mesmo tema) → `/calendario` (distribuir no mês)
 E se ele já tem conteúdo antigo: `/reaproveitar` — quase sempre o caminho mais rápido
+
+**"Tá com cara de IA" / "parece ChatGPT" / "isso não parece escrito por mim"**
+`/humanizar` — mede os sinais por comando (ritmo, frases curtas, clichê), levanta o que
+só você sabe e reescreve com a sua voz. Se o problema é excesso e não voz, é `/revisar`
 
 **"Meu conteúdo sai genérico / fraco"**
 `/pesquisa` (dado e citação real antes de escrever) → `/angulos` (ângulo em vez de tema solto) → `/revisar` (cortar clichê e gordura)

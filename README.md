@@ -3,7 +3,7 @@
 > O sistema operacional do seu negócio dentro do Claude Code.
 
 Sua empresa ganha uma memória própria, uma identidade visual aplicada em tudo
-que ela gerar, e 50 skills prontas pra fazer marketing, conteúdo, SEO, ads,
+que ela gerar, e 51 skills prontas pra fazer marketing, conteúdo, SEO, ads,
 oferta, preço, venda, material e operação rodarem com você dirigindo.
 
 **Você não precisa decorar comando nenhum.** Fala o que quer em português — "faz
@@ -89,7 +89,9 @@ já tem (live, artigo, PDF) em 5 peças novas.
 
 **Qualidade** — o filtro antes de sair
 Corta gordura, mata clichê de IA, confere o tom contra o seu jeito de escrever e
-marca toda afirmação sem fonte.
+marca toda afirmação sem fonte. E quando o texto saiu de máquina e continua com
+cara de máquina mesmo sem clichê, ele mede o que está errado — ritmo das frases,
+quanto do texto é genérico — e reescreve com a sua voz, sem inventar fato.
 
 **Distribuição e retorno**
 Fluxo de SEO em 8 passos (demanda, concorrência, GMB, on-page, conteúdo, ads,

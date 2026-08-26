@@ -297,6 +297,181 @@ function verMultiplicacoes(texto) {
   if (achou) ok(`${achou} multiplicação(ões) do tipo "N× R$ X = R$ Y" conferida(s)`);
 }
 
+// ─────────────────────────── TEXTO ───────────────────────────
+// Sinais de texto gerado por máquina. NÃO é detector de IA — detector de IA não
+// funciona, e chuta contra quem escreve bem. O que este check faz é contar os
+// padrões que denunciam texto sintético e medir o ritmo, que é o sinal mais
+// difícil de disfarçar: máquina escreve frases de comprimento parecido.
+//
+// A lista editorial completa é `templates/copy/edicao.md`, mantida em prosa.
+// Aqui ficam só os padrões que dá para casar por expressão regular.
+
+const CLICHES = [
+  [/\bmergulh(e|ar|ando)\b/gi, "mergulhe"],
+  [/\bdesvend(e|ar|ando)\b/gi, "desvende"],
+  [/\bdescubra o segredo\b/gi, "descubra o segredo"],
+  [/\bembarqu(e|ar)\b/gi, "embarque"],
+  [/\bdesbloqu(eie|ear)\b/gi, "desbloqueie"],
+  [/\btransforme sua?\b/gi, "transforme sua"],
+  [/\belev(e|ar) (seu|sua|o seu|a sua)\b/gi, "eleve seu"],
+  [/\bpotencialize\b/gi, "potencialize"],
+  [/\balavanc(ar|ue|ando)\b/gi, "alavancar"],
+  [/\bdestrav(e|ar)\b/gi, "destrave"],
+  [/\brevolucionári[oa]\b/gi, "revolucionário"],
+  [/\bdisruptiv[oa]\b/gi, "disruptivo"],
+  [/\bgame.?changer\b/gi, "game-changer"],
+  [/\bnext level\b/gi, "next level"],
+  [/n[ãa]o (é|se trata de) (apenas|só|somente) [^.,;!?]{1,45}[,;] (é|mas|mas sim)/gi, '"não é apenas X, é Y"'],
+  [/em um mundo cada vez mais/gi, '"em um mundo cada vez mais"'],
+  [/\bseja voc[êe] (um|uma)\b/gi, '"seja você um A ou um B"'],
+  [/\ba verdade é que\b/gi, '"a verdade é que"'],
+  [/\bimagine poder\b/gi, '"imagine poder"'],
+  [/e se eu te dissesse/gi, '"e se eu te dissesse"'],
+  [/\b(é importante|cabe) (notar|destacar|ressaltar|frisar)\b/gi, '"é importante notar"'],
+  [/\bvale (ressaltar|destacar|lembrar|mencionar)\b/gi, '"vale ressaltar"'],
+  [/\bno mundo de hoje\b|\bnos dias atuais\b|\bno cen[áa]rio atual\b/gi, '"no mundo de hoje"'],
+  [/\bcada vez mais\b/gi, '"cada vez mais"'],
+  [/\bnunca foi t[ãa]o f[áa]cil\b/gi, '"nunca foi tão fácil"'],
+  [/\bem constante evolu[çc][ãa]o\b/gi, '"em constante evolução"'],
+  [/\bo que voc[êe] est[áa] esperando\b/gi, '"o que você está esperando?"'],
+  [/\bo futuro é agora\b/gi, '"o futuro é agora"'],
+  [/\ba escolha é sua\b/gi, '"a escolha é sua"'],
+  [/\bjuntos somos mais fortes\b/gi, '"juntos somos mais fortes"'],
+  [/\bnessa jornada\b/gi, '"nessa jornada"'],
+  [/\bconte com a gente\b/gi, '"conte com a gente"'],
+  [/\bem suma\b|\bem resumo,|\bconcluindo,/gi, '"em suma"'],
+  [/\bsem mais delongas\b|\bvamos ao que interessa\b/gi, '"sem mais delongas"'],
+  [/\bprepare-se para\b/gi, '"prepare-se para"'],
+  [/\bsolu[çc][ãa]o (completa|ideal|perfeita)\b/gi, '"solução completa"'],
+  [/\bum dos pilares\b/gi, '"um dos pilares"'],
+  [/\bassertiv[oa]s?\b/gi, "assertivo"],
+  [/\bfaz toda a diferen[çc]a\b/gi, '"faz toda a diferença"'],
+  [/\bé (essencial|fundamental|recomend[áa]vel) que\b/gi, '"é essencial que"'],
+  [/\bfica(r)? por dentro\b/gi, '"ficar por dentro"'],
+  [/\bponta do iceberg\b/gi, '"ponta do iceberg"'],
+];
+
+/** Tira o que não é prosa: frontmatter, código, tabela, URL, marcação. */
+function soProsa(bruto) {
+  return bruto
+    .replace(/^---\r?\n[\s\S]*?\r?\n---/, "")       // frontmatter
+    .replace(/```[\s\S]*?```/g, "")                  // bloco de código
+    .replace(/`[^`\n]*`/g, "")                       // código curto
+    .replace(/^\s*\|.*\|\s*$/gm, "")                 // tabela markdown
+    .replace(/<[^>]+>/g, " ")                        // tags
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")         // link markdown
+    .replace(/https?:\/\/\S+/g, "")                  // URL solta
+    .replace(/^#{1,6}\s+(.*)$/gm, (_, titulo) => titulo.replace(/—/g, " "))  // título: o travessão ali é estrutura
+    .replace(/[*_]{1,3}/g, "");                      // negrito e itálico
+}
+
+function frasesDe(prosa) {
+  return prosa
+    .split(/(?<=[.!?…])\s+|\n{2,}/)
+    .map((f) => f.trim())
+    .filter((f) => f.split(/\s+/).filter(Boolean).length >= 3);
+}
+
+function verTexto(arquivo) {
+  console.log(`\nTEXTO: ${arquivo}`);
+  const bruto = fs.readFileSync(arquivo, "utf8");
+  const prosa = soProsa(bruto);
+  const palavras = prosa.split(/\s+/).filter((p) => /[A-Za-zÀ-ÿ]/.test(p));
+  const total = palavras.length;
+  if (total < 60) return info(`só ${total} palavras de prosa — curto demais para medir ritmo`);
+
+  const frases = frasesDe(prosa);
+  const tam = frases.map((f) => f.split(/\s+/).filter(Boolean).length);
+  const media = tam.reduce((a, b) => a + b, 0) / tam.length;
+  const dp = Math.sqrt(tam.reduce((a, b) => a + (b - media) ** 2, 0) / tam.length);
+  const variacao = media ? dp / media : 0;
+  const porMil = (n) => Math.round((n / total) * 1000 * 10) / 10;
+
+  info(`${total} palavras, ${frases.length} frases (média de ${media.toFixed(1)} palavras)`);
+  info("    régua de peça que vai pro público (post, página, e-mail); material de referência usa outro registro");
+
+  // ── ritmo: o sinal que menos se disfarça ──
+  const RITMO_MIN = 0.45;
+  if (variacao < RITMO_MIN) {
+    erro(`ritmo uniforme: variação de ${variacao.toFixed(2)} no comprimento das frases (a régua é ${RITMO_MIN})`);
+    info(`    máquina escreve frases do mesmo tamanho. O conserto é uma frase curta de verdade — três, quatro palavras — ao lado de uma longa`);
+  } else ok(`ritmo variado: ${variacao.toFixed(2)} de variação no comprimento das frases`);
+
+  // ── frase curta de verdade: o sinal mais discriminante que medimos ──
+  // Em texto de blog gerado, a proporção fica em 0%. Em texto com voz, entre 23% e 41%.
+  const CURTAS_MIN = 15;   // por cento
+  const curtas = Math.round((tam.filter((n) => n <= 8).length / tam.length) * 100);
+  if (curtas < CURTAS_MIN) {
+    erro(`só ${curtas}% de frases curtas (até 8 palavras) — a régua é ${CURTAS_MIN}%`);
+    info("    é o sinal mais fácil de consertar e o que mais muda a leitura: corte uma frase média no meio");
+  } else ok(`${curtas}% de frases curtas — a cadência varia`);
+
+  // ── travessão: não é proibido, o excesso é que denuncia ──
+  const TRAVESSAO_MAX = 8;   // por mil palavras — ~1 a cada 125 palavras
+  // Em item de lista, o PRIMEIRO travessão separa termo e definição — é estrutura.
+  // O vício que denuncia texto gerado é o travessão retórico no meio do parágrafo.
+  const semDefinicao = prosa
+    .split("\n")
+    .map((l) => (/^\s*([-*+]|\d+\.)\s/.test(l) ? l.replace("—", " ") : l))
+    .join("\n");
+  const travessoes = (semDefinicao.match(/—/g) || []).length;
+  // em texto curto a densidade por mil exagera: 2 travessões em 150 palavras não é vício
+  if (travessoes >= 3 && porMil(travessoes) > TRAVESSAO_MAX)
+    erro(`${travessoes} travessões em ${total} palavras (${porMil(travessoes)} por mil, a régua é ${TRAVESSAO_MAX})`);
+  else if (travessoes) ok(`${travessoes} travessões (${porMil(travessoes)} por mil) — dentro da régua`);
+
+  // ── clichê ──
+  // Linha que enumera termos separados por "·" é lista de referência (a `edicao.md` é
+  // uma delas), não prosa. Contar clichê ali acusaria o próprio material do sistema.
+  // e termo entre aspas está sendo CITADO, não usado — é o caso de todo material que
+  // ensina a evitar clichê, este arquivo de referência incluído.
+  const semListas = prosa
+    .split("\n")
+    .filter((l) => (l.match(/·/g) || []).length < 2)
+    .join("\n")
+    .replace(/["“][^"”\n]{2,60}["”]/g, " ");
+  const achados = [];
+  for (const [re, nome] of CLICHES) {
+    const n = (semListas.match(re) || []).length;
+    if (n) achados.push(n > 1 ? `${nome} (${n}×)` : nome);
+  }
+  if (achados.length) {
+    erro(`${achados.length} clichê(s) de IA: ${achados.slice(0, 10).join(" · ")}${achados.length > 10 ? ` (+${achados.length - 10})` : ""}`);
+  } else ok("nenhum clichê da lista");
+
+  // ── advérbio em -mente ──
+  const MENTE_MAX = 8;
+  const mentes = (prosa.match(/\b\w{4,}mente\b/gi) || []).length;
+  if (porMil(mentes) > MENTE_MAX) erro(`${mentes} advérbios em "-mente" (${porMil(mentes)} por mil, a régua é ${MENTE_MAX})`);
+
+  // ── formato de lista ──
+  const itens = bruto.match(/^\s*[-*+]\s+\S/gm) || [];
+  const negrito = bruto.match(/^\s*[-*+]\s+\*\*/gm) || [];
+  if (itens.length >= 4 && negrito.length / itens.length > 0.7)
+    erro(`${negrito.length} de ${itens.length} itens de lista começam em negrito — é o formato de bullet mais reconhecível de texto gerado`);
+  const emojiBullet = bruto.match(/^\s*[-*+]?\s*[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gmu) || [];
+  if (emojiBullet.length >= 3) erro(`${emojiBullet.length} linhas com emoji fazendo papel de bullet`);
+
+  // ── parágrafo que começa com conectivo de enumeração ──
+  // "Além disso… Por outro lado… Por fim…" é a espinha do texto escolar de LLM.
+  const CONECTIVOS = /^(além disso|por fim|em primeiro lugar|por outro lado|dessa forma|desse modo|portanto|assim sendo|vale lembrar|outro ponto|ademais|nesse sentido)\b/i;
+  const paragrafos = prosa.split(/\n{2,}/).map((x) => x.trim()).filter((x) => x.split(/\s+/).length > 8);
+  const comConectivo = paragrafos.filter((x) => CONECTIVOS.test(x)).length;
+  if (comConectivo >= 3)
+    erro(`${comConectivo} parágrafos abrem com conectivo de enumeração ("Além disso", "Por fim") — é a espinha do texto de redação automática`);
+
+  // ── abertura repetida: paralelismo mecânico ──
+  const inicios = frases.map((f) => (f.match(/^[A-Za-zÀ-ÿ]+/) || [""])[0].toLowerCase());
+  let seguidas = 1, pior = 1, palavraPior = "";
+  for (let i = 1; i < inicios.length; i++) {
+    if (inicios[i] && inicios[i] === inicios[i - 1]) {
+      seguidas++;
+      if (seguidas > pior) { pior = seguidas; palavraPior = inicios[i]; }
+    } else seguidas = 1;
+  }
+  if (pior >= 3) erro(`${pior} frases seguidas começando com "${palavraPior}" — paralelismo mecânico`);
+}
+
 // ─────────────────────────── CONTRASTE ───────────────────────────
 
 function lum(hex) {
@@ -725,6 +900,7 @@ const AJUDA = `ViperOS — verificar.js
   contraste <cor1> <cor2>   razão WCAG
   html <arquivo.html>       CSS externo, var() sem fallback, @page, placeholder, link vazio
   alvo <arquivo.html>       tamanho de alvo clicável declarado (WCAG 2.5.8 + piso do ViperOS)
+  texto <arquivo>           sinais de texto gerado: ritmo, clichê, travessão, formato
   peso <pasta|arquivo>      imagem acima de 2 MB
   tudo <pasta>              roda o que couber em cada arquivo
   sistema [pasta]           integridade do próprio ViperOS: skill que não carrega,
@@ -738,6 +914,7 @@ try {
   else if (cmd === "contraste") verContraste(args[0], args[1]);
   else if (cmd === "html") verHTML(args[0]);
   else if (cmd === "alvo") verAlvo(args[0]);
+  else if (cmd === "texto") verTexto(args[0]);
   else if (cmd === "peso") verPeso(args[0]);
   else if (cmd === "tudo") verTudo(args[0] || ".");
   else if (cmd === "sistema") verSistema(args[0] || ".");
