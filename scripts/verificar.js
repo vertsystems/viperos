@@ -273,7 +273,12 @@ function verTabela(arquivo) {
 // ─────────────────────────── CONTRASTE ───────────────────────────
 
 function lum(hex) {
-  const h = hex.replace("#", "").trim();
+  const h = String(hex ?? "").replace("#", "").trim();
+  // Sem isso, "vermelho" ou "rgb(255,0,0)" viram NaN e o check REPROVA em silêncio —
+  // a skill "conserta" uma cor que estava boa. Melhor falhar dizendo o que houve.
+  if (!/^([0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(h)) {
+    throw new Error(`cor inválida: "${hex}" — use hexadecimal (#RGB, #RRGGBB ou #RRGGBBAA). Nome de cor e rgb() não são aceitos.`);
+  }
   const full = h.length === 3 ? h.split("").map((c) => c + c).join("") : h;
   const [r, g, b] = [0, 2, 4].map((i) => parseInt(full.substr(i, 2), 16) / 255);
   const f = (c) => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
