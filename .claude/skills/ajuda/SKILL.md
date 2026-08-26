@@ -9,7 +9,7 @@ description: >
 
 # /ajuda — Qual skill usar agora
 
-O ViperOS tem 39 skills. Ninguém decora isso, e ninguém precisa — o usuário fala o que quer em português e a skill certa roda sozinha. Essa aqui responde a outra pergunta: **o que faz sentido fazer agora.**
+O ViperOS tem 45 skills. Ninguém decora isso, e ninguém precisa — o usuário fala o que quer em português e a skill certa roda sozinha. Essa aqui responde a outra pergunta: **o que faz sentido fazer agora.**
 
 Ao recomendar, falar pelo resultado, não pelo comando: "eu monto o banco de pautas" em vez de "roda /ideias". O nome da skill entra entre parênteses, no máximo — nunca como exigência.
 
@@ -95,6 +95,24 @@ peça com tipografia, que funciona bem.
 
 **"Quero saber se está funcionando"**
 `/relatorio-ads` (mídia paga) → `/revisao-semanal` (fechar o loop) → `/analisar-dados` (qualquer planilha)
+
+**"Não sei quanto estou ganhando" / "trabalho muito e sobra pouco"**
+`/caixa` — quanto entrou, quanto sobrou, qual serviço dá lucro e quanto custa a hora. Costuma ser a conversa mais útil do sistema, e a que menos gente pede
+
+**"O cliente fechou, e agora?" / "cliente sumiu" / "orçamento sem resposta"**
+`/pos-venda` — alinhar expectativa, pedir depoimento na hora certa, reativar quem parou e recuperar orçamento parado
+
+**"O que eu respondo no WhatsApp?"**
+`/whatsapp` — primeira resposta, respostas rápidas, como falar de preço sem perder a conversa, perfil comercial
+
+**"Quero fazer vídeo mas não sei o que falar"**
+`/video` — roteiro cena a cena pra Reels/Shorts, com o gancho dos 3 primeiros segundos
+
+**"O cliente aceitou, como formalizo?"**
+`/contrato` — escopo, o que NÃO está incluso, prazo, pagamento e cancelamento. Sai da `/proposta` aceita
+
+**"Tem muita gente fazendo isso" / "como eu me diferencio"**
+`/concorrente` → `/marca` (posicionamento) → `/oferta` (o que incluir)
 
 **"Preciso de um sistema / API / banco de dados"**
 `/backend` — servidor, API, banco, login e publicação. Também é a skill de "está dando erro em produção" e "a consulta está lenta"

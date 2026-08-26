@@ -29,7 +29,9 @@ MeuNegocio/
 ├── apresentacoes/         decks do /apresentacao
 ├── propostas/             propostas do /proposta
 ├── oferta/                desenho da oferta e estudo de preço (/oferta, /preco)
-├── vendas/                roteiros de conversa de venda (/vender)
+├── vendas/                roteiros de venda (/vender), pos-venda/ e whatsapp/
+├── financeiro/            fechamento do mês e custos fixos (/caixa)
+├── contratos/             contratos de prestação de serviço (/contrato)
 ├── imprensa/              pautas, contatos e clipping (/imprensa)
 ├── seo/                   os 8 arquivos do /seo
 ├── campanhas/             CSVs do /anuncio-google + relatorios/ do /relatorio-ads
