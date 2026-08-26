@@ -4,15 +4,15 @@ Referência única de onde cada coisa é salva. O `/instalar` escolhe uma das du
 
 ## Princípio
 
-**Nada é criado antes de ser necessário.** O workspace começa com o `CLAUDE.md`, a `_memoria/` e as pastas do sistema. Cada pasta de trabalho nasce na primeira vez que uma skill precisa dela.
+**Nada é criado antes de ser necessário.** O workspace começa com o `CLAUDE.md`, a `_memoria/` e as pastas do sistema. Nada além disso. Cada pasta de trabalho nasce na primeira vez que uma skill precisa dela.
 
-As pastas do sistema (`.claude/skills/`, `templates/`, `scripts/`) convivem na mesma raiz. O `/atualizar-sistema` substitui só elas quando sai versão nova — o trabalho nunca é tocado.
+As pastas do sistema (`.claude/skills/`, `templates/`, `scripts/`) convivem na mesma raiz. O `/atualizar-sistema` substitui só elas quando sai versão nova. O trabalho nunca é tocado.
 
 ---
 
 ## Convenção A — por tipo de entrega
 
-Aplicada aos perfis **empreendedor solo** e **empresa**: um negócio só, várias frentes.
+Aplicada aos perfis **empreendedor solo** e **empresa**. Um negócio só, várias frentes.
 
 ```
 MeuNegocio/
@@ -53,7 +53,7 @@ MeuNegocio/
 
 ## Convenção B — por cliente
 
-Aplicada aos perfis **freelancer** e **agência**: o trabalho é organizado por quem paga.
+Aplicada aos perfis **freelancer** e **agência**. O trabalho é organizado por quem paga.
 
 ```MinhaAgencia/
 ├── CLAUDE.md
@@ -99,10 +99,10 @@ Toda skill que gera arquivo segue este padrão:
 3. Criar a pasta **só nesse momento**, se ainda não existir
 4. Nunca criar pasta "de antemão pra organizar melhor"
 
-Quando a peça é de cliente e a convenção é B, o caminho recebe o prefixo `clientes/<Nome>/`. O resto do caminho é idêntico nas duas convenções — é isso que mantém as skills simples.
+Quando a peça é de cliente e a convenção é B, o caminho recebe o prefixo `clientes/<Nome>/`. O resto do caminho é idêntico nas duas convenções. É isso que mantém as skills simples.
 
 ## Versionamento
 
-O `.gitignore` que vem no repositório ignora `.env`, `node_modules/` e a drop zone `dados/`. O resto — inclusive as skills e os templates — versiona junto com o trabalho.
+O `.gitignore` que vem no repositório ignora `.env`, `node_modules/` e a drop zone `dados/`. O resto, inclusive as skills e os templates, versiona junto com o trabalho.
 
 O `/salvar` cria o repositório **dele** (o endereço do ViperOS fica guardado como `viperos`, e é de lá que o `/atualizar-sistema` busca versão nova).

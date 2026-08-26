@@ -57,18 +57,18 @@ Uma pergunta só, montada em cima do que o texto promete:
 > "Pra tirar o genérico, preciso de coisa que só você sabe. Nesse texto sobre atraso de
 > entrega: qual foi o último caso real, quanto custou, e o que você mudou depois?"
 
-Perguntar o que dá para conferir — número quebrado, dia, nome de fornecedor, o que deu
+Perguntar o que dá para conferir: número quebrado, dia, nome de fornecedor, o que deu
 errado. Se ele não tiver nada à mão, seguir e marcar no texto:
 `[preencher: qual foi o caso?]`. **Nunca preencher sozinho.**
 
 ### Passo 3 — Ler a voz dele
 
 Abrir `preferencias.md` e ler o exemplo de escrita real antes de escrever qualquer
-linha. O alvo não é "texto humano em geral" — é o jeito daquela pessoa. Se ela escreve
+linha. O alvo não é "texto humano em geral": é o jeito daquela pessoa. Se ela escreve
 seco, o texto sai seco. Se ela usa "a gente", o texto usa "a gente".
 
 Sem exemplo de escrita salvo, pedir um: "me manda um áudio ou um texto que você escreveu
-sem ajuda — qualquer um serve, até mensagem de WhatsApp". Dois parágrafos bastam.
+sem ajuda: qualquer um serve, até mensagem de WhatsApp". Dois parágrafos bastam.
 
 ### Passo 4 — Reescrever com as sete manobras
 
@@ -89,7 +89,7 @@ propósito. Nesses, avisar e parar.
 ### Passo 5 — Medir depois
 
 Rodar o mesmo comando no texto reescrito. Se algum número não melhorou, o passe não
-funcionou — voltar, não maquiar.
+funcionou: voltar, não maquiar.
 
 O que costuma faltar quando o número teima: frase curta de verdade (a régua é 15% e o
 conserto leva um minuto) e informação específica (que não se resolve escrevendo, só

@@ -2,14 +2,14 @@
 name: revisao-semanal
 description: >
   Ritual curto de fechamento de semana: o que saiu, o que performou, o que travou e o que entra na
-  semana seguinte — atualizando `tarefas.md` e `_memoria/estrategia.md`. Use quando o usuário disser
+  semana seguinte, atualizando `tarefas.md` e `_memoria/estrategia.md`. Use quando o usuário disser
   "revisão da semana", "fechar a semana", "balanço", "como foi a semana", "planejar a próxima
   semana", ou /revisao-semanal.
 ---
 
 # /revisao-semanal — Fechamento de semana
 
-O ciclo que fecha o loop: produzir sem revisar é o que a tese do ViperOS chama de open loop — decide, executa, não mede, repete cego. Dez minutos aqui alimentam as decisões da semana seguinte.
+O ciclo que fecha o loop: produzir sem revisar é o que a tese do ViperOS chama de open loop, decide, executa, não mede, repete cego. Dez minutos aqui alimentam as decisões da semana seguinte.
 
 ## Dependências
 
@@ -50,7 +50,7 @@ Onde houver dado, cruzar. Sem dado, dizer que não tem em vez de opinar:
 - Proposta enviada vs. resposta recebida
 - Padrão: o que funcionou tem algo em comum? (formato, tema, funil, horário)
 
-Se ainda não há histórico suficiente, dizer isso claramente: "duas semanas de dados não formam padrão — anotando pra comparar daqui a um mês".
+Se ainda não há histórico suficiente, dizer isso claramente: "duas semanas de dados não formam padrão, anotando pra comparar daqui a um mês".
 
 ### Passo 4 — Escrever a revisão
 

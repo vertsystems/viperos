@@ -47,7 +47,7 @@ Passar disso exige que cada segundo esteja pagando o próprio tempo.
 
 ### Passo 2 — Escrever o gancho
 
-Os **primeiros 3 segundos** decidem o vídeo. Nesse tempo cabe uma frase — e ela precisa
+Os **primeiros 3 segundos** decidem o vídeo. Nesse tempo cabe uma frase, e ela precisa
 fazer a pessoa querer o resto.
 
 Ganchos que funcionam:
@@ -88,7 +88,7 @@ Regras do roteiro:
 
 ### Passo 4 — Escrever a legenda do post
 
-A legenda não repete a fala — ela dá o que o vídeo não coube:
+A legenda não repete a fala: ela dá o que o vídeo não coube:
 
 - Primeira linha que sobrevive ao corte do "ver mais"
 - O contexto ou o passo extra

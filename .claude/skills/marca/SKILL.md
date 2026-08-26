@@ -10,7 +10,7 @@ description: >
 
 # /marca — O que você é, e como você fala
 
-Duas perguntas que todo negócio pequeno responde mal: **por que alguém deveria te escolher** e **como você soa**. Sem isso, cada peça sai com uma voz diferente e o posicionamento vira "qualidade e bom atendimento" — que é o que todo concorrente também diz.
+Duas perguntas que todo negócio pequeno responde mal: **por que alguém deveria te escolher** e **como você soa**. Sem isso, cada peça sai com uma voz diferente e o posicionamento vira "qualidade e bom atendimento": que é o que todo concorrente também diz.
 
 Essa skill cuida do verbal e do estratégico. O visual é do `/design-system`.
 
@@ -35,7 +35,7 @@ Essa skill cuida do verbal e do estratégico. O visual é do `/design-system`.
 4. "Que tipo de cliente você **não** quer? Por quê?"
 5. "Se você tivesse que ser conhecido por **uma** coisa, qual seria?"
 
-Se `_memoria/publico.md` existir, ler antes — a resposta 3 provavelmente já está lá, na palavra do cliente.
+Se `_memoria/publico.md` existir, ler antes: a resposta 3 provavelmente já está lá, na palavra do cliente.
 
 ### Montar a frase de posicionamento
 
@@ -56,7 +56,7 @@ Três testes. Reprovou em um, refazer:
 | **Do contrário** | Se o oposto for absurdo ("somos ruins e caros"), a frase não afirma nada. Posicionamento tem um lado |
 | **Do cliente** | O cliente reconhece a dor descrita na primeira linha? Se ele não se vê ali, errou o alvo |
 
-**Quase todo posicionamento fraco** é fraco por dizer "qualidade", "atendimento" ou "compromisso". Nenhum dos três é diferencial: é o mínimo. Diferencial é o que dá pra verificar — prazo, processo, especialidade, garantia, escala, origem, restrição deliberada.
+**Quase todo posicionamento fraco** é fraco por dizer "qualidade", "atendimento" ou "compromisso". Nenhum dos três é diferencial: é o mínimo. Diferencial é o que dá pra verificar: prazo, processo, especialidade, garantia, escala, origem, restrição deliberada.
 
 **O que você deixa de ser também posiciona.** "Não atendemos obra pequena" ou "só trabalhamos com um cliente por segmento" comunica mais que qualquer adjetivo.
 

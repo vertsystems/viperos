@@ -1,7 +1,7 @@
 # Catálogo de Ferramentas
 
-Referência de APIs, CLIs e conectores que podem ser usados dentro de skills do Claude Code.
-Consulte este arquivo antes de criar skills novas pra saber o que já está disponível.
+Referência de APIs, CLIs e conectores para usar dentro de skills do Claude Code.
+Consulte antes de criar skill nova. Ele diz o que já existe.
 
 > Toda chave de API vai no `.env` da raiz (modelo em `.env.example`). O `.env` é
 > ignorado pelo git — nunca cole chave em skill, script ou markdown.
@@ -97,7 +97,7 @@ brew install yt-dlp
 - **Google Gemini** — cota gratuita, sem cartão: aistudio.google.com/apikey → `GEMINI_API_KEY`
 - **OpenAI** — pago por imagem: platform.openai.com/api-keys → `OPENAI_API_KEY`
 
-Assinar ChatGPT Plus ou Gemini Advanced **não** libera — aplicativo e API são cobrados separado.
+Assinar ChatGPT Plus ou Gemini Advanced **não** libera. Aplicativo e API são cobrados separado.
 
 **Como usar:**
 ```bash

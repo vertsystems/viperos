@@ -9,7 +9,7 @@ description: >
 
 # /angulos — Dez tratamentos pro mesmo tema
 
-Tema não é conteúdo. "Conservação de alimentos" é assunto; "o erro de geladeira que estraga sua carne em 3 dias" é conteúdo. A diferença é o ângulo — e é por falta dele que todo carrossel sai com a mesma cara.
+Tema não é conteúdo. "Conservação de alimentos" é assunto; "o erro de geladeira que estraga sua carne em 3 dias" é conteúdo. A diferença é o ângulo, e é por falta dele que todo carrossel sai com a mesma cara.
 
 ## Dependências
 
@@ -29,7 +29,7 @@ Tema não é conteúdo. "Conservação de alimentos" é assunto; "o erro de gela
 
 Se o usuário só deu o tema, confirmar em uma pergunta: quem precisa ver isso e o que essa pessoa já sabe? Público que não sabe que tem o problema precisa de ângulo diferente de quem já está comparando fornecedor.
 
-Se houver dossiê de `/pesquisa`, ler antes — os números e as citações literais viram os melhores ângulos.
+Se houver dossiê de `/pesquisa`, ler antes: os números e as citações literais viram os melhores ângulos.
 
 ### Passo 2 — Gerar os 10 tratamentos
 
@@ -77,7 +77,7 @@ Não deixar 10 opções soltas na mesa. Fechar com:
 > completo com blog. Se quiser guardar os ângulos que não usar agora, eu jogo no
 > banco de pautas (`conteudo/pautas.md`)."
 
-Se o usuário mandar guardar, gravar como pautas com origem `/angulos — tema X`.
+Se o usuário mandar guardar, gravar como pautas com origem `/angulos: tema X`.
 
 ---
 

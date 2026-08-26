@@ -2,13 +2,13 @@
 
 Guia curto pra quem quer que o ViperOS **crie as fotos** das peças, em vez de você mandar imagem pronta.
 
-É opcional. Sem isso o sistema continua fazendo carrossel, post, página e material — só que com tipografia e as fotos que você já tem, que é como a maioria das marcas boas trabalha mesmo.
+É opcional. Sem isso o sistema continua fazendo carrossel, post, página e material, só que com tipografia e as fotos que você já tem, que é como a maioria das marcas boas trabalha mesmo.
 
 ---
 
 ## O que você precisa saber antes
 
-Gerar imagem por IA é um serviço pago **por imagem**, cobrado direto pela empresa que gera (não pelo ViperOS). Você usa a sua própria conta e a sua própria chave — nada passa por terceiros.
+Gerar imagem por IA é um serviço pago **por imagem**, cobrado direto pela empresa que gera (não pelo ViperOS). Você usa a sua própria conta e a sua própria chave, nada passa por terceiros.
 
 Duas opções, e as duas funcionam igual aqui:
 

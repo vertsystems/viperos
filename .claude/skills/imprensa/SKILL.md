@@ -30,7 +30,7 @@ Mídia espontânea é o tipo de visibilidade que não se compra e que gera confi
 
 **Não vale ainda** quando: o objetivo é venda imediata (mídia gera confiança, não pedido) · não há nada de novo além de existir · a operação não aguenta o movimento que a matéria pode gerar.
 
-Se não vale, dizer com clareza e sugerir o que gera resultado agora (`/seo`, `/anuncio-google`, `/carrossel`) — em vez de escrever release que ninguém publica.
+Se não vale, dizer com clareza e sugerir o que gera resultado agora (`/seo`, `/anuncio-google`, `/carrossel`): em vez de escrever release que ninguém publica.
 
 ---
 
@@ -73,7 +73,7 @@ Do mais fácil ao mais difícil, na ordem de tentar:
 | **Podcast de nicho** | pauta menos disputada, audiência qualificada |
 | **Grande veículo regional** | difícil, mas possível com dado exclusivo |
 
-Achar **a pessoa**, não a redação: buscar quem assinou matérias parecidas nos últimos meses. Ler as **5 últimas** matérias dela antes de escrever — isso define o ângulo e evita o erro mais comum, que é mandar pauta pra quem não cobre aquilo.
+Achar **a pessoa**, não a redação: buscar quem assinou matérias parecidas nos últimos meses. Ler as **5 últimas** matérias dela antes de escrever: isso define o ângulo e evita o erro mais comum, que é mandar pauta pra quem não cobre aquilo.
 
 Montar `imprensa/contatos.md` com: nome, veículo, o que cobre, últimas pautas, contato, histórico de contato.
 
@@ -99,7 +99,7 @@ Tenho disponível:
 [Nome], [cargo] — [telefone direto]
 ```
 
-**Barra de qualidade — todas precisam ser "sim" antes de enviar:**
+**Barra de qualidade: todas precisam ser "sim" antes de enviar:**
 
 - [ ] Essa pessoa cobre esse assunto? (conferiu as 5 últimas matérias dela?)
 - [ ] Tem gancho de tempo — algo que acabou de acontecer ou vai acontecer?

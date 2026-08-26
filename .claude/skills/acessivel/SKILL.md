@@ -1,7 +1,7 @@
 ---
 name: acessivel
 description: >
-  Audita uma página em duas frentes num laudo só: consegue usar (WCAG 2.2 AA — foco, alvo,
+  Audita uma página em duas frentes num laudo só: consegue usar (WCAG 2.2 AA, foco, alvo,
   teclado, formulário, contraste) e consegue esperar (LCP, INP, CLS). Devolve as correções
   priorizadas, com número, e aplica se o usuário pedir.
   Use quando o usuário disser "meu site é acessível?", "minha mãe não consegue usar",
@@ -95,7 +95,7 @@ lista 30 problemas ninguém executa.
 
 > "Quer que eu aplique o que está em 'Reprova'?"
 
-Se sim, aplicar e mostrar o antes/depois — com o número novo, não com "melhorou".
+Se sim, aplicar e mostrar o antes/depois, com o número novo, não com "melhorou".
 Se a página está no ar, valem as regras de redesign do `anti-generico.md`: URL, rótulo
 de menu, campo de formulário, logo e texto legal **não** mudam em silêncio.
 

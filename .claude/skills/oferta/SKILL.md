@@ -1,7 +1,7 @@
 ---
 name: oferta
 description: >
-  Desenha ou conserta a oferta do negócio — o que exatamente está sendo vendido, com bônus, garantia,
+  Desenha ou conserta a oferta do negócio: o que exatamente está sendo vendido, com bônus, garantia,
   motivo pra ser agora, nome e forma de pagamento. Usa a equação de valor e mapeamento de obstáculos.
   Use quando o usuário disser "minha oferta", "o que eu vendo", "ninguém compra", "pedem orçamento e
   não fecham", "tá caro", "como empacotar meu serviço", "montar um combo", "quero vender mais caro",
@@ -10,7 +10,7 @@ description: >
 
 # /oferta — O que você vende, e por que compram
 
-Antes de qualquer carrossel, anúncio ou proposta, existe uma pergunta mais importante: **a coisa que você vende é atraente?** Copy boa não salva oferta ruim — só faz mais gente descobrir que não vale a pena.
+Antes de qualquer carrossel, anúncio ou proposta, existe uma pergunta mais importante: **a coisa que você vende é atraente?** Copy boa não salva oferta ruim, só faz mais gente descobrir que não vale a pena.
 
 > **Convenção de pastas:** os caminhos desta skill seguem a convenção **por tipo** (perfis empreendedor solo e empresa). Se o `CLAUDE.md` do workspace usa a convenção **por cliente** e a oferta é de um cliente, prefixar com `clientes/<Nome>/`. A pasta nasce só na hora de salvar.
 
@@ -43,7 +43,7 @@ Toda oferta se move em quatro alavancas:
 | **Tempo pra ver** | ↓ menor | Antecipar o primeiro resultado. O que a pessoa vê na primeira semana? |
 | **Esforço e sacrifício** | ↓ menor | Tirar passo, fazer por ela, resolver o que ela teria que aprender |
 
-**Regra prática:** se não consegue aumentar o de cima, diminua o de baixo. Na maioria dos negócios pequenos, é embaixo que está o ganho fácil — porque ninguém pensa nisso.
+**Regra prática:** se não consegue aumentar o de cima, diminua o de baixo. Na maioria dos negócios pequenos, é embaixo que está o ganho fácil, porque ninguém pensa nisso.
 
 ---
 
@@ -59,7 +59,7 @@ Perguntar, uma por vez:
 4. "O que o cliente precisa fazer da parte dele pra dar certo?"
 5. "Qual a última objeção que você ouviu antes de alguém não fechar?"
 
-Se existir `_memoria/publico.md`, ler antes — as respostas 1 e 5 já podem estar lá.
+Se existir `_memoria/publico.md`, ler antes: as respostas 1 e 5 já podem estar lá.
 
 ### Passo 2 — Mapear os obstáculos
 
@@ -72,7 +72,7 @@ Toda pessoa que **quer** o resultado e **não** compra está travada em uma de q
 | **Ambiente** | Fatores externos | "Meu sócio não aprova", "não tenho espaço" |
 | **Cabeça** | Crença, medo, histórico | "Já tentei uma vez e me arrependi" |
 
-Cada obstáculo mapeado é um candidato a **componente da oferta** — porque a oferta é a soma das soluções dos obstáculos.
+Cada obstáculo mapeado é um candidato a **componente da oferta**, porque a oferta é a soma das soluções dos obstáculos.
 
 ### Passo 3 — Montar os componentes e cortar
 
@@ -105,7 +105,7 @@ Oferta incompleta é a causa mais comum de "pedem orçamento e não fecham". Con
 | 5 | **Nome** | Como isso se chama? | Nome genérico do serviço |
 | 6 | **Preço e pagamento** | Quanto e como paga? | Só o valor cheio, sem opção |
 
-**Tipos de garantia, do mais forte ao mais leve** — usar o mais forte que o negócio aguenta cumprir:
+**Tipos de garantia, do mais forte ao mais leve**: usar o mais forte que o negócio aguenta cumprir:
 - Devolução do dinheiro sem pergunta, em prazo definido
 - Refazer o trabalho até ficar certo
 - Garantia condicional ("se você fizer X e não der resultado, devolvo")
@@ -117,13 +117,13 @@ Oferta incompleta é a causa mais comum de "pedem orçamento e não fecham". Con
 
 A mesma oferta convence ou não pela ordem. Sempre: **problema → resultado → como funciona → o que está incluído → garantia → preço → próximo passo.**
 
-Preço depois do valor, nunca antes. E o preço aparece **uma vez**, com destaque — esconder o número afasta quem já ia comprar.
+Preço depois do valor, nunca antes. E o preço aparece **uma vez**, com destaque: esconder o número afasta quem já ia comprar.
 
 ### Passo 6 — Salvar
 
 Escrever `oferta/<nome-da-oferta>-<AAAA-MM-DD>.md` com o desenho completo (obstáculos, componentes, as seis partes, ordem de apresentação).
 
-E atualizar `_memoria/oferta.md` com o resumo da **oferta ativa** — é o que `/carrossel`, `/landing`, `/proposta`, `/anuncio-google` e `/vender` vão consultar pra não contradizer a oferta:
+E atualizar `_memoria/oferta.md` com o resumo da **oferta ativa**: é o que `/carrossel`, `/landing`, `/proposta`, `/anuncio-google` e `/vender` vão consultar pra não contradizer a oferta:
 
 ```markdown
 # Oferta ativa

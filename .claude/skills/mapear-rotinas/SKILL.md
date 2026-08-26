@@ -23,11 +23,11 @@ Fazer 3 perguntas, uma por vez:
 
 ### Passo 2 — Conferir catálogo
 
-Ler `templates/skills/catalogo.md` pra ver se alguma das tarefas mencionadas já é coberta por uma skill nativa do Claude Code ou validada pelo ViperOS. Conferir também as 51 skills que já existem em `.claude/skills/` — com esse volume, a chance de a tarefa já estar coberta é alta: pode ser caso de uso do `/carrossel`, `/proposta`, `/documento`, `/reaproveitar` ou `/analisar-dados`. Se sim, sugerir a existente em vez de criar uma nova:
+Ler `templates/skills/catalogo.md` pra ver se alguma das tarefas mencionadas já é coberta por uma skill nativa do Claude Code ou validada pelo ViperOS. Conferir também as 51 skills que já existem em `.claude/skills/`, com esse volume, a chance de a tarefa já estar coberta é alta: pode ser caso de uso do `/carrossel`, `/proposta`, `/documento`, `/reaproveitar` ou `/analisar-dados`. Se sim, sugerir a existente em vez de criar uma nova:
 
 > "A tarefa X já é resolvida pela skill `/<nome>` que vem nativa. Quer ativar ela em vez de criar uma nova?"
 
-Ler `templates/ferramentas/catalogo.md` antes de propor qualquer skill que dependa de integração externa — evita propor automação que precisa de API que o usuário não tem.
+Ler `templates/ferramentas/catalogo.md` antes de propor qualquer skill que dependa de integração externa: evita propor automação que precisa de API que o usuário não tem.
 
 ### Passo 3 — Proposta de skills
 
@@ -61,7 +61,7 @@ Pra cada skill aprovada:
 
 Skill que nunca é chamada é trabalho perdido. O que decide isso:
 
-**A `description` é o gatilho, não o resumo.** Ela precisa conter as palavras que o usuário realmente digita — inclusive as erradas e as coloquiais. Comparar:
+**A `description` é o gatilho, não o resumo.** Ela precisa conter as palavras que o usuário realmente digita: inclusive as erradas e as coloquiais. Comparar:
 
 - Fraco: `"Gera relatório de performance de mídia."`
 - Forte: `"Gera o relatório semanal pro cliente. Use quando o usuário disser 'relatório do cliente', 'fechar o mês do X', 'como foi a campanha', 'preciso mandar os números', ou /relatorio-cliente."`
@@ -78,7 +78,7 @@ Regras da description:
 - Regras no fim: o que sempre fazer, o que nunca fazer
 - Escrever no imperativo, direto. A skill é instrução, não documentação
 
-**Um teste, na mesma sessão.** Rodar a skill com um caso real do usuário antes de considerar pronta. Skill que nunca rodou tem passo faltando — sempre.
+**Um teste, na mesma sessão.** Rodar a skill com um caso real do usuário antes de considerar pronta. Skill que nunca rodou tem passo faltando: sempre.
 
 **Depois do teste, ajustar a description** com as palavras que ele usou de verdade ao pedir. Esse é o ajuste que mais aumenta a chance de a skill ser encontrada depois.
 
@@ -96,7 +96,7 @@ Pra ajustar uma skill depois: edita o SKILL.md correspondente.
 
 ## Conferir que a skill carrega (obrigatório)
 
-Skill com frontmatter quebrado não dá erro — ela simplesmente nunca é encontrada,
+Skill com frontmatter quebrado não dá erro: ela simplesmente nunca é encontrada,
 e o usuário conclui que "não funcionou". Depois de criar:
 
 ```bash

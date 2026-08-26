@@ -1,7 +1,7 @@
 ---
 name: biblioteca
 description: >
-  Mantém o índice dos ativos reutilizáveis do negócio em `biblioteca.md` — fotos, depoimentos, dados
+  Mantém o índice dos ativos reutilizáveis do negócio em `biblioteca.md`: fotos, depoimentos, dados
   com fonte, cases, copy que funcionou, arquivos de marca. Serve pra reaproveitar em vez de recriar.
   Use quando o usuário disser "onde está aquela foto", "tenho um depoimento de", "cadastrar
   material", "biblioteca", "que dados eu já tenho", "aquele texto que funcionou", ou /biblioteca.
@@ -9,7 +9,7 @@ description: >
 
 # /biblioteca — Índice de ativos reutilizáveis
 
-O que mais custa tempo não é criar: é recriar o que já existia e ninguém achou. Um depoimento ótimo perdido num print de WhatsApp de oito meses atrás vale zero.
+O que mais custa tempo não é criar. É recriar o que já existia e ninguém achou. Um depoimento ótimo perdido num print de WhatsApp de oito meses atrás vale zero.
 
 ## Dependências
 
@@ -62,7 +62,7 @@ O que mais custa tempo não é criar: é recriar o que já existia e ninguém ac
 
 ### Cadastrar (`/biblioteca` com um item)
 
-O usuário chega com um print, uma frase, um arquivo, um dado. Registrar na tabela certa, preenchendo o que der e perguntando **só o essencial**:
+O usuário chega com um print, uma frase, um arquivo, um dado. Registrar na tabela certa. Preencher o que der e perguntar **só o essencial**:
 
 - Depoimento → "Posso citar o nome dele?" (essa coluna evita problema depois)
 - Foto → "É foto sua ou de banco/terceiro?" (direitos)
@@ -79,14 +79,14 @@ Se o arquivo estiver solto em `dados/`, mover pra pasta permanente (`identidade/
 
 Varrer o workspace procurando ativo não catalogado: imagem em `dados/`, depoimento dentro de `avaliacoes-google/`, número com fonte nos dossiês de `pesquisa/`, case dentro de `clientes/*/caso.md`, copy das peças que o `/revisao-semanal` marcou como boas.
 
-Apresentar o que achou e perguntar o que entra:
+Mostrar o que achou. Perguntar o que entra:
 
 > "Achei 14 ativos não catalogados: 6 fotos, 3 depoimentos (2 sem autorização registrada),
 > 4 dados com fonte e 1 case. Cadastro todos?"
 
 ### Alimentar outras skills
 
-Quando `/carrossel`, `/proposta`, `/landing` ou `/documento` precisarem de prova (depoimento, número, foto, case), a biblioteca é o primeiro lugar a consultar — antes de pedir ao usuário e muito antes de inventar.
+Quando `/carrossel`, `/proposta`, `/landing` ou `/documento` precisarem de prova (depoimento, número, foto, case), a biblioteca é o primeiro lugar a consultar. Antes de pedir ao usuário, e muito antes de inventar.
 
 ---
 

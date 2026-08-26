@@ -3,7 +3,7 @@ name: concorrente
 description: >
   Mapeia os concorrentes reais do negócio: o que oferecem, como cobram, como se apresentam, o que
   os clientes reclamam deles nas avaliações, e onde está a brecha que o usuário pode ocupar.
-  Entrega o comparativo lado a lado e as três diferenças defensáveis — as que o concorrente não
+  Entrega o comparativo lado a lado e as três diferenças defensáveis: as que o concorrente não
   copia amanhã.
   Use quando o usuário disser "quem são meus concorrentes", "o que o fulano cobra",
   "como eu me diferencio", "todo mundo faz igual", "por que escolher eu",
@@ -14,7 +14,7 @@ description: >
 
 > **Convenção de pastas:** a saída vai em `pesquisa/concorrentes-<AAAA-MM-DD>.md`. Na convenção **por cliente**, `clientes/<Nome>/pesquisa/`. A pasta nasce na primeira análise.
 
-Analisar concorrente não serve pra copiar o que ele faz — serve pra achar o que ele **não**
+Analisar concorrente não serve pra copiar. Serve pra achar o que ele **não**
 faz. A reclamação repetida nas avaliações dele é a descrição do serviço que falta na
 cidade.
 
@@ -33,7 +33,7 @@ cidade.
 
 ### Passo 1 — Definir quem é concorrente de verdade
 
-Nem todo mundo do mesmo ramo disputa o mesmo cliente. Perguntar:
+Nem todo mundo do mesmo ramo disputa o mesmo cliente. Padaria de bairro e padaria de shopping vendem pão pra gente diferente. Perguntar:
 
 > "Quando o cliente não fecha com você, pra onde ele vai?"
 
@@ -48,7 +48,7 @@ A resposta costuma revelar três grupos diferentes:
 O terceiro é o concorrente mais forte da maioria dos pequenos negócios, e é o único que
 ninguém analisa.
 
-Escolher de **3 a 5 diretos** — mais que isso vira planilha que ninguém usa.
+Escolher de **3 a 5 diretos**. Mais que isso vira planilha que ninguém usa.
 
 ### Passo 2 — Levantar o que dá pra observar
 
@@ -63,7 +63,7 @@ Só fonte pública, e cada dado com data e link:
 - **Frequência de conteúdo:** postou quando pela última vez
 
 **As avaliações de 2 e 3 estrelas são o material mais valioso da análise.** É onde o
-cliente diz, com as palavras dele, o que faltou — e o que falta em todos costuma ser o
+cliente diz, com as palavras dele, o que faltou, e o que falta em todos costuma ser o
 mesmo. As de 1 estrela costumam ser caso extremo; as de 2 e 3 são o padrão.
 
 ### Passo 3 — Montar o comparativo
@@ -122,7 +122,7 @@ Cada diferença sai escrita como o cliente entenderia, com a prova ao lado:
 ```
 
 Registrar a data com destaque: análise de concorrência vence. Seis meses depois, preço e
-oferta já mudaram — o arquivo diz quando foi feito, e quando refazer.
+oferta já mudaram: o arquivo diz quando foi feito, e quando refazer.
 
 ---
 

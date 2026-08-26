@@ -17,7 +17,7 @@ evolui.
 
 **Ele fala em português, não digita comando.** "Faz um carrossel sobre X", "quanto
 eu cobro por isso", "minha página não converte", "preciso de uma proposta pra
-padaria" — cada uma dessas ativa a skill certa sozinha.
+padaria": cada uma dessas ativa a skill certa sozinha.
 
 - **Nunca peça pro usuário escolher um `/comando`.** Se o pedido dele casa com uma
   skill, execute a skill e siga
@@ -35,7 +35,7 @@ padaria" — cada uma dessas ativa a skill certa sozinha.
 
 Cada pasta de trabalho nasce quando a primeira peça daquele tipo é produzida.
 Workspace recém-instalado tem `CLAUDE.md`, `_memoria/`, `.claude/skills/`,
-`templates/` e `scripts/` — nada além. Nunca criar pasta vazia "pra organizar".
+`templates/` e `scripts/`, nada além. Nunca criar pasta vazia "pra organizar".
 
 **Onde salvar cada coisa** está na seção "Onde salvar o que" do `CLAUDE.md`,
 definida pelo perfil na instalação. A referência das duas convenções está em
@@ -62,7 +62,7 @@ anúncio, e-mail, conversa de venda), ler também quando existirem:
 
 Esses dois são o que separa peça específica de peça genérica. Se a tarefa é
 de venda e eles não existem, vale oferecer `/publico` ou `/oferta` **uma
-vez** — e seguir com o que tem caso o usuário prefira.
+vez**, e seguir com o que tem caso o usuário prefira.
 
 Usar essas informações como base pra qualquer resposta ou decisão. Ao
 sugerir prioridades, formatos ou abordagens, considerar o foco atual
@@ -76,7 +76,7 @@ apresentação), consultar o sistema da marca nessa ordem de precedência:
 2. `identidade/design-guide.md` — se não houver tokens, seguir a descrição
 3. O padrão da própria skill — se os dois estiverem vazios
 
-Se os dois existirem e divergirem, o `tokens.css` vence — e vale avisar o
+Se os dois existirem e divergirem, o `tokens.css` vence, e vale avisar o
 usuário (o conserto é rodar `/design-system` pra sincronizar).
 
 Não é necessário listar o que foi lido nem confirmar a leitura. Apenas
@@ -171,7 +171,7 @@ Quando o usuário pedir skill nova:
 4. Se a skill precisar de arquivos de apoio (templates, exemplos),
    criar dentro da pasta da skill
 5. Toda skill nova precisa de `description` que diga **quando** invocar
-   (com as palavras que o usuário usaria) — sem isso a skill nunca é
+   (com as palavras que o usuário usaria), sem isso a skill nunca é
    encontrada
 6. Seguir o fluxo da skill-creator nativa do Claude Code
 
@@ -197,7 +197,7 @@ Antes de entregar qualquer texto que vai pro público (artigo, legenda,
 proposta, copy de página, material), passar pelos critérios do `/revisar`:
 sem clichê de IA, sem gordura, no tom de `preferencias.md`, e toda
 afirmação factual com fonte ou marcada como não verificada. Se o texto saiu de
-máquina e soa sintético mesmo sem clichê — frases todas do mesmo tamanho, nada
+máquina e soa sintético mesmo sem clichê: frases todas do mesmo tamanho, nada
 específico —, o conserto é o `/humanizar`, que mede esses sinais em vez de opinar.
 
 Antes de entregar qualquer peça visual, conferir os critérios do
@@ -209,7 +209,7 @@ As referências que sustentam esses critérios ficam em `templates/`:
 `design/` (leitura do briefing, anti-genérico, qualidade visual, interface,
 movimento, acessibilidade, desempenho, e-mail em HTML, página de produto) e
 `copy/` (psicologia da decisão, ganchos, edição, humanização). Skill visual ou de texto consulta
-de lá em vez de improvisar — e é lá que se calibra o padrão do sistema.
+de lá em vez de improvisar, e é lá que se calibra o padrão do sistema.
 
 O mesmo vale pro que é software: `templates/backend/` (stack, dados, API,
 segurança, arquitetura, entrega, debug) sustenta o `/backend`.
@@ -221,7 +221,7 @@ houver base, dizer isso ao usuário em vez de preencher com plausível.
 ## Calcular, nunca estimar
 
 Número não se confere lendo. Contagem de caractere, soma de coluna, dia da
-semana, total de parcelas, contraste, peso de arquivo — tudo isso **se roda**:
+semana, total de parcelas, contraste, peso de arquivo: tudo isso **se roda**:
 
 ```bash
 node scripts/verificar.js csv <arquivo> --ads   # limites e campos desalinhados
@@ -249,7 +249,7 @@ uma leitura atenta; nenhum passa pelo comando.
 
 **Regra:** se a saída tem número que alguém vai conferir, rodar a verificação
 antes de entregar. E se o resultado divergir, refazer a conta a partir do dado
-bruto — nunca ajustar o número pra bater.
+bruto, nunca ajustar o número pra bater.
 
 ---
 

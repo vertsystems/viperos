@@ -35,7 +35,7 @@ Transforma briefing em proposta que fecha venda. Escopo claro, investimento sem 
 
 ## Workflow
 
-**Antes de tudo — declarar a leitura.** Uma linha, visível pro usuário: *"Estou lendo isso como: [peça] para [público], com linguagem [vibe]."* Depois definir os três ajustes (variação / movimento / densidade) conforme `templates/design/briefing-visual.md`. É o passo que impede a peça de cair no visual padrão de IA — e custa cinco segundos.
+**Antes de tudo: declarar a leitura.** Uma linha, visível pro usuário: *"Estou lendo isso como: [peça] para [público], com linguagem [vibe]."* Depois definir os três ajustes (variação / movimento / densidade) conforme `templates/design/briefing-visual.md`. É o passo que impede a peça de cair no visual padrão de IA, e custa cinco segundos.
 
 ### Passo 1 — Briefing (5 perguntas)
 
@@ -80,7 +80,7 @@ Aplicar o sistema visual: se `identidade/tokens.css` existir, importar e usar as
 Conferir, nessa ordem:
 - Nome do cliente escrito certo (erro aqui mata a proposta)
 - Nenhum placeholder sobrando (`[valor]`, `[prazo]`, `lorem`)
-- Valor total, parcelas e soma batendo — **fazer a conta**: se o parcelado custa mais que o à vista, escrever o total ("ou 3× R$ 2.250 — R$ 6.750 no total"). Em teste real o parcelado saiu R$ 350 mais caro sem nenhuma linha explicando, contrariando a decisão do próprio estudo de preço
+- Valor total, parcelas e soma batendo — **fazer a conta**: se o parcelado custa mais que o à vista, escrever o total ("ou 3× R$ 2.250, R$ 6.750 no total"). Em teste real o parcelado saiu R$ 350 mais caro sem nenhuma linha explicando, contrariando a decisão do próprio estudo de preço
 - Data e validade coerentes
 - Escopo sem promessa que o usuário não confirmou
 - Texto passado pelos passes do `/revisar` (proposta com clichê de IA perde credibilidade na primeira linha)
@@ -108,7 +108,7 @@ Registrar a proposta em `tarefas.md` como item aberto de follow-up, com a data d
 
 ## Autonomia do arquivo (obrigatório)
 
-A peça vai ser enviada por WhatsApp, e-mail ou Drive — sozinha, longe da pasta. Se depender do `identidade/tokens.css` por caminho relativo, chega sem estilo: em teste real, um deck ficou **preto sobre preto**, ilegível.
+A peça vai ser enviada por WhatsApp, e-mail ou Drive: sozinha, longe da pasta. Se depender do `identidade/tokens.css` por caminho relativo, chega sem estilo: em teste real, um deck ficou **preto sobre preto**, ilegível.
 
 **Copiar o bloco `:root` do `tokens.css` pra dentro do `<style>` da própria peça.** O `tokens.css` continua sendo a fonte da verdade; o que muda é a peça carregar uma cópia inline. Google Fonts é a única dependência externa aceita.
 

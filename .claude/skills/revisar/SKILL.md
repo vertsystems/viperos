@@ -39,7 +39,7 @@ Meta: 15-30% mais curto sem perder informação. Se cortar mais que isso, o text
 
 ### Passe 2 — Clichê de IA
 
-**A lista negra completa está em `templates/copy/edicao.md`** — ler de lá, porque ela é mantida num lugar só e vale pra todas as skills que escrevem. O resumo do que mais aparece:
+**A lista negra completa está em `templates/copy/edicao.md`**: ler de lá, porque ela é mantida num lugar só e vale pra todas as skills que escrevem. O resumo do que mais aparece:
 
 **Verbos e aberturas:** mergulhe, desvende, descubra o segredo, embarque, navegue por, desbloqueie, transforme sua vida
 **Estruturas:** "não é apenas X, é Y" · "em um mundo cada vez mais Z" · "seja você um A ou um B" · "a verdade é que" · "isso não é sobre X, é sobre Y"
@@ -47,7 +47,7 @@ Meta: 15-30% mais curto sem perder informação. Se cortar mais que isso, o text
 **Fechamentos:** "então, o que você está esperando?" · "o futuro é agora" · "a escolha é sua"
 **Formato:** travessão decorativo em excesso, emoji como bullet, três itens sempre que uma lista aparece, negrito em frase inteira
 
-Também derrubar o **paralelismo mecânico** — três frases seguidas com a mesma estrutura rítmica. Denuncia geração automática mais que qualquer palavra isolada.
+Também derrubar o **paralelismo mecânico**: três frases seguidas com a mesma estrutura rítmica. Denuncia geração automática mais que qualquer palavra isolada.
 
 ### Passe 3 — Tom vs. preferências
 
@@ -56,7 +56,7 @@ Comparar com `preferencias.md`, especialmente o exemplo de escrita real. Reporta
 > "Seu exemplo usa 'a gente' e frase curta. O texto tem 4 ocorrências de 'nós
 > proporcionamos' e frases de 40+ palavras. Ajustei."
 
-Conferir também a lista de "o que evitar" do arquivo — se ele detesta "alavancar", nenhuma variação passa.
+Conferir também a lista de "o que evitar" do arquivo: se ele detesta "alavancar", nenhuma variação passa.
 
 ### Passe 4 — Afirmação sem fonte
 
@@ -65,7 +65,7 @@ Marcar toda afirmação que se apresenta como fato e não tem base:
 - Comparativo ("o melhor", "mais eficiente que")
 - Alegação técnica ou de resultado ("aumenta 30% a durabilidade")
 
-Formato: `[sem fonte: 30% de durabilidade — de onde vem?]`. Não apagar sozinho: pode ser dado real que o usuário tem na cabeça. Se houver dossiê em `pesquisa/`, tentar casar a afirmação com a fonte de lá.
+Formato: `[sem fonte: 30% de durabilidade, de onde vem?]`. Não apagar sozinho: pode ser dado real que o usuário tem na cabeça. Se houver dossiê em `pesquisa/`, tentar casar a afirmação com a fonte de lá.
 
 **Em nicho regulado** (saúde, jurídico, financeiro, alimentar), sinalizar promessa que pode virar problema legal.
 

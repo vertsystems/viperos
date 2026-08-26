@@ -2,7 +2,7 @@
 
 Scripts Node.js e Python que as skills chamam quando precisam fazer coisas fora do alcance da IA pura (gerar imagem, postar em rede social, renderizar HTML em PNG).
 
-A pasta vem **vazia** — cada skill que precisa de script tem instrução de como criar (e geralmente é um único setup por integração que você vai ativar).
+A pasta vem **vazia**: cada skill que precisa de script tem instrução de como criar (e geralmente é um único setup por integração que você vai ativar).
 
 ## Scripts comuns
 
@@ -35,7 +35,7 @@ O fluxo padrão de conteúdo não precisa de chave nenhuma: as skills geram os P
 
 ## O que já vem pronto
 
-`scripts/gerar-imagem.js` — gera foto por IA com **OpenAI ou Gemini** (detecta pela chave que existir). Roda da **raiz do workspace**, acha o `.env` sozinho, sem instalar nada:
+`scripts/gerar-imagem.js`: gera foto por IA com **OpenAI ou Gemini** (detecta pela chave que existir). Roda da **raiz do workspace**, acha o `.env` sozinho, sem instalar nada:
 
 ```bash
 node scripts/gerar-imagem.js "PROMPT EM INGLÊS" "conteudo/pasta/foto.png"
@@ -43,13 +43,13 @@ node scripts/gerar-imagem.js "PROMPT EM INGLÊS" "conteudo/pasta/foto.png"
 
 Opções: `--provedor openai|gemini` · `--formato retrato|quadrado|paisagem` · `--modelo <nome>` · `--qualidade high|medium|low`
 
-E `scripts/gerar-pdf.js` — transforma HTML em PDF com o navegador que existir na máquina, esperando as fontes carregarem, e confere o resultado:
+E `scripts/gerar-pdf.js`: transforma HTML em PDF com o navegador que existir na máquina, esperando as fontes carregarem, e confere o resultado:
 
 ```bash
 node scripts/gerar-pdf.js materiais/guia/guia.html
 ```
 
-E `scripts/verificar.js` — confere o que não pode ser estimado (contagem, soma, data, contraste, peso, HTML). Rode antes de entregar qualquer peça com número:
+E `scripts/verificar.js`: confere o que não pode ser estimado (contagem, soma, data, contraste, peso, HTML). Rode antes de entregar qualquer peça com número:
 
 ```bash
 node scripts/verificar.js tudo conteudo/      # roda o que couber em cada arquivo

@@ -15,7 +15,7 @@ Compara o que está nos arquivos de contexto com o estado real do workspace e pr
 
 ### Passo 1 — Levantamento
 
-Listar (ignorando as pastas do sistema — `.claude/`, `templates/`, `scripts/` — que não são contexto do negócio):
+Listar (ignorando as pastas do sistema — `.claude/`, `templates/`, `scripts/`, que não são contexto do negócio):
 - Pastas na raiz do workspace (cada uma representa uma área de trabalho)
 - Subpastas em `clientes/` (se existir) — cada uma é um cliente
 - Skills em `.claude/skills/` — quais existem hoje, e quais são personalizadas
@@ -48,7 +48,7 @@ Quer que eu aplique essas mudanças? Posso aplicar todas, escolher algumas, ou n
 
 ### Passo 4 — Aplicação
 
-Se o usuário aprovar, editar os arquivos com cirurgia — só a linha relevante, sem reformatar o documento todo. Mostrar o diff de cada mudança aplicada.
+Se o usuário aprovar, editar os arquivos com cirurgia, só a linha relevante, sem reformatar o documento todo. Mostrar o diff de cada mudança aplicada.
 
 ## Regras
 

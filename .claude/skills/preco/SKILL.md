@@ -9,7 +9,7 @@ description: >
 
 # /preco — Quanto cobrar
 
-A pergunta que mais paralisa dono de negócio pequeno. E a resposta quase nunca é "olhe o concorrente e cobre um pouco menos" — esse caminho é o que mantém o negócio apertado.
+A pergunta que mais paralisa dono de negócio pequeno. E a resposta quase nunca é "olhe o concorrente e cobre um pouco menos": esse caminho é o que mantém o negócio apertado.
 
 > **Convenção de pastas:** caminhos na convenção **por tipo**. Se o workspace usa **por cliente** e o estudo é de um cliente, prefixar com `clientes/<Nome>/`.
 
@@ -54,7 +54,7 @@ custo direto + (horas × quanto sua hora precisa valer) + rateio de estrutura + 
 = piso absoluto. Abaixo disso, cada venda te empobrece.
 ```
 
-Muito negócio pequeno descobre aqui que está cobrando abaixo do piso em alguns serviços. Quando isso aparece, dizer com clareza — é a informação mais valiosa da conversa.
+Muito negócio pequeno descobre aqui que está cobrando abaixo do piso em alguns serviços. Quando isso aparece, dizer com clareza: é a informação mais valiosa da conversa.
 
 ---
 
@@ -71,7 +71,7 @@ Muito negócio pequeno descobre aqui que está cobrando abaixo do piso em alguns
 | Por resultado | quando é medível e você controla | comissão sobre venda |
 | Por pessoa atendida | serviço por cabeça | treinamento, buffet, evento |
 
-**Regra:** cobrar por hora pune sua eficiência — quanto melhor você fica, menos você ganha. Se você é bom e rápido, migre pra projeto ou mensalidade.
+**Regra:** cobrar por hora pune sua eficiência, quanto melhor você fica, menos você ganha. Se você é bom e rápido, migre pra projeto ou mensalidade.
 
 **Sinal de métrica errada:** você trabalha mais e ganha igual; ou cliente pequeno dá o mesmo trabalho que o grande e paga o mesmo.
 
@@ -79,7 +79,7 @@ Muito negócio pequeno descobre aqui que está cobrando abaixo do piso em alguns
 
 ## Empacotar em faixas
 
-Três faixas funcionam melhor que uma. Não porque as pessoas escolhem a do meio por acaso — mas porque **duas ou mais opções mudam a pergunta** de "compro ou não" para "qual eu levo".
+Três faixas funcionam melhor que uma. Não porque as pessoas escolhem a do meio por acaso, mas porque **duas ou mais opções mudam a pergunta** de "compro ou não" para "qual eu levo".
 
 ```
 Simples        →  resolve o essencial, pra quem tem pouco orçamento
@@ -106,7 +106,7 @@ Quatro perguntas simples revelam a faixa aceitável. Aplicar com 5-10 clientes o
 
 A zona entre as respostas 3 e 4 é onde o preço vive. Onde as respostas 1 e 2 se cruzam está o limite.
 
-Só usar com cliente real ou prospect qualificado — perguntar preço pra quem nunca compraria devolve número inútil.
+Só usar com cliente real ou prospect qualificado: perguntar preço pra quem nunca compraria devolve número inútil.
 
 ---
 
@@ -136,7 +136,7 @@ Traduzir antes de reagir. "Tá caro" quase nunca é sobre preço:
 | "Não tenho esse valor agora" | Fluxo de caixa, não preço | Parcelamento ou escopo reduzido |
 | Silêncio depois do orçamento | Falta próximo passo claro | Follow-up com data, não com desconto |
 
-**Desconto é a última carta e nunca sem contrapartida** — reduzir escopo, pagamento à vista, prazo maior, indicação. Desconto solto ensina o cliente a pedir sempre.
+**Desconto é a última carta e nunca sem contrapartida**: reduzir escopo, pagamento à vista, prazo maior, indicação. Desconto solto ensina o cliente a pedir sempre.
 
 ---
 

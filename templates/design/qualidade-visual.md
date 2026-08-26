@@ -15,11 +15,11 @@ O erro mais comum e mais invisível: um único `letter-spacing` para todos os ta
 - **Corpo fica perto de zero**
 - **Leading é inverso do tamanho.** Título grande: 0.98 a 1.1. Corpo: 1.5 a 1.6. Texto denso de tabela: 1.3
 
-Esse contraste — título apertado, olho aberto — é o que faz a peça parecer desenhada por alguém.
+Título apertado, olho aberto. É esse contraste que faz a peça parecer desenhada por alguém.
 
 ### Hierarquia é conjunto, não só tamanho
 
-Peso + tamanho + leading trabalham juntos. Aumentar só o tamanho gera hierarquia fraca; usar peso dá presença sem ocupar mais espaço.
+Peso, tamanho e leading trabalham juntos. Aumentar só o tamanho gera hierarquia fraca. Peso dá presença sem ocupar mais espaço.
 
 Escala que funciona (razão 1.25, ancorada em 16px de corpo):
 ```
@@ -38,7 +38,7 @@ Usar 4 pesos, não 2: 400 (corpo), 500 (destaque no corpo), 600 (subtítulo), 70
 
 ### Escolha de fonte
 
-Fonte do Google Fonts, para o HTML funcionar em qualquer máquina sem instalação. Combinações que sustentam bem:
+Fonte do Google Fonts. É o que faz o HTML abrir igual na máquina do cliente, do gráfico e de quem for imprimir, sem ninguém precisar instalar nada. Combinações que sustentam bem:
 
 | Situação | Título | Corpo |
 |---|---|---|

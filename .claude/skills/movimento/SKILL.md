@@ -14,7 +14,7 @@ description: >
 > **Convenção de pastas:** a saída vai em `identidade/`, junto do `tokens.css`. Na convenção **por cliente**, `clientes/<Nome>/identidade/`.
 
 O sistema graduava movimento de 1 a 10 no `briefing-visual.md` e exigia estado de
-interação em tudo que é clicável — sem dizer **quanto tempo** nem **com que curva**.
+interação em tudo que é clicável, sem dizer **quanto tempo** nem **com que curva**.
 Resultado: cada peça animava de um jeito, e "a animação tá estranha" não tinha resposta.
 
 Estranho, quase sempre, é uma destas três coisas: a mesma curva usada na entrada e na
@@ -59,23 +59,23 @@ de formulário em silêncio.
 
 ### B. "Quero deixar mais vivo" — escrever o padrão
 
-**Passo B1 — Definir o ajuste.** Ler o contexto e declarar em uma linha:
+**Passo B1: Definir o ajuste.** Ler o contexto e declarar em uma linha:
 
-> "Movimento **3** — landing de serviço para público que decide devagar: transição só
+> "Movimento **3**: landing de serviço para público que decide devagar: transição só
 > onde ajuda a entender, nada que chame atenção sozinho."
 
 O padrão do ViperOS é **movimento 3**. Peça estática (carrossel, proposta, material
 impresso) é **movimento 0**, e isso é resposta certa, não falta de capricho.
 
-**Passo B2 — Escrever `identidade/movimento.css`.** Os tokens do
+**Passo B2: Escrever `identidade/movimento.css`.** Os tokens do
 `templates/design/movimento.md`: duas durações, três curvas, duas escalas, e o bloco
-`prefers-reduced-motion`. Mais que isso é ruído — se o arquivo tiver sete durações,
+`prefers-reduced-motion`. Mais que isso é ruído: se o arquivo tiver sete durações,
 elas foram digitadas, não escolhidas.
 
 Junto, as receitas prontas que as outras skills consomem: botão, card, menu, modal,
 toast e entrada ao rolar.
 
-**Passo B3 — Escrever `identidade/movimento.html`.** Amostra navegável com cada
+**Passo B3: Escrever `identidade/movimento.html`.** Amostra navegável com cada
 transição isolada e o número visível ao lado ("menu abrindo · 350ms · entra"). É o
 arquivo que responde "a animação tá estranha" com evidência, e serve para o usuário
 escolher olhando.
@@ -83,7 +83,7 @@ escolher olhando.
 Incluir um botão que liga e desliga a redução de movimento na própria página, para ele
 ver os dois estados sem mexer no sistema operacional.
 
-**Passo B4 — Verificar.**
+**Passo B4: Verificar.**
 
 ```bash
 node scripts/verificar.js html identidade/movimento.html
@@ -92,7 +92,7 @@ node scripts/verificar.js html identidade/movimento.html
 E conferir à mão: existe bloco `prefers-reduced-motion`? nenhum `transition: all`?
 nenhuma animação de propriedade cara?
 
-**Passo B5 — Entregar.**
+**Passo B5: Entregar.**
 
 ```
 ✓ identidade/movimento.css   — 2 durações, 3 curvas, redução de movimento respeitada

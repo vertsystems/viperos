@@ -15,7 +15,7 @@ description: >
 
 > **Convenção de pastas:** os caminhos desta skill seguem a convenção **por tipo** (perfis empreendedor solo e empresa). Se o `CLAUDE.md` do workspace usa a convenção **por cliente** (freelancer e agência) e a peça é de um cliente, prefixar com `clientes/<Nome>/`. A pasta nasce só na hora de salvar.
 
-Skill que monta a campanha inteira em CSV pronto pra importar no Google Ads Editor. Sai do briefing direto pro CSV — sem montar grupo por grupo na mão na interface do Google.
+Skill que monta a campanha inteira em CSV pronto pra importar no Google Ads Editor. Sai do briefing direto pro CSV, sem montar grupo por grupo na mão na interface do Google.
 
 ## Dependências
 
@@ -44,7 +44,7 @@ Se o usuário não passou briefing, perguntar:
 5. **Objetivo:** ligações / WhatsApp / formulário / visita?
 6. **Site/landing page** existe? URL?
 
-Se já existe `seo/06-google-ads.md` (criado pelo `/seo`), usar como base — pular as perguntas que já foram respondidas lá.
+Se já existe `seo/06-google-ads.md` (criado pelo `/seo`), usar como base: pular as perguntas que já foram respondidas lá.
 
 ### Passo 2 — Pesquisa de palavras-chave
 
@@ -102,7 +102,7 @@ Pra cada grupo, gerar 3 RSAs (Responsive Search Ads):
 - Sem afirmações superlativas não-comprovadas ("o melhor", "número 1") sem fonte
 - Sem pontuação dupla (`!!`) e sem `!` na headline
 
-**Validação obrigatória — rodar, não estimar.** Contar caractere no olho falha, e falhou em teste real (4 headlines estouradas entregues). Depois de gravar o CSV:
+**Validação obrigatória: rodar, não estimar.** Contar caractere no olho falha, e falhou em teste real (4 headlines estouradas entregues). Depois de gravar o CSV:
 
 ```bash
 node scripts/verificar.js csv campanhas/google-ads-<data>/anuncios.csv --ads
@@ -110,7 +110,7 @@ node scripts/verificar.js csv campanhas/google-ads-<data>/anuncios.csv --ads
 
 Ele confere o limite de cada campo **e** detecta a armadilha silenciosa: vírgula dentro de campo sem aspas, que desalinha a linha inteira e faz o Editor importar lixo (o Final URL cai na coluna Path). Só entregar quando sair "Tudo certo".
 
-**Toda célula que contém vírgula vai entre aspas.** `"Atendo Sorocaba, Campinas e região."` — sem isso o CSV quebra.
+**Toda célula que contém vírgula vai entre aspas.** `"Atendo Sorocaba, Campinas e região."`, sem isso o CSV quebra.
 
 Seguir `_memoria/preferencias.md` pra tom.
 
@@ -186,7 +186,7 @@ Sugestão de orçamento inicial: R$<X>/dia por <Y> dias antes de avaliar.
 
 ## Criar do zero vs. iterar com dado
 
-**Do zero:** a copy sai de `_memoria/publico.md` (palavra que a pessoa digita), `_memoria/oferta.md` (o que se promete) e da pesquisa de demanda. Gerar variação de ângulo — não variação de palavra: uma headline por benefício, uma por objeção, uma por prova, uma por preço.
+**Do zero:** a copy sai de `_memoria/publico.md` (palavra que a pessoa digita), `_memoria/oferta.md` (o que se promete) e da pesquisa de demanda. Gerar variação de ângulo, não variação de palavra: uma headline por benefício, uma por objeção, uma por prova, uma por preço.
 
 **Iterando com dado** (quando já rodou e há relatório): não reescrever tudo. Ler `campanhas/relatorios/` e:
 
@@ -195,7 +195,7 @@ Sugestão de orçamento inicial: R$<X>/dia por <Y> dias antes de avaliar.
 3. Pausar o que gastou sem converter, e transformar em negativa o termo que trouxe clique errado
 4. Testar o próximo ângulo, não a próxima palavra
 
-Anúncio raramente falha por copy fraca — falha por ângulo errado, público errado ou oferta fraca. Se três ângulos diferentes não converteram, o problema está na oferta (`/oferta`), não no texto.
+Anúncio raramente falha por copy fraca: falha por ângulo errado, público errado ou oferta fraca. Se três ângulos diferentes não converteram, o problema está na oferta (`/oferta`), não no texto.
 
 
 ## Regras

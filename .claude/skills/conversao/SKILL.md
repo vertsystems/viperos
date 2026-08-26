@@ -34,7 +34,7 @@ Duas perguntas que mudam tudo:
 
 Página que recebe anúncio de busca precisa continuar a promessa do anúncio. Página que recebe tráfego de Instagram recebe quem não sabe nada ainda. **Auditar sem saber a origem é chutar.**
 
-Se ele tem número (visitas × conversões), pedir. Sem número, a auditoria é qualitativa — e isso fica dito.
+Se ele tem número (visitas × conversões), pedir. Sem número, a auditoria é qualitativa, e isso fica dito.
 
 ---
 
@@ -46,7 +46,7 @@ Se ele tem número (visitas × conversões), pedir. Sem número, a auditoria é 
 - O benefício principal está específico ou é frase de efeito?
 - Está na palavra do cliente ou no jargão da empresa?
 
-Teste prático: ler só o topo da página em voz alta pra alguém de fora e perguntar "o que essa empresa faz?". Se hesitar, o problema é aqui — e nenhum outro ajuste compensa.
+Teste prático: ler só o topo da página em voz alta pra alguém de fora e perguntar "o que essa empresa faz?". Se hesitar, o problema é aqui, e nenhum outro ajuste compensa.
 
 ### 2. Headline
 
@@ -95,7 +95,7 @@ Objeções que quase toda página esquece: preço (mesmo que a faixa), prazo, o 
 
 ## Auditar perfil de rede social
 
-Quando o "site" é o Instagram — muito comum em negócio local:
+Quando o "site" é o Instagram: muito comum em negócio local:
 
 - **Bio:** diz o que faz, pra quem, e onde atende? Tem CTA?
 - **Link:** vai pro WhatsApp com mensagem pronta, ou pra uma página morta?

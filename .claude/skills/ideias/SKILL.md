@@ -1,7 +1,7 @@
 ---
 name: ideias
 description: >
-  Monta e mantém o banco de pautas do negócio em `conteudo/pautas.md` — cada ideia com a
+  Monta e mantém o banco de pautas do negócio em `conteudo/pautas.md`: cada ideia com a
   origem rastreável (dor real, pergunta do público, objeção de venda, gap do concorrente, sazonalidade).
   Use quando o usuário disser "não sei o que postar", "me dá ideias de conteúdo", "banco de pautas",
   "sobre o que falar", "acabaram os assuntos", "ideia de post", ou /ideias.
@@ -15,7 +15,7 @@ description: >
 
 O `/carrossel` e o `/publicar-tema` presumem que você chega com um tema. Essa skill resolve o problema anterior: **de onde vem o tema.**
 
-A regra que sustenta a qualidade: nenhuma pauta entra sem dizer de onde veio. Pauta sem origem é chute — e chute vira "5 dicas de produtividade".
+A regra que sustenta a qualidade: nenhuma pauta entra sem dizer de onde veio. Pauta sem origem é chute, e chute vira "5 dicas de produtividade".
 
 ## Dependências
 
@@ -37,18 +37,18 @@ Rodar as que tiverem material. Cada pauta nasce carimbada com a fonte:
 
 **1. Dor declarada** — `_memoria/empresa.md` e a estratégia. O que o cliente sofre antes de comprar.
 
-**2. Pergunta real** — buscar as perguntas que o público faz de verdade: "People Also Ask" do Google nos termos do nicho, fórum, Reddit, grupo, comentário de vídeo do setor. Copiar a pergunta como ela foi escrita.
+**2. Pergunta real**: buscar as perguntas que o público faz de verdade: "People Also Ask" do Google nos termos do nicho, fórum, Reddit, grupo, comentário de vídeo do setor. Copiar a pergunta como ela foi escrita.
 
-**3. Objeção de venda** — perguntar direto ao usuário:
+**3. Objeção de venda**: perguntar direto ao usuário:
 > "Quais 3 perguntas o cliente sempre faz antes de fechar? E qual a desculpa mais comum pra não comprar?"
 
 Cada objeção é uma pauta que vende sozinha, porque responde algo que trava dinheiro.
 
-**4. Gap do concorrente** — do `/seo` passo 2, ou olhando o conteúdo de 3 concorrentes: o que todos falam (saturado, evitar), o que ninguém fala (oportunidade).
+**4. Gap do concorrente**: do `/seo` passo 2, ou olhando o conteúdo de 3 concorrentes: o que todos falam (saturado, evitar), o que ninguém fala (oportunidade).
 
-**5. Sazonalidade** — datas que mexem com esse negócio: temporada do setor, data comercial que faz sentido, ciclo do cliente (início de ano, safra, festa, período letivo). Só as reais — não forçar Dia do Rock em loja de autopeça.
+**5. Sazonalidade**: datas que mexem com esse negócio: temporada do setor, data comercial que faz sentido, ciclo do cliente (início de ano, safra, festa, período letivo). Só as reais, não forçar Dia do Rock em loja de autopeça.
 
-**6. O que já performou** — se o usuário tem histórico, perguntar qual post foi melhor e por quê. O melhor previsor da próxima pauta boa é a última que funcionou.
+**6. O que já performou**: se o usuário tem histórico, perguntar qual post foi melhor e por quê. O melhor previsor da próxima pauta boa é a última que funcionou.
 
 ### Passo 1b — Classificar cada pauta em buscável ou compartilhável
 
@@ -61,13 +61,13 @@ Toda pauta serve a um dos dois (às vezes aos dois), e a diferença muda como el
 | Escreve-se | respondendo a pergunta exata, título igual à busca, cobertura completa | insight novo, dado próprio, opinião contra o senso comum, história |
 | Rende | tráfego que acumula por anos | pico curto e autoridade |
 
-**Prioridade pra negócio pequeno: buscável primeiro.** É o que trabalha sozinho depois de publicado. Compartilhável é o que constrói marca — precisa dos dois, nessa proporção.
+**Prioridade pra negócio pequeno: buscável primeiro.** É o que trabalha sozinho depois de publicado. Compartilhável é o que constrói marca: precisa dos dois, nessa proporção.
 
 Um banco só de compartilhável gera audiência que não compra; um banco só de buscável nunca cria preferência.
 
 ### Passo 1c — Agrupar em pilares
 
-Pauta solta vira produção sem direção. Agrupar em **3 a 5 pilares** — os assuntos em que o negócio quer ser lembrado:
+Pauta solta vira produção sem direção. Agrupar em **3 a 5 pilares**: os assuntos em que o negócio quer ser lembrado:
 
 Como achar os pilares: o que o produto resolve · o que o cliente precisa aprender antes de comprar · o que tem busca real (`/seo`) · onde o concorrente é fraco (`/seo` passo 2).
 

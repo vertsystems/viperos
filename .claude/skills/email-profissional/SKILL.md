@@ -67,7 +67,7 @@ Deixar o usuário escolher.
 
 Mostrar o email pronto no chat, em bloco fácil de copiar. Salvar em arquivo só se o usuário pedir ou se o email for longo/importante (proposta, cobrança formal): `emails/<assunto-curto>-<YYYY-MM-DD>.md`.
 
-Não salvar arquivo pra cada rascunho de duas linhas — vira lixo na pasta.
+Não salvar arquivo pra cada rascunho de duas linhas: vira lixo na pasta.
 
 ---
 
@@ -96,7 +96,7 @@ Nunca "só passando pra saber". Cada retorno leva algo novo:
 | 3 | +7 dias | um ângulo diferente do problema |
 | 4 | +14 dias | encerramento educado ("vou parar de te escrever; se mudar, me chama") |
 
-O quarto e-mail é o que mais gera resposta — e encerrar com dignidade preserva a porta aberta.
+O quarto e-mail é o que mais gera resposta, e encerrar com dignidade preserva a porta aberta.
 
 ### E-mail para a base (quem já é cliente ou lead)
 

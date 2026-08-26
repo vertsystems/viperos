@@ -45,7 +45,7 @@ As cinco situações pedem mensagens diferentes. Perguntar qual é, se não esti
 
 ### Passo 2 — Montar a sequência da situação
 
-**Acabou de fechar** — mandar no mesmo dia:
+**Acabou de fechar**: mandar no mesmo dia:
 1. Confirmação do que foi contratado, em uma linha, na palavra dele
 2. O que vai acontecer e **quando** (data, não "em breve")
 3. O que você precisa dele pra começar — específico, com prazo
@@ -54,11 +54,11 @@ As cinco situações pedem mensagens diferentes. Perguntar qual é, se não esti
 O item 4 é o que mais reduz mensagem ansiosa depois. Prometer o que se cumpre: "respondo
 em até um dia útil" vale mais que "estou sempre à disposição".
 
-**Durante a entrega** — um contato por marco, e um antes de qualquer atraso:
+**Durante a entrega**: um contato por marco, e um antes de qualquer atraso:
 - Avisar o atraso **antes** de ele acontecer, com a nova data. Atraso avisado é contratempo; atraso descoberto é quebra de confiança
 - Mostrar progresso mesmo quando não há novidade ("essa semana ficou X, semana que vem começa Y")
 
-**Acabou de entregar** — a janela de ouro, e ela fecha rápido:
+**Acabou de entregar**: a janela de ouro, e ela fecha rápido:
 1. Confirmar que ficou como ele esperava — e ouvir de verdade antes de pedir qualquer coisa
 2. Se ficou: pedir o depoimento **agora**, com pergunta específica
 3. Se não ficou: resolver primeiro. Depoimento pedido em cima de um problema aberto queima a relação
@@ -72,22 +72,22 @@ Pedido de depoimento que funciona é o que dá o trabalho pronto:
 Depoimento genérico ("excelente profissional") não vende. O que vende tem antes/depois e
 número. Se vier genérico, perguntar uma coisa específica de volta.
 
-**Cliente parado** — ordenar por quem comprou mais e há mais tempo não volta:
+**Cliente parado**: ordenar por quem comprou mais e há mais tempo não volta:
 - Motivo concreto pra voltar (novidade, época do ano, algo que mudou no negócio dele)
 - Nunca "sentimos sua falta" solto — isso pede algo sem oferecer nada
 - Reconhecer o tempo sem constranger: "faz um tempo que a gente não se fala"
 
-**Orçamento sem resposta** — o follow-up que ninguém faz, e onde está a maior parte do dinheiro perdido:
+**Orçamento sem resposta**: o follow-up que ninguém faz, e onde está a maior parte do dinheiro perdido:
 - 1º contato: 2 a 3 dias depois, perguntando se ficou alguma dúvida
 - 2º contato: uma semana depois, com informação nova (caso parecido, prazo que abriu)
 - 3º e último: "vou parar de te incomodar — se mudar de ideia, é só chamar". Encerrar de verdade
 
-**A pergunta que destrava:** "Só pra eu entender e melhorar — o que pesou na decisão?" A
+**A pergunta que destrava:** "Só pra eu entender e melhorar, o que pesou na decisão?" A
 resposta muda a oferta, e às vezes reabre a venda. Preço quase nunca é o motivo real.
 
 ### Passo 3 — Escrever as mensagens
 
-Curtas, na voz do usuário, no canal dele (quase sempre WhatsApp — usar `/whatsapp` pra
+Curtas, na voz do usuário, no canal dele (quase sempre WhatsApp, usar `/whatsapp` pra
 calibrar formato). Uma pergunta por mensagem. Sem "espero que esteja tudo bem".
 
 Entregar **2 variantes** de cada mensagem, com temperatura diferente, pra ele escolher.
@@ -111,11 +111,11 @@ Entregar **2 variantes** de cada mensagem, com temperatura diferente, pra ele es
 [o que dizer nos 3 desfechos mais prováveis: interessado, "depois", silêncio]
 ```
 
-Marcar os retornos em `tarefas.md` — follow-up que depende de memória não acontece.
+Marcar os retornos em `tarefas.md`: follow-up que depende de memória não acontece.
 
 ### Passo 5 — Fechar o ciclo
 
-Depoimento que chegou vai pro `biblioteca.md` com nome, contexto e data — é o que a
+Depoimento que chegou vai pro `biblioteca.md` com nome, contexto e data: é o que a
 `/landing`, a `/proposta` e o `/carrossel` vão usar depois. Depoimento guardado em conversa
 de WhatsApp não existe pro sistema.
 

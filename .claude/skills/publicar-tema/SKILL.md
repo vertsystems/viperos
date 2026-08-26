@@ -4,7 +4,7 @@ description: >
   Orquestra a criação completa de uma peça de conteúdo SEO + redes sociais a partir de um tema.
   Pega um tema (manual ou da estratégia de conteúdo do SEO), escreve o artigo de blog completo,
   gera o carrossel resumo via skill /carrossel, e produz as legendas pra Instagram, Facebook e
-  LinkedIn — tudo amarrado, com o carrossel apontando pro blog. Entrega tudo pronto pro usuário
+  LinkedIn: tudo amarrado, com o carrossel apontando pro blog. Entrega tudo pronto pro usuário
   revisar e postar na hora que quiser (blog fica em draft, nada é publicado automaticamente).
   Use quando o usuário pedir "publicar tema", "gera o conteúdo do tema X", "transforma esse tema
   em post", "cria o conteúdo completo", "quero postar sobre X", ou /publicar-tema.
@@ -45,7 +45,7 @@ Se não passou nada → ler `seo/05-estrategia-conteudo.md`, listar os artigos s
 
 > "Qual tema da estratégia? (lista de opções)"
 
-Antes de listar, conferir o que já foi feito em `conteudo/indice.md` (se existir) e na pasta do blog. Marcar os temas já publicados na própria lista de opções — assim o usuário não escolhe repetido:
+Antes de listar, conferir o que já foi feito em `conteudo/indice.md` (se existir) e na pasta do blog. Marcar os temas já publicados na própria lista de opções: assim o usuário não escolhe repetido:
 
 ```
 1. Como conservar X — já publicado (12/05, no ar)
@@ -115,20 +115,20 @@ Estrutura de slides do resumo:
 - **Slides 2-6:** os pontos-chave do blog (1 ideia por slide, frase natural, não bullet seco)
 - **Slide final — CTA pro blog:** "Texto completo no nosso blog" + URL `<dominio>/blog/<slug>`
 
-**Capa:** seguir sequência alternada do feed (claro → foto/escuro → cor principal → repete) — checar `conteudo/` mais recente.
+**Capa:** seguir sequência alternada do feed (claro → foto/escuro → cor principal → repete), checar `conteudo/` mais recente.
 
 ### Passo 4 — Legendas (3 versões)
 
 Salvar todas em `conteudo/<pasta-do-carrossel>/`:
 
-**`legenda.md`** (Instagram + Facebook — mesmo texto):
+**`legenda.md`** (Instagram + Facebook, mesmo texto):
 - Hook na primeira linha
 - 2-3 parágrafos de contexto (frases naturais, sem corporativês)
 - CTA pro carrossel ("Arraste pro lado") + CTA pro blog ("Texto completo no link da bio" ou URL direta)
 - Bloco oferta da empresa (diferenciais, contato)
 - 10-15 hashtags (público + nicho + local)
 
-**`legenda-linkedin.md`** (LinkedIn — mais formal, sem hashtags):
+**`legenda-linkedin.md`** (LinkedIn, mais formal, sem hashtags):
 - Hook (pode ser provocativo, profissional)
 - 3-5 parágrafos analíticos — LinkedIn aceita texto longo
 - Sem "arraste pro lado" (público diferente, comportamento diferente)
@@ -179,7 +179,7 @@ LINKEDIN
 Quando publicar, marca como "publicado" no indice.md (ou me avisa que eu marco).
 ```
 
-Não oferecer publicação automática aqui. A skill entrega os arquivos e o usuário publica onde já trabalha — é o padrão do sistema (existe uma skill opcional de publicação em `templates/opcional/`, que exige App da Meta e configuração própria).
+Não oferecer publicação automática aqui. A skill entrega os arquivos e o usuário publica onde já trabalha: é o padrão do sistema (existe uma skill opcional de publicação em `templates/opcional/`, que exige App da Meta e configuração própria).
 
 ---
 

@@ -29,13 +29,33 @@ Números levantados com `node scripts/verificar.js texto` em quatro tipos de tex
 | | variação do ritmo | frases curtas (até 8 palavras) |
 |---|---|---|
 | Texto de blog gerado | **0,13** | **0%** |
-| Texto promocional gerado | 0,68 | 17% |
+| Texto promocional gerado | **0,26** | **10%** |
 | Texto com voz de dono | 0,64 | 40% |
-| Prosa do próprio ViperOS | 0,70 a 1,02 | 23% a 41% |
+| Prosa do ViperOS (75 arquivos) | 0,45 a 1,29 | 17% a 61% |
 
 Daí saem as duas réguas do comando: **variação acima de 0,45** e **pelo menos 15% de
-frases curtas**. O texto promocional passa nas duas e ainda assim soa sintético, e é
-por isso que a contagem de clichê existe em paralelo. Um sinal só não decide nada.
+frases curtas**. A separação é limpa: o que sai de máquina fica entre 0,13 e 0,26, o
+que tem voz fica acima de 0,45. Ainda assim a contagem de clichê roda em paralelo,
+porque um sinal sozinho não decide nada.
+
+### O que o medidor não conta
+
+Cada uma dessas isenções entrou depois de o comando acusar texto correto:
+
+- **Título** não é frase. Enquanto entrava, `## O que é isso` contava como frase curta
+  e um arquivo cheio de subtítulo passava sem ter uma única no corpo
+- **Item de lista** não entra no ritmo (não tem cadência de frase), nem no paralelismo
+  (abrir itens com a mesma palavra é bom estilo). As continuações indentadas do item
+  saem junto, senão viram frases cortadas pela metade
+- **Travessão de definição** é estrutura, nas três formas: item de lista, item dentro de
+  citação e rótulo em negrito abrindo a linha. Só o retórico, no meio do parágrafo, conta
+- **Clichê citado** entre aspas, ou enumerado depois de um rótulo, está sendo ensinado
+  e não usado. É o formato das listas da `edicao.md`, que sem essa isenção reprovaria
+  por ensinar a lista negra
+- **Comentário HTML, CSS e JavaScript** não são texto publicado
+- **Bullet em negrito** sozinho é sinal fraco: material de referência usa
+  `- **termo** — definição` com razão. Vira problema quando aparece junto de ritmo
+  uniforme ou clichê
 
 ---
 
@@ -64,7 +84,7 @@ tinha a dizer é mais forte do que um com moldura.
 ### 3. Especificidade zero
 
 O sinal mais fundo, e o que quase ninguém corrige. Texto gerado fala de "estratégias
-eficientes", "resultados consistentes" e "atendimento de qualidade" — palavras que
+eficientes", "resultados consistentes" e "atendimento de qualidade": palavras que
 servem para padaria, clínica e software ao mesmo tempo. Nenhuma delas pode ser
 conferida por ninguém.
 

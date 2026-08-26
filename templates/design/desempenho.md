@@ -11,7 +11,7 @@ entre ler a oferta e voltar pro Instagram.
 ## As três métricas
 
 Os **Core Web Vitals**, medidos no **percentil 75** dos acessos reais, com **celular e
-desktop contados separado** — a média engana, e o celular quase sempre é o que reprova.
+desktop contados separado**: a média engana, e o celular quase sempre é o que reprova.
 
 | Métrica | O que mede | Bom | Ruim acima de |
 |---|---|---|---|
@@ -35,7 +35,7 @@ do topo, um vídeo de fundo ou o título grande. Otimizar outra coisa não move 
 ```
 
 - **`loading="lazy"` no elemento do LCP é o erro de desempenho mais comum.** O atributo
-  manda o navegador esperar — no elemento que define a métrica. Lazy só abaixo da dobra
+  manda o navegador esperar: no elemento que define a métrica. Lazy só abaixo da dobra
 - `fetchpriority="high"` na imagem do topo; nas outras, nada
 - Imagem em WebP, no tamanho real de exibição. Foto de 3000px servida num bloco de
   600px é o desperdício mais frequente

@@ -8,12 +8,12 @@ Por que importa: o cliente não sabe explicar por que uma peça "parece de robô
 
 ## Proibido por padrão
 
-Só usar se o briefing pedir explicitamente — e aí é decisão declarada, não inércia.
+Só usar se o briefing pedir. Aí vira decisão declarada, não inércia.
 
 ### Rótulos e microtextos
 
 - **Rótulo de versão como enfeite** — `V2.0`, `BETA`, `ACESSO ANTECIPADO`, `EDIÇÃO 001` no topo da peça. Só quando a peça é *sobre* lançamento
-- **Numeração de seção como olho** — `01 / SOBRE`, `002 · SERVIÇOS`, `03 — COMO FUNCIONA`. O olho nomeia o assunto em linguagem normal; não enumera
+- **Numeração de seção como olho** — `01 / SOBRE`, `002 · SERVIÇOS`, `03, COMO FUNCIONA`. O olho nomeia o assunto em linguagem normal; não enumera
 - **Paginação decorativa** em imagem ou card (`01 / 4`). Se a pessoa consegue contar, o rótulo é ruído
 - **Meta-linha de marca** tipo `Empresa · No. 01 · A linha premium`
 - **Intervalo de datas como olho** (`PORTFÓLIO, 2018 – 2026`). Diz só o que a seção é
@@ -86,7 +86,7 @@ Só usar se o briefing pedir explicitamente — e aí é decisão declarada, nã
 
 ## O que a IA costuma esquecer
 
-Não é "cara de IA", é peça incompleta — e o efeito na confiança é igual:
+Não é "cara de IA". É peça incompleta, e o efeito na confiança é o mesmo:
 
 - **Link de política de privacidade** e termos, quando há coleta de dado (LGPD)
 - **Caminho de volta.** Página ou fluxo sem saída

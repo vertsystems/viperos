@@ -1,6 +1,6 @@
 # Edição — lista negra e regras de estilo
 
-Referência compartilhada. O `/revisar` usa como checklist; toda skill que escreve confere antes de entregar.
+Referência compartilhada. O `/revisar` usa como checklist. Toda skill que escreve confere antes de entregar.
 
 ---
 
@@ -67,14 +67,14 @@ revolucionário · inovador · disruptivo · único · incrível · poderoso · 
 
 ## Afirmação sem base — marcar, não apagar
 
-Toda afirmação que se apresenta como fato precisa de fonte:
+Fato precisa de fonte. Toda afirmação que se apresenta como tal:
 
 - Número, percentual, ranking ("líder do mercado", "mais de 500 clientes")
 - Comparativo ("o melhor", "mais eficiente que", "o mais rápido da região")
 - Alegação técnica ou de resultado ("aumenta 30% a durabilidade")
 - Prazo e garantia
 
-Formato: `[sem fonte: 30% de durabilidade — de onde vem?]`
+Formato: `[sem fonte: 30% de durabilidade, de onde vem?]`
 
 **Não apagar sozinho** — pode ser dado real que o usuário tem na cabeça. Se houver dossiê em `pesquisa/`, tentar casar a afirmação com a fonte de lá.
 

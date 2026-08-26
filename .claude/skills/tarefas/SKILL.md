@@ -1,14 +1,14 @@
 ---
 name: tarefas
 description: >
-  Mantém o pipeline do negócio em `tarefas.md` — adiciona, fecha, prioriza e mostra o que está em jogo.
+  Mantém o pipeline do negócio em `tarefas.md`: adiciona, fecha, prioriza e mostra o que está em jogo.
   Use quando o usuário disser "minhas tarefas", "o que tenho pra fazer", "anota aí", "adiciona na lista",
   "fechei o X", "pipeline", "/tarefas", ou pedir prioridade do dia/semana.
 ---
 
 # /tarefas — Pipeline do negócio
 
-Arquivo único, `tarefas.md` na raiz, legível por humano. Não é gerenciador de projeto — é a lista curta do que está em jogo agora, que o `/abrir` lê no começo de cada sessão.
+Arquivo único, `tarefas.md` na raiz, legível por humano. Não é gerenciador de projeto: é a lista curta do que está em jogo agora, que o `/abrir` lê no começo de cada sessão.
 
 ## Formato do arquivo
 
@@ -37,7 +37,7 @@ Arquivo único, `tarefas.md` na raiz, legível por humano. Não é gerenciador d
 - [x] 05/05 — Proposta Acme enviada
 ```
 
-Quatro seções, sempre nessa ordem. Item tem: ação em verbo, contexto curto, data quando houver prazo.
+Quatro seções, sempre nessa ordem. Todo item tem três partes. Ação em verbo, contexto curto, data quando houver prazo.
 
 ## Workflow
 
@@ -58,7 +58,7 @@ Marcar com ⚠️ o que vence em 3 dias ou menos, e com 🔴 o que já venceu.
 
 ### Adicionar
 
-Pegar o que o usuário falou e transformar em item com verbo no início. Perguntar prazo **só** se o item tiver cara de compromisso com terceiro (proposta, entrega, resposta). Para ideia solta, jogar em "Depois" sem prazo e sem perguntar nada.
+Pegar o que ele falou e transformar em item. Verbo no início. Perguntar prazo **só** se o item tiver cara de compromisso com terceiro (proposta, entrega, resposta). Ideia solta vai pra "Depois". Sem prazo, sem perguntar nada.
 
 ### Fechar
 

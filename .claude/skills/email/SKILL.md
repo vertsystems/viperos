@@ -18,7 +18,7 @@ cobrança, proposta, resposta difícil. Esta skill **desenha** o e-mail que vai 
 lista, e o problema aqui é outro: o HTML roda dentro de dezenas de programas, um deles
 com o motor de renderização do Word, e chega com a imagem desligada.
 
-É o canal que o pequeno negócio realmente controla — a lista é dele, não da plataforma
+É o canal que o pequeno negócio realmente controla: a lista é dele, não da plataforma
 — e o único onde "parecer das grandes" tem receita mecânica.
 
 ## Dependências
@@ -77,7 +77,7 @@ Seguir a estrutura do `templates/design/email-html.md`:
 ### Passo 4 — Gerar a versão em texto puro
 
 `texto.txt`, com o mesmo conteúdo em texto corrido e os links por extenso. A ferramenta
-de envio costuma gerar essa versão vazia — e caixa que só recebe texto passa a ver um
+de envio costuma gerar essa versão vazia, e caixa que só recebe texto passa a ver um
 e-mail em branco.
 
 ### Passo 5 — As exigências de quem entrega
@@ -90,7 +90,7 @@ recusada:
 2. `List-Unsubscribe` **e** `List-Unsubscribe-Post: List-Unsubscribe=One-Click` (RFC 8058), processado em até 2 dias
 3. Taxa de spam abaixo de 0,3%, acompanhada no Postmaster Tools
 
-Abaixo desse volume nada disso é exigido — mas 300 e-mails sem SPF caem em spam do
+Abaixo desse volume nada disso é exigido, mas 300 e-mails sem SPF caem em spam do
 mesmo jeito.
 
 ### Passo 6 — Verificar antes de disparar

@@ -33,7 +33,7 @@ app.get('/api/pedidos/:id', autenticar, async (req, res) => {
 ```
 
 Regra: **negar por padrão**, liberar o que é explicitamente permitido, e verificar
-autorização **no servidor** — esconder o botão no front não é controle de acesso.
+autorização **no servidor**: esconder o botão no front não é controle de acesso.
 
 ### 2. Falha de criptografia
 
@@ -165,7 +165,7 @@ app.use('/api/login', rateLimit({ windowMs: 15 * 60 * 1000, max: 10 }));
 ```
 
 Ponto de partida razoável: público 100/15min, autenticado 1000/15min, login 10/15min.
-Ajustar com o uso real — limite apertado demais atrapalha cliente legítimo.
+Ajustar com o uso real: limite apertado demais atrapalha cliente legítimo.
 
 ---
 

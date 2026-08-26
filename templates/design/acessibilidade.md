@@ -3,8 +3,8 @@
 Referência compartilhada. Lida por `/acessivel`, e consultada por `/landing`,
 `/interface`, `/produto` e `/revisar-design` antes de entregar.
 
-O sistema já cobria contraste. O resto da acessibilidade — foco, alvo, teclado,
-formulário — não estava escrito em lugar nenhum, e é onde o site de pequeno negócio
+O sistema já cobria contraste. O resto da acessibilidade: foco, alvo, teclado,
+formulário, não estava escrito em lugar nenhum, e é onde o site de pequeno negócio
 realmente reprova.
 
 ---
@@ -126,7 +126,7 @@ node scripts/verificar.js contraste "#616161" "#ffffff"
 ```
 
 Texto sobre imagem é o caso que sempre escapa: medir contra a **região mais clara** da
-foto, não contra a média. Se não passar, camada sólida por baixo — nunca só uma sombra
+foto, não contra a média. Se não passar, camada sólida por baixo, nunca só uma sombra
 no texto.
 
 ---
@@ -145,4 +145,4 @@ Sem ferramenta paga, na ordem de quem acha mais problema:
    cabeçalho e o formulário já revela metade dos problemas
 
 Ferramenta automática (axe, Lighthouse) pega cerca de um terço dos critérios. O resto é
-teclado e leitura — e é justamente onde estão os que fazem a pessoa desistir.
+teclado e leitura, e é justamente onde estão os que fazem a pessoa desistir.

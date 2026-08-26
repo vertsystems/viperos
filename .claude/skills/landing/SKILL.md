@@ -35,7 +35,7 @@ Uma página com um objetivo. Se ela tenta fazer duas coisas, não faz nenhuma.
 
 ## Workflow
 
-**Antes de tudo — declarar a leitura.** Uma linha, visível pro usuário: *"Estou lendo isso como: [peça] para [público], com linguagem [vibe]."* Depois definir os três ajustes (variação / movimento / densidade) conforme `templates/design/briefing-visual.md`. É o passo que impede a peça de cair no visual padrão de IA — e custa cinco segundos.
+**Antes de tudo: declarar a leitura.** Uma linha, visível pro usuário: *"Estou lendo isso como: [peça] para [público], com linguagem [vibe]."* Depois definir os três ajustes (variação / movimento / densidade) conforme `templates/design/briefing-visual.md`. É o passo que impede a peça de cair no visual padrão de IA, e custa cinco segundos.
 
 ### Passo 1 — Definir o objetivo (uma pergunta que decide tudo)
 
@@ -67,7 +67,7 @@ CTA repetido 3x na página (hero, meio, fim) com o mesmo texto e mesmo destino.
 
 ### Passo 3 — Escrever a copy
 
-Seguir `preferencias.md`. Antes de montar o HTML, mostrar a copy em texto e esperar aprovação — errar o texto e descobrir depois de montar a página é retrabalho caro.
+Seguir `preferencias.md`. Antes de montar o HTML, mostrar a copy em texto e esperar aprovação: errar o texto e descobrir depois de montar a página é retrabalho caro.
 
 Entregar **3 variantes de headline** com ângulos diferentes (benefício direto / problema evitado / prova) pra ele escolher ou testar.
 
@@ -114,7 +114,7 @@ Headlines alternativas no fim do arquivo, em comentário — se testar, troca um
 
 ## Autonomia do arquivo (obrigatório)
 
-A peça vai ser enviada por WhatsApp, e-mail ou Drive — sozinha, longe da pasta. Se depender do `identidade/tokens.css` por caminho relativo, chega sem estilo: em teste real, um deck ficou **preto sobre preto**, ilegível.
+A peça vai ser enviada por WhatsApp, e-mail ou Drive: sozinha, longe da pasta. Se depender do `identidade/tokens.css` por caminho relativo, chega sem estilo: em teste real, um deck ficou **preto sobre preto**, ilegível.
 
 **Copiar o bloco `:root` do `tokens.css` pra dentro do `<style>` da própria peça.** O `tokens.css` continua sendo a fonte da verdade; o que muda é a peça carregar uma cópia inline. Google Fonts é a única dependência externa aceita.
 

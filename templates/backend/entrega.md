@@ -7,7 +7,7 @@ como saber que está no ar funcionando.
 
 ## Testar o que quebra caro
 
-Cobertura alta não é o objetivo — sistema com cobertura alta e nenhum teste no fluxo de
+Cobertura alta não é o objetivo: sistema com cobertura alta e nenhum teste no fluxo de
 pagamento está descoberto onde importa. A pergunta certa é: **o que, se quebrar, dói?**
 
 ### Ordem de prioridade quando o tempo é curto
@@ -27,7 +27,7 @@ pagamento está descoberto onde importa. A pergunta certa é: **o que, se quebra
 
 A proporção usual (muitos de unidade, alguns de integração, poucos de ponta a ponta) existe
 por causa do custo: teste de ponta a ponta é lento, frágil e caro de manter. Mas em API, o
-teste de integração costuma ser o que dá mais segurança por hora investida — ele pega o
+teste de integração costuma ser o que dá mais segurança por hora investida: ele pega o
 que o teste de unidade com tudo simulado não pega.
 
 ### Teste de unidade
@@ -98,7 +98,7 @@ it('desfaz a migração', async () => {
 ### O que não pode existir
 
 Teste que depende de ordem de execução, de relógio (`sleep`), de internet ou de dado que
-sobrou do teste anterior falha sozinho — e treina todo mundo a ignorar o vermelho. Melhor
+sobrou do teste anterior falha sozinho, e treina todo mundo a ignorar o vermelho. Melhor
 apagar do que conviver.
 
 ### Segurança na esteira
@@ -165,7 +165,7 @@ no primeiro dia.
 
 ### Kubernetes
 
-Orquestra muitos containers em muitas máquinas. **Traz um time de operação junto** — não é
+Orquestra muitos containers em muitas máquinas. **Traz um time de operação junto**, não é
 o caminho de sistema de pequeno negócio. Uma máquina com Docker Compose, ou uma
 hospedagem gerenciada (Railway, Render, Fly.io, App Platform), atende muito mais tempo do
 que parece, por uma fração do custo de atenção.
@@ -217,7 +217,7 @@ O mínimo que já vale: **em todo push, roda teste e lint**. Publicar só com a 
 | **Canário** | Fatia pequena do tráfego na versão nova, aumentando aos poucos | Detecta problema cedo. Exige monitoramento pra valer a pena |
 
 **Chave de funcionalidade** (ligar/desligar por configuração) separa publicar de liberar: o
-código sobe desligado e liga quando você quiser — e desliga sem novo deploy quando dá
+código sobe desligado e liga quando você quiser, e desliga sem novo deploy quando dá
 problema. É o mecanismo mais barato que existe pra reduzir risco de publicação.
 
 ### Migração junto com deploy

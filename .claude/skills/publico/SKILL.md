@@ -1,7 +1,7 @@
 ---
 name: publico
 description: >
-  Descobre quem é o cliente real e o que ele de fato sente — minerando avaliação, comentário, grupo,
+  Descobre quem é o cliente real e o que ele de fato sente, minerando avaliação, comentário, grupo,
   fórum e conversa, e conduzindo entrevista que não enviesa a resposta. Gera `_memoria/publico.md`,
   que alimenta conteúdo, oferta, página e anúncio. Use quando o usuário disser "quem é meu cliente",
   "não sei pra quem falo", "público-alvo", "persona", "o que o cliente quer", "por que não compram",
@@ -25,9 +25,9 @@ A diferença entre conteúdo genérico e conteúdo que faz a pessoa parar é uma
 
 ## Dois modos
 
-**Modo 1 — o que já existe.** O usuário já tem material: avaliações no Google, conversas de WhatsApp, comentários, e-mails, gravações. É o modo mais rico e mais ignorado. Sempre começar por aqui quando houver material.
+**Modo 1: o que já existe.** O usuário já tem material: avaliações no Google, conversas de WhatsApp, comentários, e-mails, gravações. É o modo mais rico e mais ignorado. Sempre começar por aqui quando houver material.
 
-**Modo 2 — ir buscar.** Não há material suficiente: buscar onde o público desse nicho fala publicamente.
+**Modo 2: ir buscar.** Não há material suficiente: buscar onde o público desse nicho fala publicamente.
 
 ---
 
@@ -77,7 +77,7 @@ Usar as buscas do Google no idioma e na região do público. Copiar as frases **
 
 ## Entrevistar cliente sem enviesar
 
-Se o usuário tem acesso a clientes, essa é a fonte mais valiosa — e a mais fácil de estragar. Três regras:
+Se o usuário tem acesso a clientes, essa é a fonte mais valiosa, e a mais fácil de estragar. Três regras:
 
 1. **Fale da vida dele, não da sua ideia**
 2. **Pergunte sobre o passado concreto, não sobre opinião ou futuro**
@@ -110,7 +110,7 @@ Se o usuário tem acesso a clientes, essa é a fonte mais valiosa — e a mais f
 
 ## Sintetizar
 
-Escrever `_memoria/publico.md` — arquivo curto e ativo, que todas as skills leem:
+Escrever `_memoria/publico.md`: arquivo curto e ativo, que todas as skills leem:
 
 ```markdown
 # Público

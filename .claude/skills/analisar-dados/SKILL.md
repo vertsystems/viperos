@@ -93,7 +93,7 @@ Perguntar se quer exportar o resumo em HTML pra compartilhar ou apresentar.
 
 ## Fechar a conta (obrigatório)
 
-Tabela cuja soma não bate com o resumo é o erro mais comum e o mais custoso — quem lê confia no número e decide errado. Em teste real, a tabela somava 6 fechamentos e R$ 24.700 enquanto o resumo dizia 7 e R$ 26.500.
+Tabela cuja soma não bate com o resumo é o erro mais comum e o mais custoso: quem lê confia no número e decide errado. Em teste real, a tabela somava 6 fechamentos e R$ 24.700 enquanto o resumo dizia 7 e R$ 26.500.
 
 Depois de escrever a análise:
 
@@ -101,15 +101,15 @@ Depois de escrever a análise:
 node scripts/verificar.js tabela analises/<arquivo>.md
 ```
 
-Ele soma cada coluna e compara com o total declarado — seja na linha "Total" da própria tabela, seja no texto ao redor.
+Ele soma cada coluna e compara com o total declarado: seja na linha "Total" da própria tabela, seja no texto ao redor.
 
-**Duas tabelas, dois papéis:** a de **números-chave** (`| Métrica | Valor | Contexto |`) tem uma métrica por linha e não soma — o verificador reconhece pelo cabeçalho "Métrica" e pula. A de **quebra por categoria** (`| Origem | Conversas | Fechou | Receita |`) soma, e é nela que o erro aparece. Se sua tabela soma, o cabeçalho da primeira coluna deve nomear a categoria (Origem, Canal, Produto), não "Métrica". Se acusar divergência, **refazer a conta a partir do dado bruto** — não ajustar o número pra bater.
+**Duas tabelas, dois papéis:** a de **números-chave** (`| Métrica | Valor | Contexto |`) tem uma métrica por linha e não soma, o verificador reconhece pelo cabeçalho "Métrica" e pula. A de **quebra por categoria** (`| Origem | Conversas | Fechou | Receita |`) soma, e é nela que o erro aparece. Se sua tabela soma, o cabeçalho da primeira coluna deve nomear a categoria (Origem, Canal, Produto), não "Métrica". Se acusar divergência, **refazer a conta a partir do dado bruto**, não ajustar o número pra bater.
 
 E antes disso, ao extrair os números do arquivo original: conferir linha a linha em vez de estimar. Se a fonte é CSV, contar com comando (`grep -c`, `awk`), não de cabeça.
 
 ## Escolher o gráfico certo
 
-Quando a análise pede visual, a forma segue a pergunta — não o gosto:
+Quando a análise pede visual, a forma segue a pergunta, não o gosto:
 
 | A pergunta é | Forma |
 |---|---|

@@ -4,7 +4,7 @@ Referência compartilhada. Lida por `/movimento`, e consultada por `/landing`,
 `/interface`, `/produto` e `/revisar-design` quando a peça tem transição.
 
 Existe porque o `briefing-visual.md` gradua movimento de 1 a 10 e o
-`qualidade-visual.md` exige estado de interação em tudo que é clicável — sem que
+`qualidade-visual.md` exige estado de interação em tudo que é clicável, sem que
 nenhum dos dois diga **quanto tempo** nem **com que curva**. "A animação tá estranha"
 não se responde com adjetivo.
 
@@ -24,7 +24,7 @@ não se responde com adjetivo.
 ```
 
 Nada além disso na maioria das peças. Se o arquivo tem sete durações diferentes, elas
-não foram escolhidas — foram digitadas.
+não foram escolhidas: foram digitadas.
 
 > **A curva da Apple.** `cubic-bezier(0.4, 0, 0.6, 1)` é a dominante do CSS do
 > cabeçalho global da apple.com (78 ocorrências em `overview.built.css`, leitura de
@@ -77,7 +77,7 @@ embora é o que ela sente como "travado":
 ## O que animar
 
 Só duas propriedades são baratas: `transform` e `opacity`. Elas rodam fora do fluxo de
-layout — o resto obriga o navegador a recalcular a página inteira a cada quadro.
+layout: o resto obriga o navegador a recalcular a página inteira a cada quadro.
 
 | Em vez de | Use |
 |---|---|
@@ -87,7 +87,7 @@ layout — o resto obriga o navegador a recalcular a página inteira a cada quad
 | `background-position` | `transform` num pseudo-elemento |
 
 **`transition: all` é proibido.** Ele anima o que você não pediu — inclusive
-propriedade que entra depois, por outra regra — e é o equivalente em movimento do
+propriedade que entra depois, por outra regra, e é o equivalente em movimento do
 gradiente roxo-azul: assinatura de quem não escolheu. Listar as propriedades:
 
 ```css
@@ -115,11 +115,11 @@ tem a chave ligada.
 ```
 
 O bloco desliga o movimento **sem** desligar o resultado: o menu ainda abre, o toast
-ainda aparece — só não viaja. Se ao remover a animação o elemento some de vez, a
+ainda aparece, só não viaja. Se ao remover a animação o elemento some de vez, a
 animação estava carregando estado, e isso é bug.
 
 Animação que sinaliza carregamento (esqueleto, barra de progresso) pode continuar, em
-versão discreta — ela informa, não decora.
+versão discreta: ela informa, não decora.
 
 ---
 
@@ -130,7 +130,7 @@ O pedido mais comum. Duas regras que evitam os dois defeitos clássicos:
 - **Uma vez só.** Reanimar a cada rolagem transforma a página num carrossel involuntário
 - **Nunca esconder conteúdo por CSS esperando JavaScript.** Se o script falhar (e ele
   falha: rede, bloqueador, erro anterior), o texto some para sempre. O padrão seguro é
-  o inverso — a classe que **liga** a animação é adicionada por script:
+  o inverso: a classe que **liga** a animação é adicionada por script:
 
 ```css
 .rola-entra { opacity: 1; }                    /* estado padrão: visível */
@@ -152,5 +152,5 @@ Movimento e velocidade brigam, e a briga tem vencedor definido: **INP ≤ 200ms 
 animar depois.
 
 Antes de entregar: `movimento 0` em peça estática (carrossel, proposta impressa) é a
-resposta certa — não é falta de capricho. E toda peça com movimento tem o bloco
+resposta certa, não é falta de capricho. E toda peça com movimento tem o bloco
 `prefers-reduced-motion`.

@@ -31,8 +31,7 @@ atender um cliente.
 
 ### Passo 1 — Levantar os números
 
-Se o usuário mandou extrato ou planilha, ler e classificar. Se não mandou, perguntar — em
-uma mensagem só, não uma pergunta por vez:
+Se ele mandou extrato ou planilha, ler e classificar. Se não mandou, perguntar. Em uma mensagem só, não uma pergunta por vez:
 
 > 1. "Quanto entrou no mês? (só o que caiu na conta, não o que foi prometido)"
 > 2. "Quais são os custos que se repetem todo mês?" (aluguel, sistema, contador, salário, internet, pró-labore)
@@ -41,7 +40,7 @@ uma mensagem só, não uma pergunta por vez:
 > 5. "Tem cliente que ficou devendo?"
 
 **Não misturar pessoa física com empresa.** Se o usuário paga o mercado pela conta do
-negócio, isso é retirada — e precisa aparecer como retirada, senão o lucro fica falso.
+negócio, isso é retirada, e precisa aparecer como retirada, senão o lucro fica falso.
 
 ### Passo 2 — Separar o que é fixo do que é variável
 
@@ -53,7 +52,7 @@ negócio, isso é retirada — e precisa aparecer como retirada, senão o lucro 
 | **Investimento** | Equipamento, obra, curso | Sai do caixa mas não é despesa do mês — anotar à parte pra não distorcer |
 
 Taxa de maquininha e imposto sobre a venda são **variáveis** e quase sempre esquecidos. Uma
-venda de R$ 1.000 com 4,5% de taxa e 6% de imposto entrega R$ 895 — a diferença aparece no
+venda de R$ 1.000 com 4,5% de taxa e 6% de imposto entrega R$ 895: a diferença aparece no
 fim do ano.
 
 ### Passo 3 — Fazer as quatro contas que importam
@@ -66,8 +65,7 @@ fim do ano.
 ```
 
 O **ponto de equilíbrio** é o número mais útil da página: o faturamento abaixo do qual o mês
-dá prejuízo. Muita gente descobre aqui que trabalha as três primeiras semanas do mês pra
-pagar a estrutura.
+dá prejuízo. Muita gente descobre aqui uma coisa dura: trabalha as três primeiras semanas do mês só pra pagar a estrutura.
 
 ### Passo 4 — Descobrir o que dá lucro e o que dá prejuízo
 
@@ -79,7 +77,7 @@ Quando o usuário vende mais de uma coisa, quebrar por serviço/produto:
 
 A coluna de **horas** é a que costuma revelar o problema: o serviço de maior receita
 frequentemente é o de pior retorno por hora. Se o usuário não controla horas, estimar com
-ele — e marcar como estimativa no arquivo.
+ele, e marcar como estimativa no arquivo.
 
 **Custo da hora do dono:** `(custos fixos + retirada desejada) ÷ horas trabalhadas no mês`.
 É o piso de qualquer orçamento. Se ele cobra abaixo disso, está pagando pra trabalhar.
@@ -137,8 +135,8 @@ empréstimo com base nesse número.
 node scripts/verificar.js tabela financeiro/fechamento-<AAAA-MM>.md
 ```
 
-Ele soma cada coluna e compara com o total declarado, na tabela e no texto ao redor. Se
-divergir, **refazer a conta a partir do dado bruto** — nunca ajustar o número pra bater.
+Ele soma cada coluna. Depois compara com o total declarado, na tabela e no texto ao redor. Se
+divergir, **refazer a conta a partir do dado bruto**, nunca ajustar o número pra bater.
 
 Duas atenções ao montar as tabelas:
 

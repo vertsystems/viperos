@@ -6,7 +6,7 @@ description: >
   Suporta carrossel texto puro, carrossel com foto de IA (OpenAI ou Gemini, com a conta do próprio
   usuário) e post único.
   Entrega os arquivos prontos (PNGs numerados, legenda e um como-postar.md) pro usuário
-  publicar ou programar onde quiser — não publica nada por conta própria.
+  publicar ou programar onde quiser, não publica nada por conta própria.
   Use quando o usuário pedir "carrossel", "post", "conteúdo pro instagram", "criar imagem",
   "gerar foto", "post educativo", ou /carrossel.
 ---
@@ -83,9 +83,9 @@ Se o tipo não estiver claro, perguntar:
 
 ## Estilo visual base
 
-O ViperOS tem um estilo próprio — editorial, calmo, premium. Sem clip-art, sem emoji decorativo, sem gradiente arco-íris, sem template genérico de IA. `identidade/tokens.css` e `identidade/design-guide.md` sobrescrevem esses padrões; quando os dois forem vagos ou vazios, usar o que tá aqui (não parar pra pedir `/instalar` — o `/carrossel` funciona com defaults bons).
+O ViperOS tem um estilo próprio, editorial, calmo, premium. Sem clip-art, sem emoji decorativo, sem gradiente arco-íris, sem template genérico de IA. `identidade/tokens.css` e `identidade/design-guide.md` sobrescrevem esses padrões; quando os dois forem vagos ou vazios, usar o que tá aqui (não parar pra pedir `/instalar`, o `/carrossel` funciona com defaults bons).
 
-Os padrões abaixo são o piso. O teto está em `templates/design/qualidade-visual.md`, e o que **nunca** fazer está em `templates/design/anti-generico.md` — conferir os dois antes de entregar.
+Os padrões abaixo são o piso. O teto está em `templates/design/qualidade-visual.md`, e o que **nunca** fazer está em `templates/design/anti-generico.md`: conferir os dois antes de entregar.
 
 ### Tipografia padrão
 
@@ -101,7 +101,7 @@ Regra do tipo: títulos grandes com kerning **apertado** (-0.035em), eyebrows pe
 
 ### Cores padrão (quando design-guide for vago)
 
-Paleta sóbria: fundo dark + off-white + **UMA** cor de destaque. Nunca quatro cores brigando.
+Paleta sóbria, fundo dark + off-white + **UMA** cor de destaque. Nunca quatro cores brigando.
 
 - Fundo escuro: `#0E1116` ou `#1A1A1A`
 - Fundo claro alternativo: `#F5ECD7` (cream) ou `#FAFAF7`
@@ -120,7 +120,7 @@ Paleta sóbria: fundo dark + off-white + **UMA** cor de destaque. Nunca quatro c
 
 ### Layouts nomeados
 
-Vocabulário de layout — cada slide tem um nome. Variar entre eles pra criar ritmo:
+Vocabulário de layout: cada slide tem um nome. Variar entre eles pra criar ritmo:
 
 - **CAPA** — eyebrow + título grande + subtítulo + @handle. Fundo: foto com gradient overlay (`rgba(12,10,9,0.55)` → `rgba(12,10,9,0.85)`) OU sólido (escuro/claro/destaque)
 - **SOLO** — split horizontal: foto à esquerda 50% + texto à direita 50% (kicker + h2 + régua + parágrafo)
@@ -166,13 +166,13 @@ Ao terminar de renderizar os PNGs, gerar **automaticamente** a legenda do post e
 4. Bloco de oferta (diferenciais da empresa, contato de `_memoria/empresa.md`)
 5. Hashtags (10-15 — público + nicho + local se aplicável)
 
-**Limites do Instagram:** legenda até 2.200 caracteres e no máximo 30 hashtags. Se passar, cortar antes de entregar — o Instagram trunca sem avisar.
+**Limites do Instagram:** legenda até 2.200 caracteres e no máximo 30 hashtags. Se passar, cortar antes de entregar: o Instagram trunca sem avisar.
 
 ---
 
 ## Workflow
 
-**Antes de tudo — declarar a leitura.** Uma linha, visível pro usuário: *"Estou lendo isso como: [peça] para [público], com linguagem [vibe]."* Depois definir os três ajustes (variação / movimento / densidade) conforme `templates/design/briefing-visual.md`. É o passo que impede a peça de cair no visual padrão de IA — e custa cinco segundos.
+**Antes de tudo: declarar a leitura.** Uma linha, visível pro usuário: *"Estou lendo isso como: [peça] para [público], com linguagem [vibe]."* Depois definir os três ajustes (variação / movimento / densidade) conforme `templates/design/briefing-visual.md`. É o passo que impede a peça de cair no visual padrão de IA, e custa cinco segundos.
 
 ### Passo 1 — Entender e planejar
 
@@ -197,7 +197,7 @@ Escrever o conteúdo seguindo as regras de tom:
 - Contexto de apoio (se necessário)
 - CTA sutil
 
-Antes de mostrar, passar o texto pelos passes do `/revisar` — clichê de IA, gordura e tom. Slide tem 8 palavras: uma palavra vazia custa caro.
+Antes de mostrar, passar o texto pelos passes do `/revisar`: clichê de IA, gordura e tom. Slide tem 8 palavras: uma palavra vazia custa caro.
 
 **CHECKPOINT:** Mostrar o texto completo. Esperar aprovação antes do visual.
 
@@ -215,11 +215,11 @@ Antes de aprovar o texto, passar pela régua de `templates/copy/ganchos.md`:
 
 ### Passo 3 — Gerar fotos (se tipo 2)
 
-Só se o usuário pediu carrossel com foto de IA. **O script já vem pronto no sistema** — não escrever script novo, não improvisar outra forma.
+Só se o usuário pediu carrossel com foto de IA. **O script já vem pronto no sistema**, não escrever script novo, não improvisar outra forma.
 
 #### 3.1 — Conferir se já está ligado
 
-O script funciona com **OpenAI ou Gemini** — o que o usuário tiver. Conferir:
+O script funciona com **OpenAI ou Gemini**: o que o usuário tiver. Conferir:
 
 ```bash
 grep -qE "^(OPENAI_API_KEY|GEMINI_API_KEY)=.+" .env 2>/dev/null && echo "ok" || echo "sem chave"
@@ -227,7 +227,7 @@ grep -qE "^(OPENAI_API_KEY|GEMINI_API_KEY)=.+" .env 2>/dev/null && echo "ok" || 
 
 **Se tem chave:** seguir direto pro 3.2, sem comentar nada. Já está resolvido.
 
-**Se não tem:** oferecer uma vez, de forma leve, com as três saídas — e **deixar claro que dá pra seguir sem isso**:
+**Se não tem:** oferecer uma vez, de forma leve, com as três saídas, e **deixar claro que dá pra seguir sem isso**:
 
 > "Pra eu gerar a foto, você conecta a sua conta de IA de imagem — leva uns 2 minutos
 > e a chave fica só no seu computador. Duas opções:
@@ -245,7 +245,7 @@ grep -qE "^(OPENAI_API_KEY|GEMINI_API_KEY)=.+" .env 2>/dev/null && echo "ok" || 
 
 **Se ele mandar a chave no chat:** escrever no `.env` por ele, confirmar que o `.gitignore` cobre `.env`, e avisar que chave que já circulou em conversa vale a pena trocar depois.
 
-**Se ele usa outro gerador** (Midjourney, Leonardo, Firefly): não montar integração. Ele gera lá e passa o arquivo — o resultado na peça é idêntico.
+**Se ele usa outro gerador** (Midjourney, Leonardo, Firefly): não montar integração. Ele gera lá e passa o arquivo: o resultado na peça é idêntico.
 
 #### 3.2 — Escrever o prompt
 
@@ -277,7 +277,7 @@ Da **raiz do workspace**:
 node scripts/gerar-imagem.js "PROMPT" "conteudo/<pasta>/foto-<nome>.png"
 ```
 
-O script acha o `.env` sozinho e **detecta o provedor** pela chave que existir (OpenAI ou Gemini) — não precisa dizer qual. Formato padrão é retrato, que é o do carrossel; se precisar, `--formato quadrado` ou `--formato paisagem`. Pra forçar um provedor: `--provedor gemini`.
+O script acha o `.env` sozinho e **detecta o provedor** pela chave que existir (OpenAI ou Gemini), não precisa dizer qual. Formato padrão é retrato, que é o do carrossel; se precisar, `--formato quadrado` ou `--formato paisagem`. Pra forçar um provedor: `--provedor gemini`.
 
 Se der erro, o script já diz o conserto na própria mensagem. Os três mais comuns:
 
@@ -290,13 +290,13 @@ Se der erro, o script já diz o conserto na própria mensagem. Os três mais com
 | `404` modelo não encontrado | nome do modelo mudou no provedor | usar `--modelo` com um nome atual, ou trocar de provedor |
 | conta sem acesso ao `gpt-image-1` | plano da OpenAI | `--modelo dall-e-3`, ou `--provedor gemini` |
 
-**Sobre o tamanho:** o retrato sai em 2:3 na OpenAI e 3:4 no Gemini, e o slide é 4:5. Isso é proposital — a foto entra como fundo com `background-size: cover`, então sobra margem pro recorte em vez de faltar. Nunca esticar a imagem pra caber.
+**Sobre o tamanho:** o retrato sai em 2:3 na OpenAI e 3:4 no Gemini, e o slide é 4:5. Isso é proposital: a foto entra como fundo com `background-size: cover`, então sobra margem pro recorte em vez de faltar. Nunca esticar a imagem pra caber.
 
 #### 3.4 — Aprovar
 
 Mostrar a foto pro usuário antes de usar no carrossel.
 
-**CHECKPOINT:** foto aprovada → seguir. Se não, ajustar o prompt e regenerar. Cada tentativa custa dinheiro dele — então mudar um elemento por vez (luz, ângulo, ambiente) em vez de reescrever tudo, e dizer o que mudou.
+**CHECKPOINT:** foto aprovada → seguir. Se não, ajustar o prompt e regenerar. Cada tentativa custa dinheiro dele: então mudar um elemento por vez (luz, ângulo, ambiente) em vez de reescrever tudo, e dizer o que mudou.
 
 ### Passo 4 — Criar visuais (HTML + PNG)
 
@@ -321,7 +321,7 @@ Mostrar a foto pro usuário antes de usar no carrossel.
 
 2. Criar `render.js` na mesma pasta — script Node com Playwright que abre o HTML e tira screenshot de cada `.slide` em **1080x1350 com `deviceScaleFactor: 1`**.
 
-   Não usar 2x. O Instagram redimensiona tudo pra 1080 de largura na hora do upload, então 2160px não melhora nada e cria dois problemas: arquivo de 4-6 MB (perto do limite de 8 MB da API da Meta) e transferência lenta pro celular. Se o PNG passar de 2 MB, algo está errado — quase sempre é escala 2x ou imagem de fundo não otimizada.
+   Não usar 2x. O Instagram redimensiona tudo pra 1080 de largura na hora do upload, então 2160px não melhora nada e cria dois problemas: arquivo de 4-6 MB (perto do limite de 8 MB da API da Meta) e transferência lenta pro celular. Se o PNG passar de 2 MB, algo está errado: quase sempre é escala 2x ou imagem de fundo não otimizada.
 
    **Playwright fica instalado uma vez só, em `scripts/`** (nunca uma cópia por pasta de conteúdo). Na primeira vez:
    ```bash
@@ -341,7 +341,7 @@ Mostrar a foto pro usuário antes de usar no carrossel.
    node scripts/verificar.js peso conteudo/<pasta>/instagram
    ```
 
-   PNG acima de 2 MB é sinal de escala 2x no `render.js` — o Instagram recomprime pra 1080 de largura de qualquer jeito, então o arquivo grande só atrapalha (transferência lenta pro celular, e perto do limite de 8 MB da API da Meta).
+   PNG acima de 2 MB é sinal de escala 2x no `render.js`: o Instagram recomprime pra 1080 de largura de qualquer jeito, então o arquivo grande só atrapalha (transferência lenta pro celular, e perto do limite de 8 MB da API da Meta).
 
    E a olho: texto sobre foto precisa de overlay suficiente pra ler no celular; título não pode estourar o slide nem ficar com viúva (palavra sozinha na última linha); nada de texto a menos de 60px da borda (o Instagram corta a prévia).
 
@@ -362,7 +362,7 @@ conteudo/<tipo>-<tema>-<YYYY-MM-DD>/
   como-postar.md        ← ordem dos slides + legenda + onde programar
 ```
 
-Nomear os PNGs com número de dois dígitos (`slide-01`, não `slide-1`) — assim a ordem de upload no Meta Business Suite sai certa sozinha.
+Nomear os PNGs com número de dois dígitos (`slide-01`, não `slide-1`), assim a ordem de upload no Meta Business Suite sai certa sozinha.
 
 ### Passo 6 — Entregar o kit de publicação
 
@@ -407,7 +407,7 @@ Se sim, chamar `/publicar-tema` com o mesmo tema.
 
 - Sempre ler o sistema visual antes de criar (`tokens.css` primeiro, `design-guide.md` depois)
 - Se `tokens.css` existir, usar as variáveis CSS — não escrever hex solto no HTML
-- Carrossel: 1080x1350 (4:5 retrato) — sempre. TikTok/Reels: 1080x1920 (9:16) — só quando pedido explicitamente
+- Carrossel: 1080x1350 (4:5 retrato) — sempre. TikTok/Reels: 1080x1920 (9:16), só quando pedido explicitamente
 - Linguagem segue `_memoria/preferencias.md` estritamente
 - Sempre considerar a sequência de capa no feed antes de definir capa nova
 - Sempre gerar legenda automaticamente ao final, salvando em `legenda.md`

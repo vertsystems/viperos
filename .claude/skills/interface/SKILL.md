@@ -1,7 +1,7 @@
 ---
 name: interface
 description: >
-  Define o padrão visual das telas de uso do negócio — botão, campo, tabela, painel, menu —
+  Define o padrão visual das telas de uso do negócio (botão, campo, tabela, painel, menu)
   e entrega `identidade/interface.css` mais uma amostra navegável, com altura de controle,
   camada de estado, densidade e os quatro estados de conteúdo (cheio, vazio, carregando, erro).
   Use quando o usuário disser "meu sistema tá feio", "a tabela tá horrível", "padroniza os
@@ -14,8 +14,8 @@ description: >
 > **Convenção de pastas:** a saída vai em `identidade/`, junto do `tokens.css`. Na convenção **por cliente**, `clientes/<Nome>/identidade/`. Esta skill **não** cria pasta de sistema: quem constrói software é o `/backend`, e ele consome o padrão gerado aqui.
 
 O ViperOS sabia desenhar peça de marketing e sabia construir servidor. No meio ficava a
-tela onde o negócio passa o dia — a lista de pedidos, a ficha do cliente, o painel da
-manhã — desenhada no improviso, com um botão diferente em cada canto.
+tela onde o negócio passa o dia: a lista de pedidos, a ficha do cliente, o painel da
+manhã. Desenhada no improviso, com um botão diferente em cada canto.
 
 Marketing e interface têm regras opostas: peça de marketing pode ser generosa e
 assimétrica; tela de uso repete o mesmo gesto duzentas vezes por dia e precisa ser
@@ -80,7 +80,7 @@ bruta). Blocos, nessa ordem:
 
 ### Passo 4 — Escrever `identidade/interface.html`
 
-Amostra navegável, com **dado real do negócio** — os produtos, os nomes de coluna e os
+Amostra navegável, com **dado real do negócio**: os produtos, os nomes de coluna e os
 valores que o usuário citou no passo 1, nunca "Item 1, Item 2". A tela mais aberta do
 dia aparece montada, e ao lado dela os quatro estados:
 
@@ -95,7 +95,7 @@ O estado vazio de primeira vez ("você ainda não lançou nenhum pedido" + botã
 o primeiro) é **diferente** do vazio de busca ("nenhum pedido com esse filtro" + limpar
 filtro). Os dois entram.
 
-O CSS vai inline no HTML da amostra — ela é enviada por WhatsApp e precisa chegar com
+O CSS vai inline no HTML da amostra: ela é enviada por WhatsApp e precisa chegar com
 estilo (mesma regra da peça).
 
 ### Passo 5 — Verificar antes de entregar
@@ -106,7 +106,7 @@ node scripts/verificar.js html identidade/interface.html
 node scripts/verificar.js contraste "<borda-do-campo>" "<fundo>"
 ```
 
-Se o alvo reprovar, subir o `min-height` — nunca relaxar a régua para o arquivo passar.
+Se o alvo reprovar, subir o `min-height`, nunca relaxar a régua para o arquivo passar.
 
 ### Passo 6 — Entregar
 

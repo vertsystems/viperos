@@ -14,7 +14,7 @@ description: >
 
 > **Convenção de pastas:** a saída vai em `contratos/<cliente>-<AAAA-MM-DD>/`. Na convenção **por cliente**, `clientes/<Nome>/contratos/`. A pasta nasce no primeiro contrato.
 
-O contrato de pequeno negócio não existe pra ganhar processo — existe pra que a discussão
+O contrato de pequeno negócio não existe pra ganhar processo: existe pra que a discussão
 não aconteça. Quase todo desentendimento entre prestador e cliente cabe em três perguntas
 que ninguém escreveu: **o que exatamente está incluso, até quando, e o que acontece se
 mudar.**
@@ -60,7 +60,7 @@ cliente e a cobrança cai no prestador.
 
 ### Passo 3 — Escrever as cláusulas que importam
 
-**Escopo — o coração do documento.** Escrever o que está incluso **e uma lista do que não
+**Escopo: o coração do documento.** Escrever o que está incluso **e uma lista do que não
 está**. A segunda lista é a que evita a conversa de "mas eu achei que...".
 
 ```
@@ -96,7 +96,7 @@ código-fonte, banco de imagem licenciado). E o direito de mostrar o trabalho no
 com cláusula de confidencialidade quando o cliente pedir.
 
 **Dados pessoais.** Se o serviço envolve dado de cliente do cliente (lista, cadastro,
-CRM), dizer quem trata o quê, para quê, e por quanto tempo — exigência da LGPD.
+CRM), dizer quem trata o quê, para quê, e por quanto tempo: exigência da LGPD.
 
 **Foro e assinatura.** Cidade, e assinatura das duas partes com data. Assinatura eletrônica
 com registro de e-mail e IP tem validade; anotar qual ferramenta será usada.
@@ -104,7 +104,7 @@ com registro de e-mail e IP tem validade; anotar qual ferramenta será usada.
 ### Passo 4 — Conferir contra a proposta
 
 Ler a proposta aceita lado a lado. Preço, prazo e escopo **precisam bater**. Divergência
-entre o que foi vendido e o que está no contrato é o pior começo possível — e costuma ser
+entre o que foi vendido e o que está no contrato é o pior começo possível, e costuma ser
 descuido de copiar de um contrato antigo.
 
 ### Passo 5 — Montar o documento
@@ -116,7 +116,7 @@ node scripts/verificar.js html contratos/<cliente>-<data>/contrato.html
 node scripts/gerar-pdf.js contratos/<cliente>-<data>/contrato.html
 ```
 
-O verificador acusa placeholder esquecido — em contrato, um `[NOME DO CLIENTE]` que
+O verificador acusa placeholder esquecido: em contrato, um `[NOME DO CLIENTE]` que
 sobrou é constrangimento na frente de quem vai assinar.
 
 **No papel, sem fundo chapado:** contrato é feito pra imprimir. Fundo branco, texto escuro,
@@ -124,7 +124,7 @@ numeração de cláusula, espaço de assinatura que não fica órfão no pé da 
 
 ### Passo 6 — Entregar com o resumo
 
-Junto do contrato, um resumo de 5 linhas em português simples do que foi combinado — é o
+Junto do contrato, um resumo de 5 linhas em português simples do que foi combinado: é o
 que o cliente realmente lê, e evita que ele assine sem entender.
 
 ---

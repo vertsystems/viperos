@@ -46,7 +46,7 @@ Antes de escolher qualquer tecnologia, três perguntas. Elas decidem quase tudo:
 
 A terceira é a que mais se esquece e a que mais custa. Sistema que só o autor entende
 vira refém. Se a resposta for "ninguém, sou só eu", isso é um argumento a favor do
-simples — não a favor do esperto.
+simples, não a favor do esperto.
 
 **Escala pequena é o caso normal, não a exceção.** A maioria dos sistemas de pequeno
 negócio roda folgada num servidor só, com um banco só. Microserviço, fila e cache
@@ -66,11 +66,11 @@ pra outra coisa:
 | Hospedagem | a mais boba que atenda | o custo ou o limite dela apertar |
 
 Escrever a escolha e o motivo em `DECISOES.md`, com data. Uma linha por decisão. É o
-arquivo que responde "por que isso está assim?" seis meses depois — inclusive pra você.
+arquivo que responde "por que isso está assim?" seis meses depois: inclusive pra você.
 
 ### Passo 3 — Desenhar os dados antes do código
 
-Erro de modelagem é o mais caro que existe: quando aparece, já tem dado dentro.
+Erro de modelagem é o mais caro que existe, quando aparece, já tem dado dentro.
 
 Consultar `templates/backend/dados.md`. O mínimo:
 
@@ -82,7 +82,7 @@ Consultar `templates/backend/dados.md`. O mínimo:
 - Índice nas colunas que aparecem em `WHERE` e `ORDER BY`
 
 Mostrar o desenho das tabelas ao usuário em português antes de criar. "Cada pedido tem
-vários itens; cada item aponta pra um produto" — se ele disser "não é bem assim", você
+vários itens; cada item aponta pra um produto": se ele disser "não é bem assim", você
 descobriu de graça.
 
 ### Passo 4 — Desenhar a API
@@ -96,7 +96,7 @@ Consultar `templates/backend/api.md`. Resumo do que não muda:
 - Versão na URL desde o primeiro dia (`/v1/`). Custa nada agora e evita quebrar o app de alguém depois
 
 REST resolve praticamente todo caso de pequeno negócio. GraphQL e gRPC entram por
-necessidade demonstrada — cada um traz um problema novo junto (consulta cara, cache,
+necessidade demonstrada: cada um traz um problema novo junto (consulta cara, cache,
 suporte no navegador).
 
 ### Passo 5 — Escrever com segurança desde a primeira linha
@@ -114,7 +114,7 @@ O que precisa estar certo **antes** de qualquer coisa ir pro ar:
 - **Limite de tentativa no login** — senão a força bruta é só questão de tempo
 - **Erro pro usuário não conta detalhe do sistema.** "Falha ao processar" pra ele, stack trace no log
 
-Antes de subir, rodar a checagem de dependência (`npm audit`, `pip-audit`) — vulnerabilidade
+Antes de subir, rodar a checagem de dependência (`npm audit`, `pip-audit`), vulnerabilidade
 conhecida em biblioteca desatualizada é a porta mais usada e a mais fácil de fechar.
 
 ### Passo 6 — Testar o que quebra caro
@@ -173,7 +173,7 @@ npm test
 ```
 
 **Regra:** antes de otimizar, medir. Depois de otimizar, medir de novo e comparar. Otimização
-sem número antes e depois é chute com trabalho junto — e costuma piorar a legibilidade em
+sem número antes e depois é chute com trabalho junto, e costuma piorar a legibilidade em
 troca de nada.
 
 O `scripts/verificar.js` do ViperOS cobre peça e número (CSV, tabela, data, contraste, HTML,
@@ -183,7 +183,7 @@ peso). Backend se verifica rodando: teste, `EXPLAIN`, `curl`, `audit`.
 
 ## Quando o pedido é "está dando erro"
 
-Aí o fluxo é outro — consultar `templates/backend/debug.md` e seguir a ordem:
+Aí o fluxo é outro: consultar `templates/backend/debug.md` e seguir a ordem:
 
 1. **Ler a mensagem de erro inteira.** Ela quase sempre diz onde é
 2. **Reproduzir.** Depurar sem reproduzir é adivinhar

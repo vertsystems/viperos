@@ -4,7 +4,7 @@ O que está aqui **não vem ativo** no ViperOS. São skills que atendem um caso 
 estreito, exigem configuração externa, ou dependem de coisa que o produto não entrega —
 e que, ativas por padrão, só ocupariam espaço.
 
-O fluxo normal do ViperOS não precisa de nada daqui.
+O fluxo normal do ViperOS não precisa de nada daqui. Nada mesmo.
 
 ## Como ativar uma
 
@@ -12,7 +12,7 @@ O fluxo normal do ViperOS não precisa de nada daqui.
 cp -r templates/opcional/<nome> .claude/skills/<nome>
 ```
 
-Ler o cabeçalho da skill antes: ele diz o que mais precisa existir pra ela funcionar.
+Ler o cabeçalho da skill antes. Ele diz o que mais precisa existir pra ela funcionar.
 
 ---
 
@@ -34,5 +34,5 @@ conectada, os PNGs no ar em URL pública, e as variáveis `META_PAGE_ACCESS_TOKE
 `META_PAGE_ID` e `META_IG_USER_ID` no `.env`.
 
 Quem quiser usar precisa escrever os dois scripts contra a Graph API. Para publicação em
-volume sem esse trabalho, existem serviços prontos — o `templates/ferramentas/catalogo.md`
+volume sem esse trabalho, existem serviços prontos: o `templates/ferramentas/catalogo.md`
 lista alguns.

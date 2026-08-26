@@ -75,7 +75,7 @@ O `<a>` com `padding` some no Word. O padrão que aguenta é o botão em tabela:
 ## Modo escuro
 
 Alguns clientes invertem as cores por conta própria, e o resultado é logo preto em
-fundo preto. Não há solução completa — há redução de dano:
+fundo preto. Não existe jeito de controlar isso por inteiro. O que dá pra fazer é reduzir o dano:
 
 ```html
 <meta name="color-scheme" content="light dark">
@@ -92,7 +92,7 @@ fundo preto. Não há solução completa — há redução de dano:
 ## Preheader
 
 A linha que aparece na lista, depois do assunto. Sem ela, o cliente mostra "Ver no
-navegador" ou o começo do rodapé — e a taxa de abertura cai por um detalhe de 40
+navegador" ou o começo do rodapé, e a taxa de abertura cai por um detalhe de 40
 caracteres:
 
 ```html
@@ -116,14 +116,14 @@ recusada:
 1. **Autenticação do domínio:** SPF **e** DKIM configurados, e DMARC publicado (ainda
    que em `p=none`)
 2. **Cancelamento em um clique:** cabeçalho `List-Unsubscribe` **e**
-   `List-Unsubscribe-Post: List-Unsubscribe=One-Click` (RFC 8058) — e o pedido tem de
+   `List-Unsubscribe-Post: List-Unsubscribe=One-Click` (RFC 8058), e o pedido tem de
    ser processado em até 2 dias
 3. **Taxa de spam abaixo de 0,3%**, acompanhada no Google Postmaster Tools
 4. Link de descadastro visível **também no corpo**, não só no cabeçalho
 
 Os cabeçalhos são configurados na ferramenta de envio (Brevo, Mailchimp, Resend), não
 no HTML. O que o HTML precisa carregar é o link visível, o endereço físico do remetente
-e o motivo do recebimento — as três linhas do rodapé.
+e o motivo do recebimento: as três linhas do rodapé.
 
 > Abaixo desse volume nada disso é exigido, mas tudo continua valendo como higiene: um
 > disparo de 300 e-mails sem SPF cai em spam do mesmo jeito.

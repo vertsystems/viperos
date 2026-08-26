@@ -8,7 +8,7 @@ falha, e o que faz o código continuar legível daqui a um ano.
 ## Comece com um só
 
 Um servidor, um banco, um deploy. É a arquitetura certa pra praticamente todo sistema de
-pequeno negócio — e continua certa por muito mais tempo do que a internet sugere.
+pequeno negócio, e continua certa por muito mais tempo do que a internet sugere.
 
 **O que o monolito dá de graça:** transação de verdade (ou tudo grava, ou nada), depuração
 num lugar só, deploy único, custo de operação baixo.
@@ -113,7 +113,7 @@ filaEmail.process('boas-vindas', async (job) => {
 ```
 
 Toda fila precisa de: número máximo de tentativas, destino pro que falhou definitivamente
-(fila morta) e visibilidade — saber quantos itens estão parados. Fila que engole erro em
+(fila morta) e visibilidade, saber quantos itens estão parados. Fila que engole erro em
 silêncio é pior que não ter fila.
 
 **Tarefa precisa ser idempotente:** ela vai rodar duas vezes um dia. Se rodar duas vezes
@@ -150,7 +150,7 @@ function areaEmMetros(larguraPol: number, alturaPol: number) {
 ### Função que faz uma coisa
 
 Função de 200 linhas que valida, cobra, grava, envia e-mail e gera nota não tem como ser
-testada em partes — e é sempre nela que o defeito mora.
+testada em partes, e é sempre nela que o defeito mora.
 
 ```typescript
 async function processarPedido(pedidoId: string) {
@@ -189,7 +189,7 @@ try {
 }
 ```
 
-`catch` que só imprime e segue transforma defeito em comportamento estranho — o pior tipo
+`catch` que só imprime e segue transforma defeito em comportamento estranho: o pior tipo
 de defeito, porque não deixa rastro.
 
 ### Não repetir a mesma regra

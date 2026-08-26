@@ -1,7 +1,7 @@
 ---
 name: ajuda
 description: >
-  Responde "o que eu faço agora?" — recomenda a skill certa a partir do que o usuário quer fazer e do
+  Responde "o que eu faço agora?": recomenda a skill certa a partir do que o usuário quer fazer e do
   estado atual do workspace, em vez de listar tudo. Use quando o usuário disser "ajuda", "o que eu
   faço", "quais comandos existem", "como faço pra", "tô perdido", "não sei onde começar",
   "o que esse sistema faz", ou /ajuda.
@@ -9,13 +9,13 @@ description: >
 
 # /ajuda — Qual skill usar agora
 
-O ViperOS tem 51 skills. Ninguém decora isso, e ninguém precisa — o usuário fala o que quer em português e a skill certa roda sozinha. Essa aqui responde a outra pergunta: **o que faz sentido fazer agora.**
+O ViperOS tem 51 skills. Ninguém decora isso, e ninguém precisa: o usuário fala o que quer em português e a skill certa roda sozinha. Essa aqui responde a outra pergunta: **o que faz sentido fazer agora.**
 
-Ao recomendar, falar pelo resultado, não pelo comando: "eu monto o banco de pautas" em vez de "roda /ideias". O nome da skill entra entre parênteses, no máximo — nunca como exigência.
+Ao recomendar, falar pelo resultado, não pelo comando: "eu monto o banco de pautas" em vez de "roda /ideias". O nome da skill entra entre parênteses, no máximo, nunca como exigência.
 
 ## Regra central
 
-Não despejar a lista inteira. Ler o estado do workspace, entender o que o usuário quer, e recomendar **1 a 3 caminhos** — com o motivo.
+Não despejar a lista inteira. Ler o estado do workspace, entender o que o usuário quer, e recomendar **1 a 3 caminhos**, com o motivo.
 
 ---
 
@@ -60,7 +60,7 @@ Se o pedido já foi concreto ("preciso de um site", "quero postar mais"), pular 
 `/oferta` (quase sempre a oferta está incompleta) → `/preco` (traduzir o "tá caro") → `/vender` (investigação antes de apresentar)
 
 **"Não sei pra quem estou falando"**
-`/publico` — minera avaliação, grupo e conversa real. Alimenta todas as outras
+`/publico`: minera avaliação, grupo e conversa real. Alimenta todas as outras
 
 **"Minha página recebe visita e ninguém compra"**
 `/conversao` (diagnóstico em 7 pontos) → `/landing` (refazer) ou `/oferta` (se o problema é o que se vende)
@@ -73,10 +73,10 @@ Se o pedido já foi concreto ("preciso de um site", "quero postar mais"), pular 
 
 **"Não sei o que postar"**
 `/ideias` → `/angulos` (10 tratamentos do mesmo tema) → `/calendario` (distribuir no mês)
-E se ele já tem conteúdo antigo: `/reaproveitar` — quase sempre o caminho mais rápido
+E se ele já tem conteúdo antigo: `/reaproveitar`, quase sempre o caminho mais rápido
 
 **"Tá com cara de IA" / "parece ChatGPT" / "isso não parece escrito por mim"**
-`/humanizar` — mede os sinais por comando (ritmo, frases curtas, clichê), levanta o que
+`/humanizar`: mede os sinais por comando (ritmo, frases curtas, clichê), levanta o que
 só você sabe e reescreve com a sua voz. Se o problema é excesso e não voz, é `/revisar`
 
 **"Meu conteúdo sai genérico / fraco"**
@@ -86,7 +86,7 @@ só você sabe e reescreve com a sua voz. Se o problema é excesso e não voz, �
 `/design-system` (tokens) → `/revisar-design` (auditar o que já existe)
 
 **"Quero que ele crie as imagens/fotos"**
-Dá pra ligar — o usuário conecta a conta dele de OpenAI ou Gemini (o Gemini tem
+Dá pra ligar: o usuário conecta a conta dele de OpenAI ou Gemini (o Gemini tem
 cota gratuita e não pede cartão). São 2 minutos: guia em
 `templates/imagem-ia.md`. Sem isso, o `/carrossel` continua entregando
 peça com tipografia, que funciona bem.
@@ -101,46 +101,46 @@ peça com tipografia, que funciona bem.
 `/relatorio-ads` (mídia paga) → `/revisao-semanal` (fechar o loop) → `/analisar-dados` (qualquer planilha)
 
 **"Não sei quanto estou ganhando" / "trabalho muito e sobra pouco"**
-`/caixa` — quanto entrou, quanto sobrou, qual serviço dá lucro e quanto custa a hora. Costuma ser a conversa mais útil do sistema, e a que menos gente pede
+`/caixa`: quanto entrou, quanto sobrou, qual serviço dá lucro e quanto custa a hora. Costuma ser a conversa mais útil do sistema, e a que menos gente pede
 
 **"O cliente fechou, e agora?" / "cliente sumiu" / "orçamento sem resposta"**
-`/pos-venda` — alinhar expectativa, pedir depoimento na hora certa, reativar quem parou e recuperar orçamento parado
+`/pos-venda`: alinhar expectativa, pedir depoimento na hora certa, reativar quem parou e recuperar orçamento parado
 
 **"O que eu respondo no WhatsApp?"**
-`/whatsapp` — primeira resposta, respostas rápidas, como falar de preço sem perder a conversa, perfil comercial
+`/whatsapp`: primeira resposta, respostas rápidas, como falar de preço sem perder a conversa, perfil comercial
 
 **"Quero fazer vídeo mas não sei o que falar"**
-`/video` — roteiro cena a cena pra Reels/Shorts, com o gancho dos 3 primeiros segundos
+`/video`: roteiro cena a cena pra Reels/Shorts, com o gancho dos 3 primeiros segundos
 
 **"O cliente aceitou, como formalizo?"**
-`/contrato` — escopo, o que NÃO está incluso, prazo, pagamento e cancelamento. Sai da `/proposta` aceita
+`/contrato`: escopo, o que NÃO está incluso, prazo, pagamento e cancelamento. Sai da `/proposta` aceita
 
 **"Tem muita gente fazendo isso" / "como eu me diferencio"**
 `/concorrente` → `/marca` (posicionamento) → `/oferta` (o que incluir)
 
 **"Preciso de um sistema / API / banco de dados"**
-`/backend` — servidor, API, banco, login e publicação. Também é a skill de "está dando erro em produção" e "a consulta está lenta"
+`/backend`: servidor, API, banco, login e publicação. Também é a skill de "está dando erro em produção" e "a consulta está lenta"
 
 **"Meu sistema tá feio" / "a tabela tá horrível" / "cabe pouca coisa na tela"**
-`/interface` — o padrão das telas de uso: botão, campo, tabela, painel e os quatro estados (cheio, vazio, carregando, erro). É o par visual do `/backend`
+`/interface`: o padrão das telas de uso: botão, campo, tabela, painel e os quatro estados (cheio, vazio, carregando, erro). É o par visual do `/backend`
 
 **"A animação tá estranha" / "o menu abre travado" / "tá muito parado"**
-`/movimento` — duração, curva e limite. Também é a skill de "quero que apareça conforme rola"
+`/movimento`: duração, curva e limite. Também é a skill de "quero que apareça conforme rola"
 
 **"Preciso da página de planos / do cardápio / do produto"**
-`/produto` — a página onde a pessoa compara e decide, com o botão antes da ficha técnica. Diferente da `/landing`, que tem uma ação só
+`/produto`: a página onde a pessoa compara e decide, com o botão antes da ficha técnica. Diferente da `/landing`, que tem uma ação só
 
 **"Meu site é acessível?" / "minha mãe não consegue usar" / "meu site tá lento"**
-`/acessivel` — um laudo só para as duas coisas: consegue usar (WCAG 2.2) e consegue esperar (LCP, INP, CLS)
+`/acessivel`: um laudo só para as duas coisas: consegue usar (WCAG 2.2) e consegue esperar (LCP, INP, CLS)
 
 **"Quero mandar e-mail pra lista" / "o e-mail chegou quebrado" / "caiu no spam"**
-`/email` — e-mail em HTML que sobrevive ao Outlook e ao modo escuro. Para e-mail de uma pessoa só, é `/email-profissional`
+`/email`: e-mail em HTML que sobrevive ao Outlook e ao modo escuro. Para e-mail de uma pessoa só, é `/email-profissional`
 
 **"Faço a mesma coisa toda semana"**
-`/mapear-rotinas` — transforma a rotina em skill própria
+`/mapear-rotinas`: transforma a rotina em skill própria
 
 **"Saiu versão nova do ViperOS" / "quero atualizar o sistema"**
-`/atualizar-sistema` — puxa a versão nova e sincroniza as skills sem tocar no seu trabalho
+`/atualizar-sistema`: puxa a versão nova e sincroniza as skills sem tocar no seu trabalho
 
 ### Passo 4 — Responder curto
 

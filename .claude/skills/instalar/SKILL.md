@@ -9,7 +9,7 @@ description: >
 
 # /instalar — Instalação inicial do ViperOS
 
-Primeiro comando depois de clonar. Não pode falhar e não pode soar burocrático. Trata como conversa de descoberta — uma pergunta por vez, escuta de verdade, sem enfileirar tudo.
+Primeiro comando depois de clonar. Não pode falhar e não pode soar burocrático. Trata como conversa de descoberta: uma pergunta por vez, escuta de verdade, sem enfileirar tudo.
 
 **A pasta que ele clonou já é o workspace dele.** Nada a mover, nada a copiar: as skills já estão em `.claude/skills/`, os moldes em `templates/`. A instalação preenche a memória e adapta o `CLAUDE.md` ao negócio.
 
@@ -39,7 +39,7 @@ pra fonte monoespaçada:
 
 **Não mexer no desenho.** Cada linha tem largura calculada (66 colunas no total,
 cabe em terminal de 80). Reindentar, "arrumar" espaço ou trocar caractere
-desalinha o traçado das letras — e desalinho de um caractere só já estraga.
+desalinha o traçado das letras, e desalinho de um caractere só já estraga.
 
 Depois de imprimir, seguir direto pra Fase 0 sem comentar o banner.
 
@@ -49,7 +49,7 @@ Depois de imprimir, seguir direto pra Fase 0 sem comentar o banner.
 
 ### 1. Conferir onde está
 
-Rodar `pwd` e `ls`. A pasta deve ter `.claude/skills/`, `templates/` e `CLAUDE.md`. Se não tiver, o usuário está na pasta errada — perguntar onde ele clonou.
+Rodar `pwd` e `ls`. A pasta deve ter `.claude/skills/`, `templates/` e `CLAUDE.md`. Se não tiver, o usuário está na pasta errada: perguntar onde ele clonou.
 
 Se `_memoria/` já existir preenchido, é reinstalação: perguntar se refaz do zero, complementa o que falta, ou se ele queria atualizar o sistema (`/atualizar-sistema`).
 
@@ -68,7 +68,7 @@ O clone veio apontando pro repositório do produto. Renomear esse endereço, pra
 git remote rename origin viperos 2>/dev/null
 ```
 
-Se der erro (ele baixou o zip em vez de clonar), tudo bem — seguir. O `/atualizar-sistema` funciona nos dois casos.
+Se der erro (ele baixou o zip em vez de clonar), tudo bem: seguir. O `/atualizar-sistema` funciona nos dois casos.
 
 ---
 
@@ -184,13 +184,13 @@ Gerar o slug do nome da empresa (minúsculas, sem acento, espaço vira hífen). 
 > Fecha o VS Code, renomeia no Finder (ou Explorer) e abre de novo — leva 10 segundos.
 > Ou, se preferir deixar como está, funciona igual."
 
-Isso é o único momento em que faz sentido fechar o editor, e é opcional — nada quebra se ele não renomear.
+Isso é o único momento em que faz sentido fechar o editor, e é opcional, nada quebra se ele não renomear.
 
 ---
 
 ## Fase 6 — Mostrar que está funcionando
 
-Não terminar com instrução. **Demonstrar**, na mesma conversa: rodar o `/abrir` e mostrar o resumo do negócio já carregado da memória, ou — se ele mencionou dor de conteúdo — dar 3 pautas concretas do nicho dele.
+Não terminar com instrução. **Demonstrar**, na mesma conversa: rodar o `/abrir` e mostrar o resumo do negócio já carregado da memória, ou, se ele mencionou dor de conteúdo, dar 3 pautas concretas do nicho dele.
 
 Depois:
 

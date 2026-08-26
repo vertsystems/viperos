@@ -12,7 +12,7 @@ Skill de uma função só: garantir que o trabalho do usuário está no GitHub. 
 
 ## O que entra no repositório
 
-Tudo que é trabalho dele — memória, marca, conteúdo, propostas, materiais — mais as skills e os templates do sistema. Fica tudo junto, e é isso que permite recuperar o workspace inteiro se a máquina morrer.
+Tudo que é trabalho dele (memória, marca, conteúdo, propostas, materiais), mais as skills e os templates do sistema. Fica tudo junto, e é isso que permite recuperar o workspace inteiro se a máquina morrer.
 
 **Não entra:** `.env` (chaves), `node_modules/` e a drop zone `dados/`. O `.gitignore` do repositório já cobre.
 
@@ -22,7 +22,7 @@ Tudo que é trabalho dele — memória, marca, conteúdo, propostas, materiais �
 git remote rename origin viperos 2>/dev/null
 ```
 
-**Nunca dar push no repositório do ViperOS.** Se o remote de destino contiver `vertsystems/viperos`, parar e avisar — o trabalho dele iria parar no repositório do produto.
+**Nunca dar push no repositório do ViperOS.** Se o remote de destino contiver `vertsystems/viperos`, parar e avisar: o trabalho dele iria parar no repositório do produto.
 
 ## Checagem de segurança (sempre, antes de qualquer commit)
 
@@ -40,7 +40,7 @@ Nunca comitar segredo "só essa vez".
 
 ### Primeira vez
 
-**Atenção:** o workspace já é um repositório git — ele veio do clone do ViperOS. Então `git rev-parse` **sempre** responde que sim, e a pergunta certa é outra: *já existe um `origin` que seja do usuário?*
+**Atenção:** o workspace já é um repositório git, ele veio do clone do ViperOS. Então `git rev-parse` **sempre** responde que sim, e a pergunta certa é outra: *já existe um `origin` que seja do usuário?*
 
 ```bash
 git remote -v

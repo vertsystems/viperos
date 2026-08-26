@@ -256,7 +256,7 @@ description: >
 
 **Objetivo:** Otimizar a presença pra que IAs generativas (ChatGPT, Gemini, Perplexity, Copilot) citem a empresa quando alguém perguntar sobre o nicho.
 
-**Por que importa:** Cada vez mais clientes perguntam pra IAs "qual o melhor fornecedor/serviço de X em Y?" — quem aparece ganha lead qualificado sem pagar ads.
+**Por que importa:** Muita gente já pergunta pra IA "qual o melhor fornecedor de X em Y?" antes de abrir o Google. Quem aparece nessa resposta ganha lead qualificado sem pagar ads.
 
 1. **Auditoria GEO:**
    - WebSearch nos top 10 termos em engines de IA (Perplexity, etc.)
@@ -296,7 +296,7 @@ O fluxo completo é longo (8 passos, muita pesquisa real). Ao rodar `/seo` sem a
 
 > "O fluxo completo são 8 passos e leva um bom tempo de pesquisa. Posso rodar tudo de uma vez, ou começar pelos 3 primeiros (demanda, concorrência, GMB) — que é onde aparece resultado mais rápido. Como prefere?"
 
-Executar os passos em sequência, salvando cada output no arquivo correspondente. **Entre cada passo, mostrar resumo do que foi encontrado e confirmar antes de seguir** — se a pesquisa de demanda saiu errada, os 7 passos seguintes herdam o erro.
+Executar os passos em sequência, salvando cada output no arquivo correspondente. **Entre cada passo, mostrar resumo do que foi encontrado e confirmar antes de seguir**: se a pesquisa de demanda saiu errada, os 7 passos seguintes herdam o erro.
 
 Se o usuário quiser rodar apenas um passo: `/seo passo 3` ou `/seo gmb` ou `/seo geo`.
 

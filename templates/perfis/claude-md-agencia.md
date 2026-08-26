@@ -14,7 +14,7 @@ Aqui ficam todos os clientes, propostas, conteúdo e entregas."]
 
 **Convenção: por cliente.** Trabalho de cliente vai em `clientes/<Nome>/`;
 trabalho da casa vai na raiz. Cada pasta nasce quando a primeira peça é
-criada — workspace não tem pasta vazia.
+criada: workspace não tem pasta vazia.
 
 **Trabalho de cliente** — dentro de `clientes/<Nome>/`:
 
@@ -53,7 +53,7 @@ virar cliente, mover a proposta pra `clientes/<Nome>/`.
 
 As pastas do sistema (`.claude/skills/`, `templates/`, `scripts/`) convivem na
 raiz e são substituídas quando sai versão nova do ViperOS. Não guarde trabalho
-dentro delas — o resto da raiz é seu.
+dentro delas: o resto da raiz é seu.
 
 ## Sobre a agência
 
@@ -78,7 +78,7 @@ Time: [N pessoas]. Capacidade: [N clientes ativos simultâneos].
 
 ## Tom de voz
 
-[Como a agência se comunica — com cliente, em conteúdo público,
+[Como a agência se comunica, com cliente, em conteúdo público,
 internamente. Frase real ajuda mais que adjetivos.]
 
 Evitar: [o que destoa]

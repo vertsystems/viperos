@@ -49,7 +49,7 @@ Uma frente só devolve uma versão do mundo. Cobrir, quando aplicável:
 | **Concorrência** | Sites e conteúdo de quem já fala do tema | Mostra o que já está saturado |
 | **Notícia recente** | Últimos 12 meses | Detecta mudança de regra, preço, tendência |
 
-Ao buscar a voz do público, **copiar frases literais** (com a fonte). Uma frase real de cliente vale mais que três parágrafos de análise — é o material bruto do hook, da legenda e da objeção na proposta.
+Ao buscar a voz do público, **copiar frases literais** (com a fonte). Uma frase real de cliente vale mais que três parágrafos de análise: é o material bruto do hook, da legenda e da objeção na proposta.
 
 ### Passo 3 — Confrontar o que achou
 

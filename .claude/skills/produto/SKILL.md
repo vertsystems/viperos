@@ -2,7 +2,7 @@
 name: produto
 description: >
   Monta a página onde a pessoa compara e decide: produto, planos, cardápio, catálogo ou tabela
-  de preços — com seletor, preço, botão de compra antes da ficha técnica, parcelamento conforme
+  de preços, com seletor, preço, botão de compra antes da ficha técnica, parcelamento conforme
   o CDC e comparação que não confunde.
   Use quando o usuário disser "página do produto", "tabela de preços no site", "página de
   planos", "comparar os planos", "página do cardápio", "catálogo no site", "quero uma página
@@ -15,7 +15,7 @@ description: >
 
 O `/landing` faz a página de **uma** ação, para quem chegou de anúncio e precisa
 decidir sim ou não. Falta a outra: a página de quem já quer comprar e precisa escolher
-**qual** — qual plano, qual tamanho, qual prato, qual pacote.
+**qual**: qual plano, qual tamanho, qual prato, qual pacote.
 
 São páginas com lógicas opostas. A landing conduz por um caminho só; esta abre opções e
 tem de deixar a comparação fácil sem transformar a decisão em pesquisa.
@@ -79,7 +79,7 @@ página inteira:
 5. Daí em diante: ficha, medidas, comparação longa, FAQ
 
 **O botão é a quinta linha, antes de qualquer especificação.** Quem já decidiu compra;
-quem não decidiu continua rolando — a ficha técnica não sumiu, só saiu da frente.
+quem não decidiu continua rolando: a ficha técnica não sumiu, só saiu da frente.
 
 Depois: comparação (três planos, no máximo quatro, um recomendado com o motivo
 escrito), prova social com a régua do template, FAQ com objeção real de
@@ -87,7 +87,7 @@ escrito), prova social com a régua do template, FAQ com objeção real de
 
 ### Passo 4 — Escrever a página
 
-HTML único, **com os tokens inline** — a página é enviada sozinha por WhatsApp e não
+HTML único, **com os tokens inline**: a página é enviada sozinha por WhatsApp e não
 pode depender de CSS externo. Imagem de produto com `width` e `height` declarados.
 Movimento 3, seguindo `identidade/movimento.css` se existir.
 

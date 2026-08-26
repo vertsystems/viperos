@@ -1,8 +1,8 @@
 # Página de produto — onde a pessoa compara e decide
 
-Referência do `/produto`. Página diferente da landing: a landing tem **uma** ação e
-serve tráfego de anúncio; esta serve quem já quer comprar e precisa **escolher** —
-qual plano, qual tamanho, qual prato, qual pacote.
+Referência do `/produto`. É outra página, não a landing. A landing tem **uma** ação e
+serve tráfego de anúncio. Esta serve quem já quer comprar e precisa **escolher**: qual
+plano, qual tamanho, qual prato, qual pacote.
 
 ---
 
@@ -22,10 +22,10 @@ produto:
 
 **O botão é a quinta linha da página, antes de qualquer especificação.** Quase toda
 página de pequeno negócio faz o oposto: descreve tudo e coloca o botão no fim. Quem já
-decidiu tem de rolar a página inteira para comprar — e uma parte desiste no caminho.
+decidiu tem de rolar a página inteira para comprar, e uma parte desiste no caminho.
 
-Quem ainda não decidiu continua rolando: a ficha técnica não sumiu, só saiu da frente
-de quem não precisa dela.
+Quem ainda não decidiu continua rolando. A ficha técnica não sumiu. Só saiu da frente de
+quem não precisa dela.
 
 ---
 
@@ -33,7 +33,7 @@ de quem não precisa dela.
 
 O **art. 52 do Código de Defesa do Consumidor** obriga informar, em venda a prazo:
 montante dos juros, acréscimos, número e periodicidade das prestações e a **soma total
-a pagar**. Não é detalhe jurídico — é o que separa preço honesto de pegadinha:
+a pagar**. Não é detalhe jurídico: é o que separa preço honesto de pegadinha:
 
 ```
 R$ 97/mês  ·  12× de R$ 97 = R$ 1.164 no total
@@ -81,7 +81,7 @@ ainda está por perto e a barra só rouba espaço no celular.
 
 Quando existir: altura discreta, o preço atual, o nome do que está selecionado e o
 botão. E `scroll-padding-top` ajustado, senão ela cobre o elemento focado pelo teclado
-(critério 2.4.11 — ver `acessibilidade.md`).
+(critério 2.4.11, ver `acessibilidade.md`).
 
 ---
 
@@ -101,12 +101,12 @@ botão. E `scroll-padding-top` ajustado, senão ela cobre o elemento focado pelo
 
 ## Prova social com régua
 
-Avaliação alta demais desperta desconfiança — o Spiegel Research Center (Northwestern)
+Avaliação alta demais desperta desconfiança: o Spiegel Research Center (Northwestern)
 mediu que a probabilidade de compra sobe com a nota até uma faixa em torno de 4,2–4,7 e
 **cai** acima disso. Mas a régua tem um limite que é fácil esquecer:
 
 **Ela só vale acima de ~50 avaliações.** Uma clínica com 14 avaliações e nota 5,0 não
-deve esconder nada — abaixo desse volume, exibir **nota e contagem juntas** ("5,0 · 14
+deve esconder nada: abaixo desse volume, exibir **nota e contagem juntas** ("5,0 · 14
 avaliações") é mais honesto e mais eficaz que qualquer ajuste.
 
 E o que vale em qualquer volume: depoimento com nome e contexto reais, avaliação

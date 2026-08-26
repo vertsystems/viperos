@@ -8,7 +8,7 @@ oferta, preço, venda, material e operação rodarem com você dirigindo.
 
 **Você não precisa decorar comando nenhum.** Fala o que quer em português — "faz
 um carrossel sobre X", "quanto eu devo cobrar por isso", "minha página não
-converte" — e o sistema sabe o que fazer.
+converte", e o sistema sabe o que fazer.
 
 Bora.
 
@@ -71,7 +71,7 @@ converte · monta a proposta comercial em HTML.
 
 **Marca** — o rosto do negócio, aplicado em tudo
 Transforma sua identidade em tokens (paleta, tipografia, espaçamento) com
-contraste validado — e se você ainda não tem marca, propõe 3 direções · define
+contraste validado, e se você ainda não tem marca, propõe 3 direções · define
 posicionamento, história e voz · audita qualquer peça: contraste com número,
 hierarquia, mobile e cara de template genérico.
 
@@ -90,8 +90,8 @@ já tem (live, artigo, PDF) em 5 peças novas.
 **Qualidade** — o filtro antes de sair
 Corta gordura, mata clichê de IA, confere o tom contra o seu jeito de escrever e
 marca toda afirmação sem fonte. E quando o texto saiu de máquina e continua com
-cara de máquina mesmo sem clichê, ele mede o que está errado — ritmo das frases,
-quanto do texto é genérico — e reescreve com a sua voz, sem inventar fato.
+cara de máquina mesmo sem clichê, ele mede o que está errado: ritmo das frases,
+quanto do texto é genérico, e reescreve com a sua voz, sem inventar fato.
 
 **Distribuição e retorno**
 Fluxo de SEO em 8 passos (demanda, concorrência, GMB, on-page, conteúdo, ads,
@@ -117,7 +117,7 @@ primeiros segundos · e e-mail em HTML que chega inteiro na caixa de entrada,
 com descadastro em um clique.
 
 **Software** — quando o negócio precisa de sistema, não de peça
-Servidor, API, banco, login e publicação — com os dados desenhados antes do
+Servidor, API, banco, login e publicação, com os dados desenhados antes do
 código · o padrão das telas de uso (botão, campo, tabela, painel e os quatro
 estados: cheio, vazio, carregando, erro) · duração e curva das animações · a
 página onde o cliente compara e escolhe, com o botão antes da ficha técnica · e
@@ -129,7 +129,7 @@ Cataloga seus ativos reutilizáveis (depoimento, foto, dado, case) · lê
 CSV/XLSX/PDF e devolve resumo executivo · rascunha e-mail a partir de contexto
 livre.
 
-O sistema **produz e entrega os arquivos** — imagens numeradas, legenda pronta
+O sistema **produz e entrega os arquivos**: imagens numeradas, legenda pronta
 pra copiar e um `como-postar.md` com o passo a passo. Quando e onde publicar é
 decisão sua.
 
@@ -142,7 +142,7 @@ saem com tipografia, que funciona bem.
 
 **Publicação automática:** dá pra publicar direto no site + Instagram + Facebook
 via API da Meta. Exige token e site com deploy automático. Só vale em volume
-alto — pra uso normal, entregar os arquivos e programar na mão é mais rápido.
+alto: pra uso normal, entregar os arquivos e programar na mão é mais rápido.
 
 </details>
 
@@ -153,7 +153,7 @@ alto — pra uso normal, entregar os arquivos e programar na mão é mais rápid
 IA não é uma ferramenta que sua empresa usa. É o sistema operacional em que ela
 roda.
 
-A diferença não é velocidade. É capacidade nova — uma pessoa com IA constrói o
+A diferença não é velocidade. É capacidade nova: uma pessoa com IA constrói o
 que antes exigia time inteiro. Cada processo crítico que hoje roda em open loop
 (decide → executa → não mede → repete cego) vira closed loop dentro do ViperOS
 (decide → executa → captura → realimenta → ajusta sozinho).
@@ -164,7 +164,7 @@ O sistema não substitui você. Vira parte da sua empresa.
 
 ## Como o ViperOS pensa
 
-`_memoria/` é o cérebro. Tudo que importa do seu negócio mora aqui — quem é a
+`_memoria/` é o cérebro. Tudo que importa do seu negócio mora aqui: quem é a
 empresa, como ela fala, o que tá em foco, quem compra e o que você vende. O
 Claude lê isso antes de cada resposta. Quanto melhor a memória, melhor o sistema.
 
@@ -194,14 +194,14 @@ diz o que travou → volta pra oferta com informação nova.
 ## Atualizar
 
 Saiu versão nova? Fala "atualiza o ViperOS". Ele baixa o que mudou e sincroniza
-as skills **sem tocar no seu trabalho** — memória, marca, conteúdo e propostas
+as skills **sem tocar no seu trabalho**: memória, marca, conteúdo e propostas
 ficam intactos, e as skills que você criou por conta própria também.
 
 ---
 
 ## Licença
 
-MIT — livre. Use no seu negócio, modifique, use com seus clientes. Detalhes no
+MIT: livre. Use no seu negócio, modifique, use com seus clientes. Detalhes no
 arquivo `LICENSE`.
 
 ---

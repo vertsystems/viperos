@@ -71,7 +71,7 @@ Buscar em `campanhas/relatorios/` o relatório anterior. Se existir, calcular va
 - CPA (custo / conversão)
 - Custo por canal
 
-Se não existir, é a primeira leitura — sinalizar como baseline.
+Se não existir, é a primeira leitura: sinalizar como baseline.
 
 ### Passo 3 — Resumo executivo (topo do relatório)
 
@@ -99,10 +99,10 @@ alerta de orçamento, queda inesperada).
 Pra cada canal, listar:
 
 **Top 3 campanhas/grupos por performance** (menor CPA, maior conv. rate)
-**Bottom 3** (maior CPA, menor conv. rate) — sinalizar pra pausar ou ajustar
+**Bottom 3** (maior CPA, menor conv. rate): sinalizar pra pausar ou ajustar
 **Top criativos** (Meta): impressões + CTR + custo por resultado
 **Bottom criativos** (Meta): pra trocar ou pausar
-**Palavras-chave com mais custo e zero conversão** (Google) — virar negativas
+**Palavras-chave com mais custo e zero conversão** (Google), virar negativas
 
 ### Passo 5 — Alertas automáticos
 

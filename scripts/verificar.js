@@ -352,17 +352,24 @@ const CLICHES = [
 ];
 
 /** Tira o que não é prosa: frontmatter, código, tabela, URL, marcação. */
-function soProsa(bruto) {
+function soProsa(bruto, manterMarcacao = false) {
   return bruto
     .replace(/^---\r?\n[\s\S]*?\r?\n---/, "")       // frontmatter
     .replace(/```[\s\S]*?```/g, "")                  // bloco de código
     .replace(/`[^`\n]*`/g, "")                       // código curto
     .replace(/^\s*\|.*\|\s*$/gm, "")                 // tabela markdown
+    .replace(/<!--[\s\S]*?-->/g, " ")                 // comentário HTML não é texto publicado
+    .replace(/<(style|script)[\s\S]*?<\/\1>/gi, " ")  // CSS e JS não são prosa
+    // fim de bloco vira fronteira de parágrafo: sem isso, dois blocos vizinhos
+    // grudam numa "frase" só e o texto do HTML sai medido errado
+    .replace(/<\/(p|div|section|article|li|ul|ol|h[1-6]|td|tr|blockquote)>/gi, "\n\n")
+    .replace(/<br\s*\/?>/gi, "\n")
     .replace(/<[^>]+>/g, " ")                        // tags
     .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")         // link markdown
     .replace(/https?:\/\/\S+/g, "")                  // URL solta
-    .replace(/^#{1,6}\s+(.*)$/gm, (_, titulo) => titulo.replace(/—/g, " "))  // título: o travessão ali é estrutura
-    .replace(/[*_]{1,3}/g, "");                      // negrito e itálico
+    .replace(/^#{1,6}\s+.*$/gm, "")                  // título não é frase: entrar na conta infla
+                                                     // "frases curtas" e inventa paralelismo
+    .replace(manterMarcacao ? /(?!)/ : /[*_]{1,3}/g, "");   // negrito e itálico
 }
 
 function frasesDe(prosa) {
@@ -380,7 +387,28 @@ function verTexto(arquivo) {
   const total = palavras.length;
   if (total < 60) return info(`só ${total} palavras de prosa — curto demais para medir ritmo`);
 
-  const frases = frasesDe(prosa);
+  const problemasAntes = problemas;
+
+  // Ritmo se mede em prosa corrida: item de lista não tem cadência de frase, e um
+  // arquivo que é quase todo lista (catálogo, molde) daria número sem significado.
+  // Item de lista e suas CONTINUAÇÕES (linhas indentadas embaixo dele) saem juntos.
+  // Sem isso, a continuação de um item vira uma "frase" cortada pela metade.
+  let emItem = false;
+  const corrido = prosa
+    .split("\n")
+    .filter((l) => {
+      if (/^\s*([-*+]|\d+\.|\||>)/.test(l)) { emItem = true; return false; }
+      if (emItem && /^\s+\S/.test(l)) return false;      // continuação indentada
+      if (!l.trim()) { emItem = false; return true; }      // linha em branco fecha o item
+      emItem = false;
+      return true;
+    })
+    .join("\n");
+  const frases = frasesDe(corrido);
+  const palavrasCorridas = corrido.split(/\s+/).filter((x) => /[A-Za-zÀ-ÿ]/.test(x)).length;
+  if (palavrasCorridas < 120) {
+    info(`${palavrasCorridas} palavras de prosa corrida (o resto é lista ou tabela) — ritmo não medido`);
+  }
   const tam = frases.map((f) => f.split(/\s+/).filter(Boolean).length);
   const media = tam.reduce((a, b) => a + b, 0) / tam.length;
   const dp = Math.sqrt(tam.reduce((a, b) => a + (b - media) ** 2, 0) / tam.length);
@@ -392,7 +420,8 @@ function verTexto(arquivo) {
 
   // ── ritmo: o sinal que menos se disfarça ──
   const RITMO_MIN = 0.45;
-  if (variacao < RITMO_MIN) {
+  if (palavrasCorridas < 120) { /* medido acima: prosa insuficiente */ }
+  else if (variacao < RITMO_MIN) {
     erro(`ritmo uniforme: variação de ${variacao.toFixed(2)} no comprimento das frases (a régua é ${RITMO_MIN})`);
     info(`    máquina escreve frases do mesmo tamanho. O conserto é uma frase curta de verdade — três, quatro palavras — ao lado de uma longa`);
   } else ok(`ritmo variado: ${variacao.toFixed(2)} de variação no comprimento das frases`);
@@ -401,7 +430,8 @@ function verTexto(arquivo) {
   // Em texto de blog gerado, a proporção fica em 0%. Em texto com voz, entre 23% e 41%.
   const CURTAS_MIN = 15;   // por cento
   const curtas = Math.round((tam.filter((n) => n <= 8).length / tam.length) * 100);
-  if (curtas < CURTAS_MIN) {
+  if (palavrasCorridas < 120) { /* prosa insuficiente */ }
+  else if (curtas < CURTAS_MIN) {
     erro(`só ${curtas}% de frases curtas (até 8 palavras) — a régua é ${CURTAS_MIN}%`);
     info("    é o sinal mais fácil de consertar e o que mais muda a leitura: corte uma frase média no meio");
   } else ok(`${curtas}% de frases curtas — a cadência varia`);
@@ -410,9 +440,14 @@ function verTexto(arquivo) {
   const TRAVESSAO_MAX = 8;   // por mil palavras — ~1 a cada 125 palavras
   // Em item de lista, o PRIMEIRO travessão separa termo e definição — é estrutura.
   // O vício que denuncia texto gerado é o travessão retórico no meio do parágrafo.
-  const semDefinicao = prosa
+  // Definição é estrutura em três formas: item de lista, item dentro de citação e
+  // rótulo em negrito abrindo a linha ("**Núcleo** — o jeito de operar o dia a dia").
+  // Nas três, o PRIMEIRO travessão separa termo e explicação. Do segundo em diante,
+  // é retórica e conta.
+  const RE_DEFINICAO = /^\s*(?:>\s*)?(?:[-*+]|\d+\.)\s|^\s*(?:>\s*)?\*\*[^*\n]{2,60}\*\*\s*—/;
+  const semDefinicao = soProsa(bruto, true)
     .split("\n")
-    .map((l) => (/^\s*([-*+]|\d+\.)\s/.test(l) ? l.replace("—", " ") : l))
+    .map((l) => (RE_DEFINICAO.test(l) ? l.replace("—", " ") : l))
     .join("\n");
   const travessoes = (semDefinicao.match(/—/g) || []).length;
   // em texto curto a densidade por mil exagera: 2 travessões em 150 palavras não é vício
@@ -421,15 +456,25 @@ function verTexto(arquivo) {
   else if (travessoes) ok(`${travessoes} travessões (${porMil(travessoes)} por mil) — dentro da régua`);
 
   // ── clichê ──
-  // Linha que enumera termos separados por "·" é lista de referência (a `edicao.md` é
-  // uma delas), não prosa. Contar clichê ali acusaria o próprio material do sistema.
-  // e termo entre aspas está sendo CITADO, não usado — é o caso de todo material que
-  // ensina a evitar clichê, este arquivo de referência incluído.
-  const semListas = prosa
-    .split("\n")
-    .filter((l) => (l.match(/·/g) || []).length < 2)
-    .join("\n")
-    .replace(/["“][^"”\n]{2,60}["”]/g, " ");
+  // Três filtros para não acusar quem ENSINA a evitar clichê:
+  //   · linha com "·" repetido enumera termos (é o formato da `edicao.md`)
+  //   · termo entre aspas está sendo citado, não usado
+  //   · linha em que caem 3+ clichês distintos é enumeração didática, não prosa
+  const linhas = prosa.split("\n").map((l) => l.replace(/["“][^"”\n]{2,60}["”]/g, " "));
+  // Enumeração didática tem RÓTULO ("Verbos e aberturas:", "Advérbio que não muda nada:").
+  // Sem exigir o rótulo, um parágrafo promocional que amontoa clichês seria perdoado
+  // justamente por ser pior — foi o que aconteceu na primeira versão desta regra.
+  const RE_ROTULO = /^\s*(?:[-*+]\s+)?(?:\*\*)?[^:\n]{3,70}:(?:\*\*)?\s/;
+  const ehEnumeracao = (l) => {
+    if ((l.match(/·/g) || []).length >= 2) return true;
+    if (!RE_ROTULO.test(l)) return false;
+    const depois = l.slice(l.indexOf(":") + 1);
+    if ((depois.match(/,/g) || []).length >= 3) return true;   // "rótulo: a, b, c, d" é lista
+    let distintos = 0;
+    for (const [re] of CLICHES) if (re.test(l)) distintos++;
+    return distintos >= 3;
+  };
+  const semListas = linhas.filter((l) => !ehEnumeracao(l)).join("\n");
   const achados = [];
   for (const [re, nome] of CLICHES) {
     const n = (semListas.match(re) || []).length;
@@ -441,15 +486,26 @@ function verTexto(arquivo) {
 
   // ── advérbio em -mente ──
   const MENTE_MAX = 8;
-  const mentes = (prosa.match(/\b\w{4,}mente\b/gi) || []).length;
-  if (porMil(mentes) > MENTE_MAX) erro(`${mentes} advérbios em "-mente" (${porMil(mentes)} por mil, a régua é ${MENTE_MAX})`);
+  const mentes = prosa
+    .split("\n")
+    .filter((l) => (l.match(/\b\w{4,}mente\b/gi) || []).length < 3)   // linha com 3+ é a lista de proibidos
+    .join("\n")
+    .match(/\b\w{4,}mente\b/gi)?.length || 0;
+  if (mentes >= 3 && porMil(mentes) > MENTE_MAX) erro(`${mentes} advérbios em "-mente" (${porMil(mentes)} por mil, a régua é ${MENTE_MAX})`);
 
   // ── formato de lista ──
   const itens = bruto.match(/^\s*[-*+]\s+\S/gm) || [];
   const negrito = bruto.match(/^\s*[-*+]\s+\*\*/gm) || [];
-  if (itens.length >= 4 && negrito.length / itens.length > 0.7)
-    erro(`${negrito.length} de ${itens.length} itens de lista começam em negrito — é o formato de bullet mais reconhecível de texto gerado`);
-  const emojiBullet = bruto.match(/^\s*[-*+]?\s*[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gmu) || [];
+  if (itens.length >= 4 && negrito.length / itens.length > 0.7) {
+    const msg = `${negrito.length} de ${itens.length} itens de lista começam em negrito — o formato de bullet mais reconhecível de texto gerado`;
+    // Sozinho é sinal fraco: material de referência usa "- **termo** — definição" com
+    // razão. Vira problema quando vem junto de ritmo uniforme ou clichê.
+    if (problemas > problemasAntes) erro(msg); else info(msg);
+  }
+  // ✓ ✔ ✗ → e afins são marcação funcional (o bloco de entrega de toda skill usa "✓").
+  // O que denuncia é emoji pictórico: 🚀 💡 ✨ 🔥.
+  const semCodigo = bruto.replace(/```[\s\S]*?```/g, "");
+  const emojiBullet = semCodigo.match(/^\s*[-*+]?\s*[\u{1F300}-\u{1FAFF}\u{2728}\u{2733}\u{2734}\u{2757}\u{2764}]/gmu) || [];
   if (emojiBullet.length >= 3) erro(`${emojiBullet.length} linhas com emoji fazendo papel de bullet`);
 
   // ── parágrafo que começa com conectivo de enumeração ──
@@ -461,15 +517,20 @@ function verTexto(arquivo) {
     erro(`${comConectivo} parágrafos abrem com conectivo de enumeração ("Além disso", "Por fim") — é a espinha do texto de redação automática`);
 
   // ── abertura repetida: paralelismo mecânico ──
-  const inicios = frases.map((f) => (f.match(/^[A-Za-zÀ-ÿ]+/) || [""])[0].toLowerCase());
-  let seguidas = 1, pior = 1, palavraPior = "";
-  for (let i = 1; i < inicios.length; i++) {
-    if (inicios[i] && inicios[i] === inicios[i - 1]) {
-      seguidas++;
-      if (seguidas > pior) { pior = seguidas; palavraPior = inicios[i]; }
-    } else seguidas = 1;
+  // Dentro do MESMO parágrafo. Sem isso, frases separadas por uma lista de vinte itens
+  // eram lidas como consecutivas, e todo catálogo virava "paralelismo mecânico".
+  let pior = 1, palavraPior = "";
+  for (const par of corrido.split(/\n{2,}/)) {
+    const ini = frasesDe(par).map((f) => (f.match(/^[A-Za-zÀ-ÿ]+/) || [""])[0].toLowerCase());
+    let seguidas = 1;
+    for (let i = 1; i < ini.length; i++) {
+      if (ini[i] && ini[i] === ini[i - 1]) {
+        seguidas++;
+        if (seguidas > pior) { pior = seguidas; palavraPior = ini[i]; }
+      } else seguidas = 1;
+    }
   }
-  if (pior >= 3) erro(`${pior} frases seguidas começando com "${palavraPior}" — paralelismo mecânico`);
+  if (pior >= 3) erro(`${pior} frases seguidas no mesmo parágrafo começando com "${palavraPior}" — paralelismo mecânico`);
 }
 
 // ─────────────────────────── CONTRASTE ───────────────────────────

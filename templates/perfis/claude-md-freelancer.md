@@ -46,7 +46,7 @@ virar cliente, mover a proposta de `propostas/` pra `clientes/<Nome>/`.
 
 As pastas do sistema (`.claude/skills/`, `templates/`, `scripts/`) convivem na
 raiz e são substituídas quando sai versão nova do ViperOS. Não guarde trabalho
-dentro delas — o resto da raiz é seu.
+dentro delas: o resto da raiz é seu.
 
 ## Quem sou
 

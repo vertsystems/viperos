@@ -1,6 +1,6 @@
 # Interface — controle, estado e densidade
 
-Referência compartilhada das skills que desenham tela de uso (não peça de marketing).
+Referência das skills que desenham tela de uso. Não peça de marketing.
 Lida por `/interface`, e consultada por `/design-system` e `/revisar-design` quando a
 peça tem controle, formulário ou tabela.
 
@@ -17,11 +17,11 @@ não responde:
 | Spotify | escala de hover em card e capa |
 | One UI (Samsung) | alcance do polegar em tela grande de celular |
 
-Empilhar as cinco sem base declarada é o erro que faz a tela não parecer de nenhuma.
+Empilhar as cinco sem base declarada é o erro clássico. A tela não parece de nenhuma.
 Se uma decisão vier de fora do M3, escrever o motivo em uma linha no CSS.
 
 **Unidade: px CSS, sempre.** O M3 publica em `dp` e a Apple em `pt`. Na tela, com
-densidade 1, `1dp = 1pt = 1px CSS` — a conversão já está feita em todo número deste
+densidade 1, `1dp = 1pt = 1px CSS`: a conversão já está feita em todo número deste
 arquivo. Nunca escrever `dp` ou `pt` num HTML: essas unidades não existem em CSS.
 
 ---
@@ -38,7 +38,7 @@ Três alturas resolvem uma interface inteira (Fluent 2, `useButtonStyles.styles.
 
 ### Densidade compacta é proibida por padrão
 
-O piso do ViperOS é **34px de alvo clicável no desktop e 44px no celular** — mesmo
+O piso do ViperOS é **34px de alvo clicável no desktop e 44px no celular**: mesmo
 quando o controle desenhado tem 24px de altura visual. A diferença se resolve com
 `padding` ou com área de toque invisível, não encolhendo o botão:
 
@@ -52,12 +52,12 @@ quando o controle desenhado tem 24px de altura visual. A diferença se resolve c
 ```
 
 Por quê: o público do ViperOS é negócio real, com gente de 50, 60, 70 anos usando no
-celular apoiado numa bancada. **Restrição vence estética** — a mesma regra do
+celular apoiado numa bancada. **Restrição vence estética**: a mesma regra do
 `briefing-visual.md`. Interface de 24px é confortável para quem desenha, não para quem
 usa oito horas por dia com o dedo.
 
 A exceção é literal e única: ação repetida dentro de uma linha de tabela densa, no
-desktop, com mouse — e ainda assim com `min-height: 34px`.
+desktop, com mouse, e ainda assim com `min-height: 34px`.
 
 ---
 
@@ -109,7 +109,7 @@ A borda inferior é a que sinaliza "aqui se digita" e precisa passar em 3:1 (WCA
 Restante do campo:
 
 - Rótulo **fora** do campo, sempre visível. Placeholder como rótulo some quando a
-  pessoa começa a digitar — e é a causa nº 1 de formulário preenchido errado
+  pessoa começa a digitar, e é a causa nº 1 de formulário preenchido errado
 - Erro em texto, ao lado do campo, com `aria-describedby`. Cor sozinha não comunica
 - Campo obrigatório marcado no rótulo, não só com asterisco vermelho
 - `autocomplete` no que é dado pessoal (WCAG 1.3.5 e 3.3.7 — ver `acessibilidade.md`)
@@ -119,7 +119,7 @@ Restante do campo:
 
 ## Elevação no escuro é tom, não sombra
 
-Sombra preta sobre fundo escuro não aparece — o resultado é uma tela chapada onde nada
+Sombra preta sobre fundo escuro não aparece: o resultado é uma tela chapada onde nada
 parece acima de nada. O M3 resolve clareando a superfície:
 
 | Nível | Sobreposição de branco | Uso |
@@ -143,7 +143,7 @@ direção de luz só para a tela inteira.
 
 ## Os quatro estados de toda tela
 
-É o que separa tela "pronta" de tela terminada — e o que mais aparece como bug depois
+É o que separa tela "pronta" de tela terminada, e o que mais aparece como bug depois
 que o cliente começa a usar. **Toda tela que carrega dado escreve os quatro**, marcados
 para virar verificação por comando:
 
@@ -169,7 +169,7 @@ frequente.
 
 ## Tabela de dados
 
-Onde o pequeno negócio realmente passa o dia — pedido, cliente, estoque:
+Onde o pequeno negócio realmente passa o dia: pedido, cliente, estoque:
 
 - **Uma linha por item.** Card com foto para listar 200 pedidos é bonito e inútil
 - `font-variant-numeric: tabular-nums` em toda coluna de número, para as casas alinharem

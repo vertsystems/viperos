@@ -4,7 +4,7 @@ Referência compartilhada. Lida por `/design-system`, `/landing`, `/carrossel`, 
 
 ## Por que isso existe
 
-A maior causa de peça com "cara de IA" não é falta de habilidade: é pular a leitura do contexto e cair no padrão default. O modelo, sem instrução, sempre vai para o mesmo lugar — gradiente roxo-azul, herói centralizado em fundo escuro, três cards iguais, Inter em tudo. O antídoto é declarar a leitura antes de começar.
+A maior causa de peça com "cara de IA" não é falta de habilidade: é pular a leitura do contexto e cair no padrão default. O modelo, sem instrução, sempre vai para o mesmo lugar: gradiente roxo-azul, herói centralizado em fundo escuro, três cards iguais, Inter em tudo. O antídoto é declarar a leitura antes de começar.
 
 ---
 
@@ -33,7 +33,7 @@ Exemplos:
 - *"Proposta comercial para indústria que decide em reunião, linguagem sóbria e técnica, puxando para fundo claro, tipografia grande e tabela limpa — precisa funcionar impressa."*
 - *"Apostila para aluno de curso presencial, linguagem didática, puxando para editorial com serifada no corpo e boxes de destaque."*
 
-Se a leitura for genuinamente ambígua, fazer **uma** pergunta — nunca um questionário. Se der para inferir do contexto, não perguntar: declarar e seguir.
+Se a leitura for genuinamente ambígua, fazer **uma** pergunta, nunca um questionário. Se der para inferir do contexto, não perguntar: declarar e seguir.
 
 ---
 
@@ -86,7 +86,7 @@ Não cair nisso por inércia. Só usar se a leitura do briefing pedir de verdade
 - Emoji fazendo papel de ícone
 - Sombra em todo elemento
 
-Cada um desses é a resposta preguiçosa. Alcançar além deles é escolha deliberada, guiada pela leitura — e é isso que separa peça de marca de peça de template.
+Cada um desses é a resposta preguiçosa. Alcançar além deles é escolha deliberada, guiada pela leitura, e é isso que separa peça de marca de peça de template.
 
 ---
 

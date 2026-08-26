@@ -174,7 +174,7 @@ Antes de criar skill, conferir se um desses já cobre:
 
 ## As skills do próprio sistema
 
-Não resolvem trabalho do negócio — cuidam do ViperOS em si:
+Não resolvem trabalho do negócio: cuidam do ViperOS em si:
 
 | Tarefa | Skill |
 |---|---|

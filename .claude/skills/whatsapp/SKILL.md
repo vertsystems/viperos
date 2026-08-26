@@ -37,7 +37,7 @@ Pra maioria dos pequenos negócios brasileiros, o WhatsApp **é** a loja: é lá
 > "Em quanto tempo você costuma responder?"
 > "Onde a conversa costuma morrer?"
 
-Se ele tiver conversas antigas, ler alguns exemplos vale mais que qualquer suposição — a
+Se ele tiver conversas antigas, ler alguns exemplos vale mais que qualquer suposição: a
 linguagem real do cliente está ali.
 
 ### Passo 2 — Escrever a primeira resposta
@@ -58,7 +58,7 @@ o que faz mais sentido.
 ```
 
 **Sobre responder preço:** responder. A tática de "me chama no direct" pra fugir do valor
-custa mais venda do que protege. O que funciona é dar o preço **com contexto** — o que está
+custa mais venda do que protege. O que funciona é dar o preço **com contexto**: o que está
 incluso, o prazo, e uma pergunta que devolve a conversa.
 
 ### Passo 3 — Montar o kit de respostas rápidas
@@ -102,7 +102,7 @@ Gerar o link pronto e conferir que o número está completo com DDI e DDD.
 - Frequência baixa. Duas por mês já é bastante
 
 **Aviso que precisa ser dito:** disparo em massa pra quem não pediu contato faz o número
-ser denunciado e banido — e o número banido leva junto o histórico de conversa, os grupos e
+ser denunciado e banido, e o número banido leva junto o histórico de conversa, os grupos e
 o catálogo. Não existe recuperação garantida. Se o usuário quiser volume, o caminho é a API
 oficial (WhatsApp Business Platform), com custo por conversa e regras próprias.
 
@@ -127,7 +127,7 @@ https://wa.me/55DDDNUMERO?text=Oi!%20Vim%20pelo%20[origem]%20e%20quero%20saber%2
 ```
 
 Antes de entregar, conferir o link com `node scripts/verificar.js html` se ele for pra
-dentro de alguma peça — link de `wa.me` sem número é um dos erros que o verificador pega.
+dentro de alguma peça: link de `wa.me` sem número é um dos erros que o verificador pega.
 
 ---
 

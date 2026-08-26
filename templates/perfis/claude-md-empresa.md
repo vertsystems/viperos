@@ -13,7 +13,7 @@ Cada setor tem sua área, com processos, entregas e documentos."]
 ## Onde salvar o que
 
 **Convenção: por tipo de entrega.** Cada pasta nasce quando a primeira peça
-daquele tipo é criada — workspace não tem pasta vazia.
+daquele tipo é criada: workspace não tem pasta vazia.
 
 | O que | Onde | Skill |
 |---|---|---|
@@ -43,7 +43,7 @@ e registrar aqui a regra. Projeto que cruza setores vai em `projetos/<nome>/`
 
 As pastas do sistema (`.claude/skills/`, `templates/`, `scripts/`) convivem na
 raiz e são substituídas quando sai versão nova do ViperOS. Não guarde trabalho
-dentro delas — o resto da raiz é seu.
+dentro delas: o resto da raiz é seu.
 
 ## Sobre a empresa
 
@@ -69,7 +69,7 @@ Somos [N] pessoas organizadas em [setores existentes].
 
 ## Tom de voz
 
-[Como a empresa se comunica — interno vs externo pode ser diferente.
+[Como a empresa se comunica: interno vs externo pode ser diferente.
 Frase real ajuda mais que adjetivos.]
 
 Evitar: [o que destoa da marca]

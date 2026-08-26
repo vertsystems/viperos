@@ -1,7 +1,7 @@
 ---
 name: atualizar-sistema
 description: >
-  Atualiza o ViperOS pra versão nova sem tocar no trabalho do usuário — traz skills, templates e
+  Atualiza o ViperOS pra versão nova sem tocar no trabalho do usuário: traz skills, templates e
   scripts novos, preservando memória, marca, conteúdo e as skills que ele criou. Use quando o usuário
   disser "atualiza o ViperOS", "atualiza o sistema", "saiu versão nova", "tem atualização",
   "sincronizar skills", ou /atualizar-sistema. Não confundir com /atualizar, que cuida da memória do negócio.
@@ -49,7 +49,7 @@ Nada fora dessa lista é tocado. Memória, marca e trabalho ficam exatamente com
 
 ### Passo 3 — Cuidar das skills personalizadas
 
-Skill que o usuário criou (pelo `/mapear-rotinas` ou na mão) **não vem do produto e não pode ser perdida**. O comando acima não apaga arquivo que só existe local — mas conferir mesmo assim:
+Skill que o usuário criou (pelo `/mapear-rotinas` ou na mão) **não vem do produto e não pode ser perdida**. O comando acima não apaga arquivo que só existe local, mas conferir mesmo assim:
 
 Antes de aplicar, listar o que existe em `.claude/skills/` e comparar com o que vem do repositório. Skill que só existe local é personalizada: avisar que foi preservada, e nunca sobrescrever.
 
@@ -61,7 +61,7 @@ Se uma skill do produto foi **editada pelo usuário**, o `checkout` vai substitu
 git diff --name-only HEAD viperos/main -- .claude/skills
 ```
 
-Isso lista o que diverge — misturando edição dele com novidade da versão nova. Pra separar, olhar o que mudou de cada lado desde o ponto em comum:
+Isso lista o que diverge, misturando edição dele com novidade da versão nova. Pra separar, olhar o que mudou de cada lado desde o ponto em comum:
 
 ```bash
 base=$(git merge-base HEAD viperos/main)
@@ -71,7 +71,7 @@ git diff --name-only $base viperos/main -- .claude/skills # o que o PRODUTO mudo
 
 Skill que aparece nas duas listas é conflito real: mostrar o que a versão nova traz e perguntar se mantém a dele ou aceita a nova. **Nunca sobrescrever em silêncio.**
 
-Se o workspace não for repositório git (ele baixou o zip), essa detecção não existe — nesse caso, avisar antes de aplicar que edição local em skill do produto será substituída.
+Se o workspace não for repositório git (ele baixou o zip), essa detecção não existe: nesse caso, avisar antes de aplicar que edição local em skill do produto será substituída.
 
 ### Passo 4 — Sem git: baixar e sincronizar
 
@@ -84,7 +84,7 @@ mkdir -p /tmp/viperos-novo && tar -xzf /tmp/viperos.tgz -C /tmp/viperos-novo --s
 
 Depois copiar **só** `.claude/skills/`, `templates/`, `scripts/`, `.env.example`, `LICENSE` e `README.md` de `/tmp/viperos-novo/` pra cá. Limpar a pasta temporária no fim.
 
-Aproveitar pra sugerir: "Da próxima vez fica mais fácil se você clonar em vez de baixar o zip — aí a atualização é automática."
+Aproveitar pra sugerir: "Da próxima vez fica mais fácil se você clonar em vez de baixar o zip, aí a atualização é automática."
 
 ### Passo 5 — Conferir que nada quebrou
 
@@ -94,7 +94,7 @@ node scripts/verificar.js sistema
 
 Atualização traz arquivo novo e apaga arquivo velho: é onde aparece skill que
 deixou de carregar, referência apontando pra template que não veio, e contagem
-desatualizada. Se acusar algo, resolver **antes** de relatar — o usuário não tem
+desatualizada. Se acusar algo, resolver **antes** de relatar: o usuário não tem
 como saber que a skill parou de ser encontrada.
 
 ### Passo 6 — Relatar
@@ -112,7 +112,7 @@ estão exatamente como estavam.
 
 Se entrou skill nova, **demonstrar** em vez de mandar reiniciar: explicar em uma linha o que ela faz e oferecer usar na hora.
 
-Se a skill nova não aparecer na lista do `/` nessa sessão, ela funciona igual — é um arquivo markdown, basta o usuário pedir em português. Não transformar isso em instrução técnica.
+Se a skill nova não aparecer na lista do `/` nessa sessão, ela funciona igual: é um arquivo markdown, basta o usuário pedir em português. Não transformar isso em instrução técnica.
 
 ---
 

@@ -10,7 +10,7 @@ description: >
 
 # /design-system — Da marca ao sistema
 
-O `identidade/design-guide.md` descreve a marca em prosa. Prosa se interpreta de formas diferentes a cada peça — é por isso que carrossel, proposta e site acabam parecendo marcas distintas. Essa skill transforma a descrição em valores fixos que as outras skills consomem sem improvisar.
+O `identidade/design-guide.md` descreve a marca em prosa. Prosa se interpreta de formas diferentes a cada peça: é por isso que carrossel, proposta e site acabam parecendo marcas distintas. Essa skill transforma a descrição em valores fixos que as outras skills consomem sem improvisar.
 
 ## Dependências
 
@@ -41,9 +41,9 @@ Três cenários:
 
 Antes de propor, ler o setor e o público em `_memoria/empresa.md`. Uma marca de advocacia e uma de food truck não aceitam a mesma direção.
 
-Apresentar 3 opções, cada uma com: nome da direção, paleta (hex), par tipográfico, uma frase do que ela comunica e onde ela costuma ser usada. Cobrir territórios diferentes de propósito — não três variações do mesmo. Por exemplo: uma sóbria/institucional, uma quente/humana, uma alto-contraste/direta.
+Apresentar 3 opções, cada uma com: nome da direção, paleta (hex), par tipográfico, uma frase do que ela comunica e onde ela costuma ser usada. Cobrir territórios diferentes de propósito, não três variações do mesmo. Por exemplo: uma sóbria/institucional, uma quente/humana, uma alto-contraste/direta.
 
-Perguntar qual e seguir. Se ele misturar ("a paleta da 2 com a fonte da 1"), aceitar — desde que o contraste valide no Passo 3.
+Perguntar qual e seguir. Se ele misturar ("a paleta da 2 com a fonte da 1"), aceitar: desde que o contraste valide no Passo 3.
 
 ### Passo 2 — Gerar as escalas em três camadas
 
@@ -62,19 +62,19 @@ Camada 3 — componente →  onde o valor é usado
 /* 2. semântica: é isso que as skills usam */
 --accent: var(--azul-600);
 
-/* 3. componente: quando um elemento precisa de exceção */
+/* 3. componente, quando um elemento precisa de exceção */
 --botao-fundo: var(--accent);
 ```
 
 A regra que faz o sistema valer: **peça nenhuma usa a camada 1 direto.** Carrossel, proposta e página consomem só a camada semântica. Assim, trocar a cor da marca é editar uma linha.
 
-**Cores.** Pra cada cor base (fundo, destaque, texto), gerar 9 degraus (`50` a `900`) mantendo o matiz e variando luminosidade — é o que permite hover, borda, fundo de card e texto secundário sem inventar cor na hora.
+**Cores.** Pra cada cor base (fundo, destaque, texto), gerar 9 degraus (`50` a `900`) mantendo o matiz e variando luminosidade: é o que permite hover, borda, fundo de card e texto secundário sem inventar cor na hora.
 
 Tokens semânticos obrigatórios: `--bg`, `--bg-alt`, `--surface`, `--text`, `--text-muted`, `--border`, `--accent`, `--accent-hover`, `--accent-contrast`, `--success`, `--warning`, `--danger`.
 
 **Tipografia.** Escala modular razão 1.25 (ou 1.333 se a marca é editorial/expressiva), ancorada em 16px: `--fs-xs` a `--fs-4xl`.
 
-E aqui está o detalhe que a maioria dos sistemas erra: **tracking e leading não são um valor só — variam com o tamanho.**
+E aqui está o detalhe que a maioria dos sistemas erra: **tracking e leading não são um valor só, variam com o tamanho.**
 
 ```css
 /* título grande: tracking negativo, leading apertado */
@@ -87,13 +87,13 @@ E aqui está o detalhe que a maioria dos sistemas erra: **tracking e leading nã
 --tracking-olho:     0.22em;   --lh-olho:    1.2;
 ```
 
-Letra grande parece afastada e pede aproximação; letra pequena em caixa alta pede o contrário. Esse contraste — título apertado, olho aberto — é o que faz a peça parecer desenhada por alguém.
+Letra grande parece afastada e pede aproximação; letra pequena em caixa alta pede o contrário. Esse contraste, título apertado, olho aberto, é o que faz a peça parecer desenhada por alguém.
 
 Definir 4 pesos, não 2: 400 corpo, 500 destaque no corpo, 600 subtítulo, 700-800 título.
 
 **Espaçamento.** Grade de 4px: `--sp-1` (4px) até `--sp-16` (64px). Nada de valor arbitrário tipo 13px ou 27px.
 
-**Resto.** `--radius-sm/md/lg/full` (variar: menor dentro, maior fora), `--shadow-sm/md/lg` tingida com o matiz do fundo — ou nenhuma, se a marca não usa sombra —, `--container` (largura máxima; 65-75ch pra texto corrido), breakpoints.
+**Resto.** `--radius-sm/md/lg/full` (variar: menor dentro, maior fora), `--shadow-sm/md/lg` tingida com o matiz do fundo, ou nenhuma, se a marca não usa sombra —, `--container` (largura máxima; 65-75ch pra texto corrido), breakpoints.
 
 ### Passo 3 — Validar contraste (obrigatório)
 
@@ -102,7 +102,7 @@ Calcular a razão de contraste de toda combinação texto/fundo que o sistema pe
 - Texto grande (≥24px, ou ≥18.7px em bold): mínimo **3:1**
 - Borda de componente e ícone informativo: mínimo **3:1**
 
-Se alguma combinação reprovar, **ajustar a luminosidade do token** e recalcular — não entregar sistema com par ilegível. Relatar o que precisou mudar:
+Se alguma combinação reprovar, **ajustar a luminosidade do token** e recalcular, não entregar sistema com par ilegível. Relatar o que precisou mudar:
 
 > "O destaque #FF5C35 sobre fundo claro dava 2.8:1 — abaixo do mínimo pra texto. Escurecí pra #D6421C (4.6:1) só no token de texto; o original continua valendo pra fundo de botão com texto branco (5.1:1)."
 
@@ -118,7 +118,7 @@ Cabeçalho do arquivo com: nome da marca, data de geração, fontes usadas (com 
 
 Página única que importa o `tokens.css` e mostra o sistema aplicado: paleta com os hex visíveis, escala tipográfica com os tamanhos reais, botões (padrão, secundário, hover), card, formulário, tabela, citação, tag/pill, e um exemplo de bloco de conteúdo real.
 
-Serve como referência pro usuário e como teste: se algo fica feio ou ilegível aqui, o token está errado — e conserta antes de contaminar as peças.
+Serve como referência pro usuário e como teste: se algo fica feio ou ilegível aqui, o token está errado, e conserta antes de contaminar as peças.
 
 ### Passo 6 — Atualizar o design-guide e entregar
 

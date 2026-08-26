@@ -1,7 +1,7 @@
 ---
 name: vender
 description: >
-  Prepara e conduz a conversa de venda — roteiro de perguntas que fazem o cliente perceber o tamanho
+  Prepara e conduz a conversa de venda: roteiro de perguntas que fazem o cliente perceber o tamanho
   do problema, tratamento de objeção e fechamento com próximo passo. Serve pra reunião, ligação,
   WhatsApp e balcão. Use quando o usuário disser "conversa de venda", "reunião com cliente",
   "como abordar", "o cliente enrola", "me pedem orçamento e desaparecem", "tratar objeção",
@@ -34,7 +34,7 @@ O erro que quase todo negócio pequeno comete: apresentar a solução antes do c
 3. **Demonstração** — mostrar que resolve, ligado ao que ele **disse**
 4. **Compromisso** — combinar o próximo passo concreto
 
-Erro comum: pular direto pra 3. Quando isso acontece, a conversa termina em "vou pensar" — que não é objeção, é falta de investigação.
+Erro comum: pular direto pra 3. Quando isso acontece, a conversa termina em "vou pensar": que não é objeção, é falta de investigação.
 
 ---
 
@@ -44,7 +44,7 @@ Erro comum: pular direto pra 3. Quando isso acontece, a conversa termina em "vou
 
 "Como funciona hoje?", "Quantas pessoas mexem nisso?", "Desde quando é assim?"
 
-Servem pra você entender o terreno. **Fazer poucas** — cliente cansa de responder o que você poderia ter pesquisado antes.
+Servem pra você entender o terreno. **Fazer poucas**: cliente cansa de responder o que você poderia ter pesquisado antes.
 
 ### 2. Problema — trazer a dificuldade à tona
 
@@ -56,7 +56,7 @@ Aqui aparece a dificuldade. Mas atenção: dificuldade admitida **não é** inte
 
 "E quando isso acontece, o que mais é afetado?", "Isso já te custou quanto?", "Se continuar assim os próximos seis meses, o que acontece?", "Além de você, quem sente esse problema aí dentro?"
 
-**Essa é a pergunta que transforma "é chato" em "preciso resolver".** É a mais difícil de fazer na hora — precisa ser preparada antes. Numa conversa comum, aparece uma vez a cada vinte perguntas; nas conversas que fecham, muito mais.
+**Essa é a pergunta que transforma "é chato" em "preciso resolver".** É a mais difícil de fazer na hora: precisa ser preparada antes. Numa conversa comum, aparece uma vez a cada vinte perguntas; nas conversas que fecham, muito mais.
 
 Preparar de 3 a 5 perguntas de implicação **antes** da reunião, ligadas às consequências reais do problema desse cliente.
 
@@ -83,7 +83,7 @@ Enquanto ele não declarar a necessidade, continuar na investigação. Apresenta
 
 ## Objeção
 
-Objeção quase sempre é sintoma de investigação incompleta — não de argumento faltando. Antes de responder, entender de qual tipo é:
+Objeção quase sempre é sintoma de investigação incompleta, não de argumento faltando. Antes de responder, entender de qual tipo é:
 
 | Objeção | O que geralmente é | Como tratar |
 |---|---|---|
@@ -141,7 +141,7 @@ Gerar, com base em `_memoria/publico.md` e na oferta:
 
 ### Passo 3 — Adaptar ao canal
 
-**WhatsApp:** uma pergunta por mensagem, nunca bloco de texto. Investigação vira conversa de vários dias — e isso é normal.
+**WhatsApp:** uma pergunta por mensagem, nunca bloco de texto. Investigação vira conversa de vários dias, e isso é normal.
 **Ligação:** abertura de 30 segundos, pedir permissão pra fazer perguntas.
 **Balcão / presencial:** investigação curta, 2-3 perguntas no máximo, decisão na hora.
 **Reunião marcada:** roteiro completo, e mandar antes o que ele precisa trazer.

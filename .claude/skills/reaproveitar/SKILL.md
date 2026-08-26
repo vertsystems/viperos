@@ -28,7 +28,7 @@ Todo negócio já produziu mais conteúdo do que usou: live que ninguém reassis
 
 Aceita: artigo do blog, transcrição, vídeo/live (extrair legenda), áudio, PDF, post antigo, thread, e-mail longo, ata de reunião.
 
-Se for material longo (mais de 20 min de fala ou 3.000 palavras), avisar que vai extrair os melhores trechos e não tudo — reaproveitamento é curadoria, não moagem.
+Se for material longo (mais de 20 min de fala ou 3.000 palavras), avisar que vai extrair os melhores trechos e não tudo: reaproveitamento é curadoria, não moagem.
 
 ### Passo 2 — Garimpar os pontos de valor
 
@@ -63,7 +63,7 @@ Cada peça é adaptada ao formato, não copiada:
 - **Newsletter / e-mail** → versão pessoal, com o que não caberia em post
 - **Slide** → entra num deck existente ou vira material de treinamento
 
-**Adaptar de verdade:** o que funciona falado não funciona escrito. Fala tem repetição, gancho verbal e digressão — o texto precisa da estrutura que a fala dispensa.
+**Adaptar de verdade:** o que funciona falado não funciona escrito. Fala tem repetição, gancho verbal e digressão: o texto precisa da estrutura que a fala dispensa.
 
 ### Passo 4 — Preservar a origem
 

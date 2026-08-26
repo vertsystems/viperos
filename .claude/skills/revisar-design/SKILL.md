@@ -62,12 +62,12 @@ Calcular a razão de cada par texto/fundo. Reprovado: <4.5:1 em texto normal, <3
 Comparar com os tokens: cor fora da paleta? fonte que não é do sistema? raio diferente do padrão? Listar cada desvio com o valor encontrado e o token correto.
 
 **6. Legibilidade no celular**
-Corpo abaixo de 16px, texto sobre foto sem sobreposição suficiente, alvo de toque menor que 44px, e — em peça para Instagram — texto perto da borda que a prévia corta.
+Corpo abaixo de 16px, texto sobre foto sem sobreposição suficiente, alvo de toque menor que 44px, e, em peça para Instagram, texto perto da borda que a prévia corta.
 
 **7. Cara de peça genérica**
 Percorrer o `anti-generico.md`. Os que mais aparecem: gradiente roxo-azul, três cards iguais, tudo centralizado, olho numerado (`001 · SERVIÇOS`), ponto-médio como separador universal, bolinha colorida decorativa, travessão como enfeite, título quebrado com `<br>` em itálico, sombra em tudo, raio idêntico em tudo.
 
-Cada um derruba a percepção de valor — apontar sem meias palavras.
+Cada um derruba a percepção de valor: apontar sem meias palavras.
 
 **Bônus, quando a peça é uma página web:** as Web Interface Guidelines públicas da Vercel são uma boa lista complementar de checagem de interface. Se houver acesso à internet e a peça for interface de verdade (não carrossel nem PDF), vale buscar e conferir. Nunca depender disso: os sete checks acima rodam sozinhos.
 
@@ -92,7 +92,7 @@ Cada um derruba a percepção de valor — apontar sem meias palavras.
 
 No máximo 10 itens. Se houver mais, cortar os detalhes e dizer que cortou.
 
-Quando fizer sentido, seguir a **ordem de conserto** do `anti-generico.md` — fonte primeiro, paleta depois, layout na sequência. É o que dá mais ganho visível com menos risco.
+Quando fizer sentido, seguir a **ordem de conserto** do `anti-generico.md`: fonte primeiro, paleta depois, layout na sequência. É o que dá mais ganho visível com menos risco.
 
 ### Passo 4 — Oferecer o conserto
 

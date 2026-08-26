@@ -1,7 +1,7 @@
 ---
 name: apresentacao
 description: >
-  Monta deck 16:9 com a identidade da marca pra reunião, pitch, treinamento ou aula — uma ideia por
+  Monta deck 16:9 com a identidade da marca pra reunião, pitch, treinamento ou aula, uma ideia por
   slide, notas do apresentador, e duas versões (uma pra apresentar, uma pra enviar). Sai em HTML
   navegável e PDF. Use quando o usuário pedir "apresentação", "slides", "deck", "pitch",
   "vou apresentar pra", "PowerPoint", ou /apresentacao.
@@ -32,7 +32,7 @@ Slide não é documento projetado. Se dá pra ler tudo na tela, não precisava d
 
 ## Workflow
 
-**Antes de tudo — declarar a leitura.** Uma linha, visível pro usuário: *"Estou lendo isso como: [peça] para [público], com linguagem [vibe]."* Depois definir os três ajustes (variação / movimento / densidade) conforme `templates/design/briefing-visual.md`. É o passo que impede a peça de cair no visual padrão de IA — e custa cinco segundos.
+**Antes de tudo: declarar a leitura.** Uma linha, visível pro usuário: *"Estou lendo isso como: [peça] para [público], com linguagem [vibe]."* Depois definir os três ajustes (variação / movimento / densidade) conforme `templates/design/briefing-visual.md`. É o passo que impede a peça de cair no visual padrão de IA, e custa cinco segundos.
 
 ### Passo 1 — Quem, onde, quanto tempo
 
@@ -83,9 +83,9 @@ Isso resolve o dilema clássico: slide bom de apresentar é ruim de enviar, e vi
 node scripts/gerar-pdf.js apresentacoes/<nome>/enviar.html
 ```
 
-O script acha o navegador sozinho em qualquer sistema, espera as fontes carregarem e confere o resultado (número de páginas e PDF em branco). O número de páginas tem que bater com o de slides — se não bater, o `@page` está errado.
+O script acha o navegador sozinho em qualquer sistema, espera as fontes carregarem e confere o resultado (número de páginas e PDF em branco). O número de páginas tem que bater com o de slides: se não bater, o `@page` está errado.
 
-Conferir: nenhum texto cortado, contraste legível **em projetor** (que lava a cor — evitar cinza sobre cinza), fonte grande o suficiente pra última fileira (mínimo equivalente a 20pt).
+Conferir: nenhum texto cortado, contraste legível **em projetor** (que lava a cor, evitar cinza sobre cinza), fonte grande o suficiente pra última fileira (mínimo equivalente a 20pt).
 
 ### Passo 6 — Entregar
 
@@ -103,7 +103,7 @@ Conferir: nenhum texto cortado, contraste legível **em projetor** (que lava a c
 
 ## Autonomia do arquivo (obrigatório)
 
-A peça vai ser enviada por WhatsApp, e-mail ou Drive — sozinha, longe da pasta. Se depender do `identidade/tokens.css` por caminho relativo, chega sem estilo: em teste real, um deck ficou **preto sobre preto**, ilegível.
+A peça vai ser enviada por WhatsApp, e-mail ou Drive: sozinha, longe da pasta. Se depender do `identidade/tokens.css` por caminho relativo, chega sem estilo: em teste real, um deck ficou **preto sobre preto**, ilegível.
 
 **Copiar o bloco `:root` do `tokens.css` pra dentro do `<style>` da própria peça.** O `tokens.css` continua sendo a fonte da verdade; o que muda é a peça carregar uma cópia inline. Google Fonts é a única dependência externa aceita.
 
@@ -115,7 +115,7 @@ node scripts/verificar.js html <caminho-da-peça>.html
 
 Ele acusa CSS local externo, token sem definição, `@page` inválido, placeholder esquecido e link vazio.
 
-**O deck precisa dos dois blocos de impressão** — sem eles o PDF sai em A4 retrato com os slides cortados:
+**O deck precisa dos dois blocos de impressão**, sem eles o PDF sai em A4 retrato com os slides cortados:
 
 ```css
 @page { size: 1920px 1080px; margin: 0 }   /* duas medidas já definem a orientação */

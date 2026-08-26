@@ -13,7 +13,7 @@ com audiência e fecho venda."]
 ## Onde salvar o que
 
 **Convenção: por tipo de entrega.** Cada pasta nasce quando a primeira peça
-daquele tipo é criada — workspace não tem pasta vazia.
+daquele tipo é criada: workspace não tem pasta vazia.
 
 | O que | Onde | Skill |
 |---|---|---|
@@ -39,12 +39,12 @@ daquele tipo é criada — workspace não tem pasta vazia.
 
 As pastas do sistema (`.claude/skills/`, `templates/`, `scripts/`) convivem na
 raiz e são substituídas quando sai versão nova do ViperOS. Não guarde trabalho
-dentro delas — o resto da raiz é seu.
+dentro delas: o resto da raiz é seu.
 
 ## Quem sou
 
 Sou [nome]. [O que eu faço em uma frase].
-[O que diferencia o meu jeito — viés, ponto de vista, marca pessoal].
+[O que diferencia o meu jeito: viés, ponto de vista, marca pessoal].
 
 ## O que produzo
 

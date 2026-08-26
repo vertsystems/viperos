@@ -1,11 +1,11 @@
 ---
 name: aprovar-post
 description: >
-  Recurso avançado e opcional: publica automaticamente um post já criado — flipa o blog de draft
+  Recurso avançado e opcional: publica automaticamente um post já criado, flipa o blog de draft
   pra published, sobe os PNGs pro site e posta o carrossel no Instagram + Facebook via Meta Graph API.
   Exige token da Meta e site com deploy automático já configurados. Use SOMENTE quando o usuário
   pedir automação explicitamente ("publica automático", "posta no Insta pela API", "/aprovar-post").
-  NÃO use quando ele disser apenas "publicar", "aprovar" ou "postar" — nesses casos o padrão do
+  NÃO use quando ele disser apenas "publicar", "aprovar" ou "postar": nesses casos o padrão do
   ViperOS é entregar os arquivos prontos pra ele programar na mão.
 ---
 
@@ -56,7 +56,7 @@ Se algo disso faltar: parar e apontar pro guia de setup (criar `campanhas/automa
 
 ## Argumento
 
-`/aprovar-post <slug>` — onde `<slug>` é o nome do arquivo do blog **sem `.md`**.
+`/aprovar-post <slug>`: onde `<slug>` é o nome do arquivo do blog **sem `.md`**.
 
 Exemplo: `/aprovar-post como-conservar-produto`
 
@@ -126,7 +126,7 @@ Aguardar HTTP 200 (com timeout de 5 min). Também checar que pelo menos `slide-0
 curl -sf -o /dev/null -w "%{http_code}" "$SITE_URL/img/posts/$slug/slide-01.png"
 ```
 
-Sem isso, a Meta API vai falhar — ela busca a imagem por URL pública.
+Sem isso, a Meta API vai falhar: ela busca a imagem por URL pública.
 
 ### Passo 7 — Postar no Instagram
 
@@ -134,7 +134,7 @@ Sem isso, a Meta API vai falhar — ela busca a imagem por URL pública.
 node --env-file=.env scripts/postar-instagram.js conteudo/<slug>-<data>
 ```
 
-Capturar o post id retornado. Se falhar, **não seguir pra Facebook** — relatar e parar.
+Capturar o post id retornado. Se falhar, **não seguir pra Facebook**: relatar e parar.
 
 ### Passo 8 — Postar no Facebook
 

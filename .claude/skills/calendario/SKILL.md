@@ -13,7 +13,7 @@ description: >
 
 > **Convenção de pastas:** os caminhos desta skill seguem a convenção **por tipo** (perfis empreendedor solo e empresa). Se o `CLAUDE.md` do workspace usa a convenção **por cliente** (freelancer e agência) e a peça é de um cliente, prefixar com `clientes/<Nome>/`. A pasta nasce só na hora de salvar.
 
-Transforma banco de pautas em plano com data. Resolve o problema de decidir o que postar na pressa — que é onde nasce conteúdo genérico.
+Transforma banco de pautas em plano com data. Resolve o problema de decidir o que postar na pressa. É onde nasce conteúdo genérico.
 
 ## Dependências
 
@@ -32,7 +32,7 @@ Transforma banco de pautas em plano com data. Resolve o problema de decidir o qu
 > "Quantas publicações por semana você consegue sustentar? Prefiro que você
 > diga o número que aguenta no mês ruim, não no mês empolgado."
 
-2 posts por semana mantidos batem 5 por semana abandonados no dia 12. Se ele não souber, sugerir 2 e crescer depois.
+2 posts por semana mantidos batem 5 abandonados no dia 12. Sempre. Se ele não souber, sugerir 2 e crescer depois.
 
 Perguntar também os canais (só Instagram? blog também? LinkedIn?) e se tem dia/horário que já funciona.
 
@@ -40,11 +40,11 @@ Perguntar também os canais (só Instagram? blog também? LinkedIn?) e se tem di
 
 Distribuir as pautas do banco equilibrando três eixos:
 
-**Funil** — proporção de partida: 50% topo, 30% meio, 20% fundo. Ajustar pelo foco da estratégia: se o gargalo é "ninguém me conhece", mais topo; se é "gente pergunta e não fecha", mais fundo.
+**Funil**: proporção de partida: 50% topo, 30% meio, 20% fundo. Ajustar pelo foco da estratégia: se o gargalo é "ninguém me conhece", mais topo; se é "gente pergunta e não fecha", mais fundo.
 
-**Formato** — alternar entre carrossel educativo, post único de impacto, caso real, bastidor, conteúdo de produto/oferta. Cinco carrosséis seguidos com a mesma estrutura cansam mesmo com tema bom.
+**Formato**: alternar entre carrossel educativo, post único de impacto, caso real, bastidor, conteúdo de produto/oferta. Cinco carrosséis seguidos com a mesma estrutura cansam. Mesmo com tema bom.
 
-**Peso de produção** — não empilhar duas peças pesadas na mesma semana. Carrossel de 10 slides com pesquisa é pesado; post único de citação é leve. Intercalar é o que faz o plano sobreviver.
+**Peso de produção**, não empilhar duas peças pesadas na mesma semana. Carrossel de 10 slides com pesquisa é pesado. Post único de citação é leve. Intercalar é o que faz o plano sobreviver.
 
 ### Passo 2b — Equilibrar buscável e compartilhável
 
@@ -53,7 +53,7 @@ Além de funil e formato, equilibrar o **tipo de tração** (a classificação v
 - **Buscável** (blog, artigo-guia, FAQ) — trabalha sozinho depois de publicado. Proporção de partida: 60%
 - **Compartilhável** (opinião, caso real, dado próprio, bastidor) — cria preferência e é o que gera conversa. 40%
 
-Se o negócio ainda não tem nada indexado, começar mais pesado em buscável — é o que constrói base. Se já tem tráfego e falta diferenciação, inverter.
+Se o negócio ainda não tem nada indexado, começar mais pesado em buscável: é o que constrói base. Se já tem tráfego e falta diferenciação, inverter.
 
 Cada peça do calendário sai marcada com o pilar a que pertence. Mês que não toca todos os pilares deixa um assunto morrer.
 
@@ -65,7 +65,7 @@ Só o que é real pro negócio:
 - Evento próprio (lançamento, feira, aniversário da empresa)
 - Ciclo do cliente (início de mês, fechamento, virada de ano fiscal)
 
-Conteúdo com data precisa entrar com antecedência: publicar no dia não dá tempo de gerar procura. Marcar a data-limite de produção, não só a de publicação.
+Conteúdo com data precisa entrar com antecedência: publicar no dia não dá tempo de gerar procura. Marcar a data-limite de produção. Não só a de publicação.
 
 ### Passo 4 — Alternar as capas
 
@@ -73,7 +73,7 @@ Puxar a última capa publicada do `indice.md` e seguir a alternância do `/carro
 
 ### Passo 4b — Conferir os dias da semana (obrigatório)
 
-Dia da semana calculado de cabeça sai errado — em teste real, os 12 dias de um mês inteiro saíram deslocados, e os posts marcados como sexta caíam no sábado.
+Dia da semana calculado de cabeça sai errado: em teste real, os 12 dias de um mês inteiro saíram deslocados, e os posts marcados como sexta caíam no sábado.
 
 Antes de escrever, conferir o primeiro dia do mês:
 
@@ -88,7 +88,7 @@ E depois de escrever o arquivo:
 node scripts/verificar.js datas conteudo/calendario-<AAAA-MM>.md
 ```
 
-**A tabela precisa ter a coluna `Dia`** — é ela que o verificador confere contra a data. Sem essa coluna ele não tem o que checar e passa em branco.
+**A tabela precisa ter a coluna `Dia`**: é ela que o verificador confere contra a data. Sem essa coluna ele não tem o que checar e passa em branco.
 
 Só entregar quando sair "Tudo certo". Um calendário com dia errado desorganiza o mês inteiro do usuário.
 

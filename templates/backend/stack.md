@@ -1,6 +1,6 @@
 # Escolher a stack
 
-Referência da skill `/backend`. Qual linguagem, qual banco, qual hospedagem — e, mais
+Referência da skill `/backend`. Qual linguagem, qual banco, qual hospedagem: e, mais
 importante, quando **não** trocar o que já está funcionando.
 
 ---
@@ -15,7 +15,7 @@ Depois disso, na ordem: o time já conhece? tem hospedagem barata? tem bibliotec
 o projeto precisa (pagamento, nota fiscal, WhatsApp)?
 
 Benchmark de requisições por segundo é o último critério, não o primeiro. Quase nenhum
-sistema de pequeno negócio esbarra no limite da linguagem — esbarra em consulta mal feita.
+sistema de pequeno negócio esbarra no limite da linguagem: esbarra em consulta mal feita.
 
 ---
 
@@ -50,7 +50,7 @@ escolha natural quando quem mantém é alguém de dados, não de front.
 **Bom pra:** muita requisição simultânea, ferramenta de linha de comando, serviço que
 precisa subir num binário só sem runtime instalado. Deploy é copiar um arquivo.
 
-Frameworks: **Gin**, **Echo**, **Fiber** — ou a biblioteca padrão, que já é boa.
+Frameworks: **Gin**, **Echo**, **Fiber**, ou a biblioteca padrão, que já é boa.
 
 ### Rust
 
@@ -90,7 +90,7 @@ Documento sem forma fixa, escala horizontal embutida.
 atributos diferentes por categoria, coleta de sensor).
 
 **Cuidado:** dado com relação clara em banco de documento cria junção na mão dentro do
-código — o trabalho que o banco relacional faria melhor. A pergunta honesta é "meu dado é
+código: o trabalho que o banco relacional faria melhor. A pergunta honesta é "meu dado é
 mesmo sem forma, ou eu só não quis desenhar o schema?".
 
 ### Redis
@@ -112,7 +112,7 @@ sistema precisa continuar funcionando (mais devagar).
 | **SQLAlchemy** (Python) | O padrão do ecossistema |
 
 **Regra:** ORM é conveniência, não desculpa pra não saber SQL. Quando a consulta fica
-lenta, a solução está no SQL que o ORM gerou — e é preciso saber lê-lo. Todo ORM decente
+lenta, a solução está no SQL que o ORM gerou, e é preciso saber lê-lo. Todo ORM decente
 deixa ligar o log da consulta; ligue no desenvolvimento.
 
 ---

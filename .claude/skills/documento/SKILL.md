@@ -1,8 +1,8 @@
 ---
 name: documento
 description: >
-  Produz material rico em PDF com qualidade editorial — e-book, apostila, guia, manual, relatório —
-  a partir de HTML print-first renderizado por Chrome headless. Capa, sumário, tipografia de leitura,
+  Produz material rico em PDF com qualidade editorial (e-book, apostila, guia, manual,
+  relatório), a partir de HTML print-first renderizado por Chrome headless. Capa, sumário, tipografia de leitura,
   numeração e quebras controladas. Use quando o usuário pedir "e-book", "apostila", "guia em PDF",
   "material pra baixar", "isca digital", "manual", "documento bonito", ou /documento.
 ---
@@ -32,7 +32,7 @@ Material que a pessoa baixa, imprime e guarda. O padrão de qualidade aqui é li
 
 ## Workflow
 
-**Antes de tudo — declarar a leitura.** Uma linha, visível pro usuário: *"Estou lendo isso como: [peça] para [público], com linguagem [vibe]."* Depois definir os três ajustes (variação / movimento / densidade) conforme `templates/design/briefing-visual.md`. É o passo que impede a peça de cair no visual padrão de IA — e custa cinco segundos.
+**Antes de tudo: declarar a leitura.** Uma linha, visível pro usuário: *"Estou lendo isso como: [peça] para [público], com linguagem [vibe]."* Depois definir os três ajustes (variação / movimento / densidade) conforme `templates/design/briefing-visual.md`. É o passo que impede a peça de cair no visual padrão de IA, e custa cinco segundos.
 
 ### Passo 1 — Definir formato e função
 
@@ -41,7 +41,7 @@ Material que a pessoa baixa, imprime e guarda. O padrão de qualidade aqui é li
 3. "Vai ser lido na tela, impresso, ou os dois?" — muda margem, tamanho de fonte e uso de cor
 4. "É isca digital (troca por e-mail), material de curso, ou entrega de cliente?"
 
-Se for isca digital, o documento precisa **entregar valor real** — material fraco queima a lista.
+Se for isca digital, o documento precisa **entregar valor real**: material fraco queima a lista.
 
 ### Passo 2 — Estruturar antes de escrever
 
@@ -92,11 +92,11 @@ O CSS nasce pensando em página física, não em rolagem:
 node scripts/gerar-pdf.js materiais/<nome>/documento.html
 ```
 
-O script acha o navegador sozinho (Chrome, Chromium, Edge ou Brave, em qualquer sistema), resolve o caminho, **espera as fontes carregarem** e confere o resultado — dizendo quantas páginas saíram e acusando PDF em branco. Aceita `--espera 8000` quando a peça tem muita imagem.
+O script acha o navegador sozinho (Chrome, Chromium, Edge ou Brave, em qualquer sistema), resolve o caminho, **espera as fontes carregarem** e confere o resultado, dizendo quantas páginas saíram e acusando PDF em branco. Aceita `--espera 8000` quando a peça tem muita imagem.
 
-Não montar o comando do Chrome na mão: o caminho do navegador muda por sistema, o `file://` precisa ser absoluto e escapado, e sem tempo de carregamento o PDF sai com a fonte do sistema no lugar da fonte da marca — três formas silenciosas de errar.
+Não montar o comando do Chrome na mão: o caminho do navegador muda por sistema, o `file://` precisa ser absoluto e escapado, e sem tempo de carregamento o PDF sai com a fonte do sistema no lugar da fonte da marca. São três formas silenciosas de errar.
 
-Conferir o PDF gerado antes de entregar: página em branco sobrando, título órfão, tabela cortada no meio, sumário com página errada, imagem estourando a margem. Se algo quebrou, ajustar o CSS e gerar de novo — não entregar PDF que o usuário vai abrir e ver o defeito.
+Conferir o PDF gerado antes de entregar: página em branco sobrando, título órfão, tabela cortada no meio, sumário com página errada, imagem estourando a margem. Se algo quebrou, ajustar o CSS e gerar de novo, não entregar PDF que o usuário vai abrir e ver o defeito.
 
 ### Passo 6 — Entregar
 
@@ -118,7 +118,7 @@ Se for isca digital, oferecer o encadeamento:
 
 ## Quando o material é isca digital
 
-Material trocado por contato tem regra própria — e a maioria falha em uma das quatro:
+Material trocado por contato tem regra própria, e a maioria falha em uma das quatro:
 
 1. **Resolve um problema específico**, não um tema amplo. "Checklist de 12 pontos pra conferir antes de assinar contrato de obra" vence "Guia completo de construção"
 2. **Casa com o estágio da pessoa:**
@@ -134,7 +134,7 @@ Material trocado por contato tem regra própria — e a maioria falha em uma das
 
 ## Autonomia do arquivo (obrigatório)
 
-A peça vai ser enviada por WhatsApp, e-mail ou Drive — sozinha, longe da pasta. Se depender do `identidade/tokens.css` por caminho relativo, chega sem estilo: em teste real, um deck ficou **preto sobre preto**, ilegível.
+A peça vai ser enviada por WhatsApp, e-mail ou Drive: sozinha, longe da pasta. Se depender do `identidade/tokens.css` por caminho relativo, chega sem estilo: em teste real, um deck ficou **preto sobre preto**, ilegível.
 
 **Copiar o bloco `:root` do `tokens.css` pra dentro do `<style>` da própria peça.** O `tokens.css` continua sendo a fonte da verdade; o que muda é a peça carregar uma cópia inline. Google Fonts é a única dependência externa aceita.
 

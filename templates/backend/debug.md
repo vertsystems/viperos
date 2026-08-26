@@ -1,7 +1,7 @@
 # Investigar defeito
 
-Referência da skill `/backend`. O método, o que registrar, e os cinco problemas que
-respondem pela maior parte dos chamados.
+Referência da skill `/backend`. O método, o que registrar, e os cinco problemas que respondem
+pela maior parte dos chamados de um sistema pequeno em produção. Nessa ordem.
 
 ---
 
@@ -10,7 +10,7 @@ respondem pela maior parte dos chamados.
 1. **Ler a mensagem de erro inteira.** Não a primeira linha: a inteira, incluindo a causa
    encadeada. Ela quase sempre diz onde é
 2. **Reproduzir.** Depurar sem reproduzir é adivinhar. Se só acontece em produção, o
-   próximo passo é descobrir o que difere — dado, volume, configuração, concorrência
+   próximo passo é descobrir o que difere: dado, volume, configuração, concorrência
 3. **Isolar.** Cortar o problema no meio: a falha está antes ou depois desse ponto? Repetir
    até sobrar o trecho que falha
 4. **Conferir a suposição.** "Isso deveria funcionar" não é diagnóstico. Imprimir o valor
@@ -39,8 +39,8 @@ try {
 }
 ```
 
-Log em JSON com campo dá pra filtrar (`pedidoId=123`). Log em texto corrido só dá pra ler
-com os olhos — e ninguém lê dez mil linhas.
+Log em JSON com campo dá pra filtrar (`pedidoId=123`). Log em texto corrido só se lê com
+os olhos. E ninguém lê dez mil linhas.
 
 ### Identificador de requisição
 
@@ -83,7 +83,7 @@ ALTER DATABASE app SET log_min_duration_statement = 500;  -- registra o que pass
 
 ### 2. N+1
 
-Sintoma: a página está aceitável com dez registros e insuportável com quinhentos.
+Sintoma: aceitável com dez registros, insuportável com quinhentos.
 
 Ligar o log de SQL do ORM e contar as consultas de **uma** requisição. Se o número cresce
 com o tamanho da lista, é N+1. Conserto: carregar o relacionado junto (`include`, `join`,
@@ -112,12 +112,12 @@ try {
 const { rows } = await pool.query('SELECT ...');
 ```
 
-Outra causa frequente: chamada externa sem prazo máximo dentro de uma transação. A
+Outra causa frequente. Chamada externa sem prazo máximo dentro de uma transação. A
 transação fica aberta esperando um serviço lento e segura a conexão.
 
 ### 4. Memória crescendo até cair
 
-Sintomas: memória sobe sem voltar, fica lento, e o processo morre.
+Sintomas: memória sobe e não volta. Fica lento. O processo morre.
 
 ```typescript
 // ✖ cache global sem limite: cresce pra sempre
@@ -128,7 +128,7 @@ import { LRUCache } from 'lru-cache';
 const cache = new LRUCache({ max: 1000, ttl: 1000 * 60 * 60 });
 ```
 
-Outra causa clássica: ouvinte de evento registrado e nunca removido — ele mantém viva a
+Outra causa clássica: ouvinte de evento registrado e nunca removido, ele mantém viva a
 referência ao objeto inteiro.
 
 Para confirmar: tirar duas fotos da memória (heap snapshot) com intervalo e comparar o que
@@ -136,7 +136,7 @@ cresceu.
 
 ### 5. Condição de corrida
 
-Sintoma: acontece "às vezes", nunca na sua máquina, e some quando você adiciona um log.
+Sintoma: acontece "às vezes". Nunca na sua máquina. E some quando você adiciona um log.
 
 ```typescript
 // ✖ dois pedidos simultâneos leem o mesmo saldo e gravam por cima
@@ -191,7 +191,7 @@ adivinhar sem olhar valor nenhum.
 ## Quando o problema é só em produção
 
 - **O que mudou?** Publicação recente, migração, mudança de configuração, atualização de
-  dependência. Comece por aí — a resposta está aí na maioria das vezes
+  dependência. Comece por aí: a resposta está aí na maioria das vezes
 - **Dado.** Produção tem caso que desenvolvimento não tem: campo nulo antigo, acento,
   registro de 2019 com formato diferente
 - **Volume e concorrência.** Corrida e esgotamento de pool só aparecem com gente usando ao
@@ -199,7 +199,7 @@ adivinhar sem olhar valor nenhum.
 - **Configuração.** Variável de ambiente faltando, fuso diferente, limite de memória menor
 
 Comparar com a linha de base: estava assim ontem? Sem histórico de métrica, não dá pra
-responder — e essa é a maior razão pra ter monitoramento antes de precisar.
+responder, e essa é a maior razão pra ter monitoramento antes de precisar.
 
 ---
 

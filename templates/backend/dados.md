@@ -6,7 +6,7 @@ Referência da skill `/backend`. Modelagem, índice, consulta lenta, cache e esc
 
 ## Modelar antes de escrever código
 
-Erro de modelagem é o mais caro do sistema: quando ele aparece, já tem dado dentro, e
+Erro de modelagem é o mais caro do sistema, quando ele aparece, já tem dado dentro, e
 consertar vira migração com risco.
 
 ### O básico que evita a maior parte da dor
@@ -21,12 +21,12 @@ consertar vira migração com risco.
 
 ### Normalizar ou duplicar
 
-Comece normalizado — cada informação num lugar só. Duplicar dado por desempenho é uma
+Comece normalizado: cada informação num lugar só. Duplicar dado por desempenho é uma
 decisão consciente, tomada **depois** de medir, e que traz junto a obrigação de manter as
 cópias em dia. Duplicar por preguiça de desenhar gera divergência silenciosa.
 
 **Exceção legítima e comum:** valor histórico. O preço do produto no momento da venda é
-copiado pro item do pedido de propósito — se o produto mudar de preço amanhã, o pedido
+copiado pro item do pedido de propósito: se o produto mudar de preço amanhã, o pedido
 antigo não pode mudar junto.
 
 ---
@@ -90,7 +90,7 @@ sistema derruba a si mesmo em pico.
 
 ## O problema N+1
 
-O defeito de desempenho mais comum e o mais fácil de não perceber — em desenvolvimento,
+O defeito de desempenho mais comum e o mais fácil de não perceber: em desenvolvimento,
 com dez registros, é imperceptível.
 
 ```typescript
@@ -152,7 +152,7 @@ async function atualizarCliente(id: string, dados: DadosCliente) {
 
 ## Quando o banco não dá mais conta
 
-Na ordem — cada degrau só depois de esgotar o anterior:
+Na ordem: cada degrau só depois de esgotar o anterior:
 
 1. **Índice e consulta.** É aqui que está o problema na esmagadora maioria das vezes
 2. **Cache** do que é lido muito e muda pouco

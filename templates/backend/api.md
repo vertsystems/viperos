@@ -49,7 +49,7 @@ dentro quebra todo tratamento automático.
 | `500` | Erro nosso |
 | `503` | Fora do ar temporariamente |
 
-A diferença entre **401 e 403** é a que mais se erra: 401 é identidade, 403 é permissão.
+A diferença entre **401 e 403** é a que mais se erra. 401 é identidade. 403 é permissão.
 
 ### Formato de erro igual em toda a API
 
@@ -73,7 +73,7 @@ A diferença entre **401 e 403** é a que mais se erra: 401 é identidade, 403 �
 
 ### Paginação — sempre, com teto
 
-Listagem sem limite é incidente marcado pro dia em que a tabela crescer.
+Listagem sem limite é incidente marcado. Ele acontece no dia em que a tabela crescer.
 
 ```
 GET /api/v1/clientes?pagina=2&limite=50
@@ -142,7 +142,7 @@ Em sistema de pequeno negócio, REST bem feito quase sempre é a resposta melhor
 
 Comunicação entre serviços internos, com contrato forte (Protocol Buffers), código gerado
 dos dois lados e streaming bidirecional. Não funciona direto no navegador (precisa de
-gRPC-Web) e a depuração é menos óbvia — não se lê a requisição com `curl`.
+gRPC-Web) e a depuração é menos óbvia, não se lê a requisição com `curl`.
 
 **Compensa quando:** existem vários serviços internos conversando em volume. Se existe um
 serviço só, não há caso.
