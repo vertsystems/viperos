@@ -23,7 +23,7 @@ Fazer 3 perguntas, uma por vez:
 
 ### Passo 2 — Conferir catálogo
 
-Ler `templates/skills/catalogo.md` pra ver se alguma das tarefas mencionadas já é coberta por uma skill nativa do Claude Code ou validada pelo ViperOS. Conferir também as 38 skills que já existem em `.claude/skills/` — com esse volume, a chance de a tarefa já estar coberta é alta: pode ser caso de uso do `/carrossel`, `/proposta`, `/documento`, `/reaproveitar` ou `/analisar-dados`. Se sim, sugerir a existente em vez de criar uma nova:
+Ler `templates/skills/catalogo.md` pra ver se alguma das tarefas mencionadas já é coberta por uma skill nativa do Claude Code ou validada pelo ViperOS. Conferir também as 45 skills que já existem em `.claude/skills/` — com esse volume, a chance de a tarefa já estar coberta é alta: pode ser caso de uso do `/carrossel`, `/proposta`, `/documento`, `/reaproveitar` ou `/analisar-dados`. Se sim, sugerir a existente em vez de criar uma nova:
 
 > "A tarefa X já é resolvida pela skill `/<nome>` que vem nativa. Quer ativar ela em vez de criar uma nova?"
 
@@ -93,6 +93,19 @@ Criei [N] skills:
 Pra usar: digita / e o nome da skill em qualquer sessão.
 Pra ajustar uma skill depois: edita o SKILL.md correspondente.
 ```
+
+## Conferir que a skill carrega (obrigatório)
+
+Skill com frontmatter quebrado não dá erro — ela simplesmente nunca é encontrada,
+e o usuário conclui que "não funcionou". Depois de criar:
+
+```bash
+node scripts/verificar.js sistema
+```
+
+Ele confere frontmatter legível, `name:` batendo com o nome da pasta, gatilho na
+`description` e referência a arquivo que não existe. Só entregar quando sair
+"Tudo certo".
 
 ## Regras
 

@@ -86,7 +86,18 @@ Depois copiar **só** `.claude/skills/`, `templates/`, `scripts/`, `.env.example
 
 Aproveitar pra sugerir: "Da próxima vez fica mais fácil se você clonar em vez de baixar o zip — aí a atualização é automática."
 
-### Passo 5 — Relatar
+### Passo 5 — Conferir que nada quebrou
+
+```bash
+node scripts/verificar.js sistema
+```
+
+Atualização traz arquivo novo e apaga arquivo velho: é onde aparece skill que
+deixou de carregar, referência apontando pra template que não veio, e contagem
+desatualizada. Se acusar algo, resolver **antes** de relatar — o usuário não tem
+como saber que a skill parou de ser encontrada.
+
+### Passo 6 — Relatar
 
 ```
 ✓ Sistema atualizado

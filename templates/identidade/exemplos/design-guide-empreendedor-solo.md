@@ -1,4 +1,4 @@
-﻿# Identidade — Criador Solo
+# Identidade — Criador Solo
 
 > Exemplo de design-guide preenchido — criador solo, marca pessoal,
 > audience-first. Serve de referência de formato e nível de detalhe.

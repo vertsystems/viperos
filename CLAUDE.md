@@ -227,7 +227,14 @@ node scripts/verificar.js html <arquivo.html>    # CSS externo, @page, placehold
 node scripts/verificar.js peso <pasta>           # imagem acima de 2 MB
 node scripts/verificar.js contraste "#123" "#fff"
 node scripts/gerar-pdf.js <arquivo.html>              # HTML → PDF, com verificação
+node scripts/verificar.js sistema                     # integridade do próprio ViperOS
 ```
+
+O `sistema` é o único que não olha o trabalho, e sim o sistema: skill que não
+carrega (frontmatter quebrado, BOM, `name` trocado, gatilho faltando), referência
+a skill ou arquivo que não existe, script que uma skill manda rodar e não está
+lá, contagem desatualizada e skill fora do catálogo. Rodar depois de criar skill,
+depois de atualizar o sistema, e antes de publicar versão nova.
 
 Isso não é preciosismo: em teste real, o sistema entregou CSV que o Google
 rejeita, calendário com todos os dias da semana errados, tabela cuja soma não

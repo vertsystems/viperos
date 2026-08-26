@@ -166,6 +166,20 @@ Antes de criar skill, conferir se um desses já cobre:
 
 ---
 
+## As skills do próprio sistema
+
+Não resolvem trabalho do negócio — cuidam do ViperOS em si:
+
+| Tarefa | Skill |
+|---|---|
+| Primeira configuração: entrevista, memória, perfil de pastas | `/instalar` |
+| Abrir a sessão de trabalho carregando a memória do negócio | `/abrir` |
+| Reconciliar a memória com o que mudou no projeto | `/atualizar` |
+| Puxar versão nova do ViperOS sem tocar no seu trabalho | `/atualizar-sistema` |
+| Salvar o trabalho no GitHub (commit + push) | `/salvar` |
+
+---
+
 ## Como adicionar skills novas a este catálogo
 
 Se você testou uma skill e quer registrar aqui pra referência futura:

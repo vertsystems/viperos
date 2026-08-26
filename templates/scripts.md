@@ -55,6 +55,18 @@ E `scripts/verificar.js` — confere o que não pode ser estimado (contagem, som
 node scripts/verificar.js tudo conteudo/      # roda o que couber em cada arquivo
 ```
 
+O mesmo script tem um comando que não olha o seu trabalho, e sim o sistema:
+
+```bash
+node scripts/verificar.js sistema             # skill que não carrega, referência quebrada
+```
+
+Ele confere se toda skill tem frontmatter legível (BOM invisível no início do
+arquivo já derrubou três), se o `name:` bate com a pasta, se a `description` tem
+o gatilho que faz a skill ser encontrada, se alguma skill manda rodar script que
+não existe, e se a contagem de skills nos textos ainda confere. Rode depois de
+criar skill com o `/mapear-rotinas` e depois do `/atualizar-sistema`.
+
 São os **três** scripts que o sistema entrega prontos. Os outros da tabela acima são criados sob demanda pela skill que precisar deles.
 
 **Outro gerador** (Midjourney, Leonardo, Firefly, o que você já paga): não há integração, e não vale montar. Gere a imagem lá e passe o arquivo — o `/carrossel` aceita foto pronta do mesmo jeito.

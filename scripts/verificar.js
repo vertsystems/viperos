@@ -14,6 +14,7 @@
  *   node scripts/verificar.js html <arquivo.html>
  *   node scripts/verificar.js peso <pasta-ou-arquivo>
  *   node scripts/verificar.js tudo <pasta>
+ *   node scripts/verificar.js sistema [pasta]
  *
  * Sai com código 1 se achar problema — dá pra encadear com &&.
  * Node 18+. Sem dependência.
@@ -403,6 +404,153 @@ function verTudo(pasta) {
   verPeso(pasta);
 }
 
+// ─────────────────────────── SISTEMA ───────────────────────────
+// Confere o próprio ViperOS, não o trabalho: skill que não carrega, referência
+// a skill ou arquivo que não existe, script prometido e ausente, contagem
+// desatualizada. É o check que se roda antes de publicar versão nova.
+//
+// Existe porque três SKILL.md ficaram meses com BOM UTF-8 antes do `---` (o
+// frontmatter não é lido, e a skill nunca é encontrada) e uma skill mandava
+// rodar dois scripts que nunca estiveram no repositório.
+
+// Barras que aparecem no texto e NÃO são skill do ViperOS. Cada uma com o
+// motivo — a lista é curta de propósito: crescer aqui é esconder problema.
+const NAO_SAO_SKILLS = new Set([
+  "health",                                       // endpoint HTTP, citado no /backend
+  "prazo", "endereco", "pagamento",               // atalhos de resposta rápida do WhatsApp Business
+  "schwartz-copy", "ogilvy-copy", "yt-transcript",// skills de terceiros: catalogadas, não instaladas
+  "nome-da-skill", "comando", "skill", "nome",    // exemplo genérico em texto
+]);
+
+function mdsDe(raiz) {
+  const achados = [];
+  const anda = (p) => {
+    for (const f of fs.readdirSync(p)) {
+      if (f === ".git" || f === "node_modules") continue;
+      const full = path.join(p, f);
+      if (fs.statSync(full).isDirectory()) anda(full);
+      else if (/\.md$/i.test(f)) achados.push(full);
+    }
+  };
+  anda(raiz);
+  return achados;
+}
+
+function verSistema(raiz = ".") {
+  console.log(`\nSISTEMA: ${path.resolve(raiz)}`);
+
+  const dirSkills = path.join(raiz, ".claude", "skills");
+  if (!fs.existsSync(dirSkills)) {
+    return erro(".claude/skills/ não existe — isso não parece um workspace ViperOS");
+  }
+
+  // ── 1. cada skill carrega? ────────────────────────────────────
+  const pastas = fs
+    .readdirSync(dirSkills)
+    .filter((f) => fs.statSync(path.join(dirSkills, f)).isDirectory());
+  const skills = new Set(pastas);
+  let skillsOk = 0;
+
+  for (const nome of pastas) {
+    const arq = path.join(dirSkills, nome, "SKILL.md");
+    if (!fs.existsSync(arq)) { erro(`${nome}/ não tem SKILL.md`); continue; }
+
+    const bruto = fs.readFileSync(arq);
+    if (bruto[0] === 0xef && bruto[1] === 0xbb && bruto[2] === 0xbf) {
+      erro(`${nome}: BOM UTF-8 antes do '---' — o frontmatter não é lido e a skill nunca é encontrada`);
+    }
+
+    const t = bruto.toString("utf8").replace(/^﻿/, "");
+    const m = t.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    if (!m) { erro(`${nome}: frontmatter ausente ou malformado`); continue; }
+
+    const fm = m[1];
+    const declarado = (fm.match(/^name:[ \t]*(.+)$/m) || [])[1];
+    if (!declarado) erro(`${nome}: frontmatter sem 'name:'`);
+    else if (declarado.trim() !== nome) erro(`${nome}: 'name: ${declarado.trim()}' não bate com o nome da pasta`);
+
+    if (!/^description:/m.test(fm)) {
+      erro(`${nome}: frontmatter sem 'description:'`);
+    } else if (!/use quando/i.test(fm)) {
+      erro(`${nome}: description sem gatilho ("Use quando o usuário disser…") — sem isso a skill não é acionada pelo que o usuário fala`);
+    } else skillsOk++;
+  }
+  if (skillsOk === pastas.length) ok(`${pastas.length} skills carregam (frontmatter, nome e gatilho conferidos)`);
+
+  // ── 2. referências quebradas em todo .md ──────────────────────
+  const mds = mdsDe(raiz);
+  const faltaSkill = new Map();
+  const faltaPath = new Map();
+  const faltaScript = new Map();
+  const comBOM = [];
+
+  for (const arq of mds) {
+    const bruto = fs.readFileSync(arq);
+    if (bruto[0] === 0xef && bruto[1] === 0xbb && bruto[2] === 0xbf) comBOM.push(arq);
+    const t = bruto.toString("utf8");
+    const rel = path.relative(raiz, arq);
+    const opcional = rel.startsWith(path.join("templates", "opcional"));
+
+    for (const m of t.matchAll(/`\/([a-z][a-z0-9-]{2,})`/g)) {
+      const n = m[1];
+      if (skills.has(n) || NAO_SAO_SKILLS.has(n)) continue;
+      if (!faltaSkill.has(n)) faltaSkill.set(n, new Set());
+      faltaSkill.get(n).add(rel);
+    }
+
+    for (const m of t.matchAll(/`((?:templates|scripts)\/[A-Za-z0-9._/-]+\.(?:md|js|css|json))`/g)) {
+      if (fs.existsSync(path.join(raiz, m[1])) || opcional) continue;
+      if (!faltaPath.has(m[1])) faltaPath.set(m[1], new Set());
+      faltaPath.get(m[1]).add(rel);
+    }
+
+    for (const m of t.matchAll(/node[^\n`]*?(scripts\/[A-Za-z0-9._-]+\.js)/g)) {
+      if (fs.existsSync(path.join(raiz, m[1])) || opcional) continue;
+      if (!faltaScript.has(m[1])) faltaScript.set(m[1], new Set());
+      faltaScript.get(m[1]).add(rel);
+    }
+  }
+
+  comBOM.forEach((a) => erro(`BOM UTF-8 no início de ${path.relative(raiz, a)}`));
+  for (const [n, onde] of faltaSkill)
+    erro(`\`/${n}\` citado mas não existe em .claude/skills/ — em: ${[...onde].join(", ")}`);
+  for (const [p, onde] of faltaPath)
+    erro(`\`${p}\` citado mas não existe — em: ${[...onde].join(", ")}`);
+  for (const [p, onde] of faltaScript)
+    erro(`skill manda rodar \`${p}\`, que não existe — quebra no meio do fluxo, em: ${[...onde].join(", ")}`);
+
+  if (!comBOM.length && !faltaSkill.size && !faltaPath.size && !faltaScript.size)
+    ok(`${mds.length} arquivos .md sem referência quebrada`);
+
+  // ── 3. contagem de skills escrita nos textos ──────────────────
+  const total = pastas.length;
+  let contagensRuins = 0;
+  for (const arq of mds) {
+    if (path.relative(raiz, arq).startsWith(path.join("templates", "opcional"))) continue;
+    const t = fs.readFileSync(arq, "utf8");
+    for (const m of t.matchAll(/(\d+)\s+skills\b/g)) {
+      // "mais de 5 skills por sessão" e "de 3 a 5 skills" não falam do total
+      const antes = t.slice(Math.max(0, m.index - 24), m.index);
+      if (/(mais de|até|menos de|\d+\s+a)\s*$/i.test(antes)) continue;
+      if (Number(m[1]) !== total) {
+        erro(`${path.relative(raiz, arq)}: diz "${m[1]} skills", mas são ${total}`);
+        contagensRuins++;
+      }
+    }
+  }
+  if (!contagensRuins) ok(`contagem de skills confere (${total}) em todo texto que a cita`);
+
+  // ── 4. skill que ninguém cataloga ─────────────────────────────
+  const catalogo = path.join(raiz, "templates", "skills", "catalogo.md");
+  if (fs.existsSync(catalogo)) {
+    const t = fs.readFileSync(catalogo, "utf8");
+    const citadas = new Set([...t.matchAll(/`\/([a-z][a-z0-9-]{2,})`/g)].map((m) => m[1]));
+    const fora = pastas.filter((n) => !citadas.has(n));
+    if (fora.length) erro(`skill fora da tabela do catálogo (o usuário nunca descobre): ${fora.join(", ")}`);
+    else ok("toda skill aparece no catálogo");
+  }
+}
+
 // ─────────────────────────── main ───────────────────────────
 
 const [cmd, ...args] = process.argv.slice(2);
@@ -414,7 +562,9 @@ const AJUDA = `ViperOS — verificar.js
   contraste <cor1> <cor2>   razão WCAG
   html <arquivo.html>       CSS externo, var() sem fallback, @page, placeholder, link vazio
   peso <pasta|arquivo>      imagem acima de 2 MB
-  tudo <pasta>              roda o que couber em cada arquivo`;
+  tudo <pasta>              roda o que couber em cada arquivo
+  sistema [pasta]           integridade do próprio ViperOS: skill que não carrega,
+                            referência quebrada, script ausente, contagem errada`;
 
 try {
   if (!cmd || cmd === "-h" || cmd === "--help") { console.log(AJUDA); process.exit(0); }
@@ -425,6 +575,7 @@ try {
   else if (cmd === "html") verHTML(args[0]);
   else if (cmd === "peso") verPeso(args[0]);
   else if (cmd === "tudo") verTudo(args[0] || ".");
+  else if (cmd === "sistema") verSistema(args[0] || ".");
   else { console.log(`Comando desconhecido: ${cmd}\n\n${AJUDA}`); process.exit(1); }
 } catch (e) {
   console.error(`\n✖ ${e.message}`);

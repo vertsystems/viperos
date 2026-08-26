@@ -1,4 +1,4 @@
-﻿# Identidade — Agência de Performance
+# Identidade — Agência de Performance
 
 > Exemplo de design-guide preenchido — agência de performance, tom direto,
 > sem decoração. Serve de referência de formato e nível de detalhe.
