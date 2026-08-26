@@ -114,3 +114,4 @@ Se sim, editar a peça e mostrar o antes/depois renderizado.
 - Não migrar tecnologia nem trocar biblioteca. Trabalhar com o que a peça já usa
 - Mudança pequena e revisável vence reescrita grande
 - Se a peça não tem sistema de referência (sem tokens, sem design-guide), avisar que o check 5 foi pulado e sugerir `/design-system`
+- Esta skill olha o visual. Se o problema é **conseguir usar** (teclado, foco, alvo, leitor de tela) ou **conseguir esperar** (página lenta, conteúdo que pula), a skill é `/acessivel`, que audita as duas coisas num laudo só. Se é a animação que incomoda, `/movimento`

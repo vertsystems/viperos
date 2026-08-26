@@ -49,7 +49,7 @@ MeuNegocio/
 > As pastas `design/` e `copy/` são as **bibliotecas de referência**: conhecimento
 > que várias skills consultam, mantido num lugar só. Editar lá muda o
 > comportamento de todas as skills que dependem daquilo — é o jeito de calibrar
-> o sistema inteiro sem tocar em 45 arquivos.
+> o sistema inteiro sem tocar em 50 arquivos.
 
 ## Convenção B — por cliente
 

@@ -10,7 +10,7 @@ Referência compartilhada das skills visuais. O par positivo do `anti-generico.m
 
 O erro mais comum e mais invisível: um único `letter-spacing` para todos os tamanhos. Letra se comporta diferente conforme cresce.
 
-- **Título grande pede tracking negativo.** Quanto maior, mais as letras parecem afastadas. `-0.02em` a `-0.04em` em display
+- **Título grande pede tracking negativo.** Quanto maior, mais as letras parecem afastadas. `-0.02em` a `-0.04em` em display — **mas essa faixa vale para fonte com eixo óptico** (SF Pro, Roboto Flex, as que ajustam o desenho da letra conforme o tamanho). Inter, Outfit, Manrope e a maioria das do Google Fonts não têm esse eixo: nelas, o intervalo seguro é `-0.01em` a `-0.02em`, e o valor cheio cola as letras em 60px+. Transportar a régua sem olhar a fonte troca um erro por outro
 - **Texto pequeno em caixa alta pede tracking positivo.** Olho, rótulo e etiqueta: `0.1em` a `0.3em`
 - **Corpo fica perto de zero**
 - **Leading é inverso do tamanho.** Título grande: 0.98 a 1.1. Corpo: 1.5 a 1.6. Texto denso de tabela: 1.3

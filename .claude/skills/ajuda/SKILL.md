@@ -9,7 +9,7 @@ description: >
 
 # /ajuda — Qual skill usar agora
 
-O ViperOS tem 45 skills. Ninguém decora isso, e ninguém precisa — o usuário fala o que quer em português e a skill certa roda sozinha. Essa aqui responde a outra pergunta: **o que faz sentido fazer agora.**
+O ViperOS tem 50 skills. Ninguém decora isso, e ninguém precisa — o usuário fala o que quer em português e a skill certa roda sozinha. Essa aqui responde a outra pergunta: **o que faz sentido fazer agora.**
 
 Ao recomendar, falar pelo resultado, não pelo comando: "eu monto o banco de pautas" em vez de "roda /ideias". O nome da skill entra entre parênteses, no máximo — nunca como exigência.
 
@@ -116,6 +116,21 @@ peça com tipografia, que funciona bem.
 
 **"Preciso de um sistema / API / banco de dados"**
 `/backend` — servidor, API, banco, login e publicação. Também é a skill de "está dando erro em produção" e "a consulta está lenta"
+
+**"Meu sistema tá feio" / "a tabela tá horrível" / "cabe pouca coisa na tela"**
+`/interface` — o padrão das telas de uso: botão, campo, tabela, painel e os quatro estados (cheio, vazio, carregando, erro). É o par visual do `/backend`
+
+**"A animação tá estranha" / "o menu abre travado" / "tá muito parado"**
+`/movimento` — duração, curva e limite. Também é a skill de "quero que apareça conforme rola"
+
+**"Preciso da página de planos / do cardápio / do produto"**
+`/produto` — a página onde a pessoa compara e decide, com o botão antes da ficha técnica. Diferente da `/landing`, que tem uma ação só
+
+**"Meu site é acessível?" / "minha mãe não consegue usar" / "meu site tá lento"**
+`/acessivel` — um laudo só para as duas coisas: consegue usar (WCAG 2.2) e consegue esperar (LCP, INP, CLS)
+
+**"Quero mandar e-mail pra lista" / "o e-mail chegou quebrado" / "caiu no spam"**
+`/email` — e-mail em HTML que sobrevive ao Outlook e ao modo escuro. Para e-mail de uma pessoa só, é `/email-profissional`
 
 **"Faço a mesma coisa toda semana"**
 `/mapear-rotinas` — transforma a rotina em skill própria

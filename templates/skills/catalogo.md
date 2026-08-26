@@ -2,7 +2,7 @@
 
 Skills de terceiros e nativas do Claude Code que valem conhecer. Use como referência ao criar skills novas com `/mapear-rotinas`, ou instale as que fizerem sentido pro seu negócio.
 
-> **Nada nesta página vem instalado com o ViperOS.** As 45 skills do ViperOS
+> **Nada nesta página vem instalado com o ViperOS.** As 50 skills do ViperOS
 > ficam em `.claude/skills/` — a lista completa está no fim deste arquivo.
 > O que está aqui embaixo é catálogo externo: umas já vêm no Claude Code,
 > outras você instala por fora.
@@ -155,6 +155,11 @@ Antes de criar skill, conferir se um desses já cobre:
 | Pipeline do que está em jogo | `/tarefas` |
 | Fechar a semana e medir | `/revisao-semanal` |
 | API, banco de dados, login, sistema no ar | `/backend` |
+| Padrão das telas de uso: botão, campo, tabela, estados | `/interface` |
+| Animação: duração, curva, aparecer ao rolar | `/movimento` |
+| Página de planos, cardápio, catálogo, tabela de preços | `/produto` |
+| Site acessível e rápido (WCAG 2.2 + Core Web Vitals) | `/acessivel` |
+| E-mail em HTML para lista, newsletter, campanha | `/email` |
 | Consulta lenta, erro em produção, publicação | `/backend` |
 | Fechar o mês: quanto entrou, sobrou, e o que dá lucro | `/caixa` |
 | Depois do fechou: expectativa, depoimento, cliente parado, orçamento sem resposta | `/pos-venda` |

@@ -268,6 +268,33 @@ function verTabela(arquivo) {
     i = j;
   }
   if (!tabelas) info("nenhuma tabela markdown encontrada");
+  verMultiplicacoes(fs.readFileSync(arquivo, "utf8"));
+}
+
+// ─────────────────────────── MULTIPLICAÇÃO ───────────────────────────
+// "12× R$ 74 = R$ 890" passava em branco: o verTabela só soma coluna, e conta
+// escrita em prosa (página de preço, proposta, plano anual) nunca era conferida.
+// Numa página de preço, essa é a conta que o cliente refaz na calculadora.
+
+const RE_MULT = /(\d{1,3})\s*[x×]\s*(?:de\s+)?(?:R\$\s*)?([\d][\d.,]*)\s*(?:=|·|—|-)?\s*(?:R\$\s*)?(?:no total|total(?:iza)?(?:ndo)?)?\s*(?:=|:)?\s*R\$\s*([\d][\d.,]*)/gi;
+
+function verMultiplicacoes(texto) {
+  let achou = 0;
+  for (const m of texto.matchAll(RE_MULT)) {
+    const n = parseInt(m[1], 10);
+    const unit = numerosDe(m[2]);
+    const total = numerosDe(m[3]);
+    if (!n || unit === null || total === null) continue;
+    // "1× R$ 90 = R$ 90" e parcela maior que o total são outra coisa (desconto, entrada)
+    if (n < 2 || total < unit) continue;
+    achou++;
+    const esperado = n * unit;
+    // tolerância de 1%: parcela arredondada em centavos é normal, erro de conta não
+    if (Math.abs(esperado - total) > Math.max(0.5, esperado * 0.01)) {
+      erro(`"${m[0].trim()}" não fecha: ${n} × ${unit.toLocaleString("pt-BR")} = ${esperado.toLocaleString("pt-BR")}, não ${total.toLocaleString("pt-BR")}`);
+    }
+  }
+  if (achou) ok(`${achou} multiplicação(ões) do tipo "N× R$ X = R$ Y" conferida(s)`);
 }
 
 // ─────────────────────────── CONTRASTE ───────────────────────────
@@ -368,6 +395,137 @@ function verHTML(arquivo) {
 
   const hrefsVazios = [...t.matchAll(/href=["'](#|mailto:\s*|tel:\s*|https?:\/\/wa\.me\/?)["']/gi)];
   if (hrefsVazios.length) erro(`${hrefsVazios.length} link vazio ou incompleto (href="#", mailto: sem endereço, wa.me sem número)`);
+
+  // página de preço erra a conta em prosa, não em tabela: "12× R$ 97 = R$ 1.164"
+  verMultiplicacoes(t.replace(/<[^>]+>/g, " "));
+}
+
+// ─────────────────────────── ALVO ───────────────────────────
+// Tamanho de alvo clicável (WCAG 2.5.8 pede 24×24px; o piso do ViperOS é 34px,
+// 44px no toque — ver templates/design/interface.md).
+//
+// A lógica é INVERTIDA de propósito. A versão ingênua — "medir o que declara e
+// reprovar o pequeno" — aprova o pior caso: botão com `padding: 4px 8px` e nenhum
+// min-height passa, porque não há altura para medir. Só o navegador sabe o tamanho
+// final, e este script não é navegador. Então o que se exige é a DECLARAÇÃO:
+// quem não declara min-height reprova, em vez de ser premiado pela omissão.
+
+const PISO_ALVO = 34;   // piso do ViperOS no desktop
+const MIN_WCAG = 24;    // mínimo do critério 2.5.8
+
+function medidaPx(v) {
+  const m = String(v).trim().match(/^([\d.]+)\s*(px|rem|em)?$/i);
+  if (!m) return null;
+  const n = parseFloat(m[1]);
+  if (isNaN(n)) return null;
+  return (m[2] || "px").toLowerCase() === "px" ? n : n * 16;
+}
+
+/** Maior altura declarada num bloco de declarações CSS. Padding NÃO conta. */
+function alturaDe(decls) {
+  let maior = null;
+  for (const m of decls.matchAll(/(?:^|[;{\s])(min-height|min-block-size|height)\s*:\s*([^;}]+)/gi)) {
+    const v = medidaPx(m[2]);
+    if (v !== null) maior = maior === null ? v : Math.max(maior, v);
+  }
+  return maior;
+}
+
+/** Pares seletor/declarações de todo <style> do arquivo. Blocos @media são achatados. */
+function regrasDe(html) {
+  const regras = [];
+  for (const st of html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/gi)) {
+    const css = st[1].replace(/\/\*[\s\S]*?\*\//g, "");
+    for (const r of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+      for (const sel of r[1].split(",").map((s) => s.trim()).filter(Boolean)) {
+        if (sel.startsWith("@")) continue;
+        regras.push({ sel, decls: r[2] });
+      }
+    }
+  }
+  return regras;
+}
+
+function atributosDe(bruto) {
+  const attrs = {};
+  for (const m of bruto.matchAll(/([\w-]+)\s*=\s*["']([^"']*)["']/g)) attrs[m[1].toLowerCase()] = m[2];
+  for (const m of bruto.matchAll(/(?:^|\s)([\w-]+)(?=\s|$)/g)) if (!(m[1].toLowerCase() in attrs)) attrs[m[1].toLowerCase()] = "";
+  return attrs;
+}
+
+/** O seletor alcança este elemento? Compara só o último simples — basta para o caso real. */
+function seletorCasa(sel, el) {
+  let s = (sel.split(/\s+|>|\+|~/).filter(Boolean).pop() || "").replace(/::?[a-z-]+(\([^)]*\))?/gi, "");
+  if (!s || s === "*") return s === "*";
+  const tag = (s.match(/^[a-z][a-z0-9]*/i) || [])[0];
+  if (tag && tag.toLowerCase() !== el.tag) return false;
+  for (const m of s.matchAll(/\.([\w-]+)/g)) if (!el.classes.includes(m[1])) return false;
+  for (const m of s.matchAll(/#([\w-]+)/g)) if (m[1] !== el.attrs.id) return false;
+  for (const m of s.matchAll(/\[([\w-]+)(?:[~|^$*]?=["']?([^\]"']*)["']?)?\]/g)) {
+    const val = el.attrs[m[1].toLowerCase()];
+    if (val === undefined) return false;
+    if (m[2] && val !== m[2]) return false;
+  }
+  return true;
+}
+
+const TIPOS_INPUT_ALVO = new Set(["button", "submit", "reset", "checkbox", "radio", "file", "image"]);
+
+function verAlvo(arquivo) {
+  console.log(`\nALVO: ${arquivo}`);
+  const html = fs.readFileSync(arquivo, "utf8");
+  const regras = regrasDe(html);
+
+  const semDeclaracao = new Map();  // assinatura → quantidade
+  const pequenos = new Map();       // mensagem → quantidade (agrupa: 30 botões iguais são um problema, não 30)
+  let inline = 0, conferidos = 0, aprovados = 0;
+
+  for (const m of html.matchAll(/<(a|button|input|select|summary|textarea)\b([^>]*)>/gi)) {
+    const tag = m[1].toLowerCase();
+    const attrs = atributosDe(m[2]);
+    if (tag === "a" && attrs.href === undefined) continue;                       // âncora não é alvo
+    if (tag === "input" && !TIPOS_INPUT_ALVO.has((attrs.type || "text").toLowerCase())) continue;
+    if (attrs.hidden !== undefined || /display:\s*none/i.test(attrs.style || "")) continue;
+
+    const classes = (attrs.class || "").split(/\s+/).filter(Boolean);
+    const el = { tag, attrs, classes };
+
+    // exceção "inline" do 2.5.8: link sem classe dentro de texto corrido
+    if (tag === "a" && !classes.length) {
+      const antes = html.slice(0, m.index);
+      const bloco = (antes.match(/<(p|li|td|h[1-6]|figcaption|blockquote)\b[^>]*>(?![\s\S]*<\/\1>)/i) || [])[1];
+      if (bloco) { inline++; continue; }
+    }
+
+    conferidos++;
+    let altura = alturaDe(attrs.style || "");
+    for (const r of regras) if (seletorCasa(r.sel, el)) {
+      const a = alturaDe(r.decls);
+      if (a !== null) altura = altura === null ? a : Math.max(altura, a);
+    }
+
+    const assinatura = `<${tag}${classes.length ? "." + classes.join(".") : ""}>`;
+    if (altura === null) semDeclaracao.set(assinatura, (semDeclaracao.get(assinatura) || 0) + 1);
+    else if (altura < PISO_ALVO) {
+      const msg = altura < MIN_WCAG
+        ? `${assinatura} declara ${altura}px — reprova no critério 2.5.8 (${MIN_WCAG}px)`
+        : `${assinatura} declara ${altura}px — passa na WCAG, mas abaixo do piso do ViperOS (${PISO_ALVO}px)`;
+      pequenos.set(msg, (pequenos.get(msg) || 0) + 1);
+    }
+    else aprovados++;
+  }
+
+  if (!conferidos && !inline) return info("nenhum elemento clicável encontrado");
+
+  for (const [ass, n] of semDeclaracao)
+    erro(`${ass}${n > 1 ? ` (${n}×)` : ""} sem min-height declarado — padding não garante alvo, e o tamanho final só existe no navegador`);
+  for (const [msg, n] of pequenos) erro(n > 1 ? msg.replace(" declara", ` (${n}×) declara`) : msg);
+
+  if (!semDeclaracao.size && !pequenos.size) ok(`${aprovados} elemento(s) clicável(is) com alvo declarado ≥${PISO_ALVO}px`);
+  if (inline) info(`${inline} link(s) inline em texto corrido — exceção do 2.5.8, não conferidos`);
+
+  const toque = /@media[^{]*(pointer:\s*coarse|hover:\s*none|max-width)[^{]*\{[\s\S]*?(min-height|min-block-size)\s*:\s*(4[4-9]|[5-9]\d)px/i.test(html);
+  if (conferidos && !toque) info("nenhuma regra sobe o alvo para 44px no toque — no celular o piso é 44px");
 }
 
 // ─────────────────────────── PESO ───────────────────────────
@@ -401,7 +559,7 @@ function verTudo(pasta) {
       const st = fs.statSync(full);
       if (st.isDirectory()) anda(full, prof + 1);
       else if (/\.csv$/i.test(f)) verCSV(full, /ads|anuncio|google/i.test(f));
-      else if (/\.html$/i.test(f)) verHTML(full);
+      else if (/\.html$/i.test(f)) { verHTML(full); verAlvo(full); }
       else if (/\.md$/i.test(f)) { verDatas(full); verTabela(full); }
     }
   };
@@ -563,9 +721,10 @@ const AJUDA = `ViperOS — verificar.js
 
   csv <arquivo> [--ads]     campos desalinhados e limites do Google Ads
   datas <arquivo.md>        dia da semana declarado vs data real
-  tabela <arquivo.md>       soma das colunas vs total declarado
+  tabela <arquivo.md>       soma das colunas vs total declarado, e "N× R$ X = R$ Y"
   contraste <cor1> <cor2>   razão WCAG
   html <arquivo.html>       CSS externo, var() sem fallback, @page, placeholder, link vazio
+  alvo <arquivo.html>       tamanho de alvo clicável declarado (WCAG 2.5.8 + piso do ViperOS)
   peso <pasta|arquivo>      imagem acima de 2 MB
   tudo <pasta>              roda o que couber em cada arquivo
   sistema [pasta]           integridade do próprio ViperOS: skill que não carrega,
@@ -578,6 +737,7 @@ try {
   else if (cmd === "tabela") verTabela(args[0]);
   else if (cmd === "contraste") verContraste(args[0], args[1]);
   else if (cmd === "html") verHTML(args[0]);
+  else if (cmd === "alvo") verAlvo(args[0]);
   else if (cmd === "peso") verPeso(args[0]);
   else if (cmd === "tudo") verTudo(args[0] || ".");
   else if (cmd === "sistema") verSistema(args[0] || ".");

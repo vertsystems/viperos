@@ -27,6 +27,20 @@ Só usar se o briefing pedir explicitamente — e aí é decisão declarada, nã
 - **Texto rotacionado 90°** na lateral. Clichê de portfólio de agência
 - **Linha de grade ou mira desenhada só para "parecer design"** — linha só existe se organiza conteúdo real
 
+### Movimento
+
+- **`transition: all`.** Anima o que ninguém pediu — inclusive propriedade que entra
+  depois, por outra regra. É o gradiente roxo-azul do movimento: assinatura de quem não
+  escolheu. Listar as propriedades
+- **A mesma curva na entrada e na saída.** É o que a pessoa descreve como "o menu fecha
+  travado". Quem entra freia; quem sai acelera
+- **`scale(0)` na entrada.** O elemento nasce do nada e o olho lê como falha de
+  renderização. Mínimo `0.92`, com opacidade junto
+- **Entrada ao rolar que reanima a cada passagem.** Transforma a página num carrossel
+  involuntário. Anima uma vez e para
+- **Peça com movimento e sem bloco `prefers-reduced-motion`.** Não é preciosismo: para
+  parte das pessoas, movimento em tela causa enjoo real
+
 ### Cor e superfície
 
 - **Gradiente roxo-azul.** É a assinatura mais reconhecível de geração automática
@@ -43,6 +57,7 @@ Só usar se o briefing pedir explicitamente — e aí é decisão declarada, nã
 - **Tudo centralizado e simétrico.** Quebrar com alinhamento à esquerda, margem deslocada, proporção variada
 - **Três cards iguais lado a lado** como seção de benefícios. É o layout mais genérico que existe. Alternativas: zigue-zague de 2 colunas, grade assimétrica, lista com hierarquia
 - **Raio de borda idêntico em tudo.** Variar: menor nos elementos internos, maior nos contêineres
+- **Alvo clicável que só existe por `padding`.** Botão sem `min-height` declarado depende do que o navegador resolver na hora — e no celular costuma resolver pequeno. Declarar (34px, 44px no toque)
 - **Padding vertical exatamente igual em cima e embaixo.** Opticamente, o de baixo quase sempre pede um pouco mais
 - **Nenhuma sobreposição, tudo lado a lado e plano.** Faltou profundidade
 - **Falta de respiro.** Em peça de marketing, quando na dúvida, dobrar o espaçamento
@@ -64,6 +79,8 @@ Só usar se o briefing pedir explicitamente — e aí é decisão declarada, nã
 - **Texto sobre foto sem sobreposição suficiente** — bonito na tela grande, ilegível no celular
 - **Ilustração, mascote ou personagem desenhado na hora** (em SVG ou CSS) pra preencher espaço vazio. Sai com cara de clip-art e destoa de peça sóbria. Se falta imagem, a resposta é layout tipográfico — não desenho improvisado
 - **Carinha, boneco ou objeto antropomorfizado** representando marca, produto ou "a IA". Em negócio sério isso custa credibilidade
+- **Emoji fazendo papel de ícone** em menu, lista de benefícios ou botão. Some em parte dos sistemas, muda de desenho em cada um, e o leitor de tela lê o nome inteiro do emoji no meio da frase
+- **Estado vazio com ilustração e nada mais.** "Nenhum resultado" com um desenho bonito e sem o botão que cria o primeiro item é a tela onde o usuário novo trava
 
 ---
 

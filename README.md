@@ -3,7 +3,7 @@
 > O sistema operacional do seu negócio dentro do Claude Code.
 
 Sua empresa ganha uma memória própria, uma identidade visual aplicada em tudo
-que ela gerar, e 45 skills prontas pra fazer marketing, conteúdo, SEO, ads,
+que ela gerar, e 50 skills prontas pra fazer marketing, conteúdo, SEO, ads,
 oferta, preço, venda, material e operação rodarem com você dirigindo.
 
 **Você não precisa decorar comando nenhum.** Fala o que quer em português — "faz
@@ -96,6 +96,31 @@ Fluxo de SEO em 8 passos (demanda, concorrência, GMB, on-page, conteúdo, ads,
 monitoramento, GEO) · campanha de Google Ads em CSV pronto pro Editor ·
 relatório semanal de mídia paga com alertas · respostas humanas pras reviews do
 Google · pauta pra imprensa local e do setor.
+
+**Dinheiro** — o que quase nenhum sistema mostra
+Fecha o mês: quanto entrou, quanto sobrou de verdade, quanto vale sua hora, qual
+serviço dá lucro e qual só dá trabalho · e o ponto de equilíbrio, calculado com
+os teus custos fixos, não com média de mercado.
+
+**Depois do fechou**
+Alinha a expectativa do cliente novo · pede depoimento na hora em que ele está
+satisfeito · reativa quem sumiu · recupera orçamento sem resposta · formaliza em
+contrato de prestação de serviço, com o que **não** está incluso escrito · e
+mapeia os concorrentes pra achar a brecha.
+
+**Canais**
+Atendimento e respostas de WhatsApp, inclusive como falar de preço sem perder a
+conversa · roteiro cena a cena pra Reels, TikTok e Shorts, com o gancho dos três
+primeiros segundos · e e-mail em HTML que chega inteiro na caixa de entrada,
+com descadastro em um clique.
+
+**Software** — quando o negócio precisa de sistema, não de peça
+Servidor, API, banco, login e publicação — com os dados desenhados antes do
+código · o padrão das telas de uso (botão, campo, tabela, painel e os quatro
+estados: cheio, vazio, carregando, erro) · duração e curva das animações · a
+página onde o cliente compara e escolhe, com o botão antes da ficha técnica · e
+o laudo que junta acessibilidade (WCAG 2.2) e velocidade (LCP, INP, CLS) numa
+auditoria só.
 
 **Apoio**
 Cataloga seus ativos reutilizáveis (depoimento, foto, dado, case) · lê

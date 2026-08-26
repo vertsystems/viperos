@@ -200,11 +200,13 @@ afirmação factual com fonte ou marcada como não verificada.
 
 Antes de entregar qualquer peça visual, conferir os critérios do
 `/revisar-design`: contraste WCAG AA, hierarquia perceptível, legibilidade
-no celular e aderência ao sistema da marca.
+no celular e aderência ao sistema da marca. Se a peça tem controle, formulário
+ou movimento, valem também `/interface`, `/movimento` e `/acessivel`.
 
 As referências que sustentam esses critérios ficam em `templates/`:
-`design/` (leitura do briefing, anti-genérico, qualidade visual) e `copy/`
-(psicologia da decisão, ganchos, edição). Skill visual ou de texto consulta
+`design/` (leitura do briefing, anti-genérico, qualidade visual, interface,
+movimento, acessibilidade, desempenho, e-mail em HTML, página de produto) e
+`copy/` (psicologia da decisão, ganchos, edição). Skill visual ou de texto consulta
 de lá em vez de improvisar — e é lá que se calibra o padrão do sistema.
 
 O mesmo vale pro que é software: `templates/backend/` (stack, dados, API,
@@ -222,8 +224,9 @@ semana, total de parcelas, contraste, peso de arquivo — tudo isso **se roda**:
 ```bash
 node scripts/verificar.js csv <arquivo> --ads   # limites e campos desalinhados
 node scripts/verificar.js datas <arquivo.md>     # dia da semana vs data real
-node scripts/verificar.js tabela <arquivo.md>    # soma das colunas vs total declarado
+node scripts/verificar.js tabela <arquivo.md>    # soma das colunas e "12× R$ 97 = R$ 1.164"
 node scripts/verificar.js html <arquivo.html>    # CSS externo, @page, placeholder, link vazio
+node scripts/verificar.js alvo <arquivo.html>    # tamanho de alvo clicável declarado
 node scripts/verificar.js peso <pasta>           # imagem acima de 2 MB
 node scripts/verificar.js contraste "#123" "#fff"
 node scripts/gerar-pdf.js <arquivo.html>              # HTML → PDF, com verificação

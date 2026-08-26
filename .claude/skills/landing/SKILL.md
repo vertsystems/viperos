@@ -128,6 +128,8 @@ Ele acusa CSS local externo, `var()` sem fallback, `@page` inválido, placeholde
 
 ## Regras
 
+- Se o pedido é **comparar e escolher** (planos, cardápio, catálogo, tabela de preços), a skill é `/produto` — e ela grava em outra pasta de propósito, para não escrever por cima de uma landing que já existe
+
 - **Uma página, uma ação.** Se o usuário quiser duas, perguntar qual vale mais e mandar a outra pro rodapé
 - Nunca inventar depoimento, número de clientes, prêmio ou certificação. Sem prova real, a seção sai
 - Preço: mostrar quando existe. Página que esconde preço perde quem já ia comprar

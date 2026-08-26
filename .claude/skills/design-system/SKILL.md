@@ -132,6 +132,10 @@ Sincronizar `identidade/design-guide.md` com o que foi decidido (a prosa continu
 Daqui pra frente, /carrossel, /proposta, /landing, /documento e
 /apresentacao usam esses tokens em vez de reinterpretar a marca.
 
+Se o negócio tem tela de sistema (pedido, cliente, painel), o /interface
+escreve o padrão dos controles em cima desses tokens. E o /movimento
+fixa duração e curva das transições.
+
 Se mudar de ideia sobre qualquer valor, edita o tokens.css — a mudança
 vale pra todas as peças novas.
 ```
