@@ -3,8 +3,11 @@
 > O sistema operacional do seu negócio dentro do Claude Code.
 
 Sua empresa ganha uma memória própria, uma identidade visual aplicada em tudo
-que ela gerar, e 51 skills prontas pra fazer marketing, conteúdo, SEO, ads,
+que ela gerar, e 54 skills prontas pra fazer marketing, conteúdo, SEO, ads,
 oferta, preço, venda, material e operação rodarem com você dirigindo.
+
+E quando o assunto é software, ele não para em escrever código: diz se vale a
+pena construir, quanto custa manter, e o que fazer com o sistema que já existe.
 
 **Você não precisa decorar comando nenhum.** Fala o que quer em português — "faz
 um carrossel sobre X", "quanto eu devo cobrar por isso", "minha página não

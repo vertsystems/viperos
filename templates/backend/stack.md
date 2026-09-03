@@ -19,6 +19,16 @@ sistema de pequeno negócio esbarra no limite da linguagem: esbarra em consulta 
 
 ---
 
+## O degrau antes de escolher a linguagem
+
+Antes de escolher a linguagem, responda duas coisas: **esse sistema tem login? Ele guarda dado
+por pessoa?** Se as duas forem não, gere HTML e publique num armazenamento estático. Nem
+framework, nem banco. Cardápio, tabela de preço e página de serviço são conteúdo, não sistema,
+e com o servidor some quase toda a conta: mensalidade, backup, dependência pra atualizar, porta
+aberta. O framework entra na primeira escrita: cadastro, pedido, área com senha.
+
+---
+
 ## Linguagens
 
 ### Node.js + TypeScript — o padrão seguro
@@ -132,6 +142,17 @@ Sem nenhuma tarefa demorada, não instale nenhum dos três.
 
 ---
 
+## Onde isso vai rodar
+
+| Decisão | O padrão | Sair do padrão quando | O que isso custa de atenção |
+|---|---|---|---|
+| **Serviço gerenciado × máquina crua** | Gerenciado: banco como serviço, hospedagem que recebe o repositório e publica sozinha | A aplicação precisa instalar algo no sistema operacional: driver, fonte, componente de terceiro, porta fora de HTTP | No gerenciado, correção de segurança e troca de hardware são do fornecedor. Na máquina crua, cada uma volta pro seu colo |
+| **Máquina virtual × container** | Container: a aplicação empacotada com o que ela precisa, igual na sua máquina e no servidor (`Dockerfile` e Compose em `entrega.md`) | O sistema é um bloco só que ninguém vai quebrar em pedaços | Container não é máquina virtual. Um processo, uma responsabilidade, e ninguém entra por SSH: precisou entrar, o conserto é reconstruir a imagem |
+
+Antes de adotar um gerenciado, escreva numa página como sair dele. Se não couber, ele prende.
+
+---
+
 ## Caminho de decisão
 
 ```
@@ -156,6 +177,33 @@ Banco:
 Cache?  Só depois de medir uma consulta lenta cujo dado muda pouco.
 Fila?   Só quando existir tarefa que demora e trava a resposta.
 ```
+
+---
+
+## Site ou aplicativo
+
+Três perguntas, nessa ordem. A primeira resolve a maioria dos casos sozinha.
+
+**1. Quais recursos do aparelho o sistema precisa chamar?** Escreva a lista com nome: câmera,
+leitor de código de barras, notificação empurrada, localização. Lista vazia significa site, ou
+site instalável na tela inicial. Aplicativo que não chama nada disso é um site dentro de um pacote.
+
+**2. Quem tem a máquina e a conta paga de cada plataforma prometida?** Aceitar iOS no escopo
+sem Mac e sem conta é a armadilha que aparece na semana da entrega: roda no Android, e não há
+como gerar chave, ajustar o nativo nem publicar. Decida isso no primeiro dia.
+
+**3. Como o instalável chega nas pessoas?** Pela loja, ou instalado direto nos aparelhos que
+o próprio negócio entrega. Muda burocracia, prazo e quem barra a sua atualização.
+
+**Armadilha: trocar o identificador do pacote.** Sintoma: meses depois pedem outro nome, e o
+id já é a identidade do aplicativo na loja. Custa republicar como app novo e perder quem já
+instalou. Conserto: escolha o id definitivo antes da primeira publicação, protótipo junto.
+
+**Armadilha: perder a chave que assina o aplicativo.** Sintoma: a loja recusa a versão nova
+como atualização, e o aparelho trata o pacote como outro. Não tem conserto depois. Prevenção:
+arquivo e senha no cofre do dono no dia em que a chave nasce, com o lugar anotado.
+
+O ViperOS constrói e assina o arquivo. Quem publica na loja é o dono, com a conta dele.
 
 ---
 

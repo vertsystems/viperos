@@ -950,6 +950,371 @@ function verSistema(raiz = ".") {
   }
 }
 
+// ─────────────────────────── SEGREDO ───────────────────────────
+// Chave de API, token e senha dentro de arquivo versionado.
+//
+// Quem enumera os arquivos é o próprio git (`git ls-files`), e isso não é
+// detalhe: arquivo que não está versionado não viaja pra ninguém, e varrer a
+// pasta inteira acusaria justamente o `.env` que está corretamente ignorado.
+// Quem responde se o `.env` está coberto também é o git (`git check-ignore`),
+// não uma leitura do `.gitignore` linha a linha.
+//
+// O check devolve arquivo:linha e para aí. A pergunta que ele responde é "esta
+// linha tem forma de chave?", sim ou não. Ele não pontua risco nem adivinha
+// gravidade. Pra silenciar uma linha que é exemplo, escreva
+// `viperos:segredo-ok` nela ou na linha logo acima.
+//
+// Existe porque o CLAUDE.md já manda conferir o stage antes de todo `git add`,
+// e hoje isso depende de alguém lembrar de olhar.
+
+const { execFileSync } = require("child_process");
+
+// Formas de chave: o valor se reconhece pelo formato, sem depender de como a
+// variável foi batizada. Cada linha aqui é um prefixo publicado pelo próprio
+// fornecedor, não um palpite.
+const FORMAS_DE_CHAVE = [
+  { re: /\bsk-[A-Za-z0-9_-]{20,}/g, nome: "chave da OpenAI (sk-…)" },
+  { re: /\bAKIA[0-9A-Z]{16}\b/g, nome: "chave de acesso da AWS (AKIA…)" },
+  { re: /\bAIza[0-9A-Za-z_-]{35}\b/g, nome: "chave do Google (AIza…)" },
+  { re: /\bgh[pousr]_[A-Za-z0-9]{20,}/g, nome: "token do GitHub (ghp_…)" },
+  { re: /\bxox[baprs]-[A-Za-z0-9-]{10,}/g, nome: "token do Slack (xox…)" },
+  { re: /-----BEGIN (?:RSA |EC |DSA |OPENSSH |PGP )?PRIVATE KEY-----/g, nome: "chave privada em texto puro" },
+  { re: /\b[a-z][a-z0-9+.-]*:\/\/[^\s:/@"'`]+:([^\s:/@"'`]+)@/g, nome: "string de conexão com senha embutida", valor: 1 },
+];
+
+const PALAVRA_DE_SEGREDO =
+  "senha|password|passwd|pwd|secret|token|api[_-]?key|apikey|access[_-]?key|secret[_-]?key|client[_-]?secret|private[_-]?key";
+
+// Nome de variável seguido de `=` ou `:`. O nome tem que TERMINAR na palavra:
+// sem isso, `--token-espaco: 8px` e `design-tokens:` viram alarme, e "redesenha"
+// acusa por causa do "senha" no fim da palavra.
+const RE_ATRIBUICAO = /([A-Za-z0-9_$.\-[\]]{2,60})["']?\s*[:=]\s*([^\n]*)/g;
+const RE_TERMINA_EM_SEGREDO = new RegExp(`(?:^|[^A-Za-zÀ-ÿ])(?:${PALAVRA_DE_SEGREDO})$`, "i");
+
+// Valores que aparecem nos textos do próprio ViperOS como exemplo de
+// preenchimento. Cada um está aqui porque é o texto do molde, não um valor de
+// verdade. A lista é curta de propósito: crescer aqui é esconder segredo. Se a
+// sua senha de produção é literalmente "senha", o problema não é este check.
+const VALORES_DE_EXEMPLO = new Set([
+  "senha", "password", "sua-senha", "sua-chave", "seu-token",
+  "cole-a-chave-aqui", "sk-cole-a-chave-aqui", "abc123",
+  "changeme", "troque-isso", "xxx", "xxxxx",
+]);
+
+// Arquivo que nunca deveria estar versionado. Nome fecha a pergunta sozinho.
+const ARQUIVOS_QUE_NAO_SE_VERSIONA = [
+  { re: /(^|\/)\.env(\.[A-Za-z0-9_-]+)?$/i, salvo: /\.(example|sample|template|modelo|dist)$/i, nome: "arquivo .env" },
+  { re: /\.(pem|key|p12|pfx|jks|keystore)$/i, nome: "chave ou certificado" },
+  { re: /(^|\/)id_(rsa|dsa|ecdsa|ed25519)$/i, nome: "chave SSH privada" },
+  { re: /(^|\/)credentials\.json$/i, nome: "credentials.json" },
+  { re: /(^|\/)service-account[^/]*\.json$/i, nome: "conta de serviço do Google" },
+  { re: /\.(dump|bak|sqlite|sqlite3|mdb)$|\.sql\.(gz|zip|bz2|xz)$/i, nome: "dump de banco" },
+];
+
+/** O texto é um valor escrito ali, ou é referência a outro lugar? Uma coisa vaza, a outra não. */
+function valorEscrito(v) {
+  let s = String(v).trim().replace(/^[`"']+|[`"']+$/g, "").trim();
+  if (!s) return null;                                   // valor vazio: o .env.example é assim
+  if (/\.\.\.|…/.test(s)) return null;                  // "sk-..." é a chave cortada do exemplo, não a chave
+  if (/\$\{|\$[A-Za-z_]|process\.env|os\.environ|getenv|ENV\[|\{\{/.test(s)) return null;   // referência
+  if (/^<.*>$/.test(s) || /^\[.*\]$/.test(s)) return null;                                  // marcador de preencher
+  s = s.replace(/[,;.)\]}]+$/, "").trim();
+  if (!s || VALORES_DE_EXEMPLO.has(s.toLowerCase())) return null;
+  return s;
+}
+
+/** O valor da atribuição está escrito na linha? */
+function literalDe(nome, resto) {
+  const t = resto.trim();
+  const entreAspas = t.match(/^(["'`])((?:\\.|(?!\1)[^\\])*)\1/);
+  if (entreAspas) return valorEscrito(entreAspas[2]);
+  // Sem aspas, só conta em nome de variável de ambiente (MAIÚSCULA_COM_UNDERLINE)
+  // e valor de um pedaço só. É o que separa `POSTGRES_PASSWORD: senha` de uma
+  // frase em português que por acaso tem "senha:" no meio.
+  if (!/^[A-Z][A-Z0-9_]*$/.test(nome)) return null;
+  const um = t.match(/^([^\s#]+)\s*(?:#.*)?$/);
+  return um ? valorEscrito(um[1]) : null;
+}
+
+/** Corta o valor na saída: terminal vira log, e log com chave inteira é o vazamento seguinte. */
+const trecho = (s) => (s.length <= 8 ? s : s.slice(0, 6) + "…");
+
+function verSegredo(raiz = ".") {
+  console.log(`\nSEGREDO: ${path.resolve(raiz)}`);
+
+  let versionados;
+  try {
+    execFileSync("git", ["rev-parse", "--is-inside-work-tree"], { cwd: raiz, stdio: "ignore" });
+    versionados = execFileSync("git", ["ls-files", "-z"], { cwd: raiz, maxBuffer: 64 * 1024 * 1024 })
+      .toString("utf8").split("\0").filter(Boolean);
+  } catch (e) {
+    return info("não é repositório git (ou o git não está instalado) — este check enumera por `git ls-files` e não tem o que ler");
+  }
+
+  // ── 1. .env coberto pelo .gitignore? ──────────────────────────
+  const ignorado = (p) => {
+    try {
+      execFileSync("git", ["check-ignore", "-q", "--no-index", p], { cwd: raiz, stdio: "ignore" });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+  const descobertos = [".env", ".env.local", ".env.production"].filter((p) => !ignorado(p));
+  if (descobertos.length) {
+    erro(`o .gitignore não cobre ${descobertos.join(", ")} — um dia alguém roda \`git add .\` e a chave vai junto`);
+    info("    conserto: uma linha `.env` e uma linha `.env.*` no .gitignore, com `!.env.example` embaixo");
+  } else ok(".env coberto pelo .gitignore (conferido com `git check-ignore`)");
+
+  // ── 2. arquivo que não se versiona, dentro do índice ──────────
+  let proibidos = 0;
+  for (const rel of versionados) {
+    for (const { re, salvo, nome } of ARQUIVOS_QUE_NAO_SE_VERSIONA) {
+      if (!re.test(rel) || (salvo && salvo.test(rel))) continue;
+      proibidos++;
+      erro(`${rel}: ${nome} está versionado — sai do índice com \`git rm --cached "${rel}"\``);
+      break;
+    }
+  }
+  if (!proibidos) ok("nenhum .env, .pem, credencial ou dump de banco no índice");
+
+  // ── 3. varredura linha a linha dos arquivos versionados ───────
+  let lidos = 0, pulados = 0, achados = 0;
+  for (const rel of versionados) {
+    const full = path.join(raiz, rel);
+    if (!fs.existsSync(full) || !fs.statSync(full).isFile()) continue;
+    if (fs.statSync(full).size > 4 * 1024 * 1024) { pulados++; continue; }
+    const buf = fs.readFileSync(full);
+    if (buf.subarray(0, 8000).includes(0)) { pulados++; continue; }   // binário
+    lidos++;
+
+    const linhas = buf.toString("utf8").split(/\r?\n/);
+    const silenciada = (i) =>
+      /viperos:segredo-ok/.test(linhas[i] || "") || /viperos:segredo-ok/.test(linhas[i - 1] || "");
+
+    linhas.forEach((linha, i) => {
+      if (linha.length > 2000 || silenciada(i)) return;
+
+      let jaContou = false;
+      for (const { re, nome, valor } of FORMAS_DE_CHAVE) {
+        re.lastIndex = 0;
+        let m;
+        while ((m = re.exec(linha))) {
+          const bruto = valor ? valorEscrito(m[valor]) : m[0];
+          if (bruto === null) continue;
+          achados++;
+          jaContou = true;
+          erro(`${rel}:${i + 1}: ${nome} — "${trecho(bruto)}"`);
+        }
+      }
+      // A mesma chave já foi contada pela forma dela: contar de novo pelo nome da
+      // variável dobraria o número sem dobrar o problema.
+      if (jaContou) return;
+
+      RE_ATRIBUICAO.lastIndex = 0;
+      let a;
+      while ((a = RE_ATRIBUICAO.exec(linha))) {
+        const nome = a[1].replace(/^["'`]+/, "");
+        if (nome.startsWith("--")) continue;                    // variável de CSS
+        if (!RE_TERMINA_EM_SEGREDO.test(nome)) continue;
+        const v = literalDe(nome, a[2]);
+        if (v === null) continue;
+        achados++;
+        erro(`${rel}:${i + 1}: ${nome} recebe um valor escrito no arquivo — "${trecho(v)}"`);
+      }
+    });
+  }
+
+  info(`${lidos} arquivos versionados lidos${pulados ? `, ${pulados} pulados (binário ou acima de 4 MB)` : ""}`);
+  if (!achados) ok("nenhuma chave, token ou senha com valor escrito nos arquivos versionados");
+  else info("    exemplo de molde acusado à toa se silencia com `viperos:segredo-ok` na linha ou na linha de cima");
+  if (achados || proibidos) {
+    info("    segredo que já foi versionado continua no histórico depois de apagado: troque a chave no fornecedor");
+  }
+}
+
+// ─────────────────────────── MIGRAÇÃO ───────────────────────────
+// Mudança de estrutura de banco é a única operação que o /backend chama de
+// irreversível na prática. Este check lê os próprios arquivos .sql e responde
+// quatro perguntas fechadas, todas de sim ou não:
+//
+//   · número de ordem repetido ou com buraco — comparação de inteiros
+//   · migração sem contrapartida de desfazer — arquivo par ou seção existe, ou não
+//   · NOT NULL acrescentado sem DEFAULT em tabela que já existe — a linha do
+//     banco que já está lá não tem valor pra coluna nova, e o ALTER TABLE para
+//     no meio com a tabela travada
+//   · DROP junto de adição no mesmo arquivo — é o que obriga a derrubar o
+//     sistema pra publicar, em vez de subir a coluna nova primeiro e remover a
+//     velha na versão seguinte
+//
+// Quando não acha arquivo no formato que sabe ler, ele diz isso em voz alta.
+// Check que aprova sem ter olhado é pior que check nenhum.
+
+const PASTAS_DE_MIGRACAO = [
+  "migrations", "migracoes", "migrações",
+  path.join("db", "migrate"), path.join("database", "migrations"),
+  path.join("prisma", "migrations"), path.join("supabase", "migrations"),
+  path.join("sql", "migrations"), path.join("src", "migrations"),
+];
+
+// A marca de desfazer é uma linha de seção ("-- Down", "-- desfazer: tira a coluna"),
+// não qualquer comentário que cite a palavra. Sem essa exigência, um "-- não tem
+// rollback" no topo do arquivo faria o check considerar a volta como escrita.
+const RE_DESFAZER = /^[ \t]*(?:--|#)[ \t]*(?:\+?[ \t]*(?:migrate|goose)[ \t]+)?(?:down|desfazer|rollback|undo)\b(?:[ \t]*[:—-][^\n]{0,70})?[ \t]*$/im;
+// Arquivo de volta atrás: a palavra fecha o nome, antes da extensão. Assim
+// `001_criar_pedidos.down.sql` conta como par de desfazer e `002_undo_bug.sql`
+// continua sendo uma migração comum.
+const RE_NOME_DESFAZER = /(?:^|[^A-Za-z])(?:down|desfazer|rollback|undo)(?:\.[a-z]+)?$/i;
+
+/** Apaga comentário SQL preservando o comprimento, pra linha do achado continuar certa. */
+function semComentarioSQL(sql) {
+  return sql
+    .replace(/\/\*[\s\S]*?\*\//g, (m) => m.replace(/[^\n]/g, " "))
+    .replace(/--[^\n]*/g, (m) => " ".repeat(m.length));
+}
+
+/** Instruções separadas por ponto e vírgula, com a posição de cada uma no arquivo. */
+function instrucoesSQL(sql) {
+  const out = [];
+  let ini = 0;
+  for (let i = 0; i < sql.length; i++) {
+    if (sql[i] !== ";") continue;
+    if (sql.slice(ini, i).trim()) out.push({ txt: sql.slice(ini, i), pos: ini });
+    ini = i + 1;
+  }
+  if (sql.slice(ini).trim()) out.push({ txt: sql.slice(ini), pos: ini });
+  return out;
+}
+
+const linhaEm = (sql, pos) => sql.slice(0, pos).split("\n").length;
+
+function verMigracao(alvo) {
+  const raiz = alvo || ".";
+  let pasta = null;
+  if (alvo && fs.existsSync(alvo) && fs.statSync(alvo).isDirectory() && !PASTAS_DE_MIGRACAO.some((p) => fs.existsSync(path.join(alvo, p)))) {
+    pasta = alvo;
+  }
+  if (!pasta) pasta = PASTAS_DE_MIGRACAO.map((p) => path.join(raiz, p)).find((p) => fs.existsSync(p)) || null;
+
+  console.log(`\nMIGRAÇÃO: ${pasta ? path.resolve(pasta) : path.resolve(raiz)}`);
+  if (!pasta) {
+    info(`nenhuma pasta de migração aqui (procurei por ${PASTAS_DE_MIGRACAO.slice(0, 6).join(", ")}…)`);
+    return info("    se a sua tem outro nome, passe o caminho: node scripts/verificar.js migracao caminho/da/pasta");
+  }
+
+  // ── coleta: .sql solto na pasta, ou <numero>_nome/migration.sql ──
+  const arquivos = [];
+  const desfazerSolto = [];
+  const guarda = (arq, nomeNumero) => {
+    const m = path.basename(nomeNumero).match(/^[Vv]?(\d+)/);
+    if (!m) return;
+    if (RE_NOME_DESFAZER.test(path.basename(arq))) desfazerSolto.push({ num: m[1], arq });
+    else arquivos.push({ num: m[1], arq });
+  };
+  for (const f of fs.readdirSync(pasta).sort()) {
+    const full = path.join(pasta, f);
+    if (fs.statSync(full).isDirectory()) {
+      if (/^(down|desfazer|rollback|undo)$/i.test(f)) {
+        for (const g of fs.readdirSync(full)) if (/\.sql$/i.test(g)) {
+          const m = g.match(/^[Vv]?(\d+)/);
+          if (m) desfazerSolto.push({ num: m[1], arq: path.join(full, g) });
+        }
+        continue;
+      }
+      // Layout de pasta por migração (Prisma, Supabase): o número está no nome da
+      // PASTA, e o arquivo lá dentro só diz se é o que aplica ou o que desfaz.
+      for (const g of fs.readdirSync(full)) if (/\.sql$/i.test(g)) guarda(path.join(full, g), f);
+      continue;
+    }
+    if (/\.sql$/i.test(f)) guarda(full, f);
+  }
+
+  if (!arquivos.length) {
+    const sql = fs.readdirSync(pasta).filter((f) => /\.sql$/i.test(f)).length;
+    erro(`não encontrei migrações neste formato: ${sql ? `${sql} arquivo(s) .sql, nenhum com número na frente do nome` : "a pasta não tem nenhum arquivo .sql"}`);
+    return info("    o formato que este check lê é arquivo .sql começando por número (001_criar_pedidos.sql, 20260115_criar_pedidos.sql)");
+  }
+
+  const onde = path.relative(raiz, pasta);
+  info(`${arquivos.length} migraç${arquivos.length > 1 ? "ões" : "ão"}${onde ? ` em ${onde}` : ""}`);
+
+  // ── 1. numeração: um formato só ───────────────────────────────
+  const porData = arquivos.filter((a) => a.num.length >= 8);
+  const sequencial = arquivos.filter((a) => a.num.length < 8);
+  if (porData.length && sequencial.length) {
+    erro(`dois formatos de numeração na mesma pasta: ${sequencial.length} sequencial(is) e ${porData.length} por data — a ordem de aplicação fica indefinida`);
+    info(`    ${sequencial.slice(0, 3).map((a) => path.basename(a.arq)).join(", ")} contra ${porData.slice(0, 3).map((a) => path.basename(a.arq)).join(", ")}`);
+  }
+
+  // ── 2. número repetido ────────────────────────────────────────
+  const porNumero = new Map();
+  for (const a of arquivos) {
+    const n = String(parseInt(a.num, 10));
+    if (!porNumero.has(n)) porNumero.set(n, []);
+    porNumero.get(n).push(path.basename(a.arq));
+  }
+  let repetidos = 0;
+  for (const [n, quais] of porNumero) {
+    if (quais.length < 2) continue;
+    repetidos++;
+    erro(`número ${n} repetido em ${quais.join(" e ")} — duas pessoas criaram a mesma migração e uma vai deixar de rodar`);
+  }
+  if (!repetidos) ok("nenhum número de ordem repetido");
+
+  // ── 3. buraco na sequência ────────────────────────────────────
+  if (porData.length && !sequencial.length) {
+    info("numeração por data e hora — buraco não existe nesse formato, pulei essa conta");
+  } else if (sequencial.length) {
+    const nums = [...new Set(sequencial.map((a) => parseInt(a.num, 10)))].sort((x, y) => x - y);
+    const faltando = [];
+    for (let n = nums[0]; n <= nums[nums.length - 1]; n++) if (!nums.includes(n)) faltando.push(n);
+    if (faltando.length) {
+      erro(`buraco na sequência: falta ${faltando.slice(0, 12).join(", ")}${faltando.length > 12 ? ` (+${faltando.length - 12})` : ""} entre ${nums[0]} e ${nums[nums.length - 1]}`);
+      info("    ou alguém apagou uma migração que já rodou em produção, ou uma ficou de fora do commit");
+    } else ok(`sequência inteira de ${nums[0]} a ${nums[nums.length - 1]}, sem buraco`);
+  }
+
+  // ── 4. desfazer, NOT NULL sem DEFAULT, DROP junto de adição ───
+  const numsDesfazer = new Set(desfazerSolto.map((d) => String(parseInt(d.num, 10))));
+  let semVolta = 0, semDefault = 0, dropJunto = 0;
+
+  for (const a of arquivos) {
+    const nome = path.relative(raiz, a.arq) || path.basename(a.arq);
+    const conteudo = fs.readFileSync(a.arq, "utf8");
+    const corte = conteudo.search(RE_DESFAZER);
+
+    if (corte === -1 && !numsDesfazer.has(String(parseInt(a.num, 10)))) {
+      semVolta++;
+      if (semVolta <= 10) erro(`${nome}: sem contrapartida de desfazer — nem arquivo par, nem seção "-- Down" no próprio arquivo`);
+    }
+
+    // Só a parte que aplica. Sem esse corte, o arquivo que TEM seção de desfazer
+    // seria acusado de DROP junto de adição pelo próprio desfazer dele.
+    const sobe = semComentarioSQL(corte === -1 ? conteudo : conteudo.slice(0, corte));
+
+    for (const inst of instrucoesSQL(sobe)) {
+      if (!/\bALTER\s+TABLE\b/i.test(inst.txt)) continue;
+      if (!/\bNOT\s+NULL\b/i.test(inst.txt) || /\bDEFAULT\b/i.test(inst.txt)) continue;
+      semDefault++;
+      const comeca = inst.pos + (inst.txt.match(/^\s*/) || [""])[0].length;
+      erro(`${nome}:${linhaEm(sobe, comeca)}: NOT NULL em tabela que já existe, sem DEFAULT — a linha que já está gravada não tem valor pra coluna, e o ALTER TABLE para no meio`);
+    }
+
+    const temDrop = /\bDROP\s+(TABLE|COLUMN)\b/i.test(sobe);
+    const temAdicao = /\bCREATE\s+TABLE\b/i.test(sobe) || /\bADD\s+(COLUMN|CONSTRAINT)\b/i.test(sobe);
+    if (temDrop && temAdicao) {
+      dropJunto++;
+      erro(`${nome}: apaga e acrescenta no mesmo arquivo — a versão antiga do código quebra no instante em que este arquivo roda, então publicar exige tirar o sistema do ar`);
+    }
+  }
+
+  if (semVolta > 10) erro(`(+${semVolta - 10} sem contrapartida de desfazer, além das 10 acima)`);
+  if (!semVolta) ok("toda migração tem como voltar atrás");
+  if (!semDefault) ok("nenhum NOT NULL acrescentado sem DEFAULT");
+  if (!dropJunto) ok("nenhum arquivo mistura remoção com adição");
+  else info("    o caminho sem indisponibilidade é em duas entregas: primeiro a coluna nova, o código passa a usar as duas, e só depois a remoção");
+}
+
 // ─────────────────────────── main ───────────────────────────
 
 const [cmd, ...args] = process.argv.slice(2);
@@ -965,7 +1330,9 @@ const AJUDA = `ViperOS — verificar.js
   peso <pasta|arquivo>      imagem acima de 2 MB
   tudo <pasta>              roda o que couber em cada arquivo
   sistema [pasta]           integridade do próprio ViperOS: skill que não carrega,
-                            referência quebrada, script ausente, contagem errada`;
+                            referência quebrada, script ausente, contagem errada
+  segredo [pasta]           chave, token e senha em arquivo versionado (enumera pelo git)
+  migracao [pasta]          ordem, desfazer, NOT NULL sem DEFAULT e DROP junto de adição`;
 
 try {
   if (!cmd || cmd === "-h" || cmd === "--help") { console.log(AJUDA); process.exit(0); }
@@ -979,6 +1346,8 @@ try {
   else if (cmd === "peso") verPeso(args[0]);
   else if (cmd === "tudo") verTudo(args[0] || ".");
   else if (cmd === "sistema") verSistema(args[0] || ".");
+  else if (cmd === "segredo") verSegredo(args[0] || ".");
+  else if (cmd === "migracao" || cmd === "migração") verMigracao(args[0]);
   else { console.log(`Comando desconhecido: ${cmd}\n\n${AJUDA}`); process.exit(1); }
 } catch (e) {
   console.error(`\n✖ ${e.message}`);

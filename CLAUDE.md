@@ -211,8 +211,13 @@ movimento, acessibilidade, desempenho, e-mail em HTML, página de produto) e
 `copy/` (psicologia da decisão, ganchos, edição, humanização). Skill visual ou de texto consulta
 de lá em vez de improvisar, e é lá que se calibra o padrão do sistema.
 
-O mesmo vale pro que é software: `templates/backend/` (stack, dados, API,
-segurança, arquitetura, entrega, debug) sustenta o `/backend`.
+O mesmo vale pro que é software, e aí são duas pastas com fronteira clara.
+`templates/backend/` é o **código** (stack, dados, consultas, cadastro, API,
+segurança, arquitetura, importação, testes, entrega, incidente, versões, debug,
+revisão de código), e sustenta o `/backend`, o `/testar` e o `/revisar-codigo`.
+`templates/software/` é o que o **dono decide e paga** (escopo, custo,
+manutenção), e sustenta o `/escopo`. Nada sobre como escrever código entra em
+`software/`; nada sobre orçamento e decisão de negócio entra em `backend/`.
 
 Quando o conteúdo depender de dado (número, comparação, alegação técnica),
 consultar `pesquisa/` e `biblioteca.md` antes de escrever. Se não
@@ -231,6 +236,8 @@ node scripts/verificar.js html <arquivo.html>    # CSS externo, @page, placehold
 node scripts/verificar.js alvo <arquivo.html>    # tamanho de alvo clicável declarado
 node scripts/verificar.js texto <arquivo>        # sinais de texto gerado: ritmo, clichê
 node scripts/verificar.js peso <pasta>           # imagem acima de 2 MB
+node scripts/verificar.js segredo [pasta]        # chave e senha em arquivo versionado
+node scripts/verificar.js migracao [pasta]       # ordem, volta atrás e DROP na migração
 node scripts/verificar.js contraste "#123" "#fff"
 node scripts/gerar-pdf.js <arquivo.html>              # HTML → PDF, com verificação
 node scripts/verificar.js sistema                     # integridade do próprio ViperOS

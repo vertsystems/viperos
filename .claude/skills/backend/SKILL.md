@@ -23,13 +23,10 @@ aconteceu quando ele quebra num domingo à noite.
 - **Contexto do negócio:** `_memoria/empresa.md` — quantas pessoas usam, o que o sistema precisa fazer, quem mantém depois
 - **Prioridades:** `_memoria/estrategia.md` — prazo e orçamento mudam a escolha da stack mais que qualquer benchmark
 - **Referências** (ler a que o passo pedir, não todas):
-  - `templates/backend/stack.md` — escolher linguagem, framework, banco e hospedagem
-  - `templates/backend/dados.md` — modelar tabela, índice, consulta, cache, escala
-  - `templates/backend/api.md` — rota, status, erro, paginação, versão, documentação
-  - `templates/backend/seguranca.md` — as dez falhas do OWASP, login, senha, permissão
-  - `templates/backend/arquitetura.md` — como dividir o código, resiliência, legibilidade
-  - `templates/backend/entrega.md` — teste, container, CI/CD, publicação, monitoramento
-  - `templates/backend/debug.md` — investigar defeito, log, e os cinco problemas mais comuns
+  - **Antes da primeira linha:** `templates/backend/stack.md` (escolher linguagem, framework, banco e hospedagem) e `templates/backend/dados.md` (modelar tabela, índice, consulta, cache, escala)
+  - **Construindo:** `templates/backend/api.md` (rota, status, erro, paginação, versão, documentação), `templates/backend/cadastro.md` (gravar, editar, apagar, listar), `templates/backend/consultas.md` (o total que sai errado sem dar erro), `templates/backend/importacao.md` (planilha, XML, exportação do sistema antigo), `templates/backend/seguranca.md` (as dez falhas do OWASP, login, senha, permissão) e `templates/backend/arquitetura.md` (como dividir o código, resiliência, legibilidade)
+  - **Subindo:** `templates/backend/testes.md` (o que não testar, e o que a bateria diz do código), `templates/backend/entrega.md` (teste, container, CI/CD, publicação, monitoramento) e `templates/backend/versoes.md` (commit por intenção, etiqueta, volta atrás)
+  - **Com o sistema no ar:** `templates/backend/debug.md` (investigar defeito, log, os cinco problemas mais comuns) e `templates/backend/incidente.md` (caiu no domingo à noite, e quem soube primeiro foi o dono)
 - **Saída:** o projeto em `sistemas/<nome>/` e as decisões em `sistemas/<nome>/DECISOES.md`
 
 ---
@@ -51,6 +48,9 @@ simples, não a favor do esperto.
 **Escala pequena é o caso normal, não a exceção.** A maioria dos sistemas de pequeno
 negócio roda folgada num servidor só, com um banco só. Microserviço, fila e cache
 distribuído entram quando o número aparece, não por precaução.
+
+**Pedido sem tamanho não começa aqui.** "Quero um sistema pra controlar meus pedidos" vai antes
+pro `/escopo`, que corta até a fatia que já resolve e grava as três respostas em `ESCOPO.md`.
 
 ### Passo 2 — Escolher a stack e registrar por quê
 
@@ -85,6 +85,9 @@ Mostrar o desenho das tabelas ao usuário em português antes de criar. "Cada pe
 vários itens; cada item aponta pra um produto": se ele disser "não é bem assim", você
 descobriu de graça.
 
+Tabela bem desenhada ainda soma errado. Os defeitos de consulta que não geram erro nenhum, só
+total torto no fechamento do mês, estão em `templates/backend/consultas.md`.
+
 ### Passo 4 — Desenhar a API
 
 Consultar `templates/backend/api.md`. Resumo do que não muda:
@@ -113,6 +116,7 @@ O que precisa estar certo **antes** de qualquer coisa ir pro ar:
 - **Permissão negada por padrão**: libera o que é explicitamente permitido
 - **Limite de tentativa no login** — senão a força bruta é só questão de tempo
 - **Erro pro usuário não conta detalhe do sistema.** "Falha ao processar" pra ele, stack trace no log
+- **Só grava o campo que está na lista branca.** Repassar o formulário inteiro pro banco deixa qualquer um mandar um campo a mais e virar administrador. O ciclo do cadastro inteiro está em `templates/backend/cadastro.md`
 
 Antes de subir, rodar a checagem de dependência (`npm audit`, `pip-audit`), vulnerabilidade
 conhecida em biblioteca desatualizada é a porta mais usada e a mais fácil de fechar.
@@ -131,6 +135,9 @@ Ordem de prioridade quando o tempo é curto:
 Teste que depende de ordem de execução, de relógio ou de internet vai falhar sozinho e
 treinar todo mundo a ignorar o resultado. Melhor não existir.
 
+Isso vale pro sistema que nasce agora. Se ele já está no ar sem nenhum teste, o caminho é o
+`/testar`, e o critério de quando **não** escrever teste está em `templates/backend/testes.md`.
+
 ### Passo 7 — Publicar de um jeito que dá pra voltar atrás
 
 - Variável de ambiente separada por ambiente. Nunca apontar desenvolvimento pro banco de produção
@@ -138,6 +145,7 @@ treinar todo mundo a ignorar o resultado. Melhor não existir.
 - Endpoint `/health` que responde se o banco está de pé
 - Publicação que dá pra reverter em minutos: guardar a versão anterior e saber o comando da volta
 - Migração de banco roda **antes** do código novo, e precisa funcionar com o código velho ainda no ar
+- **A volta atrás tem duas metades:** a do código, com um commit por intenção e etiqueta a cada publicação (`templates/backend/versoes.md`), e a da madrugada em que já caiu, quando estancar vem antes de investigar (`templates/backend/incidente.md`)
 
 ### Passo 8 — Saber o que está acontecendo
 
@@ -192,6 +200,8 @@ Aí o fluxo é outro: consultar `templates/backend/debug.md` e seguir a ordem:
 5. **Consertar, e escrever o teste** que pega esse defeito
 6. **Anotar em `DECISOES.md`** se a causa foi estrutural
 
+Se o número errado entrou por planilha ou por arquivo de terceiro, o defeito é da carga: `templates/backend/importacao.md`.
+
 Nunca mudar várias coisas de uma vez pra ver se melhora: se melhorar, ninguém sabe o motivo,
 e o defeito volta na próxima.
 
@@ -206,4 +216,5 @@ e o defeito volta na próxima.
 - **Apagar dado nunca é `DELETE` direto** em tabela que o negócio depende. Marcar como removido e esconder — recuperação vira um `UPDATE`, não um chamado de suporte com backup
 - **Código que o usuário vai manter sozinho é escrito pra ser lido**, não pra impressionar. Nome que explica, função curta, sem esperteza
 - **Toda dependência nova é um compromisso.** Antes de instalar biblioteca: ela é mantida? resolve algo que dá trabalho de verdade? Trinta linhas próprias costumam custar menos que uma dependência abandonada
+- **Quem contrata quase nunca é quem usa.** O dono descreve o sistema pela rotina dele; quem digita o dia inteiro é o balconista ou a recepcionista. Falar uma vez com essa pessoa antes de modelar faz parte da entrega, não é extra: sistema entregue certo e usado errado nasce aí
 - Explicar a decisão técnica em português pro usuário. Ele decide o que aceita — o custo de manter é dele

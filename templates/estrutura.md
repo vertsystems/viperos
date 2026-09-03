@@ -38,7 +38,7 @@ MeuNegocio/
 ├── analises/              saídas do /analisar-dados
 ├── emails/                rascunhos longos do /email-profissional
 ├── revisoes/              fechamentos do /revisao-semanal
-├── sistemas/              código do /backend — um subdiretório por sistema
+├── sistemas/              o que o /escopo decide e o /backend constrói
 ├── dados/                 drop zone: arquivo que você joga aqui pra ser lido
 ├── scripts/               utilitários e o Playwright (ver templates/scripts.md)
 ├── biblioteca.md          índice de ativos reutilizáveis

@@ -131,6 +131,21 @@ no texto.
 
 ---
 
+## No celular: zoom, hover e gesto
+
+- **Nunca desligue o zoom da página.** Nada de `user-scalable=no` nem `maximum-scale=1` na
+  meta viewport. Pinçar para aproximar é acessibilidade que existe em todo aparelho, e quem
+  mais depende dela é o cliente de 60 anos. Quando o iPhone dá zoom sozinho ao tocar num
+  campo, o conserto é texto de 16px no campo, nunca travar a escala
+- **Nada essencial atrás de hover.** Menu e dica que só aparecem ao passar o mouse não
+  existem em tela de toque. O sintoma é "o menu não abre no celular", ou abre no segundo
+  toque. Hover fica como conforto de quem tem mouse, nunca como único caminho
+- **Nada essencial atrás de gesto.** O critério 2.5.7 já exige alternativa em clique para o
+  que se arrasta. A regra prática vai além: gesto é o atalho de teclado do toque, e quem não
+  sabe que ele existe não descobre sozinho. No carrossel, setas à vista e o arrastar de bônus
+
+---
+
 ## Como testar em 10 minutos
 
 Sem ferramenta paga, na ordem de quem acha mais problema:

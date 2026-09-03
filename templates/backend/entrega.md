@@ -7,6 +7,9 @@ como saber que está no ar funcionando.
 
 ## Testar o que quebra caro
 
+O critério para **não** escrever um teste, o que a bateria denuncia sobre o projeto do código
+e a configuração que impede a bateria de mentir estão em `templates/backend/testes.md`.
+
 Cobertura alta não é o objetivo: sistema com cobertura alta e nenhum teste no fluxo de
 pagamento está descoberto onde importa. A pergunta certa é: **o que, se quebrar, dói?**
 
@@ -206,6 +209,7 @@ O mínimo que já vale: **em todo push, roda teste e lint**. Publicar só com a 
 - [ ] **Backup automático testado**: restaurado uma vez de verdade, com o tempo anotado. Backup nunca restaurado é esperança, não backup
 - [ ] `/health` respondendo se o banco está de pé
 - [ ] Volta atrás conhecida: qual comando, quanto tempo leva
+- [ ] Etiqueta anotada na versão que subiu: a volta do código está em `templates/backend/versoes.md`
 - [ ] Log indo pra algum lugar que dá pra procurar
 
 ### Estratégias
@@ -230,11 +234,15 @@ quando nenhum código em produção a usa mais. Em duas etapas, sempre.
 
 ## Monitorar
 
+Aqui está a instrumentação, o que se instala antes de precisar. Quando já caiu e tem gente
+esperando, o roteiro dos primeiros trinta minutos está em `templates/backend/incidente.md`.
+
 ### O mínimo que resolve
 
 1. **Log estruturado (JSON)** com contexto — quem, o quê, quanto demorou
 2. **Rastreamento de erro** (Sentry serve, e tem plano gratuito) com stack trace e a requisição que causou
 3. **Um alerta que chega em você** quando a taxa de erro sobe. E-mail já serve
+4. **Dono, canal e ação escritos para cada alerta.** Alerta para todo mundo não chega a ninguém
 
 Sem isso, quem descobre o problema é o cliente.
 
@@ -256,6 +264,8 @@ produção.
 - Consulta lenta (o Postgres tem `log_min_duration_statement`)
 - Uso do pool de conexão
 - Espaço em disco do banco
+- Custo do mês, com alarme de gasto ligado antes do primeiro recurso pago. Cobrança por uso
+  não tem teto, e a fatura é a última a avisar
 
 Ferramentas maiores (Prometheus + Grafana, OpenTelemetry, APM pago) entram quando o
 sistema cresce e a pergunta "onde está lento?" deixa de ter resposta óbvia. Antes disso,

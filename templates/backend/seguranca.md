@@ -6,6 +6,9 @@ Referência da skill `/backend`. As falhas que aparecem de verdade, login, senha
 > própria OWASP: https://owasp.org/www-project-top-ten/ — vale conferir a versão vigente,
 > ela muda de tempos em tempos.
 
+As dez falhas abaixo, mais senha, sessão e permissão, ficam aqui. O ciclo de gravar, editar e
+apagar de um cadastro tem lista própria em `templates/backend/cadastro.md`.
+
 ---
 
 ## As falhas que mais aparecem

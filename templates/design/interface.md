@@ -114,6 +114,18 @@ Restante do campo:
 - Campo obrigatório marcado no rótulo, não só com asterisco vermelho
 - `autocomplete` no que é dado pessoal (WCAG 1.3.5 e 3.3.7 — ver `acessibilidade.md`)
 - `inputmode="numeric"` em CPF, CEP, telefone e valor: abre o teclado certo no celular
+- Espaço do erro reservado antes de o erro existir: `min-height` na linha da mensagem.
+  Sem isso a tela pula quando a validação reprova, o botão muda de lugar debaixo do dedo,
+  e a pessoa toca no que não queria
+- Senha com opção de ver o que foi digitado. Asterisco só protege de quem espia por cima
+  do ombro, e quem enxerga o que escreveu não precisa do campo "confirme a senha". A
+  exceção é caixa, balcão e totem, onde estranho vê a tela
+- Um campo a mais é uma pessoa a menos terminando. Pergunte de cada um: sem esse dado, a
+  ação de agora acontece? Se acontece, ele sai do formulário e vira pedido depois
+
+No celular, a ação principal fica na parte de baixo da tela, na faixa que o polegar alcança
+sem trocar a pegada (One UI). E o botão que apaga não fica colado no que envia. Errar por
+um centímetro ali custa o pedido inteiro.
 
 ---
 

@@ -2,6 +2,8 @@
 
 Referência da skill `/backend`. Modelagem, índice, consulta lenta, cache e escala.
 
+Consulta que responde e devolve número errado sem dar erro: `templates/backend/consultas.md`.
+
 ---
 
 ## Modelar antes de escrever código
@@ -28,6 +30,64 @@ cópias em dia. Duplicar por preguiça de desenhar gera divergência silenciosa.
 **Exceção legítima e comum:** valor histórico. O preço do produto no momento da venda é
 copiado pro item do pedido de propósito: se o produto mudar de preço amanhã, o pedido
 antigo não pode mudar junto.
+
+### Nome de tabela e de coluna
+
+**Nomeie pelo conceito, não pelo papel do primeiro caso de uso.** A tabela nasce
+`vendedores` porque a primeira tela era a de vendas. Seis meses depois entra a folha, e as
+mesmas pessoas existem em duas tabelas, ou alguém renomeia entidade em produção. O nome era
+`funcionarios`, com o papel como coluna ou como ligação. Pergunte qual é o próximo módulo
+previsível, e se ele traz os mesmos registros com outro nome.
+
+**Nome por extenso, sem sigla.** `dt_vcto` e `tp_mv` obrigam a abrir o código pra saber o
+que a coluna guarda. E o nome diz de quê, não a categoria: `data` vira `data_vencimento`.
+Duas colunas `data` na mesma tabela: trocar uma pela outra não dá erro nenhum.
+
+### Tirar as tabelas do que o dono falou
+
+O modelo sai da descrição do negócio, não da tela:
+
+1. Peça um parágrafo com as palavras dele sobre o que o sistema precisa fazer
+2. **Substantivo é tabela candidata** (cliente, produto, venda, pagamento); **verbo é
+   operação** (cadastrar, cancelar, calcular o total)
+3. Acrescente o que o processo exige e o parágrafo não cita: endereço, forma de pagamento
+4. Diga a frase em voz alta antes de criar subtipo. "Pedido é um cliente?" é falso. Ele
+   **tem** um cliente, e isso é ligação, não herança
+5. **Referência antes de movimento.** Cliente, produto e funcionário existem antes de pedido
+   e de venda, porque quem carrega a chave estrangeira é o movimento. A ordem em que você
+   modela é a ordem em que se carrega dado depois
+
+### Decisões que todo modelo enfrenta
+
+**Apagou o pai, o que acontece com os filhos?** Decida relacionamento por relacionamento,
+antes de declarar a chave:
+
+| Escolha | Quando | O que custa |
+|---|---|---|
+| Bloquear (padrão) | O filho tem valor próprio: pedido do cliente, lançamento da conta | Excluir vira marcar inativo, e a tela precisa tratar o erro |
+| Cascatear | O filho não existe sem o pai: item do pedido, anexo do documento | Uma exclusão inocente varre tabelas em cadeia, e não tem volta |
+| Anular | A ligação é opcional: funcionário que perde o gerente | Sobra coluna vazia que toda consulta precisa tratar |
+
+Antes de cascatear, liste todas as tabelas que apontam pra essa chave. Na dúvida, bloquear.
+
+**Texto grande sai da tabela que mais cresce.** Observação longa, histórico de atendimento e
+conteúdo de anexo dentro de `pedidos` fragmentam justamente a tabela que a consulta mais
+varre. Vão pra tabela própria, ligados por chave. Descritivo curto de mesma granularidade,
+como o número da nota, fica.
+
+**Árvore de profundidade desconhecida se resolve com uma coluna.** Categoria com
+subcategoria, plano de contas, organograma, pasta dentro de pasta: `pai_id` apontando pra
+própria tabela. Coluna por nível (`nivel1`, `nivel2`, `nivel3`) quebra no dia em que alguém
+precisa do quarto. A exceção é nível fixo, contado nos dedos e nomeado pelo negócio.
+
+**Ficha que duas pessoas abrem junto nasce com coluna de versão.** Acrescentar depois é
+migração em tabela com dado dentro. O sintoma está em `templates/backend/consultas.md`.
+
+**Data pura e instante são tipos diferentes.** Vencimento, aniversário e competência são data
+pura. Guardados como instante, o fuso empurra o dia pra trás e o boleto vence um dia antes.
+Recuse data impossível já na entrada, com `CHECK`: nascimento em 2090 entra calado e só
+aparece no relatório. Pra agrupar por mês, agrupe pela data truncada, nunca por texto
+formatado.
 
 ---
 

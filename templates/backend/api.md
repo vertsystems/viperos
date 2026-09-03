@@ -4,6 +4,20 @@ Referência da skill `/backend`. Endereço, status, erro, paginação, versão e
 
 ---
 
+## O contrato antes do código
+
+Passo obrigatório, e o primeiro. Antes de gerar código, escreva num arquivo a resposta exata que
+cada rota devolve: nome de campo de verdade, valor de exemplo, e o erro também. Quem vai consumir
+lê e aprova. Só então o servidor é escrito para produzir aquilo. Quatro partes:
+
+- **A URL** de cada recurso
+- **A chave pública** que identifica o recurso na URL
+- **O formato de entrada e o de saída**: nome, tipo, obrigatoriedade e formato de cada campo
+- **O status de cada caminho**, o que dá certo e cada jeito de dar errado
+
+Contrato tirado do código chega tarde: a resposta muda numa alteração qualquer, e quem descobre é
+o cliente que parou de funcionar. Escrito antes, a tela nasce antes do servidor.
+
 ## REST — o padrão que resolve quase tudo
 
 ### Endereço é substantivo, verbo é o método
@@ -113,6 +127,33 @@ Requisição de pagamento que o cliente reenvia por causa de internet ruim não 
 duas vezes. O padrão: o cliente manda um cabeçalho `Idempotency-Key` único; o servidor
 guarda a resposta da primeira vez e devolve a mesma para a chave repetida.
 
+### A chave pública não é a chave do banco
+
+O identificador que aparece na URL é contrato. O `id` da tabela é infraestrutura. Se coincidirem,
+que seja decisão escrita: trocar de banco não pode ser sentido por quem consome.
+
+### Conflito de cadastro devolve para onde ir
+
+Cadastro duplicado é o defeito mais comum de base de cliente, e tem dois desfechos ruins: nasce a
+segunda ficha do mesmo CPF, ou a violação de chave única do banco vaza como 500 com o nome da
+tabela dentro. Conferir antes de gravar, e apontar quem já ocupa a chave:
+
+```http
+HTTP/1.1 409 Conflict
+Location: /api/v1/clientes/123
+```
+
+Com o endereço na resposta, a tela abre a ficha existente. Sem ele, o atendente cadastra de novo
+com um ponto a mais no CPF.
+
+### DELETE é remoção lógica
+
+`DELETE /api/v1/clientes/123` significa "sai do GET", não "apaga a linha". No banco, marcar
+`removido_em` e guardar o registro (`templates/backend/dados.md`, seção "O básico que evita a
+maior parte da dor"). O dono apaga o cliente errado numa terça, e desfazer é um `UPDATE`. O preço
+é disciplina: toda consulta filtra o removido, e esquecer um filtro faz o registro apagado
+reaparecer numa listagem. Apagar de verdade, só quando a lei exigir.
+
 ---
 
 ## Documentação
@@ -149,6 +190,30 @@ serviço só, não há caso.
 
 ---
 
+## A API que o sistema consome
+
+Metade da integração não é a API que você publica. É a do gateway de pagamento, do WhatsApp, da
+nota fiscal, do ERP. É aí que o sistema pequeno mais quebra: o outro lado muda sem avisar.
+
+**Uma classe por fornecedor.** A chamada ao terceiro fica num arquivo só, com um modelo de
+resposta escrito nas palavras do seu negócio. O JSON dele é traduzido na entrada e não passa dali.
+Quando `status_transacao` virar `transaction_status`, muda uma linha, não trinta.
+
+**Toda retentativa tem teto.** Cliente que reenvia enquanto receber erro transforma a falha de dez
+segundos do fornecedor em queda geral da sua. Prazo, espera crescente e plano B estão em
+`templates/backend/arquitetura.md`, seção "Quando algo de fora falha".
+
+**Webhook, três regras nessa ordem.** Conferir a assinatura do corpo com o segredo combinado antes
+de ler qualquer campo, senão o endereço vira um botão público de confirmar pagamento. Guardar o
+corpo cru e descartar evento cujo id já veio antes. Responder na hora e processar em fila:
+processar dentro da resposta estoura o prazo do fornecedor, e a cobrança entra duas vezes.
+
+**Arquivo de troca nomeia o campo.** CSV posicional quebra calado: o parceiro tira uma coluna do
+meio e a cidade passa a guardar o estado, sem erro nenhum. Quando o outro lado exige CSV, a
+conferência do cabeçalho a cada carga está em `templates/backend/importacao.md`.
+
+---
+
 ## Antes de entregar a API
 
 - [ ] Todo endpoint valida a entrada no servidor
@@ -160,3 +225,6 @@ serviço só, não há caso.
 - [ ] CORS restrito aos domínios que precisam — nunca `*` em produção
 - [ ] Documentação existente e conferida contra o código
 - [ ] Registro de quem fez o quê no que é sensível (dinheiro, permissão, dado pessoal)
+- [ ] Contrato escrito e aprovado antes do código, e a resposta real conferida contra ele
+- [ ] Criação com chave já ocupada responde 409 com o `Location` do registro existente
+- [ ] Webhook confere assinatura, descarta evento repetido e processa fora da resposta

@@ -20,6 +20,12 @@ pela maior parte dos chamados de um sistema pequeno em produção. Nessa ordem.
 6. **Escrever o teste** que pega esse defeito. Sem isso, ele reaparece
 7. **Anotar** em `DECISOES.md` quando a causa foi estrutural
 
+### O comando que não fala nada
+
+Comando silencioso não é comando que deu certo. Você troca a configuração, o terminal não
+responde nada, e segue caçando defeito no código enquanto a velha continua valendo. Confirme
+por fora o que não confirma sozinho: o estado do serviço, o destino da cópia, a tabela migrada.
+
 ---
 
 ## Log que serve pra investigar
@@ -46,6 +52,11 @@ os olhos. E ninguém lê dez mil linhas.
 
 Gerar um id no começo de cada requisição e carregá-lo em todo log dela. É o que permite
 pegar um erro do cliente e reconstruir exatamente o que aconteceu naquela requisição.
+
+### O código que o usuário lê na tela
+
+Na tela do cliente vai uma frase genérica e esse identificador, nada além; o erro completo, com
+pilha e contexto, vai pro log sob o mesmo identificador. Ele lê um código, você acha a linha.
 
 ### Níveis
 
@@ -156,6 +167,39 @@ await redis.incr('contador');
 
 Regra: **ler-modificar-gravar em duas etapas é corrida esperando acontecer.** Ou é uma
 operação atômica, ou está dentro de transação com trava.
+
+---
+
+## O sexto, e o único que não dá erro nenhum
+
+"O número não bate." Nada no log, nada em vermelho, nenhum chamado. O sistema respondeu, o
+relatório imprimiu e o total está errado. Quem descobre é o dono, no fechamento do mês.
+
+**Sintoma.** O total da tela difere da conta feita na mão, ou o mesmo relatório dá dois valores
+em dois lugares. **O que custa.** Comissão sobre faturamento inflado, imposto sobre venda que
+não aconteceu, e todo número do sistema sob suspeita a partir daí.
+
+**Conserto.** Não abra o código. A causa quase sempre é junção, nulo ou agregação, e nenhum
+dos três gera erro. Rode a lista de `templates/backend/consultas.md`, seção "O número não
+bate: a ordem de conferência", sobre a consulta que produziu o número errado.
+
+---
+
+## "Está lento" ou "não abre": achar o elo antes de abrir o código
+
+Até virar pixel na tela do cliente, o pedido atravessa uma fila: cache do navegador, DNS,
+conexão, certificado, proxy, servidor de aplicação, banco, montagem da página. Abra a página em
+janela anônima primeiro: saiu certa, é cache do visitante, não defeito. Se não, meça a fila.
+
+```bash
+dig +short seusistema.com.br   # o domínio aponta pro IP que você acha que aponta?
+curl -sS -o /dev/null -w "dns %{time_namelookup} conexao %{time_connect} tls %{time_appconnect} 1obyte %{time_starttransfer} total %{time_total} %{size_download}B\n" https://seusistema.com.br/
+```
+
+`dns` alto é resolução de nome e o salto entre `conexao` e `tls` é o certificado. `1obyte` alto
+com o resto pequeno é o servidor pensando, e só aí a investigação entra no código; `total` bem
+acima dele é tamanho de resposta. Servidor rápido com tela lenta é navegador, e a aba Rede
+mostra o script que segura a montagem. `502` é o proxy: quem não respondeu está atrás dele.
 
 ---
 

@@ -50,6 +50,17 @@ Se um dia for preciso dividir de verdade, esses assuntos já são a fronteira na
 
 ---
 
+## O que se repete em volta de todo método
+
+Log, medição de tempo, checagem de permissão, controle de transação, registro de quem mexeu:
+nada disso é regra de negócio. É interesse transversal, e vive numa camada que envolve a chamada.
+
+- **Dentro do serviço, nunca.** A camada é o middleware, o interceptador ou um decorador de infraestrutura. Auditoria copiada dentro de cada função vira log com buraco: no módulo seguinte alguém esquece
+- Regra de negócio dentro do interceptador roda onde ninguém previu. O sintoma é a escada de `if` conferindo quem chamou. Se ele precisa saber quem intercepta, deixou de ser transversal
+- Apareceu em dois lugares só? Deixe repetido. A indireção custa mais que a repetição
+
+---
+
 ## Quando algo de fora falha
 
 Todo serviço externo (gateway de pagamento, e-mail, WhatsApp, API de terceiro) vai falhar
@@ -96,6 +107,18 @@ aceite e valide depois. Nem toda falha precisa virar erro na cara do usuário.
 
 ---
 
+## A camada de tradução na fronteira
+
+Toda integração externa entra por um arquivo só, que traduz o formato do parceiro para o
+vocabulário do seu negócio. Fora dele, nada conhece o nome que o gateway deu ao campo.
+
+**O teste de que a camada existe:** quando o parceiro muda a API, muda um arquivo. Virou
+procurar e substituir em oito lugares? O formato dele já vazou. E trocar de fornecedor não custa
+no nome do método: custa no que se perde na tradução, campo sem equivalente e causa de erro que
+some porque o adaptador devolve só "falhou". Converta o erro passando o original como causa.
+
+---
+
 ## Fila, quando entra
 
 Tarefa que demora não pode acontecer dentro da requisição: gerar PDF, importar planilha,
@@ -121,6 +144,16 @@ mandar dois e-mails, tudo bem; se cobrar duas vezes, não.
 
 ---
 
+## Efeito externo não volta atrás
+
+Transação é tudo ou nada dentro do banco. E-mail enviado, cobrança feita e mensagem no WhatsApp
+continuam feitos depois do desfazimento, porque não é o banco que os desfaz.
+
+- Dentro da transação, só o que o banco desfaz: baixar estoque, gravar o pedido, lançar o pagamento. O resto acontece depois da confirmação, pela fila acima
+- Antes de soltar a consequência para a fila, responda: se ela falhar, a operação principal ainda vale? Baixa de estoque não vale, então fica junto e cai junto. E-mail e aviso a integração valem, então saem, com a falha visível para alguém tratar
+
+---
+
 ## Guardar o histórico
 
 Registrar o que aconteceu (`pedido_criado`, `pagamento_confirmado`, `pedido_cancelado`),
@@ -133,6 +166,9 @@ eventos (event sourcing puro) é uma decisão pesada, que exige motivo forte.
 ---
 
 ## Código que continua legível
+
+Esta seção diz como escrever. Os sintomas de que um sistema que já roda está errado, cada um com
+o custo que gera, estão em `templates/backend/revisao-de-codigo.md`.
 
 ### Nome que dispensa comentário
 
