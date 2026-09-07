@@ -3,8 +3,10 @@
 Referência da skill `/escopo`. Como transformar um pedido em lista ordenada, como saber
 que um item está pronto, e como dizer não sem quebrar a relação.
 
-> Quanto custa cada item e quem paga o que for pedido depois estão em
-> `templates/software/custo.md`. Aqui não se escreve uma linha de código: isso é
+> Saber se vale a pena construir, antes de chegar aqui, está em
+> `templates/software/validacao.md`. Quanto custa cada item e quem paga o que for pedido
+> depois estão em `templates/software/custo.md`. O que se decide com o sistema já no ar está
+> em `templates/software/evolucao.md`. Aqui não se escreve uma linha de código: isso é
 > `templates/backend/`.
 
 ---
@@ -313,6 +315,7 @@ você sabe que produziu. A que não passar nesse teste, tire.
 
 ## Antes de fechar o escopo
 
+- [ ] O teste da situação certa foi feito, pelo `validacao.md`, e o veredito é "vale a pena"
 - [ ] O problema está escrito em uma frase, sem citar tela, campo ou botão
 - [ ] O resultado esperado tem número: de quanto para quanto
 - [ ] Quem usa está identificado, e é diferente de quem paga

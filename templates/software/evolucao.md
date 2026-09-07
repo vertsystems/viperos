@@ -8,7 +8,8 @@ se desliga, e quando parar de investir.
 > se publica, como se investiga um defeito. `templates/software/` é o que o dono decide e
 > paga. Como escrever código não entra aqui.
 
-> **O que não está aqui.** Fechar o escopo da primeira versão está em
+> **O que não está aqui.** Descobrir se valia a pena construir está em
+> `templates/software/validacao.md`. Fechar o escopo da primeira versão está em
 > `templates/software/escopo.md`, com a lista única ordenada, o "como dizer não" e as
 > armadilhas de quem ainda não lançou. A conta mensal e as quatro caixas do que o cliente
 > pede depois estão em `custo.md`. Mexer sem derrubar o que já roda é `manutencao.md`. A hora

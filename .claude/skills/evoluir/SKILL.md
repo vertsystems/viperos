@@ -36,6 +36,7 @@ funcionalidade, a próxima leva ordenada, e a lista do que vai ser desligado.
   - `templates/software/evolucao.md` — fechar o ciclo da métrica, o diário de mudanças, os dez minutos antes e depois, quando o crescimento para, e como desligar
   - `templates/software/escopo.md` — a lista única ordenada, motivação e métrica, e o "como dizer não" (não repetir aqui: apontar)
   - `templates/software/custo.md` — a conta mensal e as quatro caixas em que cai todo pedido depois da entrega
+  - `templates/software/validacao.md` — a conta do retorno e o checklist do dia de abrir as portas, quando a leva nova inclui um lançamento
   - `templates/backend/consultas.md` — antes de acreditar em qualquer número que sair de consulta sua
   - `templates/backend/incidente.md` — "Chamado que se repete é defeito de produto"
 - **Saída:** `sistemas/<nome>/EVOLUCAO.md` e `sistemas/<nome>/MUDANCAS.md`

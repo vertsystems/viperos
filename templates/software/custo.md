@@ -6,7 +6,8 @@ orçamento inteiro.
 
 > **A fronteira desta pasta.** `templates/backend/` é o código: como se modela o banco,
 > como se publica, como se investiga um defeito. `templates/software/` é o que o dono
-> decide e paga: escopo, custo, manutenção. Como escrever código não entra aqui.
+> decide e paga: validação, escopo, custo, manutenção, evolução. Como escrever código não
+> entra aqui.
 
 ---
 

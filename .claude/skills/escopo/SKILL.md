@@ -32,6 +32,7 @@ aquilo não. Nenhuma linha de código.
 - **Contexto do negócio:** `_memoria/empresa.md` — o que o negócio faz, quantas pessoas trabalham nele, quem mexe em computador todo dia
 - **Prioridades:** `_memoria/estrategia.md` — o dinheiro e o tempo disponíveis cortam mais escopo que qualquer preferência técnica
 - **Referências** (ler a que o passo pedir, não todas):
+  - `templates/software/validacao.md` — o degrau anterior: as três situações, a página de teste com preço, a medição do processo de hoje, e comprar pronto em vez de construir
   - `templates/software/escopo.md` — problema por baixo do pedido, fatia vertical, lista ordenada, aceite com número, prazo como teto, como dizer não
   - `templates/software/custo.md` — as duas colunas do orçamento, as quatro caixas do que o cliente pede depois, e a pergunta de quem mantém
   - `templates/software/manutencao.md` — o que o dono precisa receber por escrito para terminar dono do que foi feito
@@ -57,6 +58,12 @@ conversa de volta ao problema". Faça de três a cinco, não todas.
 
 **Regra:** só siga adiante depois de escrever o problema em uma frase, sem citar tela, campo nem
 botão.
+
+Se o sistema vai ser **vendido a clientes que ainda não existem**, o teste vem antes desta
+conversa toda: página com problema, solução e preço, e a lista de quem deixou o contato. E se
+ele é **para o próprio negócio**, o processo de hoje se mede antes, em tempo e em dinheiro,
+senão ninguém consegue provar depois que o sistema pagou o que custou. Os dois caminhos estão
+em `templates/software/validacao.md`.
 
 ### Passo 2 — Descobrir quem vai usar, que não é quem paga
 

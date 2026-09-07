@@ -215,7 +215,7 @@ O mesmo vale pro que é software, e aí são duas pastas com fronteira clara.
 `templates/backend/` é o **código** (stack, dados, consultas, cadastro, API,
 segurança, arquitetura, importação, testes, entrega, incidente, versões, debug,
 revisão de código), e sustenta o `/backend`, o `/testar` e o `/revisar-codigo`.
-`templates/software/` é o que o **dono decide e paga** (escopo, custo,
+`templates/software/` é o que o **dono decide e paga** (validação, escopo, custo,
 manutenção, evolução), e sustenta o `/escopo` e o `/evoluir`. Nada sobre como escrever código entra em
 `software/`; nada sobre orçamento e decisão de negócio entra em `backend/`.
 
