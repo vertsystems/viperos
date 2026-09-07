@@ -2,7 +2,7 @@
 
 Skills de terceiros e nativas do Claude Code que valem conhecer. Use como referência ao criar skills novas com `/mapear-rotinas`, ou instale as que fizerem sentido pro seu negócio.
 
-> **Nada nesta página vem instalado com o ViperOS.** As 54 skills do ViperOS
+> **Nada nesta página vem instalado com o ViperOS.** As 55 skills do ViperOS
 > ficam em `.claude/skills/` — a lista completa está no fim deste arquivo.
 > O que está aqui embaixo é catálogo externo: umas já vêm no Claude Code,
 > outras você instala por fora.
@@ -172,6 +172,7 @@ Antes de criar skill, conferir se um desses já cobre:
 | O que vai ser construído, quanto custa, site ou app, e quem mantém depois | `/escopo` |
 | Auditar código que já existe: sintoma, custo, conserto, consertar ou refazer | `/revisar-codigo` |
 | Toda vez que mexem quebra outra coisa: por onde começar a testar | `/testar` |
+| O sistema já está no ar: o que virou uso, o que entra agora, o que desligar | `/evoluir` |
 
 ---
 

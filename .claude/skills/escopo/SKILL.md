@@ -13,7 +13,8 @@ description: >
   um orçamento de desenvolvedor, o que eu confiro nele", ou /escopo.
   Fronteira com as vizinhas: preço do serviço que você vende é /preco; documento comercial pra
   mandar pro cliente é /proposta; site de uma página pra anúncio é /landing; abrir pasta de
-  trabalho é /novo-projeto; escrever o código depois de aprovado é /backend.
+  trabalho é /novo-projeto; escrever o código depois de aprovado é /backend; decidir o que vem
+  depois, com o sistema no ar e o uso medido, é /evoluir.
 ---
 
 # /escopo — O que construir, quanto custa, e se vale

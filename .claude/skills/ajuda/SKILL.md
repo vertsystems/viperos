@@ -9,7 +9,7 @@ description: >
 
 # /ajuda — Qual skill usar agora
 
-O ViperOS tem 54 skills. Ninguém decora isso, e ninguém precisa: o usuário fala o que quer em português e a skill certa roda sozinha. Essa aqui responde a outra pergunta: **o que faz sentido fazer agora.**
+O ViperOS tem 55 skills. Ninguém decora isso, e ninguém precisa: o usuário fala o que quer em português e a skill certa roda sozinha. Essa aqui responde a outra pergunta: **o que faz sentido fazer agora.**
 
 Ao recomendar, falar pelo resultado, não pelo comando: "eu monto o banco de pautas" em vez de "roda /ideias". O nome da skill entra entre parênteses, no máximo, nunca como exigência.
 
@@ -129,6 +129,9 @@ peça com tipografia, que funciona bem.
 
 **"Toda vez que mexem quebra outra coisa" / "tenho medo de mexer nesse sistema"**
 `/testar`: por onde começar quando não há teste nenhum, e o critério de quando não vale a pena testar
+
+**"O sistema já está no ar, e agora?" / "ninguém usa o que eu fiz" / "posso desligar isso?"**
+`/evoluir`: mede no banco o que virou uso, dá veredito por funcionalidade e monta a próxima leva. Também soma o custo humano do mês, que é o que mata sistema pequeno
 
 **"Meu sistema tá feio" / "a tabela tá horrível" / "cabe pouca coisa na tela"**
 `/interface`: o padrão das telas de uso: botão, campo, tabela, painel e os quatro estados (cheio, vazio, carregando, erro). É o par visual do `/backend`
