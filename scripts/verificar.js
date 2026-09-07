@@ -339,7 +339,8 @@ const CLICHES = [
   [/\bjuntos somos mais fortes\b/gi, '"juntos somos mais fortes"'],
   [/\bnessa jornada\b/gi, '"nessa jornada"'],
   [/\bconte com a gente\b/gi, '"conte com a gente"'],
-  [/\bem suma\b|\bem resumo,|\bconcluindo,/gi, '"em suma"'],
+  // só conta como fecho de texto no começo da frase: "menos gente concluindo," é gerúndio
+  [/(?:^|[.!?:]\s+|\n)(?:em suma\b|em resumo,|concluindo,)/gim, '"em suma"'],
   [/\bsem mais delongas\b|\bvamos ao que interessa\b/gi, '"sem mais delongas"'],
   [/\bprepare-se para\b/gi, '"prepare-se para"'],
   [/\bsolu[çc][ãa]o (completa|ideal|perfeita)\b/gi, '"solução completa"'],

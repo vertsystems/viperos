@@ -203,3 +203,7 @@ Onde o pequeno negócio realmente passa o dia: pedido, cliente, estoque:
 4. Contraste calculado em texto, borda de campo e ícone informativo
 5. Nada de `dp` ou `pt` no CSS
 6. Conferido contra `anti-generico.md`
+7. As quatro perguntas de `usabilidade.md`, tela a tela: onde estou, o que faço, o que acontece, para onde vou
+
+Este arquivo define como a tela se parece. O que ela pede, o que responde e o que impede
+está em `usabilidade.md`, e a decisão de interação vem antes do CSS.

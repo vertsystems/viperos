@@ -207,7 +207,7 @@ ou movimento, valem também `/interface`, `/movimento` e `/acessivel`.
 
 As referências que sustentam esses critérios ficam em `templates/`:
 `design/` (leitura do briefing, anti-genérico, qualidade visual, interface,
-movimento, acessibilidade, desempenho, e-mail em HTML, página de produto) e
+usabilidade, movimento, acessibilidade, desempenho, e-mail em HTML, página de produto) e
 `copy/` (psicologia da decisão, ganchos, edição, humanização). Skill visual ou de texto consulta
 de lá em vez de improvisar, e é lá que se calibra o padrão do sistema.
 

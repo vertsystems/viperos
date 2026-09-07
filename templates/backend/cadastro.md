@@ -6,7 +6,9 @@ constrói para um negócio de 1 a 10 pessoas, e é onde estão os defeitos que o
 antes de qualquer outra coisa.
 
 Aqui só entra comportamento de servidor. Rótulo, placeholder, altura de campo, estado de
-tela e contraste ficam em `templates/design/interface.md`. Senha, sessão, permissão por
+tela e contraste ficam em `templates/design/interface.md`, e a decisão de quais campos
+existem, o que o sistema deduz sozinho e o que a tela impede antes do envio fica em
+`templates/design/usabilidade.md`. Senha, sessão, permissão por
 papel e as dez falhas mais comuns ficam em `seguranca.md`. Erro de consulta que não gera
 erro nenhum fica em `consultas.md`. Índice, dinheiro em centavos e remoção lógica ficam em
 `dados.md`.

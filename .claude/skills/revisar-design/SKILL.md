@@ -18,6 +18,7 @@ Olhar crítico sobre peça pronta. Não redesenha: aponta o que está errado, co
 - **Referências de design** (ler antes de auditar):
   - `templates/design/anti-generico.md` — a lista completa de sinais de peça genérica
   - `templates/design/qualidade-visual.md` — tipografia, cor, layout e acabamento
+  - `templates/design/usabilidade.md` — quando a peça tem tela de uso: as quatro perguntas de aceite, tela a tela
 - **A peça:** HTML, PNG/print, PDF ou URL
 
 ---

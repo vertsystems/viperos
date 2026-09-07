@@ -27,6 +27,7 @@ previsível. Esta skill escreve essa previsibilidade em valores fixos.
 - **Contexto:** `_memoria/empresa.md` — quem usa (idade, se é no balcão, no celular, o dia inteiro) muda densidade e tamanho de alvo mais que qualquer preferência
 - **Referências** (ler antes de gerar):
   - `templates/design/interface.md` — altura de controle, camada de estado, densidade, os quatro estados
+  - `templates/design/usabilidade.md` — o comportamento da tela: ação primária, retorno de clique, erro impedido, campo que sai do formulário, tela sem saída
   - `templates/design/acessibilidade.md` — foco, alvo, formulário, teclado
   - `templates/design/movimento.md` — só a parte de estado de interação
   - `templates/design/anti-generico.md` — conferir antes de entregar
