@@ -1,6 +1,6 @@
 # Estrutura do workspace
 
-Referência única de onde cada coisa é salva. O `/instalar` escolhe uma das duas convenções conforme o perfil e registra a escolha no `CLAUDE.md` do workspace. Toda skill consulta esse arquivo (ou o `CLAUDE.md`) antes de criar pasta.
+Referência única de onde cada coisa é salva. O `/instalar` escolhe uma das duas convenções conforme o perfil (empreendedor solo, freelancer, agência, empresa ou projeto) e registra a escolha no `CLAUDE.md` do workspace. Toda skill consulta esse arquivo (ou o `CLAUDE.md`) antes de criar pasta.
 
 ## Princípio
 
@@ -12,7 +12,7 @@ As pastas do sistema (`.claude/skills/`, `templates/`, `scripts/`) convivem na m
 
 ## Convenção A — por tipo de entrega
 
-Aplicada aos perfis **empreendedor solo** e **empresa**. Um negócio só, várias frentes.
+Aplicada aos perfis **empreendedor solo**, **empresa** e **projeto**. Um negócio (ou um projeto) só, várias frentes. No perfil projeto o centro de gravidade é `sistemas/`: escopo, decisões e código moram lá, e o resto nasce conforme o projeto precisa de marca, página ou venda.
 
 ```
 MeuNegocio/

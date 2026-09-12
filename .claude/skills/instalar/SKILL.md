@@ -74,28 +74,38 @@ Se der erro (ele baixou o zip em vez de clonar), tudo bem: seguir. O `/atualizar
 
 ## Fase 1 — Escolha do perfil
 
-Perguntar qual perfil combina com o negócio:
+Perguntar qual perfil combina com o que ele vai fazer aqui. São cinco, então a
+pergunta vai **em texto, como lista numerada** (o seletor de opções do Claude
+Code só cabe quatro, e cortar um perfil pra caber é pior que ele digitar um
+número):
 
 1. **Empreendedor solo / criador de conteúdo** — uma pessoa, marca pessoal e negócio misturados
 2. **Freelancer** — atende clientes, organiza por projeto/cliente
 3. **Agência / consultoria** — equipe pequena entregando pra vários clientes
 4. **Empresa** — empresa estabelecida com setores
+5. **Projeto** — uma coisa só sendo construída: um sistema, um app, um site, uma ideia pra validar. Ainda não é empresa, ou é uma frente isolada dentro de uma
 
 A resposta define duas coisas:
 - Qual template de `CLAUDE.md` aplicar (`templates/perfis/claude-md-<perfil>.md`)
 - **Qual convenção de pastas** vale (ver `templates/estrutura.md`):
-  - Empreendedor solo e Empresa → **por tipo de entrega** (`conteudo/`, `site/`, `propostas/`)
+  - Empreendedor solo, Empresa e Projeto → **por tipo de entrega** (`conteudo/`, `site/`, `sistemas/`)
   - Freelancer e Agência → **por cliente** (`clientes/<Nome>/conteudo/`)
 
 Explicar a escolha em uma linha, sem jargão:
 
 > "Como você atende clientes, vou organizar por cliente: cada um ganha uma pasta com o trabalho dele dentro. Se preferir organizar por tipo de entrega, me fala."
 
+Se ele descreve o que vai fazer em vez de escolher um número ("é um sisteminha
+pra controlar estoque", "quero validar uma ideia"), mapear pro perfil mais
+provável, dizer qual foi em uma linha e seguir.
+
 ---
 
 ## Fase 2 — Entrevista
 
 Perguntas em ordem, esperando a resposta de cada uma. Resposta vaga: repetir uma vez pedindo concretude e seguir com o que vier.
+
+**Perfil Projeto tem entrevista própria** (abaixo, "Entrevista — Projeto"). Os outros quatro seguem esta:
 
 **Sobre o negócio:**
 1. "Como você chama o que você faz? (nome da empresa, ou seu nome se for marca pessoal)"
@@ -121,6 +131,31 @@ Perguntas em ordem, esperando a resposta de cada uma. Resposta vaga: repetir uma
 11. "Tem logo? Se sim, me manda o arquivo que eu guardo no lugar certo."
 
 ---
+
+### Entrevista — Projeto
+
+O projeto ainda não tem canal, equipe nem voz de marca na maioria dos casos. Perguntar o que ele tem, sem forçar resposta pra pergunta de empresa:
+
+**Sobre o projeto:**
+1. "Como o projeto se chama? (pode ser provisório)"
+2. "O que ele faz, em uma frase do jeito que você falaria pro vizinho?"
+3. "Pra quem é? Quem usa e, se for diferente, quem paga."
+4. "Em que pé está: ideia, validando, construindo ou já no ar?"
+5. "Tem algo parecido no mercado que você usa de referência? Se tem, o que ele cobra e o que ele faz mal."
+
+**Sobre quem toca:**
+6. "Você toca sozinho ou tem alguém junto? Se tem, cada um faz o quê?"
+7. "Já tem repositório, hospedagem ou banco escolhidos? Se sim, quais. Se não, tudo bem, o `/escopo` decide na hora."
+
+**Sobre foco:**
+8. "O que precisa acontecer pra esse projeto ser considerado um sucesso nos próximos 90 dias? Um resultado, com número se der."
+9. "O que te trava hoje? (tempo, decisão técnica, não saber por onde começar, dinheiro)"
+
+**Sobre voz e identidade:**
+10. "Tem nome de domínio, cores, fonte ou logo? Se tem, me passa. Se tá no zero, o sistema propõe quando você pedir."
+11. "Como o projeto deve falar com quem usa? Se ainda não sabe, deixo 'a calibrar' e sigo direto e simples."
+
+Mapeamento pra memória: 1-5 e 6-7 → `empresa.md` (o campo **Perfil** recebe "Projeto"; canais que não existem ficam vazios); 8-9 → `estrategia.md` (a 8 vira **Prioridade principal** com prazo em data absoluta, a 9 vira **Gargalo atual**); 10 → `identidade/` só se houver material; 11 → `preferencias.md`.
 
 ## Fase 3 — Preencher a memória
 

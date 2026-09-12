@@ -23,7 +23,7 @@ Quando o usuário começa um projeto novo (cliente, iniciativa, produto), cria u
 
 Ler a seção "Onde salvar o que" do `CLAUDE.md` do workspace antes de decidir. Baseado na resposta 2:
 
-- **Cliente novo:** `clientes/<Nome>/` — é a convenção dos perfis freelancer e agência. Nos perfis por tipo (empreendedor solo, empresa), confirmar com o usuário se ele quer começar a usar `clientes/` agora
+- **Cliente novo:** `clientes/<Nome>/` — é a convenção dos perfis freelancer e agência. Nos perfis por tipo (empreendedor solo, empresa, projeto), confirmar com o usuário se ele quer começar a usar `clientes/` agora
 - **Projeto interno:** `projetos/<nome>/`
 - **Iniciativa pessoal:** perguntar onde o usuário prefere
 

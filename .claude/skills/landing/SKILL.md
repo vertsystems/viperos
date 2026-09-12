@@ -9,7 +9,7 @@ description: >
 
 # /landing — Página de conversão
 
-> **Convenção de pastas:** os caminhos desta skill seguem a convenção **por tipo** (perfis empreendedor solo e empresa). Se o `CLAUDE.md` do workspace usa a convenção **por cliente** (freelancer e agência) e a peça é de um cliente, prefixar com `clientes/<Nome>/`. A pasta nasce só na hora de salvar.
+> **Convenção de pastas:** os caminhos desta skill seguem a convenção **por tipo** (perfis empreendedor solo, empresa e projeto). Se o `CLAUDE.md` do workspace usa a convenção **por cliente** (freelancer e agência) e a peça é de um cliente, prefixar com `clientes/<Nome>/`. A pasta nasce só na hora de salvar.
 
 Uma página com um objetivo. Se ela tenta fazer duas coisas, não faz nenhuma.
 
