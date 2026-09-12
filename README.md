@@ -23,31 +23,35 @@ Dois caminhos. Escolhe o que combina contigo.
 
 ### Pelo Claude (mais rápido)
 
-Abre o Claude Code em qualquer pasta e cola:
+Abre o Claude Code na pasta do teu negócio (vazia, com o nome dele, ex: `varefy`)
+e cola:
 
 ```
-Clona o https://github.com/vertsystems/viperos.git na pasta atual,
-entra nela e roda o /instalar.
+Clona o conteúdo de https://github.com/vertsystems/viperos.git direto nesta
+pasta (sem criar subpasta) e roda o /instalar.
 ```
 
-Ele clona, entra na pasta nova e dispara a entrevista de setup. Você só
-responde.
+Ele clona, e dispara a entrevista de setup. Você só responde.
 
 ### Pelo terminal (mais previsível)
 
 ```
-git clone https://github.com/vertsystems/viperos.git
-cd viperos
+git clone https://github.com/vertsystems/viperos.git varefy
+cd varefy
 code .
 ```
+
+Troca `varefy` pelo nome do teu negócio. Se a pasta já existe (e está vazia),
+entra nela e roda `git clone https://github.com/vertsystems/viperos.git .` (o
+ponto no final clona pra dentro dela).
 
 Na janela do VS Code que abrir: terminal integrado → `claude` → `/instalar`.
 
 ---
 
-Quando o `/instalar` terminar, renomeia a pasta pro nome do teu negócio (fecha o
-VS Code, renomeia no Finder/Explorer, abre de novo). Ela não fica como "viperos"
-— é o teu negócio agora, e tudo que você produzir mora aqui.
+Nos dois caminhos o sistema chega direto na raiz do projeto: `CLAUDE.md`,
+`.claude/skills/`, `templates/` e `scripts/` ao lado do teu trabalho, sem pasta
+`viperos/` no meio. A pasta é o teu negócio, e tudo que você produzir mora aqui.
 
 O `/instalar` roda uma vez só. Te entrevista sobre o negócio, monta a memória e
 configura o sistema. Depois disso, é só falar o que você quer.

@@ -49,7 +49,7 @@ Depois de imprimir, seguir direto pra Fase 0 sem comentar o banner.
 
 ### 1. Conferir onde está
 
-Rodar `pwd` e `ls`. A pasta deve ter `.claude/skills/`, `templates/` e `CLAUDE.md`. Se não tiver, o usuário está na pasta errada: perguntar onde ele clonou.
+Rodar `pwd` e `ls`. A pasta deve ter `.claude/skills/`, `templates/` e `CLAUDE.md` **na raiz**. Se não tiver, o usuário está na pasta errada: perguntar onde ele clonou. Se existir uma subpasta `viperos/` com esses arquivos dentro, o clone criou pasta a mais: mover o conteúdo dela pra raiz (`git mv` não serve aqui, é `mv viperos/.[!.]* viperos/* .` e depois `rmdir viperos`) e seguir, avisando em uma linha.
 
 Se `_memoria/` já existir preenchido, é reinstalação: perguntar se refaz do zero, complementa o que falta, ou se ele queria atualizar o sistema (`/atualizar-sistema`).
 
@@ -172,19 +172,22 @@ conteudo/; fizer uma página, nasce site/.
 
 ---
 
-## Fase 5 — Renomear a pasta
+## Fase 5 — Conferir a raiz
 
-A pasta ainda se chama `viperos`. Ela é o negócio dele agora:
+A pasta em que ele clonou é a raiz do negócio: o nome dela já é o nome do projeto
+(o README manda clonar com `git clone <url> <nome>` ou `git clone <url> .`).
+Não pedir pra renomear nada nem fechar o editor.
 
-Gerar o slug do nome da empresa (minúsculas, sem acento, espaço vira hífen). Ex: "Padaria São João" → `padaria-sao-joao`.
+Se `pwd` mostrar que a pasta se chama `viperos` e o negócio não se chama assim, ele
+clonou do jeito antigo. Avisar em uma linha e seguir, sem transformar isso em
+tarefa:
 
-> "Última coisa: a pasta ainda tá com o nome do sistema (`viperos`). Ela é o seu
-> negócio agora, então vale renomear pra `<slug>`.
->
-> Fecha o VS Code, renomeia no Finder (ou Explorer) e abre de novo — leva 10 segundos.
-> Ou, se preferir deixar como está, funciona igual."
+> "A pasta ficou com o nome do sistema (`viperos`). Funciona igual, mas se quiser
+> que ela se chame `<slug>`, é só renomear no Finder (ou Explorer) quando fechar o
+> VS Code."
 
-Isso é o único momento em que faz sentido fechar o editor, e é opcional, nada quebra se ele não renomear.
+`<slug>` é o nome da empresa em minúsculas, sem acento, espaço vira hífen.
+Ex: "Padaria São João" → `padaria-sao-joao`.
 
 ---
 
@@ -216,5 +219,5 @@ Mencionar também, em uma linha: guardar o trabalho no GitHub é só pedir; e qu
 - Ao substituir o `CLAUDE.md`, **preservar as regras de operação do sistema**
 - Não escrever "este arquivo será preenchido pelo /instalar" nos arquivos finais
 - 5-7 minutos no máximo. Se o usuário enrolar numa pergunta, registrar o que tem e seguir
-- **Nunca pedir pro usuário fechar o editor**, exceto na Fase 5 (renomear a pasta), que é opcional
+- **Nunca pedir pro usuário fechar o editor**
 - Ao terminar, deixar claro que ele fala em português — sem barra, sem comando decorado
