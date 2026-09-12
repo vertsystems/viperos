@@ -839,10 +839,17 @@ function mdsDe(raiz) {
 function verSistema(raiz = ".") {
   console.log(`\nSISTEMA: ${path.resolve(raiz)}`);
 
-  const dirSkills = path.join(raiz, ".claude", "skills");
-  if (!fs.existsSync(dirSkills)) {
-    return erro(".claude/skills/ não existe — isso não parece um workspace ViperOS");
-  }
+  // O workspace está no formato de uma IA (Claude Code ou Codex); scripts/ia.js
+  // sabe qual. Tudo abaixo usa a pasta de skills e o arquivo de regras dessa IA.
+  const ia = require("./ia.js");
+  const est = ia.detectar(raiz);
+  if (!est.ativa) return erro(`nem ${ia.IAS.claude.skills}/ nem ${ia.IAS.codex.skills}/ existem — isso não parece um workspace ViperOS`);
+  if (est.ativa === "ambas")
+    return erro(`${ia.IAS.claude.skills}/ e ${ia.IAS.codex.skills}/ existem ao mesmo tempo — rode \`node scripts/ia.js claude\` ou \`codex\` pra unificar`);
+  const base = ia.IAS[est.ativa];
+  const outra = ia.IAS[est.ativa === "claude" ? "codex" : "claude"];
+  const dirSkills = path.join(raiz, base.skills);
+  const relSkills = base.skills.split(path.sep).join("/");
 
   // ── 1. cada skill carrega? ────────────────────────────────────
   const pastas = fs
@@ -913,7 +920,7 @@ function verSistema(raiz = ".") {
 
   comBOM.forEach((a) => erro(`BOM UTF-8 no início de ${path.relative(raiz, a)}`));
   for (const [n, onde] of faltaSkill)
-    erro(`\`/${n}\` citado mas não existe em .claude/skills/ — em: ${[...onde].join(", ")}`);
+    erro(`\`/${n}\` citado mas não existe em ${relSkills}/ — em: ${[...onde].join(", ")}`);
   for (const [p, onde] of faltaPath)
     erro(`\`${p}\` citado mas não existe — em: ${[...onde].join(", ")}`);
   for (const [p, onde] of faltaScript)
@@ -949,6 +956,25 @@ function verSistema(raiz = ".") {
     if (fora.length) erro(`skill fora da tabela do catálogo (o usuário nunca descobre): ${fora.join(", ")}`);
     else ok("toda skill aparece no catálogo");
   }
+
+  // ── 5. formato da IA: base inteira, visita mínima, nada da outra ──
+  // A base é de uma IA só. A outra entra pelo arquivo de visita (gerado pelo
+  // scripts/ia.js) e por mais nada: pasta, molde ou frase dela fora de trecho
+  // protegido é conversão pela metade.
+  let iaOk = true;
+  if (!est.entrada[base.id]) { erro(`${base.entrada} não existe — sem ele a ${base.nome} abre a pasta sem regra nenhuma`); iaOk = false; }
+  else if (est.visita[base.id]) { erro(`${base.entrada} é arquivo de visita, mas a base é ${base.nome} — rode \`node scripts/ia.js ${base.id}\``); iaOk = false; }
+  if (!est.entrada[outra.id]) { erro(`${outra.entrada} de visita não existe — a ${outra.nome} abriria a pasta sem saber que é ViperOS. Rode \`node scripts/ia.js ${base.id}\``); iaOk = false; }
+  else if (!est.visita[outra.id]) { erro(`${outra.entrada} não é arquivo de visita — a ${outra.nome} vai tratar a pasta como dela. Rode \`node scripts/ia.js ${base.id}\``); iaOk = false; }
+  if (fs.existsSync(path.join(raiz, outra.raiz))) { erro(`${outra.raiz}/ existe numa base ${base.nome} — sobra da outra IA`); iaOk = false; }
+  const pedacos = ia.pedacosDe(raiz, outra, ia.arquivosDeTexto(raiz, base));
+  if (pedacos.length) {
+    erro(`${pedacos.length} referência(s) à ${outra.nome} fora de trecho protegido (<!-- ia:inicio --> … <!-- ia:fim -->):`);
+    pedacos.slice(0, 10).forEach((p) => console.log(`      ${p.arquivo}:${p.linha}  ${p.trecho}`));
+    if (pedacos.length > 10) console.log(`      … e mais ${pedacos.length - 10}`);
+    iaOk = false;
+  }
+  if (iaOk) ok(`formato ${base.nome} inteiro, com ${outra.entrada} de visita pra ${outra.nome} e nada mais dela`);
 }
 
 // ─────────────────────────── SEGREDO ───────────────────────────
@@ -965,7 +991,7 @@ function verSistema(raiz = ".") {
 // gravidade. Pra silenciar uma linha que é exemplo, escreva
 // `viperos:segredo-ok` nela ou na linha logo acima.
 //
-// Existe porque o CLAUDE.md já manda conferir o stage antes de todo `git add`,
+// Existe porque o arquivo de regras da raiz já manda conferir o stage antes de todo `git add`,
 // e hoje isso depende de alguém lembrar de olhar.
 
 const { execFileSync } = require("child_process");
@@ -1330,7 +1356,7 @@ const AJUDA = `ViperOS — verificar.js
   texto <arquivo>           sinais de texto gerado: ritmo, clichê, travessão, formato
   peso <pasta|arquivo>      imagem acima de 2 MB
   tudo <pasta>              roda o que couber em cada arquivo
-  sistema [pasta]           integridade do próprio ViperOS: skill que não carrega,
+  sistema [pasta]           integridade do próprio ViperOS: skill que não carrega, formato da IA,
                             referência quebrada, script ausente, contagem errada
   segredo [pasta]           chave, token e senha em arquivo versionado (enumera pelo git)
   migracao [pasta]          ordem, desfazer, NOT NULL sem DEFAULT e DROP junto de adição`;

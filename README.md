@@ -1,6 +1,6 @@
 # ViperOS
 
-> O sistema operacional do seu negócio dentro do Claude Code.
+> O sistema operacional do seu negócio dentro da sua IA de código.
 
 Sua empresa ganha uma memória própria, uma identidade visual aplicada em tudo
 que ela gerar, e 55 skills prontas pra fazer marketing, conteúdo, SEO, ads,
@@ -19,19 +19,22 @@ Bora.
 
 ## Ligando o sistema
 
-Dois caminhos. Escolhe o que combina contigo.
+<!-- ia:inicio -->
+Funciona no **Claude Code** e no **Codex**. Você escolhe qual na instalação, e o
+sistema fica inteiro no formato daquela IA. Dois caminhos pra ligar.
 
-### Pelo Claude (mais rápido)
+### Pela IA (mais rápido)
 
-Abre o Claude Code na pasta do teu negócio (vazia, com o nome dele, ex: `varefy`)
-e cola:
+Abre o Claude Code ou o Codex na pasta do teu negócio (vazia, com o nome dele,
+ex: `varefy`) e cola:
 
 ```
 Clona o conteúdo de https://github.com/vertsystems/viperos.git direto nesta
-pasta (sem criar subpasta) e roda o /instalar.
+pasta (sem criar subpasta) e começa a instalação do ViperOS.
 ```
 
-Ele clona, e dispara a entrevista de setup. Você só responde.
+Ele clona, mostra o banner, pergunta qual IA você está usando, e dispara a
+entrevista de setup. Você só responde.
 
 ### Pelo terminal (mais previsível)
 
@@ -45,15 +48,33 @@ Troca `varefy` pelo nome do teu negócio. Se a pasta já existe (e está vazia),
 entra nela e roda `git clone https://github.com/vertsystems/viperos.git .` (o
 ponto no final clona pra dentro dela).
 
-Na janela do VS Code que abrir: terminal integrado → `claude` → `/instalar`.
+Na janela do VS Code que abrir: terminal integrado → `claude` ou `codex` → diz
+"oi". A instalação começa sozinha na primeira mensagem.
 
 ---
 
-Nos dois caminhos o sistema chega direto na raiz do projeto: `CLAUDE.md`,
-`.claude/skills/`, `templates/` e `scripts/` ao lado do teu trabalho, sem pasta
-`viperos/` no meio. A pasta é o teu negócio, e tudo que você produzir mora aqui.
+Nos dois caminhos o sistema chega direto na raiz do projeto, sem pasta
+`viperos/` no meio: o arquivo de regras (`CLAUDE.md` no Claude Code, `AGENTS.md`
+no Codex), a pasta de skills (`.claude/skills/` ou `.agents/skills/`),
+`templates/` e `scripts/` ao lado do teu trabalho. A pasta é o teu negócio, e
+tudo que você produzir mora aqui.
 
-O `/instalar` roda uma vez só. Te entrevista sobre o negócio, monta a memória e
+### As duas IAs na mesma pasta
+
+A base é de uma IA só, a que você escolheu. A outra pode abrir a pasta como
+visita: ela encontra um arquivo de entrada mínimo, lê as regras da base e
+trabalha com tudo, sem mover nada. Se um dia quiser trocar a base:
+
+```
+node scripts/ia.js codex     # ou claude
+node scripts/ia.js status    # mostra o formato ativo
+```
+
+O script converte pastas, arquivo de regras e cada referência no texto, e o
+caminho de volta é igual.
+<!-- ia:fim -->
+
+A instalação roda uma vez só. Te entrevista sobre o negócio, monta a memória e
 configura o sistema. Depois disso, é só falar o que você quer.
 
 ---
@@ -173,7 +194,7 @@ O sistema não substitui você. Vira parte da sua empresa.
 
 `_memoria/` é o cérebro. Tudo que importa do seu negócio mora aqui: quem é a
 empresa, como ela fala, o que tá em foco, quem compra e o que você vende. O
-Claude lê isso antes de cada resposta. Quanto melhor a memória, melhor o sistema.
+O assistente lê isso antes de cada resposta. Quanto melhor a memória, melhor o sistema.
 
 `identidade/` é o rosto. Design-guide, logo e os tokens que travam a marca em
 valores fixos. Todo carrossel, slide, proposta e página respeita isso.

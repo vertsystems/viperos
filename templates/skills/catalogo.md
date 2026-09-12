@@ -1,14 +1,19 @@
 # Catálogo de Skills
 
-Skills de terceiros e nativas do Claude Code que valem conhecer. Use como referência ao criar skills novas com `/mapear-rotinas`, ou instale as que fizerem sentido pro seu negócio.
+<!-- ia:inicio -->
+Skills de terceiros e nativas que valem conhecer. Use como referência ao criar skills novas com `/mapear-rotinas`, ou instale as que fizerem sentido pro seu negócio.
 
 > **Nada nesta página vem instalado com o ViperOS.** As 55 skills do ViperOS
-> ficam em `.claude/skills/` — a lista completa está no fim deste arquivo.
+> ficam na pasta de skills do projeto — a lista completa está no fim deste arquivo.
 > O que está aqui embaixo é catálogo externo: umas já vêm no Claude Code,
 > outras você instala por fora.
 >
-> Skills globais ficam em `~/.claude/skills/` e funcionam em qualquer projeto.
-> Skills locais ficam em `.claude/skills/` e só funcionam nesse projeto.
+> **Skills globais** funcionam em qualquer projeto: `~/.claude/skills/` no
+> Claude Code, `~/.agents/skills/` no Codex. Skills locais ficam na pasta de
+> skills do projeto e só funcionam nele.
+>
+> Onde está escrito "já vem no Claude Code": no Codex ela não vem. A tarefa é
+> feita direto pelo assistente, ou você instala uma equivalente como global.
 
 ---
 
@@ -17,13 +22,13 @@ Skills de terceiros e nativas do Claude Code que valem conhecer. Use como refer�
 ### Schwartz Copy (resposta direta)
 **O que faz:** Escreve copy de vendas usando a metodologia de Eugene Schwartz (Breakthrough Advertising). Diagnostica o nível de consciência e sofisticação do mercado antes de gerar qualquer texto.
 **Bom pra:** Landing pages, e-mails de venda, VSLs, cartas de venda, páginas de captura
-**Como instalar:** não vem no ViperOS — instalar como skill global em ~/.claude/skills/. Depois: `/schwartz-copy`
+**Como instalar:** não vem no ViperOS — instalar como skill global (caminho no topo). Depois: `/schwartz-copy`
 **Fonte:** skill de terceiros, testada em produção
 
 ### Ogilvy Copy (marca e posicionamento)
 **O que faz:** Gera copy institucional usando a metodologia de David Ogilvy. Pesquisa profunda, big idea, headlines informativas.
 **Bom pra:** Manifestos de marca, campanhas institucionais, taglines, brand voice, posicionamento
-**Como instalar:** não vem no ViperOS — instalar como skill global em ~/.claude/skills/. Depois: `/ogilvy-copy`
+**Como instalar:** não vem no ViperOS — instalar como skill global (caminho no topo). Depois: `/ogilvy-copy`
 **Fonte:** skill de terceiros, testada em produção
 
 ---
@@ -92,7 +97,7 @@ Skills de terceiros e nativas do Claude Code que valem conhecer. Use como refer�
 **O que faz:** Extrai transcrições de vídeos do YouTube usando yt-dlp. Suporta vários idiomas.
 **Bom pra:** Criar conteúdo a partir de vídeos (carrosséis, newsletters, posts)
 **Precisa de:** yt-dlp instalado (`brew install yt-dlp`)
-**Como instalar:** não vem no ViperOS — instalar como skill global em ~/.claude/skills/. Depois: `/yt-transcript`
+**Como instalar:** não vem no ViperOS — instalar como skill global (caminho no topo). Depois: `/yt-transcript`
 **Fonte:** skill de terceiros, testada em produção
 
 ---
@@ -116,6 +121,8 @@ Skills de terceiros e nativas do Claude Code que valem conhecer. Use como refer�
 **Fonte:** Skill nativa do Claude Code
 
 ---
+
+<!-- ia:fim -->
 
 ## O que o ViperOS já resolve (não precisa de skill nova)
 

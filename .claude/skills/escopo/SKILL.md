@@ -162,7 +162,7 @@ Rode antes de mostrar qualquer número. Soma errada custa a venda inteira.
 
 ### Passo 8 — Transformar prazo em teto
 
-Ninguém sabe quanto tempo leva. Nem você, nem o desenvolvedor, nem o Claude. Estimativa em horas
+Ninguém sabe quanto tempo leva. Nem você, nem o desenvolvedor, nem a IA. Estimativa em horas
 vira promessa na cabeça de quem ouviu, e volta como "você disse três dias".
 
 Então inverta. O dono diz até quando precisa estar no ar e por quê, a lista ordenada é lida de

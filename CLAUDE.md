@@ -1,6 +1,6 @@
 # ViperOS — Sistema operacional do negócio
 
-Regras de operação do ViperOS: como o Claude lê o contexto, aprende com
+Regras de operação do ViperOS: como o assistente lê o contexto, aprende com
 correções, mantém tudo atualizado e cria skills novas conforme a operação
 evolui.
 
@@ -10,6 +10,32 @@ evolui.
 >
 > Depois do `/instalar`, este arquivo é substituído pelo contexto do negócio —
 > mantendo as regras de operação abaixo.
+
+---
+
+## Primeiro uso
+
+Se `_memoria/` não existe, este workspace acabou de ser clonado e ninguém
+instalou. Na primeira mensagem do usuário, seja ela qual for ("oi", "e aí",
+"faz um post"), antes de responder qualquer outra coisa: ler
+`.claude/skills/instalar/SKILL.md` e executar do início (banner, pergunta de
+qual IA, perfil, entrevista). Não esperar ele digitar `/instalar`; a maioria
+não sabe que isso existe.
+
+---
+
+## Duas IAs, uma base
+
+<!-- ia:inicio -->
+O ViperOS roda no Claude Code e no Codex. O workspace fica no formato de **uma**
+delas (a que o usuário escolheu na instalação), e a outra pode abrir a pasta
+como visita, pelo arquivo de entrada mínimo que o `scripts/ia.js` gera. Visita
+trabalha com tudo que a base oferece e não muda a base: não move skill, não
+cria pasta própria, não roda conversão. Trocar a base é o usuário quem pede
+(`node scripts/ia.js <ia>`), nunca efeito colateral de abrir a pasta noutra IA.
+
+`node scripts/ia.js status` diz o formato ativo e acusa pedaço da outra.
+<!-- ia:fim -->
 
 ---
 
@@ -26,8 +52,9 @@ padaria": cada uma dessas ativa a skill certa sozinha.
   linha o que vai fazer, e siga. Perguntar só se as duas levam a trabalho bem diferente
 - Se ele não sabe o que fazer ("e agora?", "tô perdido"), aí sim recomende — 1 a 3
   caminhos, com o motivo, nunca a lista inteira
-- A barra (`/nome`) continua funcionando pra quem gosta. Só não é o caminho padrão,
-  e não deve aparecer como exigência
+- A barra (`/nome`) continua funcionando pra quem gosta: `/nome` escrito pelo
+  usuário é a skill em `.claude/skills/nome/SKILL.md`, ler e executar. Só não é
+  o caminho padrão, e não deve aparecer como exigência
 
 ---
 
@@ -173,7 +200,8 @@ Quando o usuário pedir skill nova:
 5. Toda skill nova precisa de `description` que diga **quando** invocar
    (com as palavras que o usuário usaria), sem isso a skill nunca é
    encontrada
-6. Seguir o fluxo da skill-creator nativa do Claude Code
+6. Seguir o formato das skills que já existem: frontmatter com `name` e
+   `description`, corpo com dependências, workflow e regras
 
 ---
 

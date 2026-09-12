@@ -1,6 +1,6 @@
 # Preferências
 
-> Como o Claude escreve em nome do seu negócio. Tom, estilo, vícios a evitar.
+> Como o assistente escreve em nome do seu negócio. Tom, estilo, vícios a evitar.
 > Preenchido pelo `/instalar` — você pode editar a qualquer momento pra calibrar.
 
 ## Tom de voz

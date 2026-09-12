@@ -18,6 +18,16 @@ O que é do sistema e pode ser substituído: `.claude/skills/` (só as que viera
 
 O que é do usuário e **nunca** se toca: `_memoria/`, `identidade/`, `CLAUDE.md`, `.env`, e toda pasta de trabalho (`conteudo/`, `site/`, `propostas/`, `clientes/`, `materiais/`…).
 
+<!-- ia:inicio -->
+**A versão nova chega sempre no formato do Claude Code** (`.claude/skills/`,
+`templates/perfis/claude-md-*`, texto falando em `CLAUDE.md`). É assim que o
+ViperOS é publicado, independente da IA da base. Numa base Codex, o passo 2 traz
+essas pastas como estão e o passo 2b converte o que chegou com
+`node scripts/ia.js codex`. Numa base Claude Code, rodar `node scripts/ia.js claude`
+no mesmo ponto só regenera o `AGENTS.md` de visita, e não custa nada.
+`node scripts/ia.js status` diz qual é a base.
+<!-- ia:fim -->
+
 ---
 
 ## Workflow
@@ -41,11 +51,28 @@ Se houver, mostrar o resumo do que mudou (mensagens de commit, em linguagem norm
 
 Essa é a parte que protege o trabalho dele. Em vez de `git pull` (que mistura tudo e gera conflito no `CLAUDE.md` e na memória), trazer **só** o que é do produto:
 
+<!-- ia:inicio -->
 ```bash
 git checkout viperos/main -- .claude/skills templates scripts .env.example LICENSE README.md
 ```
 
-Nada fora dessa lista é tocado. Memória, marca e trabalho ficam exatamente como estavam.
+O caminho é `.claude/skills` mesmo numa base Codex: é o nome da pasta **no
+repositório de origem**, não na base. Nada fora dessa lista é tocado. Memória,
+marca e trabalho ficam exatamente como estavam.
+
+### Passo 2b — Converter o que chegou pro formato da base
+
+```bash
+node scripts/ia.js codex     # base Codex: move o que chegou em .claude/skills/ pra .agents/skills/ e reescreve
+node scripts/ia.js claude    # base Claude Code: só regenera o AGENTS.md de visita
+```
+
+Na base Codex, o script trata `.claude/skills/` recém-chegada como a remessa do
+produto: cada skill de lá substitui a de mesmo nome em `.agents/skills/`, skill
+que só existe em `.agents/skills/` (a que o usuário criou) fica intocada, e
+`.claude/` some de novo. Templates e README que chegaram também são reescritos.
+Rodar **antes** do Passo 3 conferir a lista final.
+<!-- ia:fim -->
 
 ### Passo 3 — Cuidar das skills personalizadas
 
@@ -82,7 +109,7 @@ curl -L https://github.com/vertsystems/viperos/archive/refs/heads/main.tar.gz -o
 mkdir -p /tmp/viperos-novo && tar -xzf /tmp/viperos.tgz -C /tmp/viperos-novo --strip-components=1
 ```
 
-Depois copiar **só** `.claude/skills/`, `templates/`, `scripts/`, `.env.example`, `LICENSE` e `README.md` de `/tmp/viperos-novo/` pra cá. Limpar a pasta temporária no fim.
+Depois copiar **só** `.claude/skills/`, `templates/`, `scripts/`, `.env.example`, `LICENSE` e `README.md` de `/tmp/viperos-novo/` pra cá (o nome da pasta de skills é o do repositório de origem, mesmo que a base seja outra IA), rodar o Passo 2b, e limpar a pasta temporária no fim.
 
 Aproveitar pra sugerir: "Da próxima vez fica mais fácil se você clonar em vez de baixar o zip, aí a atualização é automática."
 
@@ -93,8 +120,8 @@ node scripts/verificar.js sistema
 ```
 
 Atualização traz arquivo novo e apaga arquivo velho: é onde aparece skill que
-deixou de carregar, referência apontando pra template que não veio, e contagem
-desatualizada. Se acusar algo, resolver **antes** de relatar: o usuário não tem
+deixou de carregar, referência apontando pra template que não veio, contagem
+desatualizada e pedaço da outra IA que a conversão do Passo 2b não pegou. Se acusar algo, resolver **antes** de relatar: o usuário não tem
 como saber que a skill parou de ser encontrada.
 
 ### Passo 6 — Relatar
@@ -119,6 +146,7 @@ Se a skill nova não aparecer na lista do `/` nessa sessão, ela funciona igual:
 ## Regras
 
 - **Nunca `git pull` nem `git merge`.** Traz o trabalho do usuário pro meio do conflito. Sempre `checkout` das pastas do sistema
+- **Nunca trocar a base de IA nessa skill.** O Passo 2b converte pro formato que a base já tem. Trocar é `node scripts/ia.js <outra>` a pedido do usuário, fora daqui
 - **Nunca tocar em `_memoria/`, `identidade/`, `CLAUDE.md`, `.env` ou pasta de trabalho.** Nenhuma dessas vem do produto
 - **Skill personalizada é intocável.** Se não veio do repositório, nem olhar
 - Skill do produto que o usuário editou: perguntar antes de substituir, mostrando o que muda

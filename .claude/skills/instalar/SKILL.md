@@ -9,7 +9,7 @@ description: >
 
 # /instalar — Instalação inicial do ViperOS
 
-Primeiro comando depois de clonar. Não pode falhar e não pode soar burocrático. Trata como conversa de descoberta: uma pergunta por vez, escuta de verdade, sem enfileirar tudo.
+Primeira coisa depois de clonar, e ela começa sozinha: se `_memoria/` não existe, o arquivo de regras da raiz manda executar esta skill na primeira mensagem do usuário, seja ela qual for. Não pode falhar e não pode soar burocrático. Trata como conversa de descoberta: uma pergunta por vez, escuta de verdade, sem enfileirar tudo.
 
 **A pasta que ele clonou já é o workspace dele.** Nada a mover, nada a copiar: as skills já estão em `.claude/skills/`, os moldes em `templates/`. A instalação preenche a memória e adapta o `CLAUDE.md` ao negócio.
 
@@ -41,7 +41,52 @@ pra fonte monoespaçada:
 cabe em terminal de 80). Reindentar, "arrumar" espaço ou trocar caractere
 desalinha o traçado das letras, e desalinho de um caractere só já estraga.
 
-Depois de imprimir, seguir direto pra Fase 0 sem comentar o banner.
+Depois de imprimir, seguir direto pra pergunta da IA, sem comentar o banner.
+
+---
+
+<!-- ia:inicio -->
+## Qual IA — antes da Fase 0
+
+O ViperOS roda no Claude Code e no Codex, e o workspace fica **inteiro** no
+formato de um dos dois: arquivo de regras, pasta de skills, moldes e cada
+referência no texto. Quem decide é o usuário, agora. Perguntar em texto, sem
+seletor:
+
+> "Qual IA você está usando aqui?
+>
+> 1. Claude Code
+> 2. Codex"
+
+Com a resposta, rodar:
+
+```bash
+node scripts/ia.js claude    # ou
+node scripts/ia.js codex
+```
+
+O script deixa tudo no formato daquela IA e gera, pra outra, um arquivo de
+entrada mínimo (visita), pra ela poder abrir a pasta depois sem mudar a base.
+
+- **Claude Code:** `CLAUDE.md` + `.claude/skills/`. Nada muda de lugar; o script
+  só confere e regenera o `AGENTS.md` de visita. Seguir pra Fase 0
+- **Codex:** as skills vão pra `.agents/skills/`, o `CLAUDE.md` vira `AGENTS.md`,
+  `.claude/` some e as referências são reescritas. **Este arquivo mudou de
+  lugar:** reler `AGENTS.md` e continuar por `.agents/skills/instalar/SKILL.md`,
+  da Fase 0 em diante. Não fazer nada de memória: o texto reescrito é o que vale
+
+Se ele responder outra coisa ("Cursor", "Gemini", "não sei"): dizer em uma linha
+que o ViperOS hoje roda no Claude Code e no Codex, e que outro cliente que leia
+`AGENTS.md` funciona no formato do Codex. Na dúvida, Claude Code, que é o formato
+em que o sistema é publicado.
+
+Se a resposta for a IA em que o workspace já está (`node scripts/ia.js status`
+mostra), o script não muda nada além de conferir. Não é erro.
+
+**Reinstalação numa base já escolhida** (`_memoria/` existe e a IA da resposta é
+outra): perguntar antes de converter. Trocar a base é decisão dele, não efeito
+colateral de reinstalar.
+<!-- ia:fim -->
 
 ---
 
@@ -75,8 +120,8 @@ Se der erro (ele baixou o zip em vez de clonar), tudo bem: seguir. O `/atualizar
 ## Fase 1 — Escolha do perfil
 
 Perguntar qual perfil combina com o que ele vai fazer aqui. São sete, então a
-pergunta vai **em texto, como lista numerada** (o seletor de opções do Claude
-Code só cabe quatro, e cortar perfil pra caber é pior que ele digitar um número):
+pergunta vai **em texto, como lista numerada** (o seletor de opções que alguns
+clientes têm só cabe quatro, e cortar perfil pra caber é pior que ele digitar um número):
 
 1. **Empreendedor solo / criador de conteúdo** — uma pessoa, marca pessoal e negócio misturados
 2. **Freelancer** — atende clientes, organiza por projeto/cliente
@@ -271,6 +316,7 @@ Pegar `templates/perfis/claude-md-<perfil>.md`, adaptar com as respostas, e **su
 ```
 Pronto. Instalado em: <caminho>
 
+✓ Formato: <IA escolhida>, com arquivo de visita pra outra IA
 ✓ Memória do negócio em _memoria/
 ✓ CLAUDE.md no perfil <perfil>, com a convenção de pastas ([por tipo | por cliente])
 ✓ Marca: [identidade/ criada | ainda no zero]
@@ -328,5 +374,6 @@ Mencionar também, em uma linha: guardar o trabalho no GitHub é só pedir; e qu
 - Ao substituir o `CLAUDE.md`, **preservar as regras de operação do sistema**
 - Não escrever "este arquivo será preenchido pelo /instalar" nos arquivos finais
 - 5-7 minutos no máximo. Se o usuário enrolar numa pergunta, registrar o que tem e seguir
+- **A pergunta da IA vem antes de tudo**, logo depois do banner. Fase 0 em diante já roda no formato escolhido
 - **Nunca pedir pro usuário fechar o editor**
 - Ao terminar, deixar claro que ele fala em português — sem barra, sem comando decorado

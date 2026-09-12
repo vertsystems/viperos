@@ -1,7 +1,7 @@
 # Estratégia
 
 > O que importa agora. Prioridades, metas, prazos.
-> O Claude usa isso pra decidir o que sugerir primeiro e o que adiar.
+> O assistente usa isso pra decidir o que sugerir primeiro e o que adiar.
 > Atualize sempre que as prioridades mudarem.
 
 ## Fase

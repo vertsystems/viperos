@@ -174,7 +174,7 @@ do primeiro mês.
 
 ## Prazo é teto, não estimativa
 
-Ninguém sabe quanto tempo leva. Nem você, nem o desenvolvedor, nem o Claude. Estimativa em
+Ninguém sabe quanto tempo leva. Nem você, nem o desenvolvedor, nem a IA. Estimativa em
 horas vira promessa na cabeça de quem ouviu, e a cobrança chega no formato "você disse três
 dias, por que não está pronto?".
 

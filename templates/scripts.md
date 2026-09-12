@@ -64,10 +64,24 @@ node scripts/verificar.js sistema             # skill que não carrega, referên
 Ele confere se toda skill tem frontmatter legível (BOM invisível no início do
 arquivo já derrubou três), se o `name:` bate com a pasta, se a `description` tem
 o gatilho que faz a skill ser encontrada, se alguma skill manda rodar script que
-não existe, e se a contagem de skills nos textos ainda confere. Rode depois de
-criar skill com o `/mapear-rotinas` e depois do `/atualizar-sistema`.
+não existe, se a contagem de skills nos textos ainda confere, e se o workspace
+está inteiro no formato de uma IA só. Rode depois de criar skill com o
+`/mapear-rotinas` e depois do `/atualizar-sistema`.
 
-São os **três** scripts que o sistema entrega prontos. Os outros da tabela acima são criados sob demanda pela skill que precisar deles.
+<!-- ia:inicio -->
+E `scripts/ia.js`: deixa o workspace no formato da IA que o usuário usa, Claude
+Code (`CLAUDE.md` + `.claude/skills/`) ou Codex (`AGENTS.md` + `.agents/skills/`),
+e gera pra outra um arquivo de entrada de visita. A instalação roda uma vez;
+depois só se o usuário pedir pra trocar a base, ou logo após o
+`/atualizar-sistema`, que traz a versão nova sempre no formato do Claude Code:
+
+```bash
+node scripts/ia.js status                     # formato ativo, e se sobrou pedaço da outra
+node scripts/ia.js codex                      # ou claude
+```
+<!-- ia:fim -->
+
+São os **quatro** scripts que o sistema entrega prontos. Os outros da tabela acima são criados sob demanda pela skill que precisar deles.
 
 **Outro gerador** (Midjourney, Leonardo, Firefly, o que você já paga): não há integração, e não vale montar. Gere a imagem lá e passe o arquivo — o `/carrossel` aceita foto pronta do mesmo jeito.
 
@@ -91,7 +105,7 @@ Isso evita um `node_modules` de centenas de MB por carrossel criado. O `node_mod
 
 ## Como o ViperOS lida com isso
 
-Quando você roda uma skill que precisa de script ausente, o Claude vai:
+Quando você roda uma skill que precisa de script ausente, o assistente vai:
 
 1. Detectar que falta o script
 2. Te perguntar se quer configurar agora

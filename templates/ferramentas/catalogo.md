@@ -119,7 +119,7 @@ O provedor é detectado pela chave que existir. Opções: `--formato retrato|qua
 ## Conectar com plataformas (MCPs)
 
 MCPs são conectores que dão acesso direto a plataformas dentro do Claude Code.
-O Claude passa a usar esses conectores automaticamente quando fizer sentido.
+O assistente passa a usar esses conectores automaticamente quando fizer sentido.
 
 Pra ver quais MCPs já estão instalados: `claude mcp list`
 Pra remover um MCP: `claude mcp remove nome-do-mcp`
@@ -155,7 +155,7 @@ claude mcp add google-calendar -- npx -y @gongrzhe/server-google-calendar-autoau
 **Quando usar:** Skills de agendamento, planejamento, organização de reuniões
 
 ### Canva
-**O que faz:** Acessa designs e cria assets visuais direto pelo Claude
+**O que faz:** Acessa designs e cria assets visuais direto pelo assistente
 **Precisa de conta:** Sim, Canva Pro
 **Como instalar:**
 ```bash
