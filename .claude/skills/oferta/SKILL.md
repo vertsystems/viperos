@@ -12,7 +12,7 @@ description: >
 
 Antes de qualquer carrossel, anúncio ou proposta, existe uma pergunta mais importante: **a coisa que você vende é atraente?** Copy boa não salva oferta ruim, só faz mais gente descobrir que não vale a pena.
 
-> **Convenção de pastas:** os caminhos desta skill seguem a convenção **por tipo** (perfis empreendedor solo, empresa e projeto). Se o `CLAUDE.md` do workspace usa a convenção **por cliente** e a oferta é de um cliente, prefixar com `clientes/<Nome>/`. A pasta nasce só na hora de salvar.
+> **Convenção de pastas:** os caminhos desta skill seguem a convenção **por tipo** (todo perfil que não é freelancer nem agência). Se o `CLAUDE.md` do workspace usa a convenção **por cliente** e a oferta é de um cliente, prefixar com `clientes/<Nome>/`. A pasta nasce só na hora de salvar.
 
 ## Dependências
 

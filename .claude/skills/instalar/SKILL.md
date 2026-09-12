@@ -74,30 +74,41 @@ Se der erro (ele baixou o zip em vez de clonar), tudo bem: seguir. O `/atualizar
 
 ## Fase 1 — Escolha do perfil
 
-Perguntar qual perfil combina com o que ele vai fazer aqui. São cinco, então a
+Perguntar qual perfil combina com o que ele vai fazer aqui. São sete, então a
 pergunta vai **em texto, como lista numerada** (o seletor de opções do Claude
-Code só cabe quatro, e cortar um perfil pra caber é pior que ele digitar um
-número):
+Code só cabe quatro, e cortar perfil pra caber é pior que ele digitar um número):
 
 1. **Empreendedor solo / criador de conteúdo** — uma pessoa, marca pessoal e negócio misturados
 2. **Freelancer** — atende clientes, organiza por projeto/cliente
 3. **Agência / consultoria** — equipe pequena entregando pra vários clientes
 4. **Empresa** — empresa estabelecida com setores
-5. **Projeto** — uma coisa só sendo construída: um sistema, um app, um site, uma ideia pra validar. Ainda não é empresa, ou é uma frente isolada dentro de uma
+5. **Comércio / negócio local** — loja, restaurante, clínica, salão, oficina: tem endereço, horário e cliente que passa na porta ou chama no WhatsApp
+6. **Profissional liberal** — médico, advogado, contador, psicólogo, arquiteto, personal: vende a própria hora, vive de agenda e indicação, tem conselho de classe
+7. **Projeto** — uma coisa só sendo construída: um sistema, um app, um site, uma ideia pra validar. Ainda não é empresa, ou é uma frente isolada dentro de uma
 
-A resposta define duas coisas:
-- Qual template de `CLAUDE.md` aplicar (`templates/perfis/claude-md-<perfil>.md`)
+A resposta define três coisas:
+- Qual template de `CLAUDE.md` aplicar (`templates/perfis/claude-md-<perfil>.md`):
+  `empreendedor-solo`, `freelancer`, `agencia`, `empresa`, `comercio-local`,
+  `profissional-liberal`, `projeto`
 - **Qual convenção de pastas** vale (ver `templates/estrutura.md`):
-  - Empreendedor solo, Empresa e Projeto → **por tipo de entrega** (`conteudo/`, `site/`, `sistemas/`)
   - Freelancer e Agência → **por cliente** (`clientes/<Nome>/conteudo/`)
+  - Todos os outros → **por tipo de entrega** (`conteudo/`, `site/`, `vendas/`, `sistemas/`)
+- **Qual entrevista** roda na Fase 2: a padrão (1 a 4) ou a própria do perfil (5, 6 e 7)
 
 Explicar a escolha em uma linha, sem jargão:
 
 > "Como você atende clientes, vou organizar por cliente: cada um ganha uma pasta com o trabalho dele dentro. Se preferir organizar por tipo de entrega, me fala."
 
-Se ele descreve o que vai fazer em vez de escolher um número ("é um sisteminha
-pra controlar estoque", "quero validar uma ideia"), mapear pro perfil mais
-provável, dizer qual foi em uma linha e seguir.
+Se ele descreve o que vai fazer em vez de escolher um número ("tenho uma
+padaria", "sou dentista", "é um sisteminha pra controlar estoque"), mapear pro
+perfil mais provável, dizer qual foi em uma linha e seguir. Casos de fronteira:
+
+- Clínica com vários profissionais e recepção → Comércio local. Um profissional
+  atendendo sozinho, mesmo com secretária → Profissional liberal
+- Consultor que atende empresas por projeto → Freelancer. Contador com carteira
+  fixa de clientes mensais → Profissional liberal
+- Loja que também vende online pelo Instagram → Comércio local. Loja só online,
+  sem endereço físico → Empreendedor solo
 
 ---
 
@@ -105,7 +116,7 @@ provável, dizer qual foi em uma linha e seguir.
 
 Perguntas em ordem, esperando a resposta de cada uma. Resposta vaga: repetir uma vez pedindo concretude e seguir com o que vier.
 
-**Perfil Projeto tem entrevista própria** (abaixo, "Entrevista — Projeto"). Os outros quatro seguem esta:
+**Comércio local, Profissional liberal e Projeto têm entrevista própria** (abaixo). Os outros quatro seguem esta:
 
 **Sobre o negócio:**
 1. "Como você chama o que você faz? (nome da empresa, ou seu nome se for marca pessoal)"
@@ -131,6 +142,68 @@ Perguntas em ordem, esperando a resposta de cada uma. Resposta vaga: repetir uma
 11. "Tem logo? Se sim, me manda o arquivo que eu guardo no lugar certo."
 
 ---
+
+### Entrevista — Comércio / negócio local
+
+O que esse perfil precisa está no balcão: endereço, horário, o que mais sai e como o cliente chega. Sem isso, CTA, anúncio e SEO local saem errados. Sem pergunta de "posicionamento" nem de "audiência".
+
+**Sobre o negócio:**
+1. "Como se chama e o que é? (padaria, restaurante, clínica, salão, loja de quê)"
+2. "Endereço completo e horário de funcionamento, dia a dia. Se fecha em feriado ou tem horário de almoço, fala."
+3. "O que mais sai? Os 3 a 5 produtos ou serviços que seguram o faturamento, com o preço de cada um."
+4. "Quanto o cliente gasta em média por vez? Um número aproximado serve."
+5. "Como o cliente chega hoje: passa na porta, chama no WhatsApp, pede pelo iFood, acha no Google, vem por indicação? O que mais pesa?"
+
+**Sobre quem toca:**
+6. "Quem atende, quem responde o WhatsApp e quem cuida do caixa? Pode ser tudo você."
+
+**Sobre canais:**
+7. "Me passa os canais: WhatsApp comercial, telefone fixo, Instagram, link do Google Meu Negócio (ou se ainda não reivindicou), iFood ou app de delivery. O que não existir, só fala 'não tenho'."
+
+> O Google Meu Negócio é o canal que mais traz cliente local e o que mais fica abandonado. Se ele não reivindicou, abrir item no `tarefas.md` na Fase 3: é a primeira coisa a fazer.
+
+**Sobre cliente e voz:**
+8. "Quem compra de verdade? Perfil real: moradora do bairro, funcionário do prédio ao lado, mãe que busca filho na escola em frente."
+9. "Me cola uma resposta sua de WhatsApp pra cliente, real e recente. Assim eu escrevo do teu jeito."
+10. "O que te dá ranço quando negócio escreve? ('prezado cliente', 'experiência diferenciada', emoji demais)"
+
+**Sobre foco:**
+11. "O que te trava hoje: movimento fraco em dia específico, cliente que some, avaliação ruim no Google, não saber quanto sobra no mês, tempo pra postar?"
+12. "Se eu pudesse tirar UMA coisa que você repete toda semana das tuas costas, qual seria?"
+
+Mapeamento pra memória: 1-7 → `empresa.md` (o campo **Perfil** recebe "Comércio local"; endereço, horário, ticket e "o que mais sai" vão em **Contexto adicional** com preço, e também na seção "O negócio" do `CLAUDE.md`); 8 → `empresa.md` e semente do `publico.md`; 9-10 → `preferencias.md` (a 9 vira **Exemplo de escrita real**); 11-12 → `estrategia.md`. Não perguntar de identidade visual: se ele tem logo e cores, ele conta na 7 ou depois. Se não tem, o negócio local funciona sem, e o sistema propõe quando ele pedir.
+
+### Entrevista — Profissional liberal
+
+Esse perfil tem uma pergunta que os outros não têm: **o que o conselho de classe deixa falar**. Pular isso gera anúncio que dá processo ético. O resto é agenda, indicação e voz.
+
+**Sobre a atuação:**
+1. "Qual a tua profissão e especialidade? E o registro (CRM, OAB, CRC, CRP, CRN, CAU, CREF) com número e UF."
+2. "Atende presencial, online ou os dois? Se presencial, onde (bairro e cidade)."
+3. "O que você faz, na prática: consulta, acompanhamento, parecer, processo, projeto? Os 2 ou 3 serviços que mais atende."
+4. "Como cobra e quanto, mais ou menos: por consulta, por hora, mensal, por projeto? Se preferir não registrar valor, tudo bem, registro 'conforme tabela'."
+
+**Sobre o que pode dizer:**
+5. "O teu conselho restringe publicidade? Por exemplo: preço em anúncio, antes-e-depois, depoimento de paciente, promessa de resultado. Me diz o que você sabe que não pode. Se não tiver certeza, eu deixo marcado pra confirmar e pergunto antes de publicar qualquer coisa."
+
+> Nunca preencher essa regra por conta própria com "o que costuma valer pra médico". A regra vai pro `CLAUDE.md` como ele disse, ou como `[a confirmar]`. Chute aqui vira infração no nome dele.
+
+**Sobre quem atende:**
+6. "Quem te procura hoje? Perfil real, sem persona: idade, o que sente ou precisa, por onde chegou."
+7. "Como a maioria chega: indicação, Google, Instagram, convênio, plataforma (Doctoralia, iFood da profissão)? E quantos atendimentos você faz por semana, mais ou menos?"
+
+**Sobre canais:**
+8. "Me passa os canais: WhatsApp de atendimento, Instagram, site, link do Google Meu Negócio, e-mail profissional. O que não existir, só fala 'não tenho'."
+
+**Sobre voz:**
+9. "Me cola algo que você escreveu pra paciente ou cliente, real e recente: uma mensagem, uma orientação, uma legenda. É a régua de tom."
+10. "O que te dá ranço quando profissional da tua área escreve? ('agende já', jargão sem tradução, diminutivo, tom de vendedor)"
+
+**Sobre foco:**
+11. "O que te trava hoje: agenda com buraco, paciente que não volta, depender de indicação, não saber cobrar, tempo pra postar?"
+12. "Se eu pudesse tirar UMA coisa que você repete toda semana das tuas costas, qual seria?"
+
+Mapeamento pra memória: 1-4 e 7-8 → `empresa.md` (o campo **Perfil** recebe "Profissional liberal"; registro, modalidade e honorário em **Contexto adicional** e na seção "Quem sou" do `CLAUDE.md`); 5 → seção "O que eu posso e não posso dizer" do `CLAUDE.md`, literal ou `[a confirmar]`; 6 → semente do `publico.md`; 9-10 → `preferencias.md`; 11-12 → `estrategia.md`. Identidade visual: não perguntar; se ele tem, conta na 8. A regra de sigilo entra no `CLAUDE.md` mesmo que ele não fale dela.
 
 ### Entrevista — Projeto
 
@@ -188,6 +261,7 @@ Pegar `templates/perfis/claude-md-<perfil>.md`, adaptar com as respostas, e **su
 - Tom de voz (resumo — o detalhe fica em `_memoria/preferencias.md`)
 - **Seção "Onde salvar o que"** com a convenção escolhida na Fase 1
 - **Regra de criação sob demanda:** "criar pasta só quando a primeira peça daquele tipo for feita"
+- As seções próprias do perfil, preenchidas com a entrevista: "O negócio" (endereço, horário, ticket, o que mais sai) no comércio local; "Quem sou" com registro e "O que eu posso e não posso dizer" no profissional liberal; "O projeto" com fase e referência no projeto
 - As regras de operação do sistema — copiar do `CLAUDE.md` original (contexto, aprender com correções, manter atualizado, criação de skills, segredos, qualidade da saída, execução). **Nunca jogar essas regras fora**
 
 ---
@@ -198,7 +272,7 @@ Pegar `templates/perfis/claude-md-<perfil>.md`, adaptar com as respostas, e **su
 Pronto. Instalado em: <caminho>
 
 ✓ Memória do negócio em _memoria/
-✓ CLAUDE.md com o seu contexto e a convenção de pastas ([por tipo | por cliente])
+✓ CLAUDE.md no perfil <perfil>, com a convenção de pastas ([por tipo | por cliente])
 ✓ Marca: [identidade/ criada | ainda no zero]
 
 As outras pastas nascem conforme você for usando: fizer um carrossel, nasce

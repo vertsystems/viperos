@@ -69,6 +69,8 @@ Formato: `[sem fonte: 30% de durabilidade, de onde vem?]`. Não apagar sozinho: 
 
 **Em nicho regulado** (saúde, jurídico, financeiro, alimentar), sinalizar promessa que pode virar problema legal.
 
+**Se o `CLAUDE.md` tem a seção "O que eu posso e não posso dizer"** (perfil profissional liberal), ela é critério de reprovação, não de aviso: conferir cada regra de lá contra o texto (preço em anúncio, promessa de resultado, antes-e-depois, depoimento, registro visível) e marcar como `[conselho: <regra ferida>]`. Regra marcada `[a confirmar]` no `CLAUDE.md` vira pergunta ao usuário antes de entregar, não suposição.
+
 ### Passe 5 — Legibilidade
 
 - Frase com mais de 30 palavras: quebrar
